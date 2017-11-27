@@ -1,0 +1,17 @@
+<!-- <video width="300px" id="my-video" class="video-js " controls preload="auto" poster="./assets/tmp-video.jpg" data-setup="{}">
+  <source src="./assets/video.mp4" type="video/mp4">
+</video> -->
+
+<video *ngIf="url"
+       id="video_{{idx}}"
+       poster="poster"
+       class="video-js vjs-default-skin vjs-big-play-centered vjs-16-9"
+       controls
+       preload="auto"
+       width="640"
+       height="264">
+
+    <source [src]="url" type="video/mp4" />
+
+  </video>
+<!-- vjs-default-skin vjs-big-play-centered vjs-16-9 -->

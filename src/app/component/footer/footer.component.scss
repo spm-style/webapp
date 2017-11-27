@@ -1,0 +1,60 @@
+@import "../../../../spm_modules/style-guide.scss";
+
+/************************* DEFAULT STYLE **************************************/
+footer{
+  background-color: #464646;
+  .content{
+    max-width: 992px;
+    margin: 0 auto;
+    padding: 20px;
+    .footer-section{
+      padding-bottom: 40px;
+      width: 100%;
+      h3{
+        font-size: 1.8rem;
+        color: $color-primary;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #fff;
+      }
+      ul{
+        margin-top: 20px;
+        padding-left: 20px;
+        li{
+          list-style: square;
+          margin-left: 30px;
+          margin-bottom: 15px;
+          color: #fff;
+          a{
+            color: #fff;
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+/************************************* XS *************************************/
+@media screen and (min-width: $responsive-width-xs) {}
+
+/************************************* SM *************************************/
+@media screen and (min-width: $responsive-width-sm) {}
+
+/************************************* MD *************************************/
+@media screen and (min-width: $responsive-width-md) {
+  footer{
+    .content{
+      display: flex;
+      justify-content: space-between;
+      .footer-section{
+        width: 30%;
+      }
+    }
+  }
+}
+
+/************************************* LG *************************************/
+@media screen and (min-width: $responsive-width-lg) {}
+
+/************************************* XL *************************************/
+@media screen and (min-width: $responsive-width-xl) {}

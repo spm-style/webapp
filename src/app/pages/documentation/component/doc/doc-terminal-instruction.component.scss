@@ -1,0 +1,139 @@
+$color-white: #fff;
+$color-selected: #01c5c6;
+$color-success: #61f661;;
+$color-dim: #717171;
+$color-instance: #fd7f57;
+$color-dependency: #00bbff;
+$color-module: #ff00bb;
+$color-prefix: #00c120;
+
+@mixin tdi-prefix-base($color) {
+  white-space: pre-line;
+  line-height: 1.7;
+  font-size: 1.1rem;
+  color: $color;
+  -webkit-font-smoothing: antialiased;
+  width: 12px;
+  display: inline-block;
+}
+
+.tdi-prefix{
+  display: inline-block;
+  width: 22px;
+  &.tdi-prefix-dollar::before{
+    @include tdi-prefix-base($color-white);
+    content: "$";
+  }
+  &.tdi-prefix-inquirer-ask::before {
+    @include tdi-prefix-base($color-prefix);
+    content: "?";
+  }
+  &.tdi-prefix-inquirer-radio::before {
+    @include tdi-prefix-base($color-prefix);
+    content: " ";
+  }
+  &.tdi-prefix-inquirer-radio-select::before {
+    @include tdi-prefix-base($color-selected);
+    content: ">";
+  }
+  &.tdi-prefix-inquirer-checkbox {
+    width: 30px;
+    display: inline-flex;
+    align-items: center;
+    &::before{
+      content: " ";
+      width: 14px;
+    }
+    &::after{
+      @include tdi-prefix-base($color-selected);
+      content: " ";
+      margin-bottom: -2px;
+      height: 10px;
+      width: 10px;
+      border: 2px solid #000;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #fff;
+      border-radius: 50%;
+      box-shadow: 0px 0px 0px 1px $color-selected;
+    }
+  }
+  &.tdi-prefix-inquirer-checkbox-select {
+    width: 30px;
+    display: inline-flex;
+    align-items: center;
+    &::before{
+      content: " ";
+      width: 14px;
+    }
+    &::after{
+      @include tdi-prefix-base($color-selected);
+      content: " ";
+      margin-bottom: -2px;
+      height: 10px;
+      width: 10px;
+      border: 2px solid #000;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #fff;
+      border-radius: 50%;
+      box-shadow: 0px 0px 0px 1px $color-selected;
+      background-color: $color-selected;
+    }
+  }
+
+  &.tdi-prefix-inquirer-checkbox-select-active{
+    width: 30px;
+    display: inline-flex;
+    align-items: center;
+    &::before {
+      @include tdi-prefix-base($color-selected);
+      content: ">";
+      width: 14px;
+    }
+    &::after {
+      @include tdi-prefix-base($color-selected);
+      content: " ";
+      // margin-bottom: -2px;
+      height: 10px;
+      width: 10px;
+      border: 2px solid #000;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #fff;
+      border-radius: 50%;
+      box-shadow: 0px 0px 0px 1px $color-selected;
+      background-color: $color-selected;
+    }
+  }
+}
+
+
+
+.dti-content{
+  white-space: pre-line;
+  line-height: 1.7;
+  font-size: 1.1rem;
+  color: $color-white;
+  -webkit-font-smoothing: antialiased;
+  &.dti-content-inquirer{
+    font-weight: bold;
+  }
+  &.dti-content-inquirer-radio-select{
+    color: $color-selected;
+  }
+  &.dti-content-inquirer-checkbox-select{
+    color: $color-selected;
+  }
+}
+
+.dti-arg{
+  padding-left: 8px;
+  &.dti-arg-selected{
+    color: $color-selected;
+  }
+  &.dti-arg-dim1{
+    color: $color-dim;
+  }
+  &.dti-arg-dim2{
+    color: $color-white;
+    -webkit-font-smoothing: antialiased;
+  }
+}

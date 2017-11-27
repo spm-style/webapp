@@ -1,0 +1,21 @@
+section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+h1{
+  color: coral;
+}
+button{
+  background: none;
+  border: none;
+}
+button a{
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  background-color: coral;
+  color: white;
+  padding: 10px 20px;
+}

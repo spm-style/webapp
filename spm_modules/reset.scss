@@ -1,0 +1,29 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+  outline: none;
+}
+
+body, h1, h2, h3, h4, h5, p, ul, li, button {
+  padding: 0;
+  margin: 0;
+}
+
+li{
+  list-style: none;
+}
+
+input{
+  -webkit-appearance: none;
+  border: none;
+  background: none;
+}
+
+button{
+  border: none;
+  background: none;
+}
+
+a{
+  text-decoration: none;
+}
