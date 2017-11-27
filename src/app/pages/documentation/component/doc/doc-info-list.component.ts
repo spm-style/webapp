@@ -4,9 +4,11 @@ import { Component, Input } from '@angular/core';
   selector: 'doc-info-list',
   template: `
     <div class="doc-info-list doc-info-list-{{type}}">
+      <p *ngIf="title">{{ title }}</p>
       <ul>
         <ng-content></ng-content>
       </ul>
+      <p *ngIf="tail">{{ tail }}</p>
     </div>
   `,
   styles: [`
@@ -45,5 +47,7 @@ import { Component, Input } from '@angular/core';
 export class DocInfoListComponent {
 
   @Input('type') readonly type:string;
+  @Input('title') readonly title:string;
+  @Input('tail') readonly tail:string;
 
 }

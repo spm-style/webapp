@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'doc-terminal-instruction',
-  template: `<span class="tdi-prefix tdi-prefix-{{prefix}}"></span> <span class="dti-content dti-content-{{classContent}}">{{content}}</span> <span *ngIf="argShow(1)" class="dti-arg dti-arg-{{classArg1}}">{{argContent[0]}}</span> <span *ngIf="argShow(2)" class="dti-arg dti-arg-{{classArg2}}">{{argContent[1]}}</span> <span *ngIf="argShow(3)" class="dti-arg dti-arg-{{classArg3}}">{{argContent[2]}}</span> <span *ngIf="argShow(4)" class="dti-arg dti-arg-{{classArg4}}">{{argContent[3]}}</span>`,
+  template: `<span *ngIf="prefix!='none'" class="tdi-prefix tdi-prefix-{{prefix}}"></span> <span class="dti-content dti-content-{{classContent}}">{{content}}</span> <span *ngIf="argShow(1)" class="dti-arg dti-arg-{{classArg1}}">{{argContent[0]}}</span> <span *ngIf="argShow(2)" class="dti-arg dti-arg-{{classArg2}}">{{argContent[1]}}</span> <span *ngIf="argShow(3)" class="dti-arg dti-arg-{{classArg3}}">{{argContent[2]}}</span> <span *ngIf="argShow(4)" class="dti-arg dti-arg-{{classArg4}}">{{argContent[3]}}</span>`,
   styleUrls: ['./doc-terminal-instruction.component.scss']
 })
 export class DocTerminalInstructionComponent implements OnInit {
@@ -62,6 +62,10 @@ export class DocTerminalInstructionComponent implements OnInit {
       case 'inquirer-checkbox-select-active':
         this.prefix = 'inquirer-checkbox-select-active';
         this.classContent = 'inquirer-checkbox-select';
+        break;
+      case 'console-log':
+        this.prefix = 'none';
+        this.classContent = 'console-log';
         break;
       default:
         break;

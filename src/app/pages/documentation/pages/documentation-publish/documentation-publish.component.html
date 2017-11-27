@@ -1,0 +1,48 @@
+<section class="section-search">
+  <div class="content">
+    <input type="text" placeholder="Find packages">
+  </div>
+</section>
+
+<section class="section-overview">
+  <div class="content">
+    <h1>Publish your creation</h1>
+  </div>
+</section>
+
+<section class="section-doc">
+  <div class="content">
+  	<doc-info type="warning">Before publishing a package, you must have a spm profile.</doc-info>
+	  	<doc-description>Once your code is ready, you can publish your package using the <doc-highlight>spm publish</doc-highlight> or short <doc-highlight>spm p</doc-highlight> CLI command.</doc-description>
+	  <doc-terminal>
+	  	<doc-terminal-instruction content="spm p myAwesomePackage"></doc-terminal-instruction>
+	  </doc-terminal>
+		 <doc-info-list type="important" title="In order to publish your package, spm requires mandatory information to be present in your `package-spm.json` file:">
+			<doc-info-list-item>style</doc-info-list-item>
+			<doc-info-list-item>type</doc-info-list-item>
+			<doc-info-list-item>version</doc-info-list-item>
+			<doc-info-list-item>description</doc-info-list-item>
+			<doc-info-list-item>author</doc-info-list-item>
+			<doc-info-list-item>entry</doc-info-list-item>
+			<doc-info-list-item>scripts</doc-info-list-item>
+			<doc-info-list-item>license</doc-info-list-item>
+			<doc-info-list-item>repository</doc-info-list-item>
+			<doc-info-list-item>readme</doc-info-list-item>
+			<doc-info-list-item>keywords</doc-info-list-item>
+			<doc-info-list-item>main</doc-info-list-item>
+			<doc-info-list-item>category</doc-info-list-item>
+			<doc-info-list-item>classes</doc-info-list-item>
+			<doc-info-list-item>responsiveness</doc-info-list-item>
+	  </doc-info-list>
+	  <doc-description>Moreover, you need to have a <doc-highlight>ref-dom.html</doc-highlight> template file located at the root of your publication if you don't use one of spm templates.</doc-description>
+	  <doc-info-list type="warning" title="There are several checks done on CLI side, more checks are done by spm registry to ensure the quality of the package. Among them:">
+	  	<doc-info-list-item>We check your publication's style does not affect any external element. For this reason, all your style selectors should be driven by your main class and/or your project's class</doc-info-list-item>
+	  </doc-info-list>
+		<doc-description>Wether the publication suceeds or not, a report will be displayed in your terminal.</doc-description>
+		<doc-info type="important">To ensure each package's unicity and the compatibility between all packages, spm renames all publications based on this model : *author*_*name*. The classes and variables will be renamed the same way.</doc-info>
+		<doc-info-list type="success" title="Once your publication is validated, it will be accessible on spm website and accessible by:">
+			<doc-info-list-item>anyone if it is a public publication</doc-info-list-item>
+			<doc-info-list-item>specific collaborators you've chosen if it is a private publication</doc-info-list-item>
+		</doc-info-list>
+	</div>
+</section>

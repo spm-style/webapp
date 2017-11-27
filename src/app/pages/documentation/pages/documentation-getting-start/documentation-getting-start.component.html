@@ -6,96 +6,11 @@
 
 <section class="section-overview">
   <div class="content">
-    <h1>Generating a customized package</h1>
+    <h1>Getting started</h1>
   </div>
 </section>
 
 <section class="section-doc">
   <div class="content">
-
-    <doc-description>After installing a package, you may want to customize it and generate a new package from it. For this purpose, you can use the <doc-highlight>spm generate</doc-highlight> or short <doc-highlight>spm g</doc-highlight> CLI command.</doc-description>
-    <doc-terminal>
-      <doc-terminal-instruction content="spm g apollo_onOff myNewPackage"></doc-terminal-instruction>
-    </doc-terminal>
-    <doc-description>Here, we are specifying the creation of a new instance of apollo_onOff package that we call myNewPackage. spm opens a prompt to ask for the value of all customizable variables :</doc-description>
-    <doc-terminal>
-      <doc-terminal-instruction content="spm g apollo_onOff myNewPackage"></doc-terminal-instruction>
-      <doc-terminal-instruction type="inquirer" content="value of adrien_onOff-offColor" [arg]="['(red)']" ></doc-terminal-instruction>
-    </doc-terminal>
-    <doc-description>The default value of the variable is precised between parenthesis, so pressing the enter key will select the default value.</doc-description>
-    <doc-terminal>
-      <doc-terminal-instruction content="spm g apollo_onOff myNewPackage"></doc-terminal-instruction>
-      <doc-terminal-instruction type="inquirer" content="value of adrien_onOff-offColor" [arg]="['(red)']" ></doc-terminal-instruction>
-      <doc-terminal-instruction type="inquirer-dim" content="value of adrien_onOff-offColor" [arg]="['(red)', 'green']" ></doc-terminal-instruction>
-    </doc-terminal>
-    <doc-description>Once all the values have been defined, the customized instance of your package is created inside the <span class="highlight">dist</span> folder located inside your package.</doc-description>
-    <doc-description>The classes are automatically renamed with a different prefix so you can use several instances of a package withint the same project. For instance, here:</doc-description>
-
-    <h2>bonus</h2>
-
-    <doc-terminal>
-      <doc-terminal-instruction content="spm g apollo_onOff myNewPackage"></doc-terminal-instruction>
-      <doc-terminal-instruction type="inquirer-radio" content="scss"></doc-terminal-instruction>
-      <doc-terminal-instruction type="inquirer-radio-select" content="css"></doc-terminal-instruction>
-    </doc-terminal>
-
-    <doc-terminal>
-      <doc-terminal-instruction content="spm g apollo_onOff myNewPackage"></doc-terminal-instruction>
-      <doc-terminal-instruction type="inquirer-checkbox" content="scss"></doc-terminal-instruction>
-      <doc-terminal-instruction type="inquirer-checkbox-select" content="css"></doc-terminal-instruction>
-      <doc-terminal-instruction type="inquirer-checkbox-select-active" content="sass"></doc-terminal-instruction>
-      <doc-terminal-instruction type="inquirer-checkbox" content="other"></doc-terminal-instruction>
-    </doc-terminal>
-
-    <doc-info-list type="warning">
-      <doc-info-list-item><doc-highlight>apollo_onOff</doc-highlight> class is renamed in <doc-highlight>myNewPackage</doc-highlight></doc-info-list-item>
-      <doc-info-list-item><doc-highlight>apollo_onOff-radius</doc-highlight> class is renamed in <doc-highlight>myNewPackage-radius</doc-highlight></doc-info-list-item>
-      <doc-info-list-item><doc-highlight>apollo_onOff-pointer</doc-highlight> class is renamed in <doc-highlight>myNewPackage-pointer</doc-highlight></doc-info-list-item>
-    </doc-info-list>
-
-    <doc-info-list type="success">
-      <doc-info-list-item><doc-highlight>apollo_onOff</doc-highlight> class is renamed in <doc-highlight>myNewPackage</doc-highlight></doc-info-list-item>
-      <doc-info-list-item><doc-highlight>apollo_onOff-radius</doc-highlight> class is renamed in <doc-highlight>myNewPackage-radius</doc-highlight></doc-info-list-item>
-      <doc-info-list-item><doc-highlight>apollo_onOff-pointer</doc-highlight> class is renamed in <doc-highlight>myNewPackage-pointer</doc-highlight></doc-info-list-item>
-    </doc-info-list>
-
-    <doc-info-list type="important">
-      <doc-info-list-item><doc-highlight>apollo_onOff</doc-highlight> class is renamed in <doc-highlight>myNewPackage</doc-highlight></doc-info-list-item>
-      <doc-info-list-item><doc-highlight>apollo_onOff-radius</doc-highlight> class is renamed in <doc-highlight>myNewPackage-radius</doc-highlight></doc-info-list-item>
-      <doc-info-list-item><doc-highlight>apollo_onOff-pointer</doc-highlight> class is renamed in <doc-highlight>myNewPackage-pointer</doc-highlight></doc-info-list-item>
-    </doc-info-list>
-
-    <doc-info type="warning">je suis un fucking warning</doc-info>
-    <doc-info type="success">je suis un fucking important</doc-info>
-    <doc-info type="important">je suis un fucking success</doc-info>
-
-    <h2>Scss</h2>
-
-    <doc-scss>
-      <doc-scss-import value="../../test/test-de-merde.scss"></doc-scss-import>
-      <doc-scss-import value="../../test/test-de-merde.scss"></doc-scss-import>
-      <doc-scss-import value="../../test/test-de-merde.scss"></doc-scss-import>
-      <doc-scss-tab></doc-scss-tab>
-      <doc-scss-mixin name="adrien-mixin" [values]="['$width', '$X', '$Y']">
-        <doc-scss-instruction content="width" [values]="['$width']"></doc-scss-instruction>
-        <doc-scss-instruction content="tranform" func="translate" [values]="['$X', '$Y']"></doc-scss-instruction>
-      </doc-scss-mixin>
-      <doc-scss-include func="adrien-mixin" [values]="['10px', '$test']"></doc-scss-include>
-      <doc-scss-block value="input" selector=":checked">
-        <doc-scss-extend value="adrien-on-off"></doc-scss-extend>
-        <doc-scss-instruction content="width" [values]="['18px']"></doc-scss-instruction>
-        <doc-scss-instruction content="height" [values]="['$height']"></doc-scss-instruction>
-        <doc-scss-block prefix="and" value="#adrien" selector=":checked">
-          <doc-scss-extend value="adrien-on-off"></doc-scss-extend>
-          <doc-scss-instruction content="width" [values]="['18px']"></doc-scss-instruction>
-          <doc-scss-instruction content="height" [values]="['$height']"></doc-scss-instruction>
-        </doc-scss-block>
-        <doc-scss-extend value="adrien-on-off"></doc-scss-extend>
-
-      </doc-scss-block>
-    </doc-scss>
-
-
-
   </div>
 </section>

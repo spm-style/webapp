@@ -1,0 +1,77 @@
+<section class="section-search">
+  <div class="content">
+    <input type="text" placeholder="Find packages">
+  </div>
+</section>
+
+<section class="section-overview">
+  <div class="content">
+    <h1>Install fancy packages</h1>
+  </div>
+</section>
+
+<section class="section-doc">
+  <div class="content">
+  	<doc-description>Let's say you want to use the graphical element you've seen in package `apollo_onOff`. Open your terminal and navigate to your project, then use the <doc-highlight>spm install</doc-highlight> or short <doc-highlight>spm i</doc-highlight> CLI command.</doc-description>
+  	<doc-terminal>
+  		<doc-terminal-instruction content="spm i apollo_onOff"></doc-terminal-instruction>
+  	</doc-terminal>
+  	<doc-description>At the end of the installation, the CLI displays the detail of what was installed, and WARNING / ERROR messages :</doc-description>
+  	<doc-terminal>
+  		<doc-terminal-instruction content="spm i apollo_onOff"></doc-terminal-instruction>
+  		<doc-terminal-instruction type="console-log" content="The following file has been installed :"></doc-terminal-instruction>
+  		<doc-terminal-instruction type="console-log" content="apollo_onOff@2.0.1"></doc-terminal-instruction>
+  		<doc-terminal-instruction type="console-log" content="|_ apollo_input@1.0.1 &#8729;&#8729;&#8729;&#8729;&#8729;&#8729;&#8729;&#8729;&#8729;&#8729; blue-input"></doc-terminal-instruction>
+  		<doc-terminal-instruction type="console-log" content="&emsp;|"></doc-terminal-instruction>
+  		<doc-terminal-instruction type="console-log" content="&emsp;|_ apollo_form-elem@1.2.7"></doc-terminal-instruction>
+  	</doc-terminal>
+  	<doc-info type="important">By default, spm installer optimizes the quantity of information installed in your computer. If the requested version of your package already exists in your project or in you registry, no additional code will be written and a symbolic link will be created.</doc-info>
+  	<doc-description>You can specify multiple arguments to install multiple packages.</doc-description>
+	 	<doc-terminal>
+		  <doc-terminal-instruction content="spm i apollo_onOff apollo_form-elem@1.2.7"></doc-terminal-instruction>
+		  <doc-terminal-instruction type="console-log" content="The following files have been installed :"></doc-terminal-instruction>
+		  <doc-terminal-instruction type="console-log" content="apollo_onOff@2.0.1"></doc-terminal-instruction>
+		  <doc-terminal-instruction type="console-log" content="|_ apollo_input@1.0.1 &#8729;&#8729;&#8729;&#8729;&#8729;&#8729;&#8729;&#8729;&#8729;&#8729; blue-input"></doc-terminal-instruction>
+		  <doc-terminal-instruction type="console-log" content="&emsp;|"></doc-terminal-instruction>
+		  <doc-terminal-instruction type="console-log" content="&emsp;|_ apollo_form-elem@1.2.7"></doc-terminal-instruction>
+		  <doc-terminal-instruction type="console-log" content="apollo_form-elem@1.2.7"></doc-terminal-instruction>
+		</doc-terminal>
+	  <doc-info type="important">If no argument is specified, spm will install all project's dependencies. To install all dependencies listed in a project's `package-spm.json`, just use `spm i` command without any argument.
+		</doc-info>
+
+	  <h2>local installation</h2>
+		<doc-description>You can precise that the package has to be installed locally with option <doc-highlight>--local</doc-highlight> or <doc-highlight>-l</doc-highlight>.</doc-description>
+		<doc-terminal>
+			<doc-terminal-instruction content="spm i apollo_onOff -l"></doc-terminal-instruction>
+		</doc-terminal>
+		<h2>global installation</h2>
+		<doc-description>You can do the same forcing the package to be installed in your own global registry, using option <doc-highlight>--registry</doc-highlight> or <doc-highlight>-r</doc-highlight>.</doc-description>
+		<doc-info type="warning">Note that `sudo` command may be required.</doc-info>
+		<doc-terminal>
+			<doc-terminal-instruction content="sudo spm i apollo_onOff -r"></doc-terminal-instruction>
+		</doc-terminal>
+		<h2>target a specific version</h2>
+		<doc-description>If you want, you can precise the version of the package you want to install using `@` marker:</doc-description>
+		<doc-terminal>
+			<doc-terminal-instruction content="spm i apollo_onOff@1.0.1"></doc-terminal-instruction>
+		</doc-terminal>
+		<doc-info type="important">If no version is precised, the Long Term Support (LTS) will be automatically selected.</doc-info>
+		<h2>save package as a dependency</h2>
+		<doc-description>If you want to save this package in your project so you can easily share its content, you can use option <doc-highlight>--save</doc-highlight> or <doc-highlight>-s</doc-highlight>.</doc-description>
+		<doc-description>It will add the version of this package in `package-spm.json` file's dependencies key :</doc-description>
+		<doc-terminal>
+			<doc-terminal-instruction type="console-log" content="{"></doc-terminal-instruction>
+			<doc-terminal-instruction type="console-log" content="&emsp;[...]"></doc-terminal-instruction>
+			<doc-terminal-instruction type="console-log" content="&emsp;dependencies: {"></doc-terminal-instruction>
+			<doc-terminal-instruction type="console-log" content="&emsp;&emsp;&quot;apollo_onOff&quot;: &quot;2.0.0&quot;"></doc-terminal-instruction>
+			<doc-terminal-instruction type="console-log" content="&emsp;}"></doc-terminal-instruction>
+			<doc-terminal-instruction type="console-log" content="&emsp;[...]"></doc-terminal-instruction>
+			<doc-terminal-instruction type="console-log" content="}"></doc-terminal-instruction>
+		</doc-terminal>
+		<h2>reinstall a package</h2>
+		<doc-description>Since spm doesn't download files already existing in your registry or project, you can force the re-installation by using option <doc-highlight>--force</doc-highlight> or <doc-highlight>-f</doc-highlight>.</doc-description>
+		<doc-terminal>
+			<doc-terminal-instruction content="spm i apollo_onOff -f"></doc-terminal-instruction>
+		</doc-terminal>
+  </div>
+</section>
