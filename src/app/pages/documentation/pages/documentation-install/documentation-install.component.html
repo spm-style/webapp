@@ -14,27 +14,27 @@
   <div class="content">
   	<doc-description>Let's say you want to use the graphical element you've seen in package `apollo_onOff`. Open your terminal and navigate to your project, then use the <doc-highlight>spm install</doc-highlight> or short <doc-highlight>spm i</doc-highlight> CLI command.</doc-description>
   	<doc-terminal>
-  		<doc-terminal-instruction content="spm i apollo_onOff"></doc-terminal-instruction>
+      <doc-terminal-instruction content="spm i apollo_onOff"></doc-terminal-instruction>
   	</doc-terminal>
   	<doc-description>At the end of the installation, the CLI displays the detail of what was installed, and WARNING / ERROR messages :</doc-description>
   	<doc-terminal>
-  		<doc-terminal-instruction content="spm i apollo_onOff"></doc-terminal-instruction>
-  		<doc-terminal-instruction type="console-log" content="The following file has been installed :"></doc-terminal-instruction>
-  		<doc-terminal-instruction type="console-log" content="apollo_onOff@2.0.1"></doc-terminal-instruction>
-  		<doc-terminal-instruction type="console-log" content="|_ apollo_input@1.0.1 &#8729;&#8729;&#8729;&#8729;&#8729;&#8729;&#8729;&#8729;&#8729;&#8729; blue-input"></doc-terminal-instruction>
-  		<doc-terminal-instruction type="console-log" content="&emsp;|"></doc-terminal-instruction>
-  		<doc-terminal-instruction type="console-log" content="&emsp;|_ apollo_form-elem@1.2.7"></doc-terminal-instruction>
+      <doc-terminal-instruction content="spm i apollo_onOff"></doc-terminal-instruction>
+      <doc-cli-message type="success">The following package has been installed:</doc-cli-message>
+      <doc-cli-message type="install" [arg]="[{type:'module',info:'apollo_onOff@2.0.1'}]"></doc-cli-message>
+      <doc-cli-message type="install-dependency" [level]="1" [arg]="[{type:'dependency',info:'apollo_input@1.0.1'},{type:'instance',info:'blue-input'}]"></doc-cli-message>
+      <doc-cli-message type="install-tree-branch" [level]="2"></doc-cli-message>
+      <doc-cli-message type="install-dependency" [level]="2" [arg]="[{type:'dependency',info:'apollo_form-elem@1.2.7'}]"></doc-cli-message>
   	</doc-terminal>
   	<doc-info type="important">By default, spm installer optimizes the quantity of information installed in your computer. If the requested version of your package already exists in your project or in you registry, no additional code will be written and a symbolic link will be created.</doc-info>
   	<doc-description>You can specify multiple arguments to install multiple packages.</doc-description>
 	 	<doc-terminal>
-		  <doc-terminal-instruction content="spm i apollo_onOff apollo_form-elem@1.2.7"></doc-terminal-instruction>
-		  <doc-terminal-instruction type="console-log" content="The following files have been installed :"></doc-terminal-instruction>
-		  <doc-terminal-instruction type="console-log" content="apollo_onOff@2.0.1"></doc-terminal-instruction>
-		  <doc-terminal-instruction type="console-log" content="|_ apollo_input@1.0.1 &#8729;&#8729;&#8729;&#8729;&#8729;&#8729;&#8729;&#8729;&#8729;&#8729; blue-input"></doc-terminal-instruction>
-		  <doc-terminal-instruction type="console-log" content="&emsp;|"></doc-terminal-instruction>
-		  <doc-terminal-instruction type="console-log" content="&emsp;|_ apollo_form-elem@1.2.7"></doc-terminal-instruction>
-		  <doc-terminal-instruction type="console-log" content="apollo_form-elem@1.2.7"></doc-terminal-instruction>
+      <doc-terminal-instruction content="spm i apollo_onOff"></doc-terminal-instruction>
+      <doc-cli-message type="success">The following package has been installed:</doc-cli-message>
+      <doc-cli-message type="install" [arg]="[{type:'module',info:'apollo_onOff@2.0.1'}]"></doc-cli-message>
+      <doc-cli-message type="install-dependency" [level]="1" [arg]="[{type:'dependency',info:'apollo_input@1.0.1'},{type:'instance',info:'blue-input'}]"></doc-cli-message>
+      <doc-cli-message type="install-tree-branch" [level]="2"></doc-cli-message>
+      <doc-cli-message type="install-dependency" [level]="2" [arg]="[{type:'dependency',info:'apollo_form-elem@1.2.7'}]"></doc-cli-message>
+      <doc-cli-message type="install" [arg]="[{type:'module',info:'apollo_form-elem@1.2.7'}]"></doc-cli-message>
 		</doc-terminal>
 	  <doc-info type="important">If no argument is specified, spm will install all project's dependencies. To install all dependencies listed in a project's `package-spm.json`, just use `spm i` command without any argument.
 		</doc-info>

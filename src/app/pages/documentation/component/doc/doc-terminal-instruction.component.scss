@@ -1,3 +1,12 @@
+
+
+:host {
+//   color: #fff;
+//   font-size: 1.1rem;
+//   line-height: 1.7;
+//   -webkit-font-smoothing: antialiased;
+  padding-left: 22px;
+}
 $color-white: #fff;
 $color-selected: #01c5c6;
 $color-success: #61f661;;
@@ -14,7 +23,7 @@ $color-prefix: #00c120;
   color: $color;
   -webkit-font-smoothing: antialiased;
   width: 12px;
-  display: inline-block;
+  // display: inline-block;
 }
 
 .tdi-prefix{
@@ -37,7 +46,7 @@ $color-prefix: #00c120;
     content: ">";
   }
   &.tdi-prefix-inquirer-checkbox {
-    width: 30px;
+    width: 36px;
     display: inline-flex;
     align-items: center;
     &::before{
@@ -58,7 +67,7 @@ $color-prefix: #00c120;
     }
   }
   &.tdi-prefix-inquirer-checkbox-select {
-    width: 30px;
+    width: 36px;
     display: inline-flex;
     align-items: center;
     &::before{
@@ -81,7 +90,7 @@ $color-prefix: #00c120;
   }
 
   &.tdi-prefix-inquirer-checkbox-select-active{
-    width: 30px;
+    width: 36px;
     display: inline-flex;
     align-items: center;
     &::before {
@@ -121,6 +130,10 @@ $color-prefix: #00c120;
   }
   &.dti-content-inquirer-checkbox-select{
     color: $color-selected;
+  }
+  &.dti-content-console-log{
+    color: #fff;
+    -webkit-font-smoothing: antialiased;
   }
 }
 

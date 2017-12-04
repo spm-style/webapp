@@ -27,7 +27,7 @@ import { Component, Input } from '@angular/core';
     .doc-info-list{
       margin-bottom: 20px;
       background-color: #eee;
-      padding: 10px;
+      padding: 10px 10px 10px 20px;
       border-radius: 6px;
     }
 

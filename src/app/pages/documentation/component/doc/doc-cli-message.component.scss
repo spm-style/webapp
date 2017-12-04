@@ -1,0 +1,47 @@
+$color-white: #fff;
+$color-selected: #01c5c6;
+$color-success: #61f661;
+$color-warning: #febc07;
+$color-error: #ff4444;
+$color-dim: #717171;
+$color-instance: #fd7f57;
+$color-dependency: #00bbff;
+$color-module: #ff00bb;
+$color-prefix: #00c120;
+$color-file: #98F0FF;
+
+:host {
+	color: #fff;
+	font-size: 1.1rem;
+	line-height: 1.7;
+	-webkit-font-smoothing: antialiased;
+	padding-left: 22px;
+}
+
+.dcm-status-color-warning {
+	color: $color-warning;
+}
+
+.dcm-status-color-success {
+	color: $color-success;
+}
+
+.dcm-status-color-error {
+	color: $color-error;
+}
+
+.dcm-instanceModule-instance {
+	color: $color-instance;
+}
+
+.dcm-instanceModule-module {
+	color: $color-module;
+}
+
+.dcm-instanceModule-file {
+	color: $color-file;
+}
+
+.dcm-instanceModule-dependency {
+	color: $color-file;
+}

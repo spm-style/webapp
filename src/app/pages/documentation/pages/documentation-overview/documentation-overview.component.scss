@@ -73,6 +73,8 @@
           padding: 10px;
           flex-direction: column;
           border-radius: 8px;
+          height: 170px;
+          justify-content: space-between;
           h2{
             color: $color-primary;
             margin-bottom: 10px;
@@ -150,6 +152,9 @@
         margin: 42px 0;
         li{
           width: calc(50% - 10px);
+          a {
+            height: 150px;
+          }
         }
       }
     }
@@ -166,6 +171,9 @@
       ul{
         li{
           width: calc(33.333% - 10px);
+          a {
+            height: 170px;
+          }
         }
       }
     }

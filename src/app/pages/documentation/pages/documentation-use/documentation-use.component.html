@@ -14,33 +14,33 @@
   <div class="content">
 	  <doc-description>Now you're able to install and customize spm packages, you may want to use the generated content in your project. For this purpose, you can use the <doc-highlight>spm use</doc-highlight> or short <doc-highlight>spm u</doc-highlight> CLI command.</doc-description>
 	  <doc-terminal>
-	  	<doc-terminal-instruction content="spm u apollo_onOff"></doc-terminal-instruction>
-	  	<doc-terminal-instruction type="console-log" content=""></doc-terminal-instruction>
-	  	<doc-terminal-instruction type="console-log" content="SUCCESS: The following instance has been added:"></doc-terminal-instruction>
-	  	<doc-terminal-instruction type="console-log" content="> apollo_onOff of module apollo_onOff"></doc-terminal-instruction>
-	  	<doc-terminal-instruction type="console-log" content="in file"></doc-terminal-instruction>
-	  	<doc-terminal-instruction type="console-log" content="> index.scss"></doc-terminal-instruction>
+      <doc-terminal-instruction content="spm u apollo_onOff"></doc-terminal-instruction>
+	  	<doc-scss-tab></doc-scss-tab>
+      <doc-cli-message type="success">The following instance has been added:</doc-cli-message>
+      <doc-cli-message type="use" [arg]="[{type:'instance',info:'apollo_onOff'},{type:'module',info:'apollo_onOff'}]"></doc-cli-message>
+      <doc-terminal-instruction type="console-log" content="in file"></doc-terminal-instruction>
+      <doc-cli-message type="use-file" [arg]="[{type:'file',info:'index.scss'}]"></doc-cli-message>
 	  </doc-terminal>
 	  <doc-description>It immediately adds the following line in the entry stylesheet you've chosen for your project:</doc-description>
-	  <doc-terminal>
-	  	<doc-terminal-instruction type="console-log" content="@import './spm_modules/apollo_onOff/dist/apollo_onOff.scss';"></doc-terminal-instruction>
-	  </doc-terminal>
+	  <doc-scss>
+      <doc-scss-import value="./spm_modules/apollo_onOff/dist/apollo_onOff.scss"></doc-scss-import>
+	  </doc-scss>
 	  <doc-info type="important">If no entry stylesheet is found, spm will generate a complete overview of your stylesheets starting at your project's level as a selectable checkbox list.</doc-info>
 		<h2>target specific files</h2>
 		<doc-description>If you want to target one or several other stylesheets, you can use the option <doc-highlight>--path</doc-highlight> or <doc-highlight>-p</doc-highlight>.</doc-description>
 		<doc-terminal>
-			<doc-terminal-instruction content="spm u apollo_onOff -p './styles/inputs.scss /Users/myName/Documents/my-project/main.scss'"></doc-terminal-instruction>
+      <doc-terminal-instruction content="spm u apollo_onOff -p './styles/inputs.scss /Users/myName/Documents/my-project/main.scss'"></doc-terminal-instruction>
 		</doc-terminal>
 		<doc-info type="warning">Note that if you have multiple arguments after path you should always place them between quotes (single or double) and separated by <doc-highlight>,</doc-highlight> or <doc-highlight> </doc-highlight>.</doc-info>
 
 	  <doc-description>This command identifies a package by its name. Since spm allows to customize a package and rename it, it is possible to have multiple packages containing the same instance name. spm will then open a prompt to make you chose the correct one, by displaying the original package name.</doc-description>
 	  <doc-terminal>
-	  	<doc-terminal-instruction content="spm u myNewPackage"></doc-terminal-instruction>
+      <doc-terminal-instruction content="spm u myNewPackage"></doc-terminal-instruction>
 	  </doc-terminal>
 	  <h2>specify the originating package</h2>
 	  <doc-description>You can as well use the option <doc-highlight>--module</doc-highlight> or <doc-highlight>-m</doc-highlight> if you already know in which module you want to import the package from.</doc-description>
 	  <doc-terminal>
-	  	<doc-terminal-instruction content="spm u myNewPackage -m apollo_onOff"></doc-terminal-instruction>
+      <doc-terminal-instruction content="spm u myNewPackage -m apollo_onOff"></doc-terminal-instruction>
 	  </doc-terminal>
   </div>
 </section>

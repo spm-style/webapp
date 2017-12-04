@@ -9,7 +9,7 @@ import { Component, Input } from '@angular/core';
 
     .doc-info {
       margin-bottom: 20px;
-      padding: 10px 10px 10px 14px;
+      padding: 10px 10px 10px 24px;
       border-radius: 6px;
     }
 

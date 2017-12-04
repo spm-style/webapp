@@ -6,8 +6,11 @@ import { DocumentationRouterModule }                                            
 import { DocumentationComponent }                                               from './documentation.component';
                                                                                 // Pages
 import { DocumentationOverviewComponent }                                       from './pages/documentation-overview/documentation-overview.component';
+import { DocumentationWhatIsSpmComponent }                                      from './pages/documentation-what-is-spm/documentation-what-is-spm.component';
 import { DocumentationGettingStartComponent }                                   from './pages/documentation-getting-start/documentation-getting-start.component';
 import { DocumentationWorkingsComponent }                                       from './pages/documentation-workings/documentation-workings.component';
+import { DocumentationGraphicalInterfaceRunThroughComponent }                   from './pages/documentation-graphical-interface-run-through/documentation-graphical-interface-run-through.component';
+import { DocumentationCliRunThroughComponent }                                  from './pages/documentation-cli-run-through/documentation-cli-run-through.component';
 import { DocumentationCheatSheetComponent }                                     from './pages/documentation-cheat-sheet/documentation-cheat-sheet.component';
 import { DocumentationInitComponent }                                           from './pages/documentation-init/documentation-init.component';
 import { DocumentationInstallComponent }                                        from './pages/documentation-install/documentation-install.component';
@@ -31,7 +34,8 @@ import { DocScssExtendComponent }                                               
 import { DocScssMixinComponent }                                                from './component/doc/doc-scss-mixin.component';
 import { DocScssTabComponent }                                                  from './component/doc/doc-scss-tab.component';
 import { DocIntraLinkComponent }                                                from './component/doc/doc-intra-link.component';
-import { DocExtraLinkComponent } from './component/doc/doc-extra-link.component';
+import { DocExtraLinkComponent }                                                from './component/doc/doc-extra-link.component';
+import { DocCliMessageComponent } from './component/doc/doc-cli-message.component';
 
 @NgModule({
   imports: [
@@ -65,7 +69,11 @@ import { DocExtraLinkComponent } from './component/doc/doc-extra-link.component'
     DocumentationPublishComponent,
     DocumentationWorkingsComponent,
     DocIntraLinkComponent,
-    DocExtraLinkComponent
+    DocExtraLinkComponent,
+    DocumentationWhatIsSpmComponent,
+    DocumentationCliRunThroughComponent,
+    DocumentationGraphicalInterfaceRunThroughComponent,
+    DocCliMessageComponent
   ]
 })
 export class DocumentationModule { }
