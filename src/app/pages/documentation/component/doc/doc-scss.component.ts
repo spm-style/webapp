@@ -10,6 +10,8 @@ import { Component } from '@angular/core';
       border-radius: 4px;
       display: block;
       letter-spacing: 2px;
+      margin-bottom: 20px;
+      
     }
 
     pre {

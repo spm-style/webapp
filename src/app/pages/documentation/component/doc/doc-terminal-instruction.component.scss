@@ -5,7 +5,13 @@
 //   font-size: 1.1rem;
 //   line-height: 1.7;
 //   -webkit-font-smoothing: antialiased;
-  padding-left: 22px;
+  // padding: 3px 0 3px 10px;
+  display: block;
+  // padding: 5px 0 5px 10px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  // margin-bottom: 5px;
+  // margin-top: 5px;
 }
 $color-white: #fff;
 $color-selected: #01c5c6;

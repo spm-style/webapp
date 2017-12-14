@@ -10,15 +10,15 @@ import { ContactComponent }                                                     
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
-  { path: 'pricing', component: PricingComponent },
+  // { path: 'pricing', component: PricingComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'about', component: AboutComponent },
+  // { path: 'about', component: AboutComponent },
   { path: 'reporting-abuse', component: ReportingAbuseComponent },
-  { path: 'status', loadChildren: 'app/pages/status/status.module#StatusModule'},
+  // { path: 'status', loadChildren: 'app/pages/status/status.module#StatusModule'},
   { path: 'policies', loadChildren: 'app/pages/policies/policies.module#PoliciesModule'},
   { path: 'packages', loadChildren: 'app/pages/packages/packages.module#PackagesModule'},
-  { path: 'jobs', loadChildren: 'app/pages/jobs/jobs.module#JobsModule'},
-  { path: 'features', loadChildren: 'app/pages/features/features.module#FeaturesModule'},
+  // { path: 'jobs', loadChildren: 'app/pages/jobs/jobs.module#JobsModule'},
+  // { path: 'features', loadChildren: 'app/pages/features/features.module#FeaturesModule'},
   { path: 'documentation', loadChildren: 'app/pages/documentation/documentation.module#DocumentationModule'},
   { path: '**', component: NotFoundComponent },
 ];

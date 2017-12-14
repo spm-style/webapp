@@ -19,15 +19,66 @@ footer{
       ul{
         margin-top: 20px;
         padding-left: 20px;
+        position: relative;
         li{
           list-style: square;
           margin-left: 30px;
           margin-bottom: 15px;
           color: #fff;
+          &#sonn-job{
+            &:hover{
+              cursor: pointer;
+              color: $color-primary;
+              ~ .hover-comming-soon {
+                display: inline-flex;
+                top: -30px;
+              }
+            }
+          }
+          &#sonn-status{
+            &:hover{
+              cursor: pointer;
+              color: $color-primary;
+              ~ .hover-comming-soon {
+                display: inline-flex;
+                top: 40px;
+              }
+            }
+          }
+          &#sonn-gitter{
+            &:hover{
+              cursor: pointer;
+              color: $color-primary;
+              ~ .hover-comming-soon {
+                display: inline-flex;
+                top: 84px;
+              }
+            }
+          }
+          &#sonn-about{
+            &:hover{
+              cursor: pointer;
+              color: $color-primary;
+              ~ .hover-comming-soon {
+                display: inline-flex;
+                top: 120px;
+              }
+            }
+          }
           a{
             color: #fff;
             font-size: 1.2rem;
           }
+        }
+        .hover-comming-soon {
+          color: white;
+          background-color: $color-primary;
+          padding: 10px 20px;
+          justify-content: center;
+          border-radius: 20px;
+          position: absolute;
+          left: 90px;
+          display: none;
         }
       }
     }

@@ -9,6 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
       border-left: 4px solid red;
       border-radius: 4px;
       word-spacing: 5px;
+      padding-top: 5px;
     }
   `]
 })

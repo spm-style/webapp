@@ -1,15 +1,22 @@
 <header>
-  <a routerLink="/"><img src="./assets/logo-2.png" alt="logo" class="logo"></a>
-  <button type="button" class="menu-button-burger"><img src="./assets/button-burger.png" alt=""></button>
-  <nav>
-    <ul>
-      <li><a routerLink="documentation/getting-started">Getting Started</a></li>
-      <li><a routerLink="documentation">Documentation</a></li>
-      <li><a routerLink="features">Features</a></li>
-      <li><a routerLink="packages">Packages</a></li>
-      <li><a routerLink="pricing">Pricing</a></li>
-      <li><a routerLink="sign-in">Sign-in</a></li>
-      <li><a routerLink="sign-up">Create an account</a></li>
-    </ul>
-  </nav>
+  <div class="header-navigation">
+    <a routerLink="/"><img src="./assets/logo-2.png" alt="logo" class="logo"></a>
+    <button type="button" class="menu-button-burger"><img src="./assets/button-burger.png" alt=""></button>
+    <nav>
+      <ul>
+        <li><a routerLink="documentation/getting-started">Getting Started</a></li>
+        <li><a routerLink="documentation">Documentation</a></li>
+        <!-- <li><a routerLink="features">Features</a></li> -->
+        <li><a routerLink="packages">Packages</a></li>
+        <!-- <li><a routerLink="pricing">Pricing</a></li> -->
+        <li><a routerLink="sign-in">Sign-in</a></li>
+        <li><a routerLink="sign-up">Create an account</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="header-search">
+    <div class="content">
+      <input type="text" placeholder="Find packages">
+    </div>
+  </div>
 </header>

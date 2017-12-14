@@ -2,39 +2,61 @@
 
 /************************* DEFAULT STYLE **************************************/
 header{
-  height: 70px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  .header-navigation{
+    height: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-  a{
-    height: 100%;
-    .logo{
+    a{
+      height: 100%;
+      .logo{
+        padding: 10px 0;
+        height: 100%;
+        display: flex;
+      }
+    }
+    .menu-button-burger{
+      height: 100%;
       padding: 10px 0;
-      height: 100%;
-      display: flex;
+      margin-right: 20px;
+      img{
+        height: 100%;
+      }
+    }
+    nav{
+      position: absolute;
+      top: 0;
+      left: -100vh;
     }
   }
-  .menu-button-burger{
-    height: 100%;
-    padding: 10px 0;
-    margin-right: 20px;
-    img{
-      height: 100%;
-    }
-  }
-  nav{
-    position: absolute;
-    top: 0;
-    left: -100vh;
+  .header-search{
+      background-color: $color-primary;
+      .content{
+        max-width: 992px;
+        margin: 0 auto;
+        height: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        input{
+          background-color: #fff;
+          width: 95%;
+          border-radius: 8px;
+          height: 70%;
+          padding-left: 20px;
+          color: $color-secondary;
+          font-size: 1.8rem;
+        }
+      }
   }
 }
 
 /************************************* XS *************************************/
 @media screen and (min-width: $responsive-width-xs) {
   header{
-    height: 80px;
+    // height: 80px;
   }
 }
 
@@ -50,36 +72,37 @@ header{
 /************************************* XL *************************************/
 @media screen and (min-width: $responsive-width-xl) {
   header{
-    .menu-button-burger{
-      display: none;
-    }
-    nav{
-      position: initial;
-      height: 100%;
-      ul{
+    .header-navigation{
+      .menu-button-burger{
+        display: none;
+      }
+      nav{
+        position: initial;
         height: 100%;
-        display: flex;
-        li{
+        ul{
           height: 100%;
-          a{
-            padding: 0 15px;
+          display: flex;
+          li{
             height: 100%;
-            // background-color: lightgreen;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.1rem;
-            color: $color-secondary;
-            &:hover{
-              color: $color-primary;
-            }
-          }
-          &:last-child{
             a{
-              background-color: $color-primary;
-              color: white;
+              padding: 0 15px;
+              height: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-size: 1.1rem;
+              color: $color-secondary;
               &:hover{
-                color: $color-secondary;
+                color: $color-primary;
+              }
+            }
+            &:last-child{
+              a{
+                background-color: $color-primary;
+                color: white;
+                &:hover{
+                  color: $color-secondary;
+                }
               }
             }
           }

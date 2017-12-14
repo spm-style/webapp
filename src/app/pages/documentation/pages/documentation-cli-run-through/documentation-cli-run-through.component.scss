@@ -1,27 +1,6 @@
 @import "../../../../../../spm_modules/style-guide.scss";
 
 /************************* DEFAULT STYLE **************************************/
-.section-search{
-  background-color: $color-primary;
-  .content{
-    max-width: 992px;
-    margin: 0 auto;
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    input{
-      background-color: #fff;
-      width: 95%;
-      border-radius: 8px;
-      height: 70%;
-      padding-left: 20px;
-      color: $color-secondary;
-      font-size: 1.8rem;
-    }
-  }
-}
-
 .section-overview{
   background-color: $color-tertiary;
   margin-bottom: 40px;

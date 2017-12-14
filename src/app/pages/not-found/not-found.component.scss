@@ -1,21 +1,69 @@
-section{
+// section{
+
+// }
+// h1{
+//
+// }
+// button{
+//   background: none;
+//   border: none;
+// }
+// button a{
+
+// }
+//
+// img{
+//
+// }
+@import "../../../../spm_modules/style-guide.scss";
+
+/************************* DEFAULT STYLE **************************************/
+.section-not-found{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding-top: 20px;
+  .action{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+    h1{
+      color: $color-quaternary;
+    }
+    button{
+      margin-top: 15px;
+      background: none;
+      border: 1px solid $color-primary;
+      font-size: 1.3rem;
+      border-radius: 7px;
+      color: $color-primary;
+      padding: 8px 60px;
+      &:hover{
+        background-color: $color-primary;
+        color: #fff;
+      }
+    }
+  }
+  img{
+    width: 80%;
+  }
 }
-h1{
-  color: coral;
-}
-button{
-  background: none;
-  border: none;
-}
-button a{
-  background: none;
-  border: none;
-  font-size: 1.3rem;
-  background-color: coral;
-  color: white;
-  padding: 10px 20px;
-}
+
+
+/************************************* XS *************************************/
+@media screen and (min-width: $responsive-width-xs) {}
+
+/************************************* SM *************************************/
+@media screen and (min-width: $responsive-width-sm) {}
+
+/************************************* MD *************************************/
+@media screen and (min-width: $responsive-width-md) {}
+
+/************************************* LG *************************************/
+@media screen and (min-width: $responsive-width-lg) {}
+
+/************************************* XL *************************************/
+@media screen and (min-width: $responsive-width-xl) {}
