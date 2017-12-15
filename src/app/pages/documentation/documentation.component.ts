@@ -15,7 +15,7 @@ export class DocumentationComponent implements OnInit {
   @select(['doc', 'currentDoc']) readonly currentDoc:Observable<string>;
   @select(['doc', 'currentFragment']) readonly currentFragment:Observable<string>;
 
-  constructor(private router: Router) { }
+  constructor(public router: Router) { }
 
   ngOnInit() {
   }
