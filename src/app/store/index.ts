@@ -6,3 +6,5 @@ export * from './app/state';
 export * from './app/actions';
 export * from './packages/state';
 export * from './packages/actions';
+export * from './doc/state';
+export * from './doc/actions';

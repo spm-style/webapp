@@ -2,17 +2,16 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'doc-scss-instruction',
-  template: `
-    <span class="ds-instruction">{{content}} : <span class="ds-instruction-func" *ngIf="func">{{func}}(</span><span *ngFor="let value of values; let i = index" class="ds-instruction-value-{{getValueCalss(value)}}"><span *ngIf="i > 0" class="ds-dot">, </span>{{value}}</span><span class="ds-instruction-func" *ngIf="func">)</span>;</span>
-  `,
+  template: `<span class="ds-instruction">{{content}} : <span class="ds-instruction-func" *ngIf="func">{{func}}(</span><span *ngFor="let value of values; let i = index" class="ds-instruction-value-{{getValueCalss(value)}}"><span *ngIf="i > 0" class="ds-dot">, </span>{{value}}</span><span class="ds-instruction-func" *ngIf="func">)</span>;</span>`,
   styles: [`
-    :host{
-      display: inline-flex;
-      margin-left: -30px;
-      margin-bottom: 3px;
+    :host {
+      display: block;
+      padding-left: 15px;
+      padding-top: 5px;
     }
 
     .ds-instruction{
+      white-space: pre-line;
       color: #fff;
       -webkit-font-smoothing: antialiased;
     }

@@ -11,11 +11,14 @@ $color-prefix: #00c120;
 $color-file: #98F0FF;
 
 :host {
+  display: block;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  white-space: pre-line;
 	color: #fff;
 	font-size: 1.1rem;
 	line-height: 1.7;
 	-webkit-font-smoothing: antialiased;
-	padding-left: 22px;
 }
 
 .dcm-status-color-warning {

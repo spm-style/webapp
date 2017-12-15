@@ -20,22 +20,21 @@ import { DocumentationPublishComponent }                                        
                                                                                 // Component
 import { DocHighlightComponent }                                                from './component/doc/doc-highlight.component';
 import { DocDescriptionComponent }                                              from './component/doc/doc-description.component';
-import { DocTerminalComponent }                                                 from './component/doc/doc-terminal.component';
+import { DocComponent }                                                         from './component/doc/doc.component';
 import { DocTerminalInstructionComponent }                                      from './component/doc/doc-terminal-instruction.component';
 import { DocInfoComponent }                                                     from './component/doc/doc-info.component';
 import { DocInfoListComponent }                                                 from './component/doc/doc-info-list.component';
 import { DocInfoListItemComponent }                                             from './component/doc/doc-info-list-item.component';
-import { DocScssComponent }                                                     from './component/doc/doc-scss.component';
 import { DocScssInstructionComponent }                                          from './component/doc/doc-scss-instruction.component';
 import { DocScssImportComponent }                                               from './component/doc/doc-scss-import.component';
 import { DocScssBlockComponent }                                                from './component/doc/doc-scss-block.component';
 import { DocScssIncludeComponent }                                              from './component/doc/doc-scss-include.component';
 import { DocScssExtendComponent }                                               from './component/doc/doc-scss-extend.component';
 import { DocScssMixinComponent }                                                from './component/doc/doc-scss-mixin.component';
-import { DocScssTabComponent }                                                  from './component/doc/doc-scss-tab.component';
+import { DocTabComponent }                                                      from './component/doc/doc-tab.component';
 import { DocIntraLinkComponent }                                                from './component/doc/doc-intra-link.component';
 import { DocExtraLinkComponent }                                                from './component/doc/doc-extra-link.component';
-import { DocCliMessageComponent } from './component/doc/doc-cli-message.component';
+import { DocCliMessageComponent }                                               from './component/doc/doc-cli-message.component';
 
 @NgModule({
   imports: [
@@ -49,19 +48,18 @@ import { DocCliMessageComponent } from './component/doc/doc-cli-message.componen
     DocumentationCheatSheetComponent,
     DocHighlightComponent,
     DocDescriptionComponent,
-    DocTerminalComponent,
+    DocComponent,
     DocTerminalInstructionComponent,
     DocInfoComponent,
     DocInfoListComponent,
     DocInfoListItemComponent,
-    DocScssComponent,
     DocScssInstructionComponent,
     DocScssImportComponent,
     DocScssBlockComponent,
     DocScssIncludeComponent,
     DocScssExtendComponent,
     DocScssMixinComponent,
-    DocScssTabComponent,
+    DocTabComponent,
     DocumentationInitComponent,
     DocumentationInstallComponent,
     DocumentationGenerateComponent,

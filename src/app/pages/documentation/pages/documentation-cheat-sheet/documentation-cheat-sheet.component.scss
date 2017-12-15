@@ -1,19 +1,6 @@
 @import "../../../../../../spm_modules/style-guide.scss";
 
 /************************* DEFAULT STYLE **************************************/
-.section-overview{
-  background-color: $color-tertiary;
-  .content{
-    max-width: 992px;
-    margin: 0 auto;
-    h1{
-      font-size: 2.2rem;
-      color: #fff;
-      padding: 30px 20px;
-    }
-  }
-}
-
 .section-command{
   .content{
     max-width: 992px;
@@ -57,14 +44,6 @@
 
 /************************************* XS *************************************/
 @media screen and (min-width: $responsive-width-xs) {
-  .section-overview{
-    .content{
-      h1{
-        font-size: 2.6rem;
-      }
-    }
-  }
-
   .section-doc-search{
     .content{
       input{
@@ -76,14 +55,6 @@
 
 /************************************* SM *************************************/
 @media screen and (min-width: $responsive-width-sm) {
-  .section-overview{
-    .content{
-      h1{
-        font-size: 2.8rem;
-      }
-    }
-  }
-
   .section-command{
     .content{
       .command-block{
@@ -111,14 +82,7 @@
 
 /************************************* MD *************************************/
 @media screen and (min-width: $responsive-width-md) {
-  .section-overview{
-    .content{
-      h1{
-        font-size: 3rem;
-        padding: 40px 20px;
-      }
-    }
-  }
+
 }
 
 /************************************* LG *************************************/

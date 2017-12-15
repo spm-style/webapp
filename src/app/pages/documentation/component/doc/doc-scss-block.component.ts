@@ -2,15 +2,16 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'doc-scss-block',
-  // template: `<pre [ngClass]="{'ds-block': parent}"><code><span class="ds-prefix">{{getContentPrefix()}}</span><span class="ds-content-{{getContentType()}}">{{content}}</span><span class="ds-selector">{{selector}}</span><span class="first-brace">&#123;</span><ng-content></ng-content><span class="last-brace">&#125;</span></code></pre>`,
-  template: `<span class="ds-block-prefix">{{getContentPrefix()}}</span><span class="ds-block-value-{{getValueType(value)}}">{{value}}</span><span class="first-brace">&#123;</span><ng-content></ng-content><span class="last-brace">&#125;</span>`,
+  template: `<span class="ds-block-prefix">{{getContentPrefix()}}</span><span class="ds-block-value-{{getValueType(value)}}">{{value}}</span><span class="first-brace">&#123;</span><ng-content></ng-content><span>&#125;</span>`,
   styles: [`
     :host {
       display: block;
+      padding-left: 15px;
+      padding-bottom: 5px;
+      margin-top: 6px;
       color: #fff;
       -webkit-font-smoothing: antialiased;
-      padding-left: 18px;
-      margin-bottom: 6px;
+      white-space: pre-line;
     }
 
     .ds-block-value-id{
@@ -27,10 +28,6 @@ import { Component, Input } from '@angular/core';
 
     .first-brace {
       padding-left: 4px;
-    }
-
-    .last-brace {
-      margin-left: -35px;
     }
   `]
 })

@@ -2,20 +2,23 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'doc-scss-import',
-  template: `@<span class="ds-import-property">import</span>"<span class="ds-import-value">{{value}}</span>";`,
+  template: `<span class="ds-content">@<span class="ds-import-property">import</span>"<span class="ds-import-value">{{value}}</span>";</span>`,
   styles: [`
     :host {
-      display: inline-flex;
+      display: block;
+      padding-left: 15px;
+      padding-bottom: 5px;
+    }
+    .ds-content{
+      white-space: pre-line;
       color: #fff;
       -webkit-font-smoothing: antialiased;
-      padding-left: 18px;
-      margin-bottom: 6px;
     }
-    .ds-import-property{
+    .ds-content .ds-import-property{
       color: #C678DD;
       padding-right: 5px;
     }
-    .ds-import-value{
+    .ds-content .ds-import-value{
       color: #8DC379;
     }
   `]

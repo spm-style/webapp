@@ -4,7 +4,7 @@
 
 <video *ngIf="url"
        id="video_{{idx}}"
-       poster="{{poster}}"
+       [poster]="poster"
        class="video-js vjs-default-skin vjs-big-play-centered vjs-16-9"
        controls
        preload="auto"

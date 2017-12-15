@@ -1,1 +1,21 @@
+<section class="section-overview" id="title">
+  <div class="content">
+    <h1>{{currentDoc | async}}</h1>
+  </div>
+</section>
+
+<section *ngIf="router.url != '/documentation'" class="section-back-doc">
+  <div class="content">
+    <a routerLink="/documentation">Back to doc</a>
+  </div>
+</section>
+
 <router-outlet></router-outlet>
+<div *ngIf="router.url != '/documentation'" class="section-documentation-navigation">
+  <div class="content">
+    <nav [ngClass]="{'nav-item-next': (previousDoc | async) == ''}">
+      <a *ngIf="(previousDoc | async) != ''" [routerLink]="previousDocUrl | async"  class="doc-nav-previous">&#8592; {{previousDoc | async}}</a>
+      <a *ngIf="(nextDoc | async) != ''" [routerLink]="nextDocUrl | async" class="doc-nav-next">{{nextDoc | async}} &#8594;</a>
+    </nav>
+  </div>
+</div>

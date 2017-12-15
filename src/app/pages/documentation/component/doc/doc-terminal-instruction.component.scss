@@ -1,18 +1,5 @@
+@import "../../../../../../spm_modules/style-guide.scss";
 
-
-:host {
-//   color: #fff;
-//   font-size: 1.1rem;
-//   line-height: 1.7;
-//   -webkit-font-smoothing: antialiased;
-  // padding: 3px 0 3px 10px;
-  display: block;
-  // padding: 5px 0 5px 10px;
-  padding-left: 10px;
-  padding-bottom: 5px;
-  // margin-bottom: 5px;
-  // margin-top: 5px;
-}
 $color-white: #fff;
 $color-selected: #01c5c6;
 $color-success: #61f661;;
@@ -22,14 +9,20 @@ $color-dependency: #00bbff;
 $color-module: #ff00bb;
 $color-prefix: #00c120;
 
-@mixin tdi-prefix-base($color) {
+
+:host {
+  display: block;
+  padding-left: 10px;
+  padding-bottom: 5px;
   white-space: pre-line;
+}
+
+@mixin tdi-prefix-base($color) {
   line-height: 1.7;
   font-size: 1.1rem;
   color: $color;
   -webkit-font-smoothing: antialiased;
   width: 12px;
-  // display: inline-block;
 }
 
 .tdi-prefix{
@@ -75,7 +68,7 @@ $color-prefix: #00c120;
   &.tdi-prefix-inquirer-checkbox-select {
     width: 36px;
     display: inline-flex;
-    align-items: center;
+    // align-items: center;
     &::before{
       content: " ";
       width: 14px;
@@ -107,7 +100,6 @@ $color-prefix: #00c120;
     &::after {
       @include tdi-prefix-base($color-selected);
       content: " ";
-      // margin-bottom: -2px;
       height: 10px;
       width: 10px;
       border: 2px solid #000;
@@ -120,10 +112,7 @@ $color-prefix: #00c120;
   }
 }
 
-
-
 .dti-content{
-  white-space: pre-line;
   line-height: 1.7;
   font-size: 1.1rem;
   color: $color-white;
@@ -156,3 +145,9 @@ $color-prefix: #00c120;
     -webkit-font-smoothing: antialiased;
   }
 }
+
+// @media screen and (min-width: $responsive-width-md) {
+//   :host {
+//     padding-left: 20px;
+//   }
+// }

@@ -2,15 +2,17 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'doc-scss-extend',
-  template: `@<span class="ds-extend-property">extend</span><span class="ds-extend-value">{{value}}</span>;`,
+  template: `<span class="ds-content">@<span class="ds-extend-property">extend</span><span class="ds-extend-value">{{value}}</span>;</span>`,
   styles: [`
     :host {
-      display: inline-flex;
+      display: block;
+      padding-left: 15px;
+      padding-top: 5px;
+    }
+    .ds-content{
+      white-space: pre-line;
       color: #fff;
       -webkit-font-smoothing: antialiased;
-      padding-left: 18px;
-      margin-bottom: 3px;
-      margin-left: -50px;
     }
     .ds-extend-property{
       color: #C678DD;

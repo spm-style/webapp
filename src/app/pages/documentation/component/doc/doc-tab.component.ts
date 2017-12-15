@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'doc-scss-tab',
+  selector: 'doc-tab',
   template: `<br>`,
   styles: [``]
 })
-export class DocScssTabComponent {}
+export class DocTabComponent {}

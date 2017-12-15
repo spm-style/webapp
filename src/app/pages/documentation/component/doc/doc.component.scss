@@ -1,0 +1,15 @@
+@import "../../../../../../spm_modules/style-guide.scss";
+
+pre{
+  background-color: #000;
+  border-left: 4px solid red;
+  border-radius: 4px;
+  word-spacing: 5px;
+  padding-top: 5px;
+}
+
+@media screen and (min-width: $responsive-width-md) {
+  pre{
+    padding-left: 20px;
+  }
+}
