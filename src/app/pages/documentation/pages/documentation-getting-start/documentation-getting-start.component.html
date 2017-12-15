@@ -1,5 +1,29 @@
 <section class="section-doc">
   <div class="content">
-
+		<doc-description>SPM CLI is powered by node.js and is only avaiable in npm registry at the moment.</doc-description>
+		<h2>Installing node.js and npm</h2>
+		<doc-description>Whether you're using OS X or Windows, to enjoy spm, you will need <doc-extra-link link="https://nodejs.org/en/download/">node.js</doc-extra-link> and <doc-extra-link link="https://docs.npmjs.com/getting-started/installing-node">npm</doc-extra-link> installed. The LTS version of node.js already includes npm. If you're using Linux, please check <doc-extra-link link="https://github.com/nodesource/distributions">NodeSource's binary distributions</doc-extra-link>.</doc-description>
+		<doc-description>To check your installations, you can try the following commands:
+			<doc><!--
+		 --><doc-terminal-instruction content="node -v"></doc-terminal-instruction><!--
+		 --><doc-terminal-instruction type="console-log" content="v6.4.0"></doc-terminal-instruction><!--
+		 --><doc-terminal-instruction content="npm -v"></doc-terminal-instruction><!--
+		 --><doc-terminal-instruction type="console-log" content="3.10.3"></doc-terminal-instruction><!--
+	 --></doc>
+		</doc-description>
+		<doc-description>To run properly, spm requires a node version higher or equal to 6.4.0</doc-description>
+		<h2>Installing spm CLI</h2>
+		<doc-description>Once you've got npm running, you can install spm CLI as a global package :
+			<doc><!--
+		 --><doc-terminal-instruction content="npm install spm -g"></doc-terminal-instruction><!--
+	 --></doc>
+		</doc-description>
+		<doc-description><strong>Test:</strong> To check if spm has been correctly installed, you can use spm <doc-highlight>--version</doc-highlight> or short <doc-highlight>-V</doc-highlight> CLI command.
+			<doc><!--
+		 --><doc-terminal-instruction content="spm -V"></doc-terminal-instruction><!--
+		 --><doc-terminal-instruction type="console-log" content="1.0.0"></doc-terminal-instruction><!--
+	 --></doc>
+	 The version should be 1.0.0 or higher.
+		</doc-description>
   </div>
 </section>
