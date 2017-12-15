@@ -1,0 +1,135 @@
+@import "./style-guide.scss";
+
+.st-control-select-none{
+  margin-bottom: 20px;
+  label{
+    padding-right: 25px;
+  }
+  select{
+    color: $color-primary;
+    -webkit-appearance: none;
+    background: none;
+    border: none;
+    font-size: 1.1em;
+  }
+}
+
+.st-control-select-link{
+  select{
+    height: 0px;
+    -webkit-appearance: none;
+    background: none;
+    border: none;
+    font-size: 1.1em;
+  }
+}
+
+$height-control-st-text: 80px;
+.st-control-textarea{
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column-reverse;
+  textarea{
+    padding: 20px;
+    font-size: 1.2rem;
+    border: 1px solid $color-secondary;
+    height: 100px;
+    &.ng-invalid.ng-touched{
+      border-color: red;
+    }
+    &.ng-valid{
+      border-color: green;
+    }
+    &.ng-pending{
+      border-color: orange;
+    }
+  }
+  label{
+    margin-bottom: 10px;
+  }
+  p{
+    height: 0.18 * $height-control-st-text;
+    margin-top: 4px;
+    span{
+      font-size: 0.18 * $height-control-st-text;
+      font-style: italic;
+      color: orange;
+    }
+  }
+}
+
+.st-control-text{
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column-reverse;
+  height: $height-control-st-text;
+  input{
+    height: 0.375 * $height-control-st-text;
+    max-height: 0px;
+    padding: 0px;
+    transition: max-height 0.3s ease-in-out;
+    border-bottom: 1px solid #464646;
+    font-size: 0.22 * $height-control-st-text;
+    &:focus, &:valid{
+      max-height: 0.375 * $height-control-st-text;
+      ~ label {
+        font-size: 0.175 * $height-control-st-text;
+      }
+    }
+    &.ng-invalid.ng-touched{
+      border-color: red;
+    }
+    &.ng-valid{
+      border-color: green;
+    }
+    &.ng-pending{
+      border-color: orange;
+    }
+  }
+  label{
+    transition: font-size 0.3s ease-in-out;
+    font-size: 0.275 * $height-control-st-text;
+  }
+  p{
+    height: 0.18 * $height-control-st-text;
+    margin-top: 4px;
+    span{
+      font-size: 0.18 * $height-control-st-text;
+      font-style: italic;
+      color: orange;
+    }
+  }
+}
+
+.modal-list-container{
+  position: relative;
+}
+
+.show-modal{
+  display: block !important;
+}
+
+.modal-list{
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  width: 200px;
+  padding: 20px 0;
+  span{
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 10px 20px;
+    &:hover{
+      background-color: $color-primary;
+      color: #fff;
+    }
+  }
+}
+
+.st-button-full{
+
+}
