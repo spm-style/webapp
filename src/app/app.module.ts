@@ -2,6 +2,8 @@ import { BrowserModule }                                                        
 import { NgModule, PLATFORM_ID, APP_ID, Inject, isDevMode }                     from '@angular/core';
 import { isPlatformBrowser }                                                    from '@angular/common';
 import { NgReduxModule, DevToolsExtension }                                     from '@angular-redux/store'
+import { ReactiveFormsModule, FormsModule }                                     from '@angular/forms';
+import { HttpModule }                                                           from '@angular/http';
                                                                                 // Router
 import { AppRoutingModule }                                                     from './app.routing';
                                                                                 // Redux
@@ -18,8 +20,9 @@ import { ContactComponent }                                                     
                                                                                 // Component
 import { HeaderComponent }                                                      from './component/header/header.component';
 import { FooterComponent }                                                      from './component/footer/footer.component';
-import { VideoJsComponent } from './component/video-js/video-js.component';
-
+import { VideoJsComponent }                                                     from './component/video-js/video-js.component';
+                                                                                // Service
+import { ApiContactService }                                                    from './service/api-contact.service';
 
 @NgModule({
   declarations: [
@@ -37,9 +40,14 @@ import { VideoJsComponent } from './component/video-js/video-js.component';
   imports: [
     BrowserModule.withServerTransition({ appId: 'spm-web-app' }),
     NgReduxModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [
+    ApiContactService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

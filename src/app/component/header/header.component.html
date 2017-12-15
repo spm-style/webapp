@@ -1,10 +1,10 @@
 <header>
   <div class="header-navigation">
     <a routerLink="/"><img src="./assets/logo-2.png" alt="logo" class="logo"></a>
-    <button type="button" class="menu-button-burger"><img src="./assets/button-burger.png" alt=""></button>
-    <nav>
+    <button type="button" class="menu-button-burger"><img src="./assets/button-burger.png" alt="" (click)="toggleMenu()"></button>
+    <nav [ngClass]="classNav">
       <ul>
-        <li><a routerLink="documentation/getting-started">Getting Started</a></li>
+        <li routerLink="documentation/getting-started"><a>Getting Started</a></li>
         <li><a routerLink="documentation">Documentation</a></li>
         <!-- <li><a routerLink="features">Features</a></li> -->
         <li><a routerLink="packages">Packages</a></li>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'spm-header',
@@ -7,9 +8,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  public classNav:string = '';
+
+  constructor(private _router: Router) { }
 
   ngOnInit() {
+    this._router.events.subscribe((event) => {
+        if(event instanceof NavigationEnd){
+          this.classNav = '';
+        }
+    });
+
+    document.addEventListener('click', (event:any) => {
+      console.log(event.path)
+      let find:boolean = false;
+      for(let path of event.path){
+        if(path.className == 'header-navigation'){
+          console.log('merde')
+          find = true;
+        }
+      }
+      if(!find) { this.classNav = '' }
+    })
   }
 
+  public toggleMenu():void{
+    this.classNav = this.classNav != '' ? '' : 'open-nav';
+  }
 }

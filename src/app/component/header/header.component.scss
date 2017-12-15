@@ -26,9 +26,27 @@ header{
       }
     }
     nav{
+      z-index: 20;
       position: absolute;
       top: 0;
       left: -100vh;
+      background-color: coral;
+      width: 250px;
+      height: 100vh;
+      transition: left 0.7s ease-in-out;
+      &.open-nav{
+        left: 0;
+      }
+      ul{
+        li{
+          padding: 25px 10px;
+          border-bottom: 1px solid white;
+          a{
+            color: white;
+            font-size: 1.3rem;
+          }
+        }
+      }
     }
   }
   .header-search{
@@ -56,15 +74,42 @@ header{
 /************************************* XS *************************************/
 @media screen and (min-width: $responsive-width-xs) {
   header{
-    // height: 80px;
+    .header-navigation{
+      nav{
+        width: 300px;
+      }
+    }
   }
 }
 
 /************************************* SM *************************************/
-@media screen and (min-width: $responsive-width-sm) {}
+@media screen and (min-width: $responsive-width-sm) {
+  header{
+    .header-navigation{
+      nav{
+        width: 340px;
+        ul{
+          li{
+            a{
+              font-size: 1.5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
 
 /************************************* MD *************************************/
-@media screen and (min-width: $responsive-width-md) {}
+@media screen and (min-width: $responsive-width-md) {
+  header{
+    .header-navigation{
+      nav{
+        width: 400px;
+      }
+    }
+  }
+}
 
 /************************************* LG *************************************/
 @media screen and (min-width: $responsive-width-lg) {}
@@ -77,13 +122,20 @@ header{
         display: none;
       }
       nav{
+        &.open-nav{
+          left: -100vh;
+        }
         position: initial;
+        background-color: white;
         height: 100%;
+        width: auto;
         ul{
           height: 100%;
           display: flex;
           li{
             height: 100%;
+            padding: 0;
+            border: none;
             a{
               padding: 0 15px;
               height: 100%;

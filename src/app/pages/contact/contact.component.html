@@ -1,3 +1,41 @@
-<p>
-  contact works!
-</p>
+<section class="section-overview">
+  <div class="content">
+    <h1>Contact SPM</h1>
+  </div>
+</section>
+
+<section class="section-form-contact">
+  <div class="content">
+    <form [formGroup]="formContact" (ngSubmit)="onSubmitContact()">
+      <div class="st-control-text">
+        <p>
+          <span *ngIf="formContact.get('email').hasError('required') && formContact.get('email').touched">Email required</span>
+          <span *ngIf="formContact.get('email').hasError('email') && formContact.get('email').touched">Email Not valid</span>
+        </p>
+        <input type="text" placeholder="name@email.com" id="email" required formControlName="email">
+        <label for="email">email</label>
+      </div>
+      <div class="st-control-select-none">
+        <label for="question">Nature of the mail:</label>
+        <select name="question" formControlName="question">
+          <option value="project">about the project</option>
+          <option value="abuse">report abuse</option>
+          <option value="partner">become a partner</option>
+          <option value="press">make an article</option>
+          <option value="contributor">Become a contributor</option>
+        </select>
+      </div>
+      <div class="st-control-textarea">
+        <p>
+          <span *ngIf="formContact.get('content').hasError('required') && formContact.get('content').touched">Content required</span>
+        </p>
+        <textarea name="content" formControlName="content"></textarea>
+        <label for="email">Contents</label>
+      </div>
+      <div class="form-action">
+        <p [ngClass]="classResponseRequest">{{responseRequest}}</p>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</section>
