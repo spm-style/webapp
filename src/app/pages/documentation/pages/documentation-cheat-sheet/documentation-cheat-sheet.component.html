@@ -2,93 +2,168 @@
   <div class="content">
 
     <div class="command-block command-block-tooling">
-      <h2>Configure tooling</h2>
-      <p>Configure user information for all local repositories</p>
+      <h2>User authentification</h2>
+      <p>register, login and logout</p>
       <div class="command-block-list">
         <div class="command-block-item">
-          <h4 class="command-name">$ git config --global user.name "[name]"</h4>
-          <p class="command-description">Sets the name you want atached to your commit transactions</p>
+          <h4 class="command-name">$ spm user</h4>
+          <p class="command-description">Opens a prompter to register or login with spm</p>
         </div>
         <div class="command-block-item">
-          <h4 class="command-name">$ git config --global user.email "[email address]"</h4>
-          <p class="command-description">Sets the email you want atached to your commit transactions</p>
+          <h4 class="command-name">$ spm user logout</h4>
+          <p class="command-description">disconnects you from spm CLI</p>
         </div>
         <div class="command-block-item">
-          <h4 class="command-name">$ git config --global color.ui auto</h4>
-          <p class="command-description">Enables helpful colorization of command line output</p>
+          <h4 class="command-name">$ spm user info</h4>
+          <p class="command-description">displays current information on the logged user</p>
         </div>
       </div>
     </div>
 
-    <div class="command-block command-block-changes">
-      <h2>Make changes</h2>
-      <p>Review edits and craf a commit transaction</p>
+    <div class="command-block command-block-tooling">
+      <h2>Launch a project</h2>
+      <p>initializes core information on your project to enable powerful spm features</p>
       <div class="command-block-list">
         <div class="command-block-item">
-          <h4 class="command-name">$ git status</h4>
-          <p class="command-description">Lists all new or modified files to be commited</p>
-        </div>
-        <div class="command-block-item">
-          <h4 class="command-name">$ git add [file]</h4>
-          <p class="command-description">Snapshots the file in preparation for versioning</p>
-        </div>
-        <div class="command-block-item">
-          <h4 class="command-name">$ git reset [file]</h4>
-          <p class="command-description">Unstages the file, but preserve its contents</p>
-        </div>
-        <div class="command-block-item">
-          <h4 class="command-name">$ git diff</h4>
-          <p class="command-description">Shows file differences not yet staged</p>
-        </div>
-        <div class="command-block-item">
-          <h4 class="command-name">$ git diff --staged</h4>
-          <p class="command-description">Shows file differences between staging and the last file version</p>
-        </div>
-        <div class="command-block-item">
-          <h4 class="command-name">$ git commit -m "[descriptive message]"</h4>
-          <p class="command-description">Records file snapshots permanently in version history</p>
+          <h4 class="command-name">$ spm init</h4>
+          <p class="command-description">Opens a prompter where you can fill your project's basic information</p>
         </div>
       </div>
     </div>
 
-    <div class="command-block command-block-repositories">
-      <h2>Create repositories</h2>
-      <p>Start a new repository or obtain one from an existing URL</p>
+    <div class="command-block command-block-tooling">
+      <h2>Install wonderful packages</h2>
+      <p>Once you've found a packge you like, add it to your project</p>
       <div class="command-block-list">
         <div class="command-block-item">
-          <h4 class="command-name">$ git clone [url]</h4>
-          <p class="command-description">Downloads a project and its entire version history</p>
+          <h4 class="command-name">$ spm i</h4>
+          <p class="command-description">Alias for spm install</p>
         </div>
         <div class="command-block-item">
-          <h4 class="command-name">$ git config --global user.email "[email address]"</h4>
-          <p class="command-description">Sets the email you want atached to your commit transactions</p>
+          <h4 class="command-name">$ spm install</h4>
+          <p class="command-description">to install all spm dependencies saved in your project</p>
+        </div>
+        <div class="command-block-item">
+          <h4 class="command-name">$ spm install package1 package2</h4>
+          <p class="command-description">to install the latest versions of package1 and package2</p>
+        </div>
+        <div class="command-block-item">
+          <h4 class="command-name">$ spm install packageA@2.0.8</h4>
+          <p class="command-description">to install the version 2.0.8 of packageA</p>
+        </div>
+        <div class="command-block-item">
+          <h4 class="command-name">$ spm install packageA --save</h4>
+          <p class="command-description">to install packageA and save it as a dependency of your project</p>
         </div>
       </div>
     </div>
 
-    <div class="command-block command-block-group">
-      <h2>Group changes</h2>
-      <p>Name a series of commits and combine completed efforts</p>
+    <div class="command-block command-block-tooling">
+      <h2>Customize your style</h2>
+      <p>You can modify specific parameters of package you've installed</p>
       <div class="command-block-list">
         <div class="command-block-item">
-          <h4 class="command-name">$ git branch</h4>
-          <p class="command-description">Lists all local branches in the current repository</p>
+          <h4 class="command-name">$ spm g</h4>
+          <p class="command-description">Alias for spm generate</p>
         </div>
         <div class="command-block-item">
-          <h4 class="command-name">$ git branch [branch-name]</h4>
-          <p class="command-description">Creates a new branch</p>
+          <h4 class="command-name">$ spm generate packageA customName</h4>
+          <p class="command-description">opens a prompter which will help you customize packageA's properties and generates a customized instance called customName</p>
         </div>
         <div class="command-block-item">
-          <h4 class="command-name">$ git checkout [branch-name]</h4>
-          <p class="command-description">Switches to the specified branch and updates the working directory</p>
+          <h4 class="command-name">$ spm generate packageA customName --rename</h4>
+          <p class="command-description">to select all classes' names when you generate a custom instance</p>
         </div>
         <div class="command-block-item">
-          <h4 class="command-name">$ git merge [branch]</h4>
-          <p class="command-description">Combines the specified branch’s history into the current branch</p>
+          <h4 class="command-name">$ spm generate packageA customName --use</h4>
+          <p class="command-description">to generate a custom instance and use it in your main stylesheet</p>
         </div>
         <div class="command-block-item">
-          <h4 class="command-name">$ git branch -d [branch-name]</h4>
-          <p class="command-description">Deletes the specified branch</p>
+          <h4 class="command-name">$ spm generate packageA customName --save</h4>
+          <p class="command-description">to generate a custom instance and save it as a dependency of your project</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="command-block command-block-tooling">
+      <h2>Use your style in your project's stylesheets</h2>
+      <p>To use a style, your stylesheet must import it. Don't waste time figuring out the relative path.</p>
+      <div class="command-block-list">
+        <div class="command-block-item">
+          <h4 class="command-name">$ spm u</h4>
+          <p class="command-description">Alias for spm use</p>
+        </div>
+        <div class="command-block-item">
+          <h4 class="command-name">$ spm use customName</h4>
+          <p class="command-description">imports the style from the instance customName</p>
+        </div>
+        <div class="command-block-item">
+          <h4 class="command-name">$ spm use customName --save</h4>
+          <p class="command-description">import an instance's style in your project and save it as one of your project's dependencies</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="command-block command-block-tooling">
+      <h2>Inspect your project</h2>
+      <p>Some projects can import many graphical component : display their tree list.</p>
+      <div class="command-block-list">
+        <div class="command-block-item">
+          <h4 class="command-name">$ spm ls</h4>
+          <p class="command-description">displays the tree list of all dependencies used and their saved instances</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="command-block command-block-tooling">
+      <h2>Updates your project version</h2>
+      <p>To track your project, maintain it and manage teams, versionnng is powerful. This increments your version.</p>
+      <div class="command-block-list">
+        <div class="command-block-item">
+          <h4 class="command-name">$ spm v</h4>
+          <p class="command-description">Alias for spm version</p>
+        </div>
+        <div class="command-block-item">
+          <h4 class="command-name">$ spm version minor</h4>
+          <p class="command-description">a version is a 3 digit object : MAJOR.MINOR.PATCH. Use one of those (case insensitive) to udpate your project's version</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="command-block command-block-tooling">
+      <h2>Publish your project</h2>
+      <p>This adds your project to our registry, allow you to share it and access is from anywhere.</p>
+      <div class="command-block-list">
+        <div class="command-block-item">
+          <h4 class="command-name">$ spm p</h4>
+          <p class="command-description">Alias for spm publish</p>
+        </div>
+        <div class="command-block-item">
+          <h4 class="command-name">$ spm publish</h4>
+          <p class="command-description">to publish your project</p>
+        </div>
+        <div class="command-block-item">
+          <h4 class="command-name">$ spm publish myPackage@2.0.0</h4>
+          <p class="command-description">to publish your project as the version 2.0.0</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="command-block command-block-tooling">
+      <h2>Manage project's contributors</h2>
+      <p>to add, remove contributors from project you're already contributing to, and display the list of contributors</p>
+      <div class="command-block-list">
+        <div class="command-block-item">
+          <h4 class="command-name">$ spm owner add user packageName</h4>
+          <p class="command-description">to add a user (email or login) as a package's contributor</p>
+        </div>
+        <div class="command-block-item">
+          <h4 class="command-name">$ spm owner rm user packageName</h4>
+          <p class="command-description">to remove a user (email or login) from the contributors of a package</p>
+        </div>
+        <div class="command-block-item">
+          <h4 class="command-name">$ spm owner ls packageName</h4>
+          <p class="command-description">To display logins and emails of contributors to a package</p>
         </div>
       </div>
     </div>
