@@ -1,6 +1,7 @@
 export const SERVER_PUBLIC_ROUTES:string[] = [
   '/',
   '/packages',
+  '/contact',
   '/documentation',
   '/documentation/getting-started',
   '/documentation/what-is-spm',
@@ -13,8 +14,9 @@ export const SERVER_PUBLIC_ROUTES:string[] = [
   '/documentation/publish',
   '/documentation/cheat-sheet',
   '/assets/video.mp4',
-  '/assets/commingSoon.jpg'
-
+  'assets/what.png',
+  '/assets/commingSoon.jpg',
+  '/assets/favicon.png'
 ];
 
 export const SERVER_USER_ROUTES:string[] = [
