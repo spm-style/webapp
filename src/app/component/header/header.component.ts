@@ -20,7 +20,6 @@ export class HeaderComponent implements OnInit {
     });
 
     document.addEventListener('click', (event:any) => {
-      console.log(event.path)
       let find:boolean = false;
       for(let path of event.path){
         if(path.className == 'header-navigation'){
