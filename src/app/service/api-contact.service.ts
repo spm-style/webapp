@@ -1,21 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
-import 'rxjs/add/operator/do';
-import { errorHttp,  URL_API} from './common'
+import { errorHttp,  URL_API, Observable, Http, Headers, Response } from './common'
 
 @Injectable()
 export class ApiContactService {
 
-  constructor(private _http:Http){}
+  private _headers:Headers
 
-  public sendContact = (payload):Observable<any> => {
-    let headers = new Headers();
-    console.log(payload)
-    headers.append('Content-Type', 'application/json');
-    // headers.append('x-auth-web', `bearer ${this._redux.getState().app.tokenClient}`);
-    return this._http.put(`${URL_API}/contact`, JSON.stringify(payload), {headers, withCredentials: true})
+  constructor(private _http:Http){
+    this._headers = new Headers()
+    this._headers.append('Content-Type', 'application/json')
+  }
+
+  public sendContact(payload):Observable<any> {
+    return this._http.get(`${URL_API}/package-origin`, {headers: this._headers, withCredentials: true})
     .map((res:Response) => res.json())
     .catch(errorHttp);
   }
+  
 }

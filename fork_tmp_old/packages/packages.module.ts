@@ -8,10 +8,10 @@ import { PackagesComponent }                                                    
                                                                                 // Pages
 import { PackagesDetailComponent }                                              from './pages/packages-detail/packages-detail.component';
 import { PackagesOverviewComponent }                                            from './pages/packages-overview/packages-overview.component';
-                                                                                // Pipe
-import { SafeHtmlPipe }                                                         from './pipe/safe-html.pipe';
                                                                                 // Component
-import { CardComponent }                                                        from './component/card/card.component';
+import { PinterestGridCardComponent }                                           from './component/pinterest-grid-card/pinterest-grid-card.component';
+                                                                                // Service
+import { PinterestGridService }                                                 from './service/pinterest-grid.service';
 
 @NgModule({
   imports: [
@@ -23,9 +23,10 @@ import { CardComponent }                                                        
     PackagesComponent,
     PackagesDetailComponent,
     PackagesOverviewComponent,
-    SafeHtmlPipe,
-    CardComponent
+    PinterestGridCardComponent
   ],
-  providers: []
+  providers: [
+    // PinterestGridService,
+  ]
 })
 export class PackagesModule { }

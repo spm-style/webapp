@@ -1,72 +1,75 @@
-import { Component, OnInit, ViewChild, ElementRef, ChangeDetectionStrategy } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
-import { Subject } from 'rxjs/Subject';
-
-
-
-import { PinterestGridService, INIT_DATA, MORE_DATA, SUCCESS_DATA, EMPTY_DATA, LOADER_DATA, STOP_LOADER_DATA } from '../../service/pinterest-grid.service';
+import {
+  Component, OnInit, ChangeDetectionStrategy,
+  OnDestroy, ViewChild, AfterViewInit, ElementRef,
+  Renderer2, HostListener }                                                     from '@angular/core';
+import { Subscription }                                                         from 'rxjs/Subscription';
                                                                                 // Service
-import { ApiPackagesService }                                                   from '../../service/api-packages.service';
+import { ApiPackageOriginService }                                              from '../../../../service/api-package-origin.service';
                                                                                 // Redux
-import { NgRedux, RDXRootState, FETCH_PACKAGES_LIST, IPackage }                 from '../../../../store';
+import {
+  NgRedux, RDXRootState, FETCH_PACKAGE_ORIGIN,
+  select, Observable, IPackageOrigin }                                          from '../../../../store';
+                                                                                // Api spm
+import { PinterestGrid }                                                        from '../../class/pinterest-grid'
 
 @Component({
   templateUrl: './packages-overview.component.html',
   styleUrls: ['./packages-overview.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [ PinterestGridService ]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PackagesOverviewComponent implements OnInit {
+export class PackagesOverviewComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  @ViewChild('grid') private _grid;
+  @ViewChild('contentList') contentList:ElementRef;
 
-  private _subscriptionPinterestEvent:Subscription;
-  private _pinterestEvent:Subject<string>;
-  private _loader:any;
+  // @ViewChild('test') test:ElementRef;
+
+  @HostListener('window:resize', ['$event']) onResize(event) { this._pinterestGrid.init() }
+
+  @select(['packageOrigin', 'list']) readonly list:Observable<IPackageOrigin>
+
+  private _subscriptionApi:Subscription;
+  private _pinterestGrid:PinterestGrid
 
   constructor(
-    private _pinterestService:PinterestGridService,
-    private _apiPackages:ApiPackagesService,
-    private _redux:NgRedux<RDXRootState>
+    private _apiPackageOrigin:ApiPackageOriginService,
+    private _redux:NgRedux<RDXRootState>,
+    private _renderer:Renderer2
   ) { }
 
   ngOnInit(){
-    this._loader = document.querySelector('.loader');
-
-    this._pinterestEvent = this._pinterestService.init(this._grid, {widthCard: 320, amountCard: 30, data: this._redux.select(['packages', 'list'])})
-    this._apiPackages.getList()
-    .subscribe(
-      (packages:IPackage[]) => {
-        this._redux.dispatch({type: FETCH_PACKAGES_LIST, list:packages});
-        this._pinterestEvent.next(INIT_DATA);
-      },
-      error => { console.log(error) }
-    );
-
-    this._subscriptionPinterestEvent = this._pinterestEvent.subscribe((event:string) => {
-      switch(event){
-        case MORE_DATA:
-        this._loader.style.opacity = 1;
-          this._apiPackages.getList()
-          .subscribe(
-            (data:any[]) => {
-              if(data.length == 0){
-                this._pinterestEvent.next(EMPTY_DATA)
-              }else if(data.length < 30){
-                this._redux.dispatch({type: FETCH_PACKAGES_LIST, list:data});
-                this._pinterestEvent.next(EMPTY_DATA)
-                setTimeout(() => { this._loader.style.opacity = 0 }, 600)
-              }else{
-                this._redux.dispatch({type: FETCH_PACKAGES_LIST, list:data});
-                this._pinterestEvent.next(SUCCESS_DATA)
-                setTimeout(() => { this._loader.style.opacity = 0 }, 300)
-              }
-            },
-            error => { console.log(error) }
-          );
-          break;
-        }
-    })
+    if(this._redux.getState().packageOrigin.list.length == 0){
+      this._subscriptionApi = this._apiPackageOrigin.listPackageOrigin()
+      .subscribe(
+        (data:any) => { this._redux.dispatch({type: FETCH_PACKAGE_ORIGIN, list:data}) },
+        (error:any) => { console.log(error) }
+      )
+    }
+    // setTimeout(() => {
+    //   console.log('merde')
+    //   this.test.nativeElement.scrollIntoView()
+    // },3000)
   }
 
+  ngOnDestroy() {
+    if(this._subscriptionApi){ this._subscriptionApi.unsubscribe() }
+  }
+
+  ngAfterViewInit(){
+    setTimeout(() => {
+      this._pinterestGrid = new PinterestGrid({
+        delay: 300,
+        gutter: 20,
+        container: this.contentList,
+        cards: this.contentList.nativeElement.children,
+        loaded: false,
+        shorterFirst: true
+      }, this._renderer)
+
+      if(this.contentList.nativeElement.children.length > 0){ this._pinterestGrid.init() }
+    }, 100)
+  }
+
+  public navigateToDetail(name:string):void {
+    console.log(name)
+  }
 }

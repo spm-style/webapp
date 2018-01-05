@@ -1,10 +1,11 @@
-export { select, NgRedux, dispatch } from '@angular-redux/store';
-export { Observable } from 'rxjs/Observable';
+export { select, NgRedux, dispatch } from '@angular-redux/store'
+export { Observable } from 'rxjs/Observable'
 
-export * from './store';
-export * from './app/state';
-export * from './app/actions';
-export * from './packages/state';
-export * from './packages/actions';
-export * from './doc/state';
-export * from './doc/actions';
+export * from './store'
+export * from './app/state'
+export * from './app/actions'
+export * from './packageOrigin/state'
+export * from './packageOrigin/actions'
+export * from './packageOrigin/interfaces'
+export * from './doc/state'
+export * from './doc/actions'

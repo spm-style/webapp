@@ -27,7 +27,7 @@ export class ContactComponent implements OnInit {
 
   public onSubmitContact(){
     // console.log(this.formContact)
-    console.log(this._apiContact)
+    // console.log(this._apiContact)
     this._apiContact.sendContact(this.formContact.value)
     .subscribe(
       (data:any) => {

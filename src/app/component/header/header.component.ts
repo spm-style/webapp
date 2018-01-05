@@ -19,17 +19,17 @@ export class HeaderComponent implements OnInit {
         }
     });
 
-    document.addEventListener('click', (event:any) => {
-      console.log(event.path)
-      let find:boolean = false;
-      for(let path of event.path){
-        if(path.className == 'header-navigation'){
-          console.log('merde')
-          find = true;
-        }
-      }
-      if(!find) { this.classNav = '' }
-    })
+    // document.addEventListener('click', (event:any) => {
+    //   console.log(event.path)
+    //   let find:boolean = false;
+    //   for(let path of event.path){
+    //     if(path.className == 'header-navigation'){
+    //       console.log('merde')
+    //       find = true;
+    //     }
+    //   }
+    //   if(!find) { this.classNav = '' }
+    // })
   }
 
   public toggleMenu():void{

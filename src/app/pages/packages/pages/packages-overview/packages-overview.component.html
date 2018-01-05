@@ -1,44 +1,4 @@
-<main>
-  <section class="section-overview">
-    <div class="content">
-      <h1>Packages</h1>
-    </div>
-  </section>
-  <div class="test-de-merde">
-    <section #grid class="section-grid">
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-      <pinterest-grid-card></pinterest-grid-card>
-    </section>
-  </div>
-</main>
-<div class="loder-container">
-  <div class="loader"></div>
-</div>
+<section #contentList class="section-list">
+  <spm-card *ngFor="let card of (list | async)" [data]="card"></spm-card>
+</section>
+<div #test class="test"></div>

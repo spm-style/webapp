@@ -23,6 +23,7 @@ import { FooterComponent }                                                      
 import { VideoJsComponent }                                                     from './component/video-js/video-js.component';
                                                                                 // Service
 import { ApiContactService }                                                    from './service/api-contact.service';
+import { ApiPackageOriginService }                                              from './service/api-package-origin.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { ApiContactService }                                                    
     HttpModule
   ],
   providers: [
-    ApiContactService
+    ApiContactService,
+    ApiPackageOriginService
   ],
   bootstrap: [AppComponent]
 })

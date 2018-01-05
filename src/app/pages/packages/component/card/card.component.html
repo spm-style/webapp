@@ -1,0 +1,8 @@
+<a (click)="test()" [routerLink]="data.name" >
+  <div #containerIframe class="container-iframe">
+    <img #iframe src="https://www.amusetoi.com/wp-content/uploads/2016/05/8-16.jpg" alt="merde" class="iframe">
+    <!-- <iframe #iframe [src]="urlIframe( data.distTags.latest.cdn )" frameborder="0" allowfullscreen class="iframe"></iframe> -->
+  </div>
+  <h2>{{ data.name }}</h2>
+  <p>{{ data.distTags.latest.description }}</p>
+</a>

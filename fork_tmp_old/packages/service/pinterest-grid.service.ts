@@ -123,14 +123,14 @@ export class PinterestGridService {
 
   public init(container:ElementRef, setting:ISetting):Subject<string>{
     container.nativeElement.offsetParent.style.height = '100vh';
-    setTimeout(() => {
-      this._body = {
-        elem: container.nativeElement.offsetParent,
-        height: container.nativeElement.offsetParent.clientHeight,
-        width: container.nativeElement.offsetParent.clientWidth
-      }
-      container.nativeElement.offsetParent.style.height = '';
-    },50)
+    this._body = {
+      elem: container.nativeElement.offsetParent,
+      height: container.nativeElement.offsetParent.clientHeight,
+      width: container.nativeElement.offsetParent.clientWidth
+    }
+    container.nativeElement.offsetParent.style.height = '';
+    // console.log('info container or grid\n', this._body)
+
     this._container = container;
     this._gutter = setting.gutter || 20;
     this._shorterFirst = setting.shorterFirst || true;
@@ -141,6 +141,7 @@ export class PinterestGridService {
     this._dataRedux$ = setting.data;
     return this._event$;
   }
+
   public initCard(setting:ISettingCard):Subject<any>{
     if(this._amountHtmlCard < this._amountCard){
       this._lastCardsIndex = this._cardsInfo.length;
@@ -157,7 +158,8 @@ export class PinterestGridService {
         case INIT_DATA:
           this._combineCardData$ = this._cardsInfo$
           .do((card) => { if(card.index == 0){ this._subscriptionDataRedux = this._dataRedux$.subscribe((list) => this._dataRedux = list)} })
-          .map((card) => { return {card, data:this._dataRedux} });
+          .map((card) => { return {card, data:this._dataRedux} })
+          .do((card) => console.log(card))
           this._statusData = INIT_GRID_DATA;
           this._initGrid();
           break;
@@ -269,6 +271,7 @@ export class PinterestGridService {
     this._container.nativeElement.style.width =  `${this._widthCard * this._cols + (this._gutter * (this._cols + 1))}px`;
   }
   private _setPosition(info, init=false):void{
+    console.log('set pos merde')
     info.card.emit.next(info.data[info.card.index])
     info.card.func(info.card, info.data[info.card.index])
     .then(() => {
@@ -282,7 +285,7 @@ export class PinterestGridService {
         info.card.elem.nativeElement.style.width = `${this._widthCard}px`
         posX = this._itemsPosX[itemIndex];
         posY = this._itemsPosY[itemIndex];
-        info.card.elem.nativeElement.style.position = 'absolute';
+        // info.card.elem.nativeElement.style.position = 'absolute';
         info.card.elem.nativeElement.style[this._transform] = `translate3d(${posX}px, ${posY}px, 0)`;
         info.card.top = posY;
         info.card.left = posX;

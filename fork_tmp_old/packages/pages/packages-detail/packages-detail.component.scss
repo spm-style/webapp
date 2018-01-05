@@ -1,5 +1,14 @@
 @import "../../../../../../spm_modules/style-guide.scss";
 
+:root{
+ --widthContainerOverview: 400px;
+ --heightContainerOverview: 600px;
+ --heightOverview: 600px;
+ --widthOverview: 400px;
+ --scale: 1;
+ --widthCard: 300px;
+}
+
 /************************* DEFAULT STYLE **************************************/
 .section-overview{
   background-color: $color-tertiary;
@@ -159,12 +168,17 @@ input[type=range]:focus::-ms-fill-upper {
 
 .container-iframe-unique{
   border: 1px solid #eee;
+  width: var(--widthContainerOverview);
+  height: var(--heightContainerOverview);
 }
 
 .responsive-frame-unique {
+  width: var(--widthOverview);
+  height: var(--heightOverview);
   border-style: none;
   border-color: inherit;
   border-width: 0px;
+  -webkit-transform: scale(var(--scale));
   -webkit-transform-origin: 0 0;
   display: block;
 }

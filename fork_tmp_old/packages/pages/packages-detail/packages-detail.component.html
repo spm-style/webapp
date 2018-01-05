@@ -1,7 +1,6 @@
 <section class="section-overview">
   <div class="content">
-    <button (click)="backTo()">back</button>
-    <h1>{{ (current | async)?.name }}</h1>
+    <h1>{{data.name}}</h1>
     <form>
       <div class="control-select">
         <select name="version">
@@ -20,7 +19,7 @@
   <div class="content">
     <div class="interaction-responsive">
       <div class="button-responsive">
-        <button *ngFor="let breakpoint of (current | async)?.distTags.latest.responsiveness" class="button-breakpoint" (click)="changeDevice(breakpoint)"><img src="assets/ico-{{breakpoint.name}}.png" alt=""></button>
+        <button *ngFor="let breakpoint of data.distTags.latest.responsiveness" class="button-breakpoint" (click)="changeDevice(breakpoint)"><img src="assets/ico-{{breakpoint.name}}.png" alt=""></button>
         <button type="button" name="button" (click)="changeOriantation()" class="button-breakpoint"><img src="assets/ico-oriantation.png" alt=""></button>
       </div>
       <input class="range-scale" type="range" #rangeScale min="0.01" max="1" step="0.01" onchange="changeScale(this.value)">
@@ -37,27 +36,12 @@
   </div>
 </section>
 
-<button (click)="test()">test de merde</button>
-
-<section class="section-variable">
-  <div class="classes-list" *ngFor="let class of (current | async)?.distTags.latest.classes">
-    <pre>{{ class | json }}</pre>
-  </div>
-  <!-- <div class="variable-item">
-    <p class="name">name of variable</p>
-    <form>
-      <input #value>
-    </form>
-    <button>change</button>
-  </div> -->
-</section>
-
 <!-- <button *ngFor="let breakpoint of data.distTags.latest.responsiveness" class="button-breakpoint" (click)="changeDevice(breakpoint)">{{breakpoint.name}}</button>
 <input type="range" #rangeScale min="0.01" max="1" step="0.01" onchange="changeScale(this.value)">
 <button type="button" name="button" (click)="changeOriantation()" class="button-breakpoint">Oriantation</button> -->
 
 
 
-<!-- <pre>{{current | async | json}}</pre> -->
+<pre>{{data | json}}</pre>
 
 <!-- <pre>{{data.distTags.latest.cdn}}</pre> -->
