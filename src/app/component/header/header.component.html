@@ -18,7 +18,11 @@
     </nav>
   </div>
   <div class="header-search">
-    <div class="content">
+    <div #buttonBackTo class="content">
+      <a [routerLink]="backToCurrent" class="back-to">
+        <img src="assets/back.png" alt="">
+        <!-- <div class="back-to test"></div> -->
+      </a>
       <input type="text" placeholder="Find packages">
     </div>
   </div>

@@ -10,11 +10,11 @@ export interface RDXPackageOrigin {
 
 export interface IResponsiveness { name: string, h: number, w: number, scale: number }
 
-interface IVariables {}
+export interface IVariables { name: string, value: string }
 
-interface IClasses { name: string, variables: [IVariables] }
+export interface IClasses { name: string, variables: [IVariables] }
 
-interface Ipackage {
+export interface Ipackage {
   category: string,
   cdn: string,
   classes: [IClasses],

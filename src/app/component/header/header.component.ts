@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Router, NavigationEnd, NavigationStart } from '@angular/router';
+import { Location } from '@angular/common';
+
+interface IBackToPath {
+  url:string,
+  dist:string
+}
 
 @Component({
   selector: 'spm-header',
@@ -8,15 +14,39 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+  @ViewChild('buttonBackTo') private _backto:ElementRef
+
   public classNav:string = '';
 
-  constructor(private _router: Router) { }
+
+  public backToCurrent:string
+  private _backToPath:IBackToPath[] = [
+    { url: '/packages/', dist: '/packages' },
+    { url: '/documentation/', dist: '/documentation' }
+  ]
+
+  constructor(
+    private _router: Router,
+    private _location: Location,
+    private _renderer: Renderer2
+  ) { }
 
   ngOnInit() {
+
     this._router.events.subscribe((event) => {
-        if(event instanceof NavigationEnd){
-          this.classNav = '';
+      if(event instanceof NavigationStart){
+        console.log(event.url)
+        this._renderer.removeClass(this._backto.nativeElement, 'back-to-active')
+        for(let path of this._backToPath){
+          if(event.url.indexOf(path.url) != -1){
+            this.backToCurrent = path.dist
+            this._renderer.addClass(this._backto.nativeElement, 'back-to-active')
+          }
         }
+      }
+      if(event instanceof NavigationEnd){
+        this.classNav = '';
+      }
     });
 
     // document.addEventListener('click', (event:any) => {

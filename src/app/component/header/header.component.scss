@@ -50,24 +50,43 @@ header{
     }
   }
   .header-search{
-      background-color: $color-primary;
-      .content{
-        max-width: 992px;
-        margin: 0 auto;
-        height: 80px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        input{
-          background-color: #fff;
-          width: 95%;
-          border-radius: 8px;
-          height: 70%;
-          padding-left: 20px;
-          color: $color-secondary;
-          font-size: 1.8rem;
+    background-color: $color-primary;
+    .content{
+      max-width: 992px;
+      margin: 0 auto;
+      height: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &.back-to-active{
+        .back-to{
+          img{
+            width: 60px;
+          }
         }
       }
+
+      .back-to{
+        height: 100%;
+        padding: 10px 0;
+        img{
+          width: 0px;
+          height: 100%;
+        }
+      }
+
+      input{
+        margin: 0 10px;
+        background-color: #fff;
+        width: 100%;
+        border-radius: 8px;
+        height: 70%;
+        padding-left: 20px;
+        color: $color-secondary;
+        font-size: 1.8rem;
+      }
+    }
   }
 }
 
