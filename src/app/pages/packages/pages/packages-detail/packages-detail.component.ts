@@ -63,7 +63,7 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
         .subscribe(
           (response:IPackageOrigin) => {
             this._redux.dispatch({ type: FETCH_CURRENT_PACKAGE_ORIGIN, current: response })
-            this._iframe.nativeElement.src = `http://cdn.spm-style.com/overview/${response.distTags.latest.cdn}`
+            this._iframe.nativeElement.src = `http://cdn.spm-style.com/overview/dom/${response.distTags.latest.cdn}`
             this._overviewUniqueWidth = this._overviewUnique.nativeElement.clientWidth - 20
             this._currentOriantation = 'portrait'
             this.changeDevice(response.distTags.latest.responsiveness[0])
