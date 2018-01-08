@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
-import { Router, NavigationEnd, NavigationStart } from '@angular/router';
-import { Location } from '@angular/common';
+import { Component, OnInit, ElementRef, ViewChild, Renderer2, Input, Inject } from '@angular/core';
+import { Router, NavigationStart, Event } from '@angular/router';
+import { NgRedux, RDXRootState, CHANGE_MENU_NAVIGATION, BACK_MENU_NAVIGATION, CLOSE_MENU, OPEN_MENU, select, Observable, RDXNavigationState } from '../../store';
+import { DOCUMENT } from '@angular/platform-browser';
 
 interface IBackToPath {
   url:string,
@@ -12,30 +13,43 @@ interface IBackToPath {
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
+
 export class HeaderComponent implements OnInit {
+  @select(['navigation']) readonly navigation: Observable<RDXNavigationState>
 
   @ViewChild('buttonBackTo') private _backto:ElementRef
 
-  public classNav:string = '';
-
-
-  public backToCurrent:string
   private _backToPath:IBackToPath[] = [
     { url: '/packages/', dist: '/packages' },
     { url: '/documentation/', dist: '/documentation' }
   ]
 
+  public backToCurrent:string
+
   constructor(
     private _router: Router,
+    private _elementRef: ElementRef,
+    private _renderer: Renderer2,
     private _location: Location,
-    private _renderer: Renderer2
-  ) { }
+    private _redux:NgRedux<RDXRootState>,
+    @Inject(DOCUMENT) private _document: any
+  ){}
 
   ngOnInit() {
+    this._renderer.listen(this._elementRef.nativeElement, 'click', (event) => {
+      if (event.target.classList.contains('expand')) {
+        this._redux.dispatch({ type: CHANGE_MENU_NAVIGATION, currentActiveMenu: event.target.id + 'ed' })
+      } else if (event.target.classList.contains('expanded-control')) {
+        if (this._redux.getState().navigation.currentMenuBelow) { this._redux.dispatch({ type: BACK_MENU_NAVIGATION }) }
+      } else if (event.target.tagName === 'NAV') {
+        this._redux.dispatch({ type: CLOSE_MENU })
+      }
+    })
 
     this._router.events.subscribe((event) => {
       if(event instanceof NavigationStart){
-        console.log(event.url)
+        if (!event.url.includes('#')) { this._document.body.scrollTo(0, 0) || this._document.documentElement.scrollTo(0, 0) }
+        this._redux.dispatch({ type: CLOSE_MENU })
         this._renderer.removeClass(this._backto.nativeElement, 'back-to-active')
         for(let path of this._backToPath){
           if(event.url.indexOf(path.url) != -1){
@@ -44,25 +58,11 @@ export class HeaderComponent implements OnInit {
           }
         }
       }
-      if(event instanceof NavigationEnd){
-        this.classNav = '';
-      }
     });
-
-    // document.addEventListener('click', (event:any) => {
-    //   console.log(event.path)
-    //   let find:boolean = false;
-    //   for(let path of event.path){
-    //     if(path.className == 'header-navigation'){
-    //       console.log('merde')
-    //       find = true;
-    //     }
-    //   }
-    //   if(!find) { this.classNav = '' }
-    // })
   }
 
-  public toggleMenu():void{
-    this.classNav = this.classNav != '' ? '' : 'open-nav';
+
+  public openMenu():void {
+    this._redux.dispatch({ type: OPEN_MENU })
   }
 }
