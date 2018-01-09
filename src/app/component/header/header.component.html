@@ -12,31 +12,16 @@
             <div class="expand" id="documentation-expand"></div>
             <div class="expanded-control" [ngClass]="{'active': (navigation | async)?.currentActiveMenu === 'documentation-expanded', 'below': (navigation | async)?.currentMenuBelow === 'documentation-expanded'}" id="documentation-expanded">
               <ul>
-                <li><a routerLink="">What is spm ?</a></li>
-                <li><a routerLink="">Getting started</a></li>
-                <li><a routerLink="">How spm works</a></li>
-                <li><a routerLink="">CLI run-through</a></li>
-                <li>
-                  <a routerLink="">Initialize your project</a>
-                  <div class="expand" id="install-expand"></div>
-                  <div class="expanded-control" [ngClass]="{'active': (navigation | async)?.currentActiveMenu === 'install-expanded', 'below': (navigation | async)?.currentMenuBelow === 'install-expanded'}" id="install-expanded">
-                    <ul>
-                      <li><a routerLink="">What is spm ?</a></li>
-                      <li><a routerLink="">Getting started</a></li>
-                      <li><a routerLink="">How spm works</a></li>
-                      <li><a routerLink="">CLI run-through</a></li>
-                      <li><a routerLink="">Initialize your project</a></li>
-                      <li><a routerLink="">Install fancy packages</a></li>
-                    </ul>
-                  </div>
-                </li>
-                <li><a routerLink="">Install fancy packages</a></li>
-                <li><a routerLink="">Generate customized packages</a></li>
-                <li><a routerLink="">Import packages in your stylesheets</a></li>
-                <li><a routerLink="">Publish your creation</a></li>
-                <li>
-                  <a routerLink="">Cheat sheet</a>
-                </li>
+                <li><a routerLink="documentation/what-is-spm">What is spm ?</a></li>
+                <li><a routerLink="documentation/getting-started">Getting started</a></li>
+                <li><a routerLink="documentation/workings">How spm works</a></li>
+                <li><a routerLink="documentation/cli-run-through">CLI run-through</a></li>
+                <li><a routerLink="documentation/init">Initialize your project</a></li>
+                <li><a routerLink="documentation/install">Install fancy packages</a></li>
+                <li><a routerLink="documentation/generate">Generate customized packages</a></li>
+                <li><a routerLink="documentation/use">Import packages in your stylesheets</a></li>
+                <li><a routerLink="documentation/publish">Publish your creation</a></li>
+                <li><a routerLink="documentation/cheat-sheet">Cheat sheet</a></li>
               </ul>
             </div>
           </li>
