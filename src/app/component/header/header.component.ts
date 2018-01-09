@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild, Renderer2, Input, Inject } from '@angular/core';
-import { Router, NavigationStart, Event } from '@angular/router';
-import { NgRedux, RDXRootState, CHANGE_MENU_NAVIGATION, BACK_MENU_NAVIGATION, CLOSE_MENU, OPEN_MENU, select, Observable, RDXNavigationState, dispatch } from '../../store';
+import { Router, NavigationStart, NavigationEnd, Event } from '@angular/router';
+import { NgRedux, RDXRootState, CHANGE_MENU_NAVIGATION, BACK_MENU_NAVIGATION, CLOSE_MENU, OPEN_MENU, UPDATE_MENU_NAVIGATION, select, Observable, RDXNavigationState, dispatch } from '../../store';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Location } from '@angular/common';
 
@@ -8,6 +8,18 @@ interface IBackToPath {
   url:string,
   dist:string
 }
+
+/*
+
+/documentation => menu en root
+
+/documentation/blabla => current blabla et le below c'est doucmentation
+
+table = ['documentation'] => tous ce qui est de type documentation/qqchose => current qqchose et le below documentation
+
+sinon tou sera de type qqchose / root
+
+*/
 
 @Component({
   selector: 'spm-header',
@@ -24,6 +36,8 @@ export class HeaderComponent implements OnInit {
     { url: '/packages/', dist: '/packages' },
     { url: '/documentation/', dist: '/documentation' }
   ]
+
+  private _navigationSubMenu:string[] = ['documentation']
 
   public backToCurrent:string
 
@@ -42,12 +56,22 @@ export class HeaderComponent implements OnInit {
         if (!event.url.includes('#')) { this._document.body.scrollTo(0, 0) || this._document.documentElement.scrollTo(0, 0) }
         this._redux.dispatch({ type: CLOSE_MENU })
         this._renderer.removeClass(this._backto.nativeElement, 'back-to-active')
+      } else if (event instanceof NavigationEnd) {
         for(let path of this._backToPath){
-          if(event.url.indexOf(path.url) != -1){
+          if(event.urlAfterRedirects.indexOf(path.url) != -1){
             this.backToCurrent = path.dist
             this._renderer.addClass(this._backto.nativeElement, 'back-to-active')
           }
         }
+        let splitUrl = event.urlAfterRedirects.split('/')
+        let reduxObj = { type: UPDATE_MENU_NAVIGATION, currentActiveMenu: 'root', currentMenuBelow: '' }
+        for (let i = splitUrl.length - 1; i >= 0; i--) {
+          if (this._navigationSubMenu.includes(splitUrl[i])) {
+            Object.assign(reduxObj, { currentActiveMenu: splitUrl[i], currentMenuBelow: i > 1 ? splitUrl[i - 1] : 'root' })
+            break
+          }
+        }
+        this._redux.dispatch(reduxObj)
       }
     });
   }

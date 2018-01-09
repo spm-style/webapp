@@ -3,10 +3,12 @@ import {
   OPEN_MENU,
   CLOSE_MENU,
   BACK_MENU_NAVIGATION,
+  UPDATE_MENU_NAVIGATION,
   changeMenuNavigation,
   openMenu,
   closeMenu,
-  backMenuNavigation
+  backMenuNavigation,
+  updateMenuNavigation
 } from './actions';
 
 export interface RDXNavigationState {
@@ -31,6 +33,8 @@ export function navigationReducer(state:RDXNavigationState = NAVIGATION_INITIAL_
       return closeMenu(state)
     case BACK_MENU_NAVIGATION:
       return backMenuNavigation(state, action.nameParentMenu)
+    case UPDATE_MENU_NAVIGATION:
+      return updateMenuNavigation(state, action.currentActiveMenu, action.currentMenuBelow)
     default:
       return state;
   }
