@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ElementRef, Renderer2, ViewChild, ChangeDetec
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router'
 
-import { IPackageOrigin, CURRENT_IN_LIST, NgRedux, RDXRootState } from '../../../../store';
+import { IPackageOrigin, CURRENT_IN_LIST, NgRedux, RDXRootState, FETCH_CURRENT_PACKAGE_ORIGIN } from '../../../../store';
 
 @Component({
   selector: 'spm-card',
@@ -37,7 +37,8 @@ export class CardComponent implements OnInit {
   }
 
   public test(){
-    this._redux.dispatch({ type: CURRENT_IN_LIST, currentInList: this._elem})
+    this._redux.dispatch({ type: FETCH_CURRENT_PACKAGE_ORIGIN, current: this.data })
+    // this._redux.dispatch({ type: CURRENT_IN_LIST, currentInList: this._elem})
   }
 
   public urlIframe(uuid: string){

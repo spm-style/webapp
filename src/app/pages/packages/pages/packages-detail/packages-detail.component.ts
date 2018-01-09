@@ -1,9 +1,8 @@
 import { Component, OnInit, OnDestroy, ElementRef, ViewChild, Renderer2, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
 
-import { NgRedux, RDXRootState, IPackageOrigin, select, Observable, FETCH_CURRENT_PACKAGE_ORIGIN, CLEAR_CURRENT_PACKAGE_ORIGIN, IResponsiveness }                 from '../../../../store';
+import { NgRedux, RDXRootState, IPackageOrigin, select, Observable, FETCH_CURRENT_PACKAGE_ORIGIN, CLEAR_CURRENT_PACKAGE_ORIGIN, IResponsiveness, Ipackage, IClasses, IVariables }                 from '../../../../store';
 import { Subscription } from 'rxjs/Subscription';
 
 import { ApiPackageOriginService } from '../../../../service/api-package-origin.service';
@@ -16,14 +15,8 @@ import 'rxjs/add/operator/do'
 interface ICLassModule {
   name:string,
   isUse:boolean,
-  elements: [Element]
+  elements: Element[]
 }
-
-interface IVariableModule {
-  name:string,
-  value:string
-}
-
 
 @Component({
   templateUrl: './packages-detail.component.html',
@@ -34,8 +27,9 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
   @ViewChild('iframe') private _iframe:ElementRef;
   @ViewChild('overviewUnique') private _overviewUnique:ElementRef;
   @ViewChild('rangeScale') private _rangeScale:ElementRef;
+  @ViewChild('textScale') private _textScale:ElementRef;
 
-  @select(['packageOrigin', 'current']) readonly current:IPackageOrigin
+  @select(['packageOrigin', 'current']) readonly current:Observable<IPackageOrigin>
 
   private _subsrciptionUrlParams:Subscription
   private _subsrciptionApiGetPackage:Subscription
@@ -43,19 +37,23 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
   private _currentDivice:IResponsiveness
   private _currentOriantation:string = 'portrait'
   private _overviewUniqueWidth:number
-  private _classes:[ICLassModule]
-  private _variables:[ICLassModule]
+  private _originDomaine:string
+
+  public classes:ICLassModule[] = []
+  public variables:IVariables[] = []
 
   constructor(
     @Inject(DOCUMENT) private _document: any,
     private _route: ActivatedRoute,
     private _redux:NgRedux<RDXRootState>,
     private _apiPackageOrigin:ApiPackageOriginService,
-    private _renderer:Renderer2,
-    private _location: Location,
+    private _renderer:Renderer2
   ) { }
 
   ngOnInit() {
+    this._originDomaine = this._document.domain
+    this._document.domain ='spm-style.com'
+
     if(!this._redux.getState().packageOrigin.current){
       this._subsrciptionUrlParams = this._route.params
       .subscribe(params => {
@@ -63,58 +61,82 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
         .subscribe(
           (response:IPackageOrigin) => {
             this._redux.dispatch({ type: FETCH_CURRENT_PACKAGE_ORIGIN, current: response })
-            this._iframe.nativeElement.src = `http://cdn.spm-style.com/overview/dom/${response.distTags.latest.cdn}`
-            this._overviewUniqueWidth = this._overviewUnique.nativeElement.clientWidth - 20
-            this._currentOriantation = 'portrait'
-            this.changeDevice(response.distTags.latest.responsiveness[0])
+            this._initDetailModule(response)
           }
         )
       })
+    }else{
+      this._initDetailModule(this._redux.getState().packageOrigin.current)
     }
   }
 
   ngOnDestroy() {
-    this._subsrciptionUrlParams.unsubscribe();
-    this._subsrciptionApiGetPackage.unsubscribe();
+    this._document.domain = this._originDomaine
+    if(this._subsrciptionApiGetPackage) { this._subsrciptionApiGetPackage.unsubscribe() }
+    if(this._subsrciptionUrlParams) { this._subsrciptionUrlParams.unsubscribe() }
     this._redux.dispatch({ type: CLEAR_CURRENT_PACKAGE_ORIGIN })
   }
 
-  public backTo(){
-    this._location.back()
-  }
-
-  public changeDevice(device:IResponsiveness){
+  public changeDevice(device:IResponsiveness):void {
     this._currentDivice = device
     this._setDeviceProperty(device, this._currentOriantation)
   }
 
-  public changeOriantation(){
+  public changeOriantation():void {
     this._currentOriantation = this._currentOriantation == 'portrait' ? 'paysage' : 'portrait'
     this._setDeviceProperty(this._currentDivice, this._currentOriantation)
   }
 
-  public test(){
-    this._document.domain='spm-style.com'
-    console.log('merde', this._iframe.nativeElement.contentWindow.style.setProperty('--herve_toggle-radius', `0px`))
-    // this._iframe.nativeElement.documentElement.style.setProperty('--herve_toggle-radius', `0px`);
+  public changeScaleIframe(scale:string):void {
+    if(scale.includes('%')){ scale = scale.slice(0, -1) }
+    let tmpScale:number = parseFloat(scale)
+    if(tmpScale > 1){ tmpScale = tmpScale / 100 }
+    this._setDeviceProperty(this._currentDivice, this._currentOriantation, tmpScale)
   }
 
-  private _setDeviceProperty(device:IResponsiveness, oriantation:string):void{
-    let scale = this._overviewUniqueWidth / (oriantation == 'portrait' ? device.w : device.h) < 1 ? this._overviewUniqueWidth / (oriantation == 'portrait' ? device.w : device.h) : 1
+  public toggleClass(classModule:ICLassModule):void {
+    if(classModule.elements.length == 0){ classModule.elements = this._iframe.nativeElement.contentWindow.document.querySelectorAll(`.${classModule.name}`) }
+    for(let element of classModule.elements){
+      classModule.isUse ? this._renderer.removeClass(element, classModule.name) : this._renderer.addClass(element, classModule.name)
+    }
+    classModule.isUse = !classModule.isUse
+  }
+
+  public isClassActive(classModule:ICLassModule):boolean{ return classModule.isUse }
+
+
+  public changeVariableValue(variable:IVariables, newValue:string):void {
+    this._iframe.nativeElement.contentWindow.document.documentElement.style.setProperty(`--${variable.name}`, newValue)
+    variable.value = newValue
+  }
+
+  private _initDetailModule(data:IPackageOrigin):void {
+    this._iframe.nativeElement.src = `http://cdn.spm-style.com/overview/${data.distTags.latest.cdn}`
+    this._overviewUniqueWidth = this._overviewUnique.nativeElement.clientWidth - 20
+    this._currentOriantation = 'portrait'
+    this.changeDevice(data.distTags.latest.responsiveness[0])
+    this._createArrayClassesAndVariables(data.distTags.latest)
+  }
+
+  private _setDeviceProperty(device:IResponsiveness, oriantation:string, scale:number = null):void{
+    if(!scale){ scale = this._overviewUniqueWidth / (oriantation == 'portrait' ? device.w : device.h) < 1 ? this._overviewUniqueWidth / (oriantation == 'portrait' ? device.w : device.h) : 1 }
     this._renderer.setStyle(this._overviewUnique.nativeElement.children[0], 'width', `${ (oriantation == 'portrait' ? device.w : device.h) * scale }px`)
     this._renderer.setStyle(this._overviewUnique.nativeElement.children[0], 'height', `${ (oriantation == 'portrait' ? device.h : device.w) * scale }px`)
     this._renderer.setStyle(this._iframe.nativeElement, 'transform', `scale(${scale})`)
     this._renderer.setStyle(this._iframe.nativeElement, 'width', `${ oriantation == 'portrait' ? device.w : device.h }px`)
     this._renderer.setStyle(this._iframe.nativeElement, 'height', `${ oriantation == 'portrait' ? device.h : device.w }px`)
     this._rangeScale.nativeElement.value = scale;
+    this._textScale.nativeElement.value = `${scale * 100}%`;
   }
 
-  private _createArrayClassesAndVariables():void{
-    // private _classes:[ICLassModule]
-    // private _variables:[ICLassModule]
-
-    // this.current.distTags.latest.classes
+  private _createArrayClassesAndVariables(data:Ipackage):void {
+    for(let classModule of data.classes){
+      this.classes.push({
+        name: classModule.name,
+        isUse: true,
+        elements: []
+      })
+      for(let variable of classModule.variables){ this.variables.push(variable) }
+    }
   }
-
-
 }
