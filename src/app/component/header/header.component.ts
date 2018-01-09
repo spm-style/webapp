@@ -41,4 +41,8 @@ export class HeaderComponent implements OnInit {
   public openMenu():void {
     this._redux.dispatch({ type: OPEN_MENU })
   }
+
+  public closeMenu():void {
+    this._redux.dispatch({ type: CLOSE_MENU })
+  }
 }

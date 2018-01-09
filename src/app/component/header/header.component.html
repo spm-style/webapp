@@ -1,6 +1,6 @@
 <header>
   <div class="header-navigation" [ngClass]="{'open-nav': (navigation | async)?.isMenuOpen}">
-    <button class="nav-close"></button>
+    <button class="nav-close" (click)="closeMenu()"></button>
     <a routerLink="/"><img src="./assets/logo-2.png" alt="logo" class="logo"></a>
     <button type="button" class="menu-button-burger"><img src="./assets/button-burger.png" alt="" (click)="openMenu()"></button>
     <nav>

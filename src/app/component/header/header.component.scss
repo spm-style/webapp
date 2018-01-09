@@ -31,6 +31,7 @@ header{
       visibility: hidden;
       background-color: rgba(0, 0, 0, 0);
       transition: visibility 0s, background-color 0.4s ease-in-out 0s, box-shadow 0.4s ease-in-out 0s;
+      position: fixed;
     }
 
     &.open-nav{
@@ -42,7 +43,6 @@ header{
         @media screen and (max-width: 480px) {
           visibility: visible;
           z-index: 24;
-          position: fixed;
           right: 55px;
           bottom: 80px;
           height: 60px;
@@ -50,6 +50,16 @@ header{
           border-radius: 50%;
           background-color: rgba(0, 0, 0, 0.7);
           box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+
+          &:after {
+            content: url(../../../assets/close-button.svg);
+            position: absolute;
+            top: 25%;
+            left: 25%;
+            height: 50%;
+            width: 50%;
+            color: white;
+          }
 
           &:active {
             box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -92,7 +102,7 @@ header{
           transform: translateX(-80px);
 
           ul {
-            overflow: scroll !important;
+            overflow: scroll;
             box-shadow: 2px 0 15px black;
           }
         }
@@ -115,6 +125,7 @@ header{
               height: 100%;
               color: white;
               font-size: 1.3rem;
+              cursor: pointer;
             }
 
             .expand {
@@ -126,8 +137,18 @@ header{
               top: 0;
               right: 0;
               width: 20%;
-              background-color: $color-tertiary;
+              // background-color: $color-tertiary;
               border-left: 1px solid white;
+
+              &:after {
+                content: url(../../../assets/right-arrow-angle.svg);
+                position: absolute;
+                top: 25%;
+                left: 25%;
+                height: 50%;
+                width: 50%;
+                color: white;
+              }
             }
 
             .expanded-control {
@@ -217,48 +238,81 @@ header{
 /************************************* XL *************************************/
 @media screen and (min-width: $responsive-width-xl) {
   header{
+
     .header-navigation{
+
       .menu-button-burger{
         display: none;
       }
+
       nav{
-        &.open-nav{
-          left: -100vh;
-        }
         position: initial;
         background-color: white;
         height: 100%;
         width: auto;
-        ul{
+        transform: initial;
+
+        .expanded-control {
+          position: initial;
           height: 100%;
-          display: flex;
-          li{
-            height: 100%;
-            padding: 0;
-            border: none;
-            a{
-              padding: 0 15px;
-              height: 100%;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              font-size: 1.1rem;
-              color: $color-secondary;
-              &:hover{
-                color: $color-primary;
-              }
+          max-width: initial;
+
+          &.active {
+            transform: initial;
+            color: red;
+
+            ul {
+              box-shadow: none;
+              width: initial;
             }
-            &:last-child{
+          }
+
+          ul{
+            background-color: #fff;
+            height: 100%;
+            display: flex;
+            max-width: initial;
+
+            li{
+              height: 100%;
+              padding: 0;
+              border: none;
+
+              .expand {
+                display: none;
+              }
+
               a{
-                background-color: $color-primary;
-                color: white;
+                padding: 0 15px;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 1.1rem;
+                color: $color-secondary;
                 &:hover{
-                  color: $color-secondary;
+                  color: $color-primary;
+                }
+
+              }
+
+              .expanded-control {
+                display: none;
+              }
+
+              &:last-child{
+                a{
+                  background-color: $color-primary;
+                  color: white;
+                  &:hover{
+                    color: $color-secondary;
+                  }
                 }
               }
             }
           }
         }
+
       }
     }
   }
