@@ -8,9 +8,9 @@
           <li routerLink="documentation/getting-started"><a>Getting Started</a></li>
           <li>
             <a routerLink="documentation">Documentation</a>
-            <div class="expand" id="documentation-expand"></div>
-            <div class="expanded-control" [ngClass]="{'active': (navigation | async)?.currentActiveMenu === 'documentation-expanded', 'below': (navigation | async)?.currentMenuBelow === 'documentation-expanded'}" id="documentation-expanded">
-              <ul>
+            <button class="expand" (click)="openSubMenu('documentation')"></button>
+            <div class="expanded-control" (click)="backSubMenu()" [ngClass]="bindingClassMenu('documentation')">
+              <ul (click)="stopPropagation($event)">
                 <li><a routerLink="documentation/what-is-spm">What is spm ?</a></li>
                 <li><a routerLink="documentation/getting-started">Getting started</a></li>
                 <li><a routerLink="documentation/workings">How spm works</a></li>
@@ -27,6 +27,7 @@
           <!-- <li><a routerLink="features">Features</a></li> -->
           <li><a routerLink="packages">Packages</a></li>
           <!-- <li><a routerLink="pricing">Pricing</a></li> -->
+
           <li><a routerLink="connection/sign-in">Sign-in</a></li>
           <li><a routerLink="connection/sign-up">Create an account</a></li>
 
