@@ -40,7 +40,7 @@ export class PackagesOverviewComponent implements OnInit, OnDestroy, AfterViewIn
     if(this._redux.getState().packageOrigin.list.length == 0){
       this._subscriptionApi = this._apiPackageOrigin.listPackageOrigin()
       .subscribe(
-        (data:any) => { console.log(data); this._redux.dispatch({type: FETCH_PACKAGE_ORIGIN, list:data.packages}) },
+        (data:any) => { console.log(data); this._redux.dispatch({type: FETCH_PACKAGE_ORIGIN, list:data}) },
         (error:any) => { console.log(error) }
       )
     }

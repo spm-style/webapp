@@ -1,7 +1,8 @@
 import { Component, OnInit, ElementRef, ViewChild, Renderer2, Input, Inject } from '@angular/core';
 import { Router, NavigationStart, Event } from '@angular/router';
-import { NgRedux, RDXRootState, CHANGE_MENU_NAVIGATION, BACK_MENU_NAVIGATION, CLOSE_MENU, OPEN_MENU, select, Observable, RDXNavigationState } from '../../store';
+import { NgRedux, RDXRootState, CHANGE_MENU_NAVIGATION, BACK_MENU_NAVIGATION, CLOSE_MENU, OPEN_MENU, select, Observable, RDXNavigationState, dispatch } from '../../store';
 import { DOCUMENT } from '@angular/platform-browser';
+import { Location } from '@angular/common';
 
 interface IBackToPath {
   url:string,
@@ -36,16 +37,6 @@ export class HeaderComponent implements OnInit {
   ){}
 
   ngOnInit() {
-    this._renderer.listen(this._elementRef.nativeElement, 'click', (event) => {
-      if (event.target.classList.contains('expand')) {
-        this._redux.dispatch({ type: CHANGE_MENU_NAVIGATION, currentActiveMenu: event.target.id + 'ed' })
-      } else if (event.target.classList.contains('expanded-control')) {
-        if (this._redux.getState().navigation.currentMenuBelow) { this._redux.dispatch({ type: BACK_MENU_NAVIGATION }) }
-      } else if (event.target.tagName === 'NAV') {
-        this._redux.dispatch({ type: CLOSE_MENU })
-      }
-    })
-
     this._router.events.subscribe((event) => {
       if(event instanceof NavigationStart){
         if (!event.url.includes('#')) { this._document.body.scrollTo(0, 0) || this._document.documentElement.scrollTo(0, 0) }
@@ -61,9 +52,20 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  @dispatch() public openSubMenu(nameSubMenu:string):any { return { type: CHANGE_MENU_NAVIGATION, currentActiveMenu: nameSubMenu } }
+  @dispatch() public closeMenu():any { return { type: CLOSE_MENU } }
+  @dispatch() public openMenu():any { return { type: OPEN_MENU } }
+  @dispatch() public backSubMenu(nameParentMenu:string = ''):any { return { type: BACK_MENU_NAVIGATION, nameParentMenu } }
 
-  public openMenu():void {
-    this._redux.dispatch({ type: OPEN_MENU })
+  public stopPropagation(event) { event.stopPropagation() }
+
+  public bindingClassMenu(expandedName:string):any {
+    let objClass = {active: null, below: null}
+    this.navigation.subscribe((navigation:RDXNavigationState) => {
+      objClass.active = navigation.currentActiveMenu == expandedName
+      objClass.below = navigation.currentMenuBelow == expandedName
+    })
+    return objClass
   }
 
   public closeMenu():void {

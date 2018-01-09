@@ -1,11 +1,10 @@
 <header>
   <div class="header-navigation" [ngClass]="{'open-nav': (navigation | async)?.isMenuOpen}">
-    <button class="nav-close" (click)="closeMenu()"></button>
     <a routerLink="/"><img src="./assets/logo-2.png" alt="logo" class="logo"></a>
     <button type="button" class="menu-button-burger"><img src="./assets/button-burger.png" alt="" (click)="openMenu()"></button>
-    <nav>
-      <div class="expanded-control" [ngClass]="{'active': (navigation | async)?.currentActiveMenu === 'root-expanded', 'below': (navigation | async)?.currentMenuBelow === 'root-expanded'}" id="root-expanded">
-        <ul>
+    <nav (click)="closeMenu()">
+      <div class="expanded-control" [ngClass]="bindingClassMenu('root')">
+        <ul (click)="stopPropagation($event)">
           <li routerLink="documentation/getting-started"><a>Getting Started</a></li>
           <li>
             <a routerLink="documentation">Documentation</a>
@@ -28,13 +27,15 @@
           <!-- <li><a routerLink="features">Features</a></li> -->
           <li><a routerLink="packages">Packages</a></li>
           <!-- <li><a routerLink="pricing">Pricing</a></li> -->
-          <li><a>Sign-in</a></li>
-          <!-- routerLink="sign-in" -->
-          <li><a>Create an account</a></li>
-          <!-- routerLink="sign-up" -->
+          <li><a routerLink="connection/sign-in">Sign-in</a></li>
+          <li><a routerLink="connection/sign-up">Create an account</a></li>
+
+          <li><a routerLink="connection/sign-in">Sign-in</a></li>
+          <li><a routerLink="connection/sign-up">Create an account</a></li>
         </ul>
       </div>
     </nav>
+    <button class="nav-close"></button>
   </div>
   <div class="header-search">
     <div #buttonBackTo class="content">

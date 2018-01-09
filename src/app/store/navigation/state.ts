@@ -12,18 +12,13 @@ import {
 export interface RDXNavigationState {
   isMenuOpen:boolean,
   currentActiveMenu:string,
-  currentMenuBelow:string,
-  parentMenuMapping:object
+  currentMenuBelow:string
 }
 
 export const NAVIGATION_INITIAL_STATE:RDXNavigationState = {
   isMenuOpen: false,
-  currentActiveMenu: 'root-expanded',
-  currentMenuBelow: '',
-  parentMenuMapping: {
-    "documentation-expanded": "root-expanded",
-    "install-expanded": "documentation-expanded"
-  }
+  currentActiveMenu: 'root',
+  currentMenuBelow: ''
 }
 
 export function navigationReducer(state:RDXNavigationState = NAVIGATION_INITIAL_STATE, action):RDXNavigationState{
@@ -35,7 +30,7 @@ export function navigationReducer(state:RDXNavigationState = NAVIGATION_INITIAL_
     case CLOSE_MENU:
       return closeMenu(state)
     case BACK_MENU_NAVIGATION:
-      return backMenuNavigation(state)
+      return backMenuNavigation(state, action.nameParentMenu)
     default:
       return state;
   }

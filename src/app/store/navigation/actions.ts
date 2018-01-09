@@ -25,10 +25,10 @@ export let closeMenu = (state) => {
 	}
 }
 
-export let backMenuNavigation = (state) => {
+export let backMenuNavigation = (state, nameParentMenu) => {
 	return {
 		...state,
 		currentActiveMenu: state.currentMenuBelow,
-		currentMenuBelow: state.parentMenuMapping[state.currentMenuBelow] || ''
+		currentMenuBelow: nameParentMenu
 	}
 }
