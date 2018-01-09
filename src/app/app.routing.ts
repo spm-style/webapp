@@ -20,6 +20,8 @@ const routes: Routes = [
   // { path: 'jobs', loadChildren: 'app/pages/jobs/jobs.module#JobsModule'},
   // { path: 'features', loadChildren: 'app/pages/features/features.module#FeaturesModule'},
   { path: 'documentation', loadChildren: 'app/pages/documentation/documentation.module#DocumentationModule'},
+  { path: 'connection', loadChildren: 'app/pages/connection/connection.module#ConnectionModule'},
+  { path: 'user', loadChildren: 'app/pages/user/user.module#UserModule'},
   { path: '**', component: NotFoundComponent },
 ];
 

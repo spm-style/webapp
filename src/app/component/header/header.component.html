@@ -1,26 +1,25 @@
 <header>
   <div class="header-navigation" [ngClass]="{'open-nav': (navigation | async)?.isMenuOpen}">
-    <button class="nav-close"></button>
     <a routerLink="/"><img src="./assets/logo-2.png" alt="logo" class="logo"></a>
     <button type="button" class="menu-button-burger"><img src="./assets/button-burger.png" alt="" (click)="openMenu()"></button>
-    <nav>
-      <div class="expanded-control" [ngClass]="{'active': (navigation | async)?.currentActiveMenu === 'root-expanded', 'below': (navigation | async)?.currentMenuBelow === 'root-expanded'}" id="root-expanded">
-        <ul>
+    <nav (click)="closeMenu()">
+      <div class="expanded-control" [ngClass]="bindingClassMenu('root')">
+        <ul (click)="stopPropagation($event)">
           <li routerLink="documentation/getting-started"><a>Getting Started</a></li>
           <li>
             <a routerLink="documentation">Documentation</a>
-            <div class="expand" id="documentation-expand"></div>
-            <div class="expanded-control" [ngClass]="{'active': (navigation | async)?.currentActiveMenu === 'documentation-expanded', 'below': (navigation | async)?.currentMenuBelow === 'documentation-expanded'}" id="documentation-expanded">
-              <ul>
-                <li><a routerLink="">What is spm ?</a></li>
-                <li><a routerLink="">Getting started</a></li>
+            <button class="expand" (click)="openSubMenu('documentation')"></button>
+            <div class="expanded-control" (click)="backSubMenu()" [ngClass]="bindingClassMenu('documentation')">
+              <ul (click)="stopPropagation($event)">
+                <li><a routerLink="user">What is spm ?</a></li>
+                <li><a routerLink="documentation/getting-started">Getting started</a></li>
                 <li><a routerLink="">How spm works</a></li>
                 <li><a routerLink="">CLI run-through</a></li>
                 <li>
                   <a routerLink="">Initialize your project</a>
-                  <div class="expand" id="install-expand"></div>
-                  <div class="expanded-control" [ngClass]="{'active': (navigation | async)?.currentActiveMenu === 'install-expanded', 'below': (navigation | async)?.currentMenuBelow === 'install-expanded'}" id="install-expanded">
-                    <ul>
+                  <button class="expand" (click)="openSubMenu('install')"></button>
+                  <div class="expanded-control" (click)="backSubMenu('root')" [ngClass]="bindingClassMenu('install')">
+                    <ul (click)="stopPropagation($event)">
                       <li><a routerLink="">What is spm ?</a></li>
                       <li><a routerLink="">Getting started</a></li>
                       <li><a routerLink="">How spm works</a></li>
@@ -43,13 +42,16 @@
           <!-- <li><a routerLink="features">Features</a></li> -->
           <li><a routerLink="packages">Packages</a></li>
           <!-- <li><a routerLink="pricing">Pricing</a></li> -->
-          <li><a>Sign-in</a></li>
-          <!-- routerLink="sign-in" -->
-          <li><a>Create an account</a></li>
-          <!-- routerLink="sign-up" -->
+
+          <li><a routerLink="connection/sign-in">Sign-in</a></li>
+          <li><a routerLink="connection/sign-up">Create an account</a></li>
+
+          <li><a routerLink="connection/sign-in">Sign-in</a></li>
+          <li><a routerLink="connection/sign-up">Create an account</a></li>
         </ul>
       </div>
     </nav>
+    <button class="nav-close"></button>
   </div>
   <div class="header-search">
     <div #buttonBackTo class="content">
