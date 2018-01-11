@@ -1,3 +1,30 @@
-<p>
-  settings works!
-</p>
+<section class="section-settings">
+	<h2>Change my password</h2>
+	<form [formGroup]="formSettings" (ngSubmit)="onSubmitContact()">
+		<div class="opt-control st-control-text required">
+	    <p>
+	      <span *ngIf="formSettings.get('oldPassword').hasError('oldPassword') && formSettings.get('oldPassword').touched">Invalid password</span>
+	    </p>
+			<input type="password" id="oldPassword" formControlName="oldPassword" required>
+			<label for="oldPassword">Old password</label>
+		</div>
+		<div class="opt-control st-control-text required">
+	    <p>
+	      <span *ngIf="formSettings.get('newPassword').hasError('newPassword') && formSettings.get('newPassword').touched">Invalid password</span>
+	    </p>
+			<input type="password" id="newPassword" formControlName="newPassword" required>
+			<label for="newPassword">New password</label>
+		</div>
+		<div class="opt-control st-control-text required">
+	    <p>
+	      <span *ngIf="formSettings.get('newPasswordRepeat').hasError('newPasswordRepeat') && formSettings.get('newPasswordRepeat').touched">Invalid password</span>
+	    </p>
+			<input type="password" id="newPasswordRepeat" formControlName="newPasswordRepeat" required>
+			<label for="newPasswordRepeat">Confirm new password</label>
+		</div>
+		<div class="form-action">
+	    <!-- <p [ngClass]="coucou()">{{responseRequest}}</p> -->
+	    <button type="submit">Apply</button>
+	  </div>
+	</form>
+</section>

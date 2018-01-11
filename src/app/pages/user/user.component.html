@@ -1,4 +1,13 @@
-<p>
-  user works!
-</p>
-<router-outlet></router-outlet>
+
+<section class="section-user">
+	<div class="content">
+		<nav>
+			<ul>
+				<li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/user/">Public profile</a></li>
+				<li routerLinkActive="active"><a routerLink="/user/settings">Settings</a></li>
+				<li routerLinkActive="active"><a routerLink="/user/packages">My Packages</a></li>
+			</ul>
+		</nav>
+		<router-outlet></router-outlet>
+	</div>
+</section>

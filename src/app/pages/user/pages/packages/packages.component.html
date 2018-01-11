@@ -1,3 +1,32 @@
-<p>
-  packages works!
-</p>
+<section class="section-user-packages">
+	<div class="packages-search">
+		<input type="text" placeholder="Filter packages...">
+	</div>
+	<a class="user-package" *ngFor="let userPackage of userPackages" [routerLink]="userPackage.cdn">
+		<div class="package-header">
+			<h2>{{ userPackage.name }}</h2>
+			<div class="package-overview-analytics">
+				<div class="analytics-control">
+					<div class="img contributors"></div>
+					<span>{{ userPackage.numContributors }}</span>
+				</div>
+				<div class="analytics-control">
+					<div class="img stars"></div>
+					<span>{{ userPackage.stars }}</span>
+				</div>
+				<div class="analytics-control">
+					<div class="img downloads"></div>
+					<span>{{ userPackage.downloads }}</span>
+				</div>
+			</div>
+		</div>
+		<div class="activity-control">
+			<h3>last update</h3>
+			<p class="last-update">{{ userPackage.lastUpdate }}</p>
+		</div>
+		<div class="activity-control">
+			<h3>latest version</h3>
+			<p class="latest-version">{{ userPackage.latestVersion }}</p>
+		</div>
+	</a>
+</section>

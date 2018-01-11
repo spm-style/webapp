@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit {
     { url: '/documentation/', dist: '/documentation' }
   ]
 
-  private _navigationSubMenu:string[] = ['documentation']
+  private _navigationSubMenu:string[] = ['documentation', 'user']
 
   public backToCurrent:string
 

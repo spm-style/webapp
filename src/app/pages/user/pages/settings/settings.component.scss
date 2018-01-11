@@ -1,0 +1,57 @@
+@import "../../../../../../spm_modules/style-guide.scss";
+@import "../../../../../../spm_modules/form.scss";
+
+.section-settings {
+	display: flex;
+	flex-direction: column;
+	min-height: calc(100vh - 100px);
+
+	h2 {
+		padding: 30px;
+		color: $color-secondary;
+	}
+
+	form {
+		padding: 40px 30px;
+		max-width: 600px;
+
+		.form-action{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      p{
+        font-size: 1.2rem;
+        &.success-request {
+          color: green;
+        }
+        &.error-request {
+          color: red;
+        }
+      }
+
+      button{
+        align-self: flex-end;
+        background-color: $color-quaternary;
+        color: #fff;
+        font-size: 1.2rem;
+        padding: 5px 20px;
+        margin-right: 10px;
+        border-radius: 8px;
+      }
+    }
+	}
+}
+
+@media screen and (min-width: $responsive-width-xl) {
+	.content {
+		max-width: calc(100vw - 300px);
+
+		.profile-picture {
+			width: 40%;
+		}
+
+		form {
+			width: 60%;
+		}
+	}
+}

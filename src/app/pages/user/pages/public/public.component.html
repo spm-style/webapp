@@ -1,3 +1,56 @@
-<p>
-  public works!
-</p>
+<section class="section-public-profile">
+	<div class="profile-picture">
+		<img src="" alt="profile-picture"/>
+		<input type="file" class="upload" id="upload">
+		<label for="upload">upload a new image</label>
+	</div>
+
+	<form [formGroup]="formPublicProfile" (ngSubmit)="onSubmitContact()">
+		<div class="opt-control st-control-text">
+      <p>
+        <span *ngIf="formPublicProfile.get('name').hasError('name') && formPublicProfile.get('name').touched">Invalid name</span>
+      </p>
+			<input type="text" id="name" formControlName="name" required>
+			<label for="name">name</label>
+		</div>
+		<div class="opt-control st-control-text">
+      <p>
+        <span *ngIf="formPublicProfile.get('publicEmail').hasError('publicEmail') && formPublicProfile.get('publicEmail').touched">Invalid public email</span>
+      </p>
+			<input type="email" id="public-email" formControlName="publicEmail" required>
+			<label for="public-email">public email</label>
+		</div>
+		<div class="opt-control st-control-textarea">
+      <p>
+        <span *ngIf="formPublicProfile.get('description').hasError('description') && formPublicProfile.get('description').touched">Invalid description</span>
+      </p>
+			<textarea id="description" formControlName="description" required></textarea>
+			<label for="description">description</label>
+		</div>
+		<div class="opt-control st-control-text">
+      <p>
+        <span *ngIf="formPublicProfile.get('url').hasError('url') && formPublicProfile.get('url').touched">Invalid URL</span>
+      </p>
+			<input type="text" id="url" formControlName="url" required>
+			<label for="url">URL</label>
+		</div>
+		<div class="opt-control st-control-text">
+      <p>
+        <span *ngIf="formPublicProfile.get('company').hasError('company') && formPublicProfile.get('company').touched">Invalid company</span>
+      </p>
+			<input type="text" id="company" formControlName="company" required>
+			<label for="company">company</label>
+		</div>
+		<div class="opt-control st-control-text">
+      <p>
+        <span *ngIf="formPublicProfile.get('location').hasError('location') && formPublicProfile.get('location').touched">Invalid location</span>
+      </p>
+			<input type="text" id="location" formControlName="location" required>
+			<label for="location">location</label>
+		</div>
+		<div class="form-action">
+      <!-- <p [ngClass]="coucou()">{{responseRequest}}</p> -->
+      <button type="submit">Apply</button>
+    </div>
+	</form>	
+</section>

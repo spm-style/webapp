@@ -137,7 +137,6 @@ header{
               top: 0;
               right: 0;
               width: 20%;
-              // background-color: $color-tertiary;
               border-left: 1px solid white;
 
               &:after {
@@ -259,7 +258,6 @@ header{
   header{
 
     .header-navigation{
-
       .menu-button-burger{
         display: none;
       }
@@ -291,6 +289,7 @@ header{
             height: 100%;
             display: flex;
             max-width: initial;
+            width: initial;
 
             li{
               height: 100%;

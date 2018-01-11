@@ -24,6 +24,7 @@ import { VideoJsComponent }                                                     
                                                                                 // Service
 import { ApiContactService }                                                    from './service/api-contact.service';
 import { ApiPackageOriginService }                                              from './service/api-package-origin.service';
+import { ApiUserService }                                                       from './service/api-user.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ApiPackageOriginService }                                              
   ],
   providers: [
     ApiContactService,
-    ApiPackageOriginService
+    ApiPackageOriginService,
+    ApiUserService
   ],
   bootstrap: [AppComponent]
 })

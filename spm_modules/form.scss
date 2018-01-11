@@ -29,14 +29,21 @@ $height-control-st-text: 80px;
   margin-bottom: 20px;
   display: flex;
   flex-direction: column-reverse;
+
+  &.required {
+    input {    
+      &.ng-invalid.ng-touched{
+        border-color: red;
+      }
+    }
+  }
+
   textarea{
     padding: 20px;
     font-size: 1.2rem;
     border: 1px solid $color-secondary;
     height: 100px;
-    &.ng-invalid.ng-touched{
-      border-color: red;
-    }
+
     &.ng-valid{
       border-color: green;
     }
@@ -63,6 +70,15 @@ $height-control-st-text: 80px;
   display: flex;
   flex-direction: column-reverse;
   height: $height-control-st-text;
+
+  &.required {
+    input {    
+      &.ng-invalid.ng-touched{
+        border-color: red;
+      }
+    }
+  }
+
   input{
     height: 0.375 * $height-control-st-text;
     max-height: 0px;
@@ -75,9 +91,6 @@ $height-control-st-text: 80px;
       ~ label {
         font-size: 0.175 * $height-control-st-text;
       }
-    }
-    &.ng-invalid.ng-touched{
-      border-color: red;
     }
     &.ng-valid{
       border-color: green;

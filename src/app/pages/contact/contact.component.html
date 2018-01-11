@@ -7,7 +7,7 @@
 <section class="section-form-contact">
   <div class="content">
     <form [formGroup]="formContact" (ngSubmit)="onSubmitContact()">
-      <div class="st-control-text">
+      <div class="st-control-text required">
         <p>
           <span *ngIf="formContact.get('email').hasError('required') && formContact.get('email').touched">Email required</span>
           <span *ngIf="formContact.get('email').hasError('email') && formContact.get('email').touched">Email Not valid</span>
@@ -25,7 +25,7 @@
           <option value="contributor">Become a contributor</option>
         </select>
       </div>
-      <div class="st-control-textarea">
+      <div class="st-control-textarea required">
         <p>
           <span *ngIf="formContact.get('content').hasError('required') && formContact.get('content').touched">Content required</span>
         </p>
