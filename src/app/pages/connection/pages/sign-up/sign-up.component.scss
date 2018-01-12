@@ -1,0 +1,104 @@
+@import "../../../../../../spm_modules/style-guide.scss";
+@import "../../../../../../spm_modules/form.scss";
+
+/************************* DEFAULT STYLE **************************************/
+.section-overview{
+  background-color: $color-tertiary;
+  margin-bottom: 20px;
+  .content{
+    max-width: 992px;
+    margin: 0 auto;
+    h1{
+      font-size: 2.2rem;
+      color: #fff;
+      padding: 30px 20px;
+    }
+  }
+}
+
+.section-sign-up{
+  .content{
+    max-width: 992px;
+    margin: 0 auto;
+  }
+  form{
+    max-width: 500px;
+    padding: 20px;
+    margin: 0 auto;
+
+
+    .info-password{
+      padding-left: 40px;
+      margin-bottom: 20px;
+      ul{
+        li{
+          list-style: square;
+          color: #888;
+          font-size: 0.9rem;
+          a{
+            font-style: italic;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .st-control-checkbox{
+      label{
+        a{
+          color: coral;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .action-connection{
+      display: flex;
+      align-items: center;
+      margin-top: 25px;
+      flex-direction: column;
+      button{
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        transition: all 0.3s ease-in-out;
+        background-color: coral;
+        color: #fff;
+        padding: 10px 0;
+        width: 100%;
+        border-radius: 7px;
+        font-size: 1.2rem;
+        &:focus:not(:active), &:hover:not(:active){
+          box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+        }
+      }
+      a{
+        color: coral;
+        font-size: 1.1rem;
+        padding: 10px 20px;
+        margin-left: 20px;
+        width: 120px;
+      }
+    }
+  }
+}
+
+/************************************* XS *************************************/
+@media screen and (min-width: $responsive-width-xs) {}
+
+/************************************* SM *************************************/
+@media screen and (min-width: $responsive-width-sm) {}
+
+/************************************* MD *************************************/
+@media screen and (min-width: $responsive-width-md) {
+  .section-sign-up{
+    form{
+      .action-connection{
+        flex-direction: row;
+      }
+    }
+  }
+}
+
+/************************************* LG *************************************/
+@media screen and (min-width: $responsive-width-lg) {}
+
+/************************************* XL *************************************/
+@media screen and (min-width: $responsive-width-xl) {}

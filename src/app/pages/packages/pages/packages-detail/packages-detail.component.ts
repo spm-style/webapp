@@ -111,7 +111,7 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
   }
 
   private _initDetailModule(data:IPackageOrigin):void {
-    this._iframe.nativeElement.src = `http://cdn.spm-style.com/overview/${data.distTags.latest.cdn}`
+    this._iframe.nativeElement.src = `http://cdn.spm-style.com/overview/dom/${data.distTags.latest.cdn}`
     this._overviewUniqueWidth = this._overviewUnique.nativeElement.clientWidth - 20
     this._currentOriantation = 'portrait'
     this.changeDevice(data.distTags.latest.responsiveness[0])

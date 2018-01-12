@@ -22,7 +22,7 @@ export const PACKAGE_ORIGIN_INITIAL_STATE:RDXPackageOrigin = {
   isFinish: null
 }
 
-export function packageOriginReduxer(state:RDXPackageOrigin = PACKAGE_ORIGIN_INITIAL_STATE, action):RDXPackageOrigin{
+export function packageOriginReducer(state:RDXPackageOrigin = PACKAGE_ORIGIN_INITIAL_STATE, action):RDXPackageOrigin{
   switch(action.type){
     case FETCH_PACKAGE_ORIGIN: return fetchPackageOrigin(state, action.list)
     case FETCH_CURRENT_PACKAGE_ORIGIN: return fetchCurrentPackageOrigin(state, action.current)

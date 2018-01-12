@@ -1,3 +1,77 @@
-<p>
-  sign-up works!
-</p>
+<section class="section-overview">
+  <div class="content">
+    <h1>Sign-up</h1>
+  </div>
+</section>
+<section class="section-sign-up">
+  <div class="content">
+    <form [formGroup]="formSignUp" (ngSubmit)="onSubmitSignUp()">
+
+      <div class="st-control-text">
+        <p>
+          <span *ngIf="errorFormControlByName('username', 'required')">Username required</span>
+          <span *ngIf="errorFormControlByName('username', 'minlength')">Username min length 4</span>
+          <span *ngIf="errorFormControlByName('username', 'maxlength')">Username min length 31</span>
+          <span *ngIf="errorFormControlByName('username', 'alreadyExist')">Username already exist</span>
+        </p>
+        <input type="text" placeholder="axolotl" id="username" required formControlName="username">
+        <label for="username">Username</label>
+      </div>
+
+      <div class="st-control-text">
+        <p>
+          <span *ngIf="errorFormControlByName('email', 'required')">Email required</span>
+          <span *ngIf="errorFormControlByName('email', 'email') && formSignUp.get('email').value != ''">Email Not valid</span>
+          <span *ngIf="errorFormControlByName('email', 'alreadyExist')">Email already exist</span>
+        </p>
+        <input type="text" placeholder="axolotl@email.com" id="email" required formControlName="email">
+        <label for="email">Email</label>
+      </div>
+
+      <div class="st-control-text">
+        <p>
+          <span *ngIf="errorFormControlByName('password', 'required')">Password required</span>
+          <span *ngIf="errorFormControlByName('password', 'pattern')">Password pattern invalid</span>
+        </p>
+        <input type="password" placeholder="*******" id="password" required formControlName="password">
+        <label for="password">Password</label>
+      </div>
+
+      <div class="st-control-text">
+        <p>
+          <span *ngIf="errorFormControlByName('passwordRepeat', 'required')">Password repeat required</span>
+          <span *ngIf="errorFormControlByName('passwordRepeat', 'passwordMatch')">Password doesn't match</span>
+        </p>
+        <input type="password" placeholder="*******" id="passwordRepeat" required formControlName="passwordRepeat">
+        <label for="passwordRepeat">Password repeat</label>
+      </div>
+
+      <div class="info-password">
+        <ul>
+          <li>Is longer than 7 characters</li>
+          <li>Does not match or significantly contain your username, e.g. do not use "username123".</li>
+          <li>Is not a member of this <a>list of common passwords</a></li>
+        </ul>
+      </div>
+
+      <div class="st-control-checkbox">
+        <input type="checkbox" id="weekly" formControlName="mailing">
+        <label for="weekly">Sign up for the <a>spm Weekly</a></label>
+      </div>
+
+      <div class="st-control-checkbox">
+        <p>
+          <span *ngIf="errorFormControlByName('terms', 'required')">Terms required</span>
+        </p>
+        <input type="checkbox" id="terms" required formControlName="terms">
+        <label for="terms">I agree to the <a>Terms of Service</a> and the <a>Privacy Policy</a>.</label>
+      </div>
+
+      <div class="action-connection">
+        <button type="submit">Create account</button>
+        <a routerLink="/connection/sign-in">Sign-in</a>
+      </div>
+
+    </form>
+  </div>
+</section>

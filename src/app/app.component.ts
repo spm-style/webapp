@@ -1,8 +1,7 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core'
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router'
-import { Subscription } from 'rxjs/Subscription'
+import { Component, OnInit } from '@angular/core';
 
-import { select, Observable } from './store'
+import { NgRedux, RDXRootState, FETCH_USER } from './store'
+import { ApiUserService, USER_ID, USER_TOKEN_CONNECTION, IUserResponse } from './service/api-user.service'
 
 @Component({
   selector: 'spm-root',
@@ -11,31 +10,19 @@ import { select, Observable } from './store'
 })
 export class AppComponent implements OnInit {
 
-	private _subRouterEvent:Subscription
-
-  @select(['app', 'testApp']) readonly test: Observable<string>;
-
   constructor(
-  	private _router:Router,
-  	private _activatedRoute:ActivatedRoute) {
-  }
+    private _apiUser:ApiUserService,
+    private _redux:NgRedux<RDXRootState>
+  ){}
 
   ngOnInit(){
-  	// this._router.navigate(['user'])
-
-    // this._subRouterEvent = this._router.events.subscribe((event) => {
-    //   if(event instanceof NavigationEnd){        
-    //     if(event.urlAfterRedirects.includes('popup')){
-    //       let tmp = event.urlAfterRedirects.split('(')[0].slice(1).split('/')
-    //       console.log(tmp)
-    //       this._isRefresh(tmp)
-    //       // this._router.navigate(['user'])
-    //       // this._router.navigate([event.urlAfterRedirects.split('(')[0], { outlets: { 'popup': null }}])
-    //     }
-    //     // this._router.navigate(['user'])
-    //   }
-    //   // this._router.navigate(['user'])
-    //   // this._subRouterEvent.unsubscribe()
-    // })
+    if(localStorage.getItem(USER_ID) && localStorage.getItem(USER_TOKEN_CONNECTION)){
+      this._apiUser.getUserById(localStorage.getItem(USER_ID), localStorage.getItem(USER_TOKEN_CONNECTION))
+      .subscribe((response:IUserResponse) => {
+        this._redux.dispatch({ type: FETCH_USER, user: response })
+      }, (error:any) => {
+        console.log(error)
+      })
+    }
   }
 }

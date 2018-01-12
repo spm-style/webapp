@@ -13,6 +13,9 @@ import { SafeHtmlPipe }                                                         
                                                                                 // Component
 import { CardComponent }                                                        from './component/card/card.component';
 
+
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -26,6 +29,8 @@ import { CardComponent }                                                        
     SafeHtmlPipe,
     CardComponent
   ],
-  providers: []
+  providers: [
+    
+  ]
 })
 export class PackagesModule { }

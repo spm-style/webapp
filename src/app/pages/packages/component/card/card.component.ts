@@ -13,10 +13,12 @@ import { IPackageOrigin, CURRENT_IN_LIST, NgRedux, RDXRootState, FETCH_CURRENT_P
 export class CardComponent implements OnInit {
 
   @Input('data') readonly data:IPackageOrigin
+  // @Output() setPositionCard = new EventEmitter();
 
   @ViewChild('iframe') private _iframe:ElementRef
   @ViewChild('containerIframe') private _containerIframe:ElementRef
   @HostListener('click', ['$event']) onResize(event) { this._router.navigate(['packages', this.data.name]) }
+
 
   constructor(
     private _sanitizer: DomSanitizer,
@@ -37,7 +39,8 @@ export class CardComponent implements OnInit {
   }
 
   public test(){
-    this._redux.dispatch({ type: FETCH_CURRENT_PACKAGE_ORIGIN, current: this.data })
+    // this.userUpdated.emit(this.user);
+    // this._redux.dispatch({ type: FETCH_CURRENT_PACKAGE_ORIGIN, current: this.data })
     // this._redux.dispatch({ type: CURRENT_IN_LIST, currentInList: this._elem})
   }
 

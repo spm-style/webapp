@@ -27,6 +27,8 @@ import { ApiPackageOriginService }                                              
 import { ApiUserService }                                                       from './service/api-user.service';
 import { PopupModule }                                                          from './modules/popup/popup.module';
 import { ScrollDirective } from './directives/scroll.directive'
+import { RouteReuseStrategy } from '@angular/router'
+import { CustomReuseStrategy } from './customReuseStrategy.class'
 
 @NgModule({
   declarations: [
@@ -52,6 +54,7 @@ import { ScrollDirective } from './directives/scroll.directive'
     HttpModule
   ],
   providers: [
+    { provide: RouteReuseStrategy, useClass: CustomReuseStrategy },
     ApiContactService,
     ApiPackageOriginService,
     ApiUserService
@@ -71,7 +74,7 @@ export class AppModule {
     !isPlatformBrowser(platformId) ? console.log(`Running on the server with appId=${appId}`) : console.log(`Running in the browser with appId=${appId}`);
 
     let enhancers = isDevMode() ? [_devTools.enhancer()] : [];
-    _ngRedux.configureStore(rootReducer, ROOT_INITIAL_STATE, [], []);
+    _ngRedux.configureStore(rootReducer, ROOT_INITIAL_STATE, [], enhancers);
   }
 
 }

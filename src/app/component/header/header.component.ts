@@ -9,18 +9,6 @@ interface IBackToPath {
   dist:string
 }
 
-/*
-
-/documentation => menu en root
-
-/documentation/blabla => current blabla et le below c'est doucmentation
-
-table = ['documentation'] => tous ce qui est de type documentation/qqchose => current qqchose et le below documentation
-
-sinon tou sera de type qqchose / root
-
-*/
-
 @Component({
   selector: 'spm-header',
   templateUrl: './header.component.html',
