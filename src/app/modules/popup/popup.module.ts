@@ -20,58 +20,16 @@ import { Subscription } from 'rxjs/Subscription'
 })
 export class PopupModule {
 
-	// private _isLoad = false
-	// private _subRouterEvent:Subscription
+	private _isLoad = false
+	private _subRouterEvent:Subscription
 
-	// constructor(private _router:Router) {
-	// 	// this._router.navigate(['user'])
+	constructor(private _router:Router) {
+    this._subRouterEvent = _router.events.subscribe((event) => {
+      if(event instanceof NavigationEnd){
+        !this._isLoad && event.urlAfterRedirects.includes('popup') ? _router.navigate([{outlets: {'popup': null}}]) : this._isLoad = true
+        this._subRouterEvent.unsubscribe()
+      }
+    })
+  }
 
- //    this._subRouterEvent = this._router.events.subscribe((event) => {
- //      if(event instanceof NavigationEnd){        
- //        if(!this._isLoad && event.urlAfterRedirects.includes('popup')){
- //          let tmp = event.urlAfterRedirects.split('(')[0].slice(1).split('/')
- //          console.log(tmp)
- //          this._isRefresh(tmp)
- //          // this._router.navigate(['user'])
- //          // this._router.navigate([event.urlAfterRedirects.split('(')[0], { outlets: { 'popup': null }}])
- //        }else{
- //        	this._isLoad = true
- //        }
- //        // this._router.navigate(['user'])
- //      }
- //      // this._router.navigate(['user'])
- //      // this._subRouterEvent.unsubscribe()
- //    })
- //  }
-
-	// private _isRefresh(url:any[]):void {
-	// 	url.push({outlets: {'popup':null} })
- //  	console.log(url, this._router)
-	// 	this._router.navigate(['user'])
- //  }
 }
-
-
-
-// import { Router, ActivatedRoute, NavigationEnd } from '@angular/router'
-// import { Subscription } from 'rxjs/Subscription'
-
-// import { select, Observable } from './store'
-
-// @Component({
-//   selector: 'spm-root',
-//   templateUrl: './app.component.html',
-//   styleUrls: ['./app.component.scss']
-// })
-// export class AppComponent implements OnInit {
-
-// 	private _subRouterEvent:Subscription
-
-//   @select(['app', 'testApp']) readonly test: Observable<string>;
-
-  // constructor(
-  // 	private _router:Router,
-  // 	private _activatedRoute:ActivatedRoute) {
-  // }
-
-

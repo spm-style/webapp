@@ -64,7 +64,7 @@ export class PackagesComponent implements OnInit {
   }
 
   ngOnDestroy(){
-  	this._subPackageSearch.unsubscribe()
+		if(this._subPackageSearch) this._subPackageSearch.unsubscribe()
   }
 
   private _filterPackages(pattern:string):void{
