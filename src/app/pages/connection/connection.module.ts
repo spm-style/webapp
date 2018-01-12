@@ -1,5 +1,6 @@
 import { NgModule }                                                             from '@angular/core';
 import { CommonModule }                                                         from '@angular/common';
+import { ReactiveFormsModule, FormsModule }                                     from '@angular/forms';
                                                                                 // Router
 import { ConnectionRouterModule }                                               from './connection.router'
                                                                                 // Skell
@@ -11,7 +12,9 @@ import { SignUpComponent }                                                      
 @NgModule({
   imports: [
     CommonModule,
-    ConnectionRouterModule
+    ConnectionRouterModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   declarations: [
     ConnectionComponent,

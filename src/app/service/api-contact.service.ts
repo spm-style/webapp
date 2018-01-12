@@ -11,10 +11,10 @@ export class ApiContactService {
     this._headers.append('Content-Type', 'application/json')
   }
 
-  public sendContact(payload):Observable<any> {
-    return this._http.get(`${URL_API}/package-origin`, {headers: this._headers, withCredentials: true})
-    .map((res:Response) => res.json())
-    .catch(errorHttp);
-  }
-  
+  // public sendContact(payload):Observable<any> {
+  //   return this._http.get(`${URL_API}/package-origin`, {headers: this._headers, withCredentials: true})
+  //   .map((res:Response) => res.json())
+  //   .catch(errorHttp);
+  // }
+
 }

@@ -34,7 +34,7 @@ $height-control-st-text: 80px;
     font-size: 1.2rem;
     border: 1px solid $color-secondary;
     height: 100px;
-    &.ng-invalid.ng-touched{
+    &.ng-invalid.ng-dirty{
       border-color: red;
     }
     &.ng-valid{
@@ -53,7 +53,50 @@ $height-control-st-text: 80px;
     span{
       font-size: 0.18 * $height-control-st-text;
       font-style: italic;
-      color: orange;
+      color: red;
+    }
+  }
+}
+
+.st-control-checkbox{
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  input{
+    height: 12px;
+    width: 12px;
+    border: 1px solid #000;
+    transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
+    &:focus{
+      height: 18px;
+      width: 18px;
+    }
+    &:checked{
+      background-color: coral;
+    }
+    // &.ng-invalid.ng-touched{
+    //   border-color: red;
+    // }
+    // &.ng-valid{
+    //   border-color: green;
+    // }
+    // &.ng-pending{
+    //   border-color: orange;
+    // }
+  }
+  label{
+    padding: 7px 0 7px 15px;
+  }
+  p{
+    order: 3;
+    height: 0.18 * $height-control-st-text;
+    // margin-top: 4px;
+    width: 100%;
+    span{
+      font-size: 0.18 * $height-control-st-text;
+      font-style: italic;
+      color: red;
     }
   }
 }
@@ -76,7 +119,7 @@ $height-control-st-text: 80px;
         font-size: 0.175 * $height-control-st-text;
       }
     }
-    &.ng-invalid.ng-touched{
+    &.ng-invalid.ng-dirty{
       border-color: red;
     }
     &.ng-valid{
@@ -96,7 +139,7 @@ $height-control-st-text: 80px;
     span{
       font-size: 0.18 * $height-control-st-text;
       font-style: italic;
-      color: orange;
+      color: red;
     }
   }
 }

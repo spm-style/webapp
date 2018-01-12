@@ -1,3 +1,41 @@
-<p>
-  sign-in works!
-</p>
+<section class="section-overview">
+  <div class="content">
+    <h1>Sign-in</h1>
+  </div>
+</section>
+
+<section class="section-sign-in">
+  <div class="content">
+    <form [formGroup]="formSignIn" (ngSubmit)="onSubmitSignIn()">
+      <div class="st-control-text">
+        <p>
+          <!-- <span *ngIf="errorFormControlByName('username', 'required')">Username required</span>
+          <span *ngIf="errorFormControlByName('username', 'minlength')">Username min length 4</span>
+          <span *ngIf="errorFormControlByName('username', 'maxlength')">Username min length 31</span>
+          <span *ngIf="errorFormControlByName('username', 'alreadyExist')">Username already exist</span> -->
+        </p>
+        <input type="text" placeholder="axolotl@spm.con" id="login" required formControlName="login">
+        <label for="login">Email or username</label>
+      </div>
+
+      <div class="st-control-text">
+        <p>
+          <!-- <span *ngIf="errorFormControlByName('username', 'required')">Username required</span>
+          <span *ngIf="errorFormControlByName('username', 'minlength')">Username min length 4</span>
+          <span *ngIf="errorFormControlByName('username', 'maxlength')">Username min length 31</span>
+          <span *ngIf="errorFormControlByName('username', 'alreadyExist')">Username already exist</span> -->
+        </p>
+        <input type="text" placeholder="*******" id="password" required formControlName="password">
+        <label for="password">Password</label>
+      </div>
+
+      <a class="recover-password">Recover your Password</a>
+
+      <div class="action-connection">
+        <button type="submit">Login</button>
+        <a routerLink="/connection/sign-up">Sign-up</a>
+      </div>
+
+    </form>
+  </div>
+</section>

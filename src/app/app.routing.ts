@@ -11,7 +11,7 @@ import { ContactComponent }                                                     
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   // { path: 'pricing', component: PricingComponent },
-  { path: 'contact', component: ContactComponent },
+  { path: 'contact', component: ContactComponent, data: {key: "contact"} },
   // { path: 'about', component: AboutComponent },
   // { path: 'reporting-abuse', component: ReportingAbuseComponent },
   // { path: 'status', loadChildren: 'app/pages/status/status.module#StatusModule'},
@@ -26,6 +26,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
+  // imports: [ RouterModule.forRoot(routes, { enableTracing: true }) ],
   imports: [ RouterModule.forRoot(routes) ],
   exports: [ RouterModule ]
 })

@@ -25,7 +25,7 @@ export class ApiPackageOriginService {
     return this._http.get(`${URL_API}/package-origin`, {headers: this._headers, withCredentials: true})
     .map((res:Response) => res.json())
     .do((res:any) => {
-      for(let packageOrigin of res){
+      for(let packageOrigin of res.packages){
         packageOrigin.distTags.latest.responsiveness = packageOrigin.distTags.latest.responsiveness.map((name:string) => breakpoints[name])
       }
       return res
