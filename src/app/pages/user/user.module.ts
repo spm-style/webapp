@@ -10,6 +10,8 @@ import { PackagesComponent } from './pages/packages/packages.component';
 import { PreviewComponent } from './pages/preview/preview.component';
 import { PackageDetailComponent } from './pages/package-detail/package-detail.component';
 
+import { RelativeDatePipe } from '../../pipes/relative-date.pipe';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -18,6 +20,7 @@ import { PackageDetailComponent } from './pages/package-detail/package-detail.co
     FormsModule
   ],
   declarations: [
+    RelativeDatePipe,
     UserComponent,
     SettingsComponent,
     PublicComponent,

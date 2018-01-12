@@ -1,0 +1,10 @@
+:host {
+	height: 100vh;
+	width: 100vw;
+	background-color: rgba(0, 0, 0, 0.7);
+	position: fixed;
+	overflow: scroll;
+	top: 0;
+	left: 0;
+	z-index: 40;
+}

@@ -43,4 +43,16 @@ export class ApiPackageOriginService {
     .catch(errorHttp);
   }
 
+  public updateContributors(action:string, targetPackage:string, login:string):Observable<any> {
+    //ATTENTION//
+    this._headers.append('Authorization', `bearer ${'    blablabla   '}`)
+    //ATTENTION//
+    return this._http.post(`${URL_API}/package-origin/${targetPackage}/contributors/${action}`, {headers: this._headers, withCredentials: true, body: {login}})
+    .map((res:Response) => res.json())
+    .do((res:any) => {
+      return res
+    })
+    .catch(errorHttp)
+  }
+
 }

@@ -11,8 +11,11 @@ export class ApiUserService {
     this._headers.append('Content-Type', 'application/json')
   }
 
-  public getPackages():Observable<any> {
-    return this._http.get(`${URL_API}/user//packages`, {headers: this._headers, withCredentials: true})
+  public getPackages(search:string):Observable<any> {
+    return this._http.get(`${URL_API}/user/test/packages${search === '' ? '' : '?search=' + search}`, {
+      headers: this._headers
+      // withCredentials: true
+    })
     .map((res:Response) => res.json())
     .catch(errorHttp);
   }

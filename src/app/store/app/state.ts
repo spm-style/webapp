@@ -1,24 +1,27 @@
 import {
   // actions
-  TEST_APP,
-
+  STOP_MAIN_CONTAINER_SCROLL,
+  START_MAIN_CONTAINER_SCROLL,
   // function-actions
-  testApp
+  stopMainContainerScroll,
+  startMainContainerScroll
 } from './actions';
 
 
 export interface RDXAppState {
-  testApp: string
+  testApp: string,
+  isMainContainerScrollable:boolean
 }
 
 export const APP_INITIAL_STATE:RDXAppState = {
-  testApp: 'app-testing'
+  testApp: 'app-testing',
+  isMainContainerScrollable: true
 }
 
 export function appReducer(state:RDXAppState = APP_INITIAL_STATE, action):RDXAppState{
   switch(action.type){
-    case TEST_APP:
-      return testApp(state);
+    case STOP_MAIN_CONTAINER_SCROLL: return stopMainContainerScroll(state)
+    case START_MAIN_CONTAINER_SCROLL: return startMainContainerScroll(state)
     default:
       return state;
   }

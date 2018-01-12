@@ -1,5 +1,6 @@
 export { select, NgRedux, dispatch } from '@angular-redux/store'
 export { Observable } from 'rxjs/Observable'
+export { Subscription } from 'rxjs/Subscription'
 
 export * from './store'
 export * from './app/state'

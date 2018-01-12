@@ -1,8 +1,10 @@
 <section class="section-user-packages">
-	<div class="packages-search">
-		<input type="text" placeholder="Filter packages...">
-	</div>
-	<a class="user-package" *ngFor="let userPackage of userPackages" [routerLink]="userPackage.cdn">
+	<form class="packages-search" [formGroup]="formUserPackages">
+		<input type="text" placeholder="Filter packages..." formControlName="name">
+	</form>
+	<button (click)="test()">test de merde</button>
+	<a class="user-package" *ngFor="let userPackage of userPackages" [routerLink]="userPackage.name">
+	<!-- [routerLink]="userPackage.name" (click)="selectPackage(userPackage)" -->
 		<div class="package-header">
 			<h2>{{ userPackage.name }}</h2>
 			<div class="package-overview-analytics">
@@ -29,4 +31,8 @@
 			<p class="latest-version">{{ userPackage.latestVersion }}</p>
 		</div>
 	</a>
+	<div class="pagination-control">
+		<button><a [routerLink]=""></a></button>
+		<button><a [routerLink]=""></a></button>
+	</div>
 </section>

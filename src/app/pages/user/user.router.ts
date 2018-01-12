@@ -7,13 +7,15 @@ import { SettingsComponent }                                                    
 import { PublicComponent }                                                      from './pages/public/public.component';
 import { PackagesComponent }                                                    from './pages/packages/packages.component';
 import { PreviewComponent }                                                     from './pages/preview/preview.component';
+import { PackageDetailComponent }                                               from './pages/package-detail/package-detail.component';
 
 const USER_ROUTES:Routes = [
   { path: '', component: UserComponent, children: [
     { path: '', component: PublicComponent, pathMatch: 'full' },
     { path: 'preview', component: PreviewComponent },
     { path: 'settings', component: SettingsComponent },
-    { path: 'packages', component: PackagesComponent},
+    { path: 'packages', component: PackagesComponent },
+    { path: 'packages/:name', component: PackageDetailComponent },
     { path: ':id', component: PreviewComponent }
   ]}
 ]

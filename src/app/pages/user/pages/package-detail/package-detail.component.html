@@ -1,3 +1,65 @@
-<p>
-  package-detail works!
-</p>
+<!-- <section class="section-overview">
+  <div class="content">
+    <h1><a href="/user/packages">list</a> > {{ current.name }}</h1>
+  </div>
+</section> -->
+
+<section class='user-package-section'>
+	<div class="user-package-section-header">
+		<button>back to List</button>
+		<h2>{{current.name}}</h2>
+	</div>
+	<section class="infos-list">
+		<table>
+			<tr>
+				<th>created</th>
+				<th>last update</th>
+				<th>last download</th>
+				<th>total stars</th>
+				<th>total downloads</th>
+			</tr>
+			<tr>
+				<td>{{ current.createdAt | relativeDate }}</td>
+				<td>{{ current.lastUpdateAt | relativeDate }}</td>
+				<td>{{ current.lastDownloadAt | relativeDate }}</td>
+				<td>{{ current.stars }}</td>
+				<td>{{ current.downloads }}</td>
+			</tr>
+		</table>
+	</section>
+	<section>
+		<label for="toggle-versions-state" [ngClass]="{'carousel-empty': !current.versions.length}">{{ !current.versions.length ? 'No v' : 'V'}}ersion{{current.versions.length > 1 ? 's' : ''}}</label>
+    <input class="input-state" type="checkbox" id="toggle-versions-state" [ngClass]="{'togglable': current.versions.length > 10}">
+    <div class="admin-list">
+	    <ul>
+	    	<li *ngFor="let version of current.versions">
+	    		<h3>{{version.name}}</h3>
+	    		<button class="remove"></button>
+	    	</li>
+	    </ul>
+	  </div>
+	</section>
+	<section>
+		<label for="toggle-owners-state" [ngClass]="{'carousel-empty': !current.owners.length, 'togglable': current.owners.length > 10}">{{ !current.owners.length ? 'No o' : 'O'}}wner{{current.owners.length > 1 ? 's' : ''}}</label>
+    <input class="input-state" type="checkbox" id="toggle-owners-state">
+    <div class="admin-list">
+    	<form [formGroup]="formOwner" (ngSubmit)="onSubmitOwner()" [ngClass]="classResponseRequest">
+	      <p>
+	        <span *ngIf="(formOwner.get('name').hasError('name') && formOwner.get('name').touched) || classResponseRequest['error']">{{ responseRequest }}</span>
+	      </p>
+    		<div class="form-control">
+					<input type="text" id="name" formControlName="name" placeholder="user" required>
+	  			<button>Add</button>
+    		</div>
+    	</form>
+	    <ul>
+	    	<li *ngFor="let owner of current.owners">
+	    		<img src="/assets/profile.svg" alt="{{owner}}">
+	    		<!-- <img src="https://cdn.spm-style.com/user/{{owner}}" alt="{{owner}}"> -->
+	    		<h3>{{owner}}</h3>
+	    		<button class="remove"></button>
+	    	</li>
+	    </ul>
+    </div>
+	</section>
+</section>

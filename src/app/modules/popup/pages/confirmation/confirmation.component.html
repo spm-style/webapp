@@ -1,0 +1,17 @@
+<section class="confirmation-section">
+	<div class="confirmation-header">
+		<h2>{{ title }}</h2>
+		<button (click)="closePopup()">Close</button>
+	</div>
+	<div class="confirmation-content">
+		<p>{{ message }}&nbsp;{{ type }}&nbsp;<strong>{{ name }}</strong></p>
+		<form [formGroup]="formRemove" (ngSubmit)="submitRemove()">
+			<div class="opt-control">
+				<input type="text" id="name" formControlName="name">
+				<label for="name">Type the {{ type }} name to confirm</label>
+			</div>
+			<button type="submit">Remove</button>
+			<button (click)="closePopup()">Cancel</button>
+		</form>
+	</div>
+</section>

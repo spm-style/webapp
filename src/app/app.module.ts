@@ -25,6 +25,8 @@ import { VideoJsComponent }                                                     
 import { ApiContactService }                                                    from './service/api-contact.service';
 import { ApiPackageOriginService }                                              from './service/api-package-origin.service';
 import { ApiUserService }                                                       from './service/api-user.service';
+import { PopupModule }                                                          from './modules/popup/popup.module';
+import { ScrollDirective } from './directives/scroll.directive'
 
 @NgModule({
   declarations: [
@@ -37,12 +39,14 @@ import { ApiUserService }                                                       
     AboutComponent,
     ContactComponent,
     ReportingAbuseComponent,
-    VideoJsComponent
+    VideoJsComponent,
+    ScrollDirective
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'spm-web-app' }),
     NgReduxModule,
     AppRoutingModule,
+    PopupModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule
@@ -67,7 +71,7 @@ export class AppModule {
     !isPlatformBrowser(platformId) ? console.log(`Running on the server with appId=${appId}`) : console.log(`Running in the browser with appId=${appId}`);
 
     let enhancers = isDevMode() ? [_devTools.enhancer()] : [];
-    _ngRedux.configureStore(rootReducer, ROOT_INITIAL_STATE, [], enhancers);
+    _ngRedux.configureStore(rootReducer, ROOT_INITIAL_STATE, [], []);
   }
 
 }

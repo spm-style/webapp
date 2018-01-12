@@ -10,7 +10,7 @@ export class ContactComponent implements OnInit {
 
   public formContact:FormGroup;
   public responseRequest:string;
-  public classResponseRequest:string;
+  public classResponseRequest:any;
 
   constructor(
     private _formBuilder:FormBuilder,

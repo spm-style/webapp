@@ -34,7 +34,8 @@ export class HeaderComponent implements OnInit {
 
   private _backToPath:IBackToPath[] = [
     { url: '/packages/', dist: '/packages' },
-    { url: '/documentation/', dist: '/documentation' }
+    { url: '/documentation/', dist: '/documentation' },
+    { url: '/user/packages/', dist: '/user/packages'}
   ]
 
   private _navigationSubMenu:string[] = ['documentation', 'user']
@@ -57,8 +58,11 @@ export class HeaderComponent implements OnInit {
         this._redux.dispatch({ type: CLOSE_MENU })
         this._renderer.removeClass(this._backto.nativeElement, 'back-to-active')
       } else if (event instanceof NavigationEnd) {
+
+        // this._router.navigate([{outlets: {popup: null}}])
+        
         for(let path of this._backToPath){
-          if(event.urlAfterRedirects.indexOf(path.url) != -1){
+          if(event.urlAfterRedirects.startsWith(path.url)){
             this.backToCurrent = path.dist
             this._renderer.addClass(this._backto.nativeElement, 'back-to-active')
           }
