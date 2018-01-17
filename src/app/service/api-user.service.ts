@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { errorHttp,  URL_API, Observable, Http, Headers, Response } from './common'
-
-export const USER_TOKEN_CONNECTION = 'hxa398hanx8j9z3n9mz3'
-export const USER_ID = 'kajb39839mz09mxsndz0m'
+import { LocalstorageService } from './localstorage.service'
 
 export interface IRegisterPayload {
   login:string,
@@ -14,6 +12,8 @@ export interface IRegisterPayload {
 export interface IUser {
   authorPackages:any[],
   contributorPackages:any[],
+  packages:any[],
+  favorites:any[],
   createdAt:Date,
   updatedAt:Date,
   email:string,
@@ -31,38 +31,26 @@ export class ApiUserService {
 
   private _headers:Headers
 
-  constructor(private _http:Http){
+  constructor(
+    private _http:Http,
+    private _localStorageService:LocalstorageService
+    ){
     this._headers = new Headers()
     this._headers.append('Content-Type', 'application/json')
   }
-
-  // public getPackages(search:string):Observable<any> {
-  //   return this._http.get(`${URL_API}/user/test/packages${search === '' ? '' : '?search=' + search}`, {
-  //     headers: this._headers
-  //     // withCredentials: true
-  //   })
-  //   .map((res:Response) => res.json())
-  //   .catch(errorHttp);
-  // }
-
-  // public getUser(payload):Observable<any> {
-  //   return this._http.get(`${URL_API}/package-origin`, {headers: this._headers, withCredentials: true})
-  //   .map((res:Response) => res.json())
-  //   .catch(errorHttp);
-  // }
 
   public register(payload:IRegisterPayload):Observable<IUserResponse> {
     return this._http.put(`${URL_API}/user`, JSON.stringify(payload), {headers: this._headers, withCredentials: true})
     .map((res:Response) => res.json())
     .catch(errorHttp);
   }
-//   public modifyUserData(payload):Observable<any> {
-//   	let body = JSON.stringify(payload)
-//   	return this._http.post(`${URL_API}/user`, body, {headers: this._headers, withCredentials: true})
-//   	.map((res:Response) => res.json())
-//   	.catch(errorHttp)
-//   }
-// }
+
+  public modifyUserData(payload):Observable<any> {
+  	return this._http.post(`${URL_API}/user`, JSON.stringify(payload), {headers: this._headers, withCredentials: true})
+  	.map((res:Response) => res.json())
+  	.catch(errorHttp)
+  }
+
   public getUserById(id:string, token:string):Observable<IUserResponse> {
     let headers = new Headers()
     headers.append('Content-Type', 'application/json')
@@ -72,4 +60,30 @@ export class ApiUserService {
     .catch(errorHttp);
   }
 
+  public getUserByName(name:string):Observable<IUser> {
+    let headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    return this._http.get(`${URL_API}/user/profile/${name}`, {headers: headers, withCredentials: true})
+    .map((res:Response) => res.json().user)
+    .do((data:IUser) => data.packages = data.authorPackages.concat(data.contributorPackages))
+    .catch(errorHttp);
+  }
+
+  public logout():Observable<IUserResponse> {
+    let headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    headers.append("Authorization", `Bearer ${this._localStorageService.getLoginInfos().token}`)
+    return this._http.post(`${URL_API}/user/logout`, null, { headers: headers, withCredentials: true})
+    .map((res:Response) => res.json())
+    .catch(errorHttp)
+  }
+
+  public favorites(id:string, action:string):Observable<boolean> {
+    let headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    headers.append("Authorization", `Bearer ${this._localStorageService.getLoginInfos().token}`)
+    return this._http.post(`${URL_API}/user/favorites/${action}`, { id }, { headers: headers, withCredentials: true})
+    .map((res:Response) => res.json().statusCode === 200)
+    .catch(errorHttp)
+  }
 }

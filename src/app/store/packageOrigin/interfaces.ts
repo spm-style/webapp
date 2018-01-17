@@ -38,6 +38,7 @@ interface IContributors { id: string, login: string }
 interface IVersions { filename: string, name: string, package: string }
 
 export interface IPackageOrigin {
+  _id: string,
   author: string,
   distTags: { latest: Ipackage, lts: Ipackage },
   contributors: IContributors[],

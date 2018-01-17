@@ -1,7 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ApiPackageOriginService } from '../../../../service/api-package-origin.service';
-// import { NgRedux, RDXRootState, IUser, select, Observable, FETCH_CURRENT_USER_PACKAGE } from '../../../../store';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { ApiPackageOriginService } from '../../../../service/api-package-origin.service'
+import { PopupService } from '../../../../modules/popup/popup.service'
+import { Subscription } from 'rxjs/Subscription'
+import { NgRedux, RDXRootState, select, Observable, dispatch, CHANGE_CURRENT_PACKAGE, CHANGE_TAB_TITLE } from '../../../../store'
+import { ActivatedRoute } from '@angular/router'
 
 interface IVersion {
 	name:string,
@@ -31,37 +34,56 @@ interface IUser {
 })
 export class PackageDetailComponent implements OnInit {
 
-	public formOwner:FormGroup;
-	public responseRequest:string = '';
-  public classResponseRequest:any = {'pending': true};
-	// @select(['user', 'currentPackage']) readonly current:Observable<IUser>
+	public formOwner:FormGroup
+	public responseRequest:string = ''
+  public classResponseRequest:any = {'pending': true}
+  private _subPopup:Subscription
+  private _subActivatedRoute:Subscription
+  private _subUser:Subscription
+  public name:string
 
-	public user:IUser = {
-		currentPackage: {
-			name: 'herve_apollo',
-			createdAt: new Date('2017-12-15T22:35:10.099Z'),
-			lastUpdateAt: new Date('2018-01-09T12:35:10.099Z'),
-			lastDownloadAt: new Date('2018-01-10T07:12:10.099Z'),
-			owners: ['herve', 'adrien'],
-			versions: [
-				{ name: '1.0.1', createdAt: new Date('2017-12-15T22:35:10.099Z'), latest: false },
-				{ name: '1.1.2', createdAt: new Date('2018-01-4T18:57:10.099Z'), latest: false },
-				{ name: '2.0.0', createdAt: new Date('2018-01-9T12:35:10.099Z'), latest: true }
-			],
-			stars: 22,
-			downloads: 109
-		}
-	}
-
-	public current:IUserPackage =  this.user.currentPackage;
+	@select(['admin', 'currentPackage']) current:IUserPackage
+  @select(['user']) readonly user:IUser
 
   constructor(private _formBuilder:FormBuilder,
-  	private _apiPackageOrigin:ApiPackageOriginService) { }
+  	private _apiPackageOrigin:ApiPackageOriginService,
+    private _popupService:PopupService,
+    private _redux:NgRedux<RDXRootState>,
+    private _activatedRoute:ActivatedRoute
+  ) { }
 
   ngOnInit() {
-  	this.formOwner = this._formBuilder.group({
+
+
+    this.formOwner = this._formBuilder.group({
       name: ['', [Validators.required]]
     })
+
+    this._subActivatedRoute = this._activatedRoute.params.subscribe((data:any) => {
+      this.name = data.name
+      if (!this._redux.getState().admin.currentPackage) {
+        this._subUser = this._redux.select('user').subscribe((user:any) => {
+          for(let item of user.packages) {
+            if (item.name === data.name) {
+              this._redux.dispatch({ type: CHANGE_CURRENT_PACKAGE, package: item })
+            }
+          }
+        })
+      }
+    })
+    this._redux.dispatch({type: CHANGE_TAB_TITLE, title: this.name + ' - admin' })
+  }
+
+  ngOnDestroy() {
+    if (this._subPopup) {
+  	  this._subPopup.unsubscribe()
+    }
+    if (this._subActivatedRoute) {
+      this._subActivatedRoute.unsubscribe()
+    }
+    if (this._subUser) {
+      this._subUser.unsubscribe()
+    }
   }
 
   public onSubmitOwner(){
@@ -77,5 +99,19 @@ export class PackageDetailComponent implements OnInit {
       	this.responseRequest = error === 'missing token' ? 'please login again' : error
       }
     )
+  }
+
+  public removeFromPackage(type:string, value:string, safety:boolean){
+    this._subPopup = this._popupService.confirmation(
+      'remove',
+      'Removing from package herve_apollo',
+      'Be careful ! You are about to remove',
+      type,
+      value,
+      safety).subscribe((data) => {
+      if (data) {
+      	this._subPopup.unsubscribe()
+      }
+    })
   }
 }

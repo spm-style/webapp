@@ -3,19 +3,16 @@ import { ApiUserService } from '../../../../service/api-user.service';
 import { Router, ActivatedRoute } from '@angular/router'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
+import { RelativeDatePipe } from '../../../../pipes/relative-date.pipe'
 import 'rxjs/add/operator/debounceTime';
-import { PopupService } from '../../../../modules/popup/popup.service'
-
-// import { NgRedux, RDXRootState, dispatch, SELECT_USER_PACKAGE } from '../../../../store';
-// import { NgRedux, RDXAppState, dispatch, STOP_MAIN_CONTAINER_SCROLL, START_MAIN_CONTAINER_SCROLL } from '../../../../store';
-
+import { NgRedux, RDXRootState, RDXUser, select, IUser, Observable, dispatch, CHANGE_CURRENT_PACKAGE, CHANGE_TAB_TITLE } from '../../../../store'
 
 interface ICLassUserPackage {
 	name:string,
-	downloads:number,
+	downloadTotal:number,
 	stars:number,
 	numContributors:number,
-	lastUpdate:string,
+	updatedAt:string,
 	latestVersion:string,
 	cdn:string
 }
@@ -31,67 +28,42 @@ export class PackagesComponent implements OnInit {
 	public searchPattern:string
 	public page:number
 
-	public userPackages:ICLassUserPackage[] = []
-
 	private _subPackageSearch:Subscription
-  private _subPopup:Subscription
 
-  constructor(private _apiUser:ApiUserService,
+  constructor(
   	private _router:Router,
   	private _formBuilder:FormBuilder,
   	private _activatedRoute:ActivatedRoute,
-    private _popupService:PopupService
+    private _redux:NgRedux<RDXRootState>
   ) { }
 
+  @select(['user']) public user: Observable<RDXUser>
+
   ngOnInit() {
+
+    this._redux.dispatch({ type: CHANGE_TAB_TITLE, title: 'my packages' })
+
     this._activatedRoute.queryParams.subscribe((data:any) => {
-    	this.page = data.page || 1
-    	this.searchPattern = data.search || ''
+      this.page = data.page || 1
+      this.searchPattern = data.search || ''
     })
 
-  	this.formUserPackages = this._formBuilder.group({
+    this.formUserPackages = this._formBuilder.group({
       name: [this.searchPattern, []]
     })
 
     this._subPackageSearch = this.formUserPackages.get('name').valueChanges
     .debounceTime(300)
     .subscribe((pattern:string) => {
-    	//REDUX FILTER
-    	// this._filterPackages(pattern)
+      this.searchPattern = pattern
+      this._router.navigate(['user', 'packages'], { queryParams: {page: this.page, search: this.searchPattern}})
     })
-
-    this._filterPackages(this.formUserPackages.value.name)
   }
 
   ngOnDestroy(){
 		if(this._subPackageSearch) this._subPackageSearch.unsubscribe()
   }
 
-  private _filterPackages(pattern:string):void{
-  	//REDUX FILTER
-  	// this._apiUser.getPackages(pattern)
-  	// .subscribe(
-   //    (data:any) => {
-   //      console.log('getPackages API', data)
-   //      this.userPackages = data.packages
-   //    },
-   //    (error:any) => {
-   //      this.userPackages = []
-   //    }
-   //  )
-  }
-
-  public test(){
-    this._subPopup = this._popupService.confirmation(
-      'Removing from package herve_apollo',
-      'Be careful ! You are about to remove',
-      'user',
-      'herve').subscribe((data) => {
-      console.log(data)
-      this._subPopup.unsubscribe()
-    })
-  }
-
-  // @dispatch() public selectPackage(data:ICLassUserPackage):any { return { type: SELECT_USER_PACKAGE, package: data } }
+  @dispatch() public selectPackage(selectedPackage:ICLassUserPackage):any { return { type: CHANGE_CURRENT_PACKAGE, package: selectedPackage } }
 
 }

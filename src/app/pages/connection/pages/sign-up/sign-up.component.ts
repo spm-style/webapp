@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators, FormControl, ValidatorFn } from '@a
 import { Observable } from 'rxjs/Observable'
 import { Subscription } from 'rxjs/Subscription'
 
-import { ApiUserService, IUserResponse, USER_TOKEN_CONNECTION, USER_ID } from '../../../../service/api-user.service'
+import { ApiUserService, IUserResponse } from '../../../../service/api-user.service'
+import { LocalstorageService } from '../../../../service/localstorage.service'
 import { RDXRootState, NgRedux, FETCH_USER } from '../../../../store'
 
 @Component({
@@ -22,7 +23,8 @@ export class SignUpComponent implements OnInit, OnDestroy {
   constructor(
     private _formBuilder:FormBuilder,
     private _apiUser:ApiUserService,
-    private _redux:NgRedux<RDXRootState>
+    private _redux:NgRedux<RDXRootState>,
+    private _localStorageService:LocalstorageService
   ){}
 
   ngOnInit() {
@@ -98,9 +100,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
     let params = this.formSignUp.value;
     this._apiUser.register({ login: params.username, email: params.email, password: params.password, mailing: params.mailing })
     .subscribe((response:IUserResponse) => {
-      console.log(response.user._id)
-      localStorage.setItem(USER_TOKEN_CONNECTION, response.token)
-      localStorage.setItem(USER_ID, response.user._id)
+      this._localStorageService.login(response.token, response.user._id)
       this._redux.dispatch({ type: FETCH_USER, user: response.user })
     }, (error:any) => {
       console.log(error)

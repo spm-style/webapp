@@ -155,7 +155,7 @@ export class PackagesOverviewComponent implements OnInit, OnDestroy, AfterViewIn
       if (event instanceof NavigationEnd) {
         // console.log(this._lastPositionScroll)
         if (event.urlAfterRedirects == '/packages') {
-          console.log(this._lastPositionScroll)
+          // console.log(this._lastPositionScroll)
           this._document.body.scrollTo(0, this._lastPositionScroll) || this._document.documentElement.scrollTo(0, this._lastPositionScroll)
         }
         else {
@@ -200,7 +200,7 @@ export class PackagesOverviewComponent implements OnInit, OnDestroy, AfterViewIn
     // console.log('test')
     // console.log(this.contentList)
     // this._testDeMerde = 2000
-    console.log(this._lastPositionScroll)
+    // console.log(this._lastPositionScroll)
     // this._testBis.unsubscribe()
   }
 }

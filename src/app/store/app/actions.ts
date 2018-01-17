@@ -1,5 +1,6 @@
 export const STOP_MAIN_CONTAINER_SCROLL = 'STOP_MAIN_CONTAINER_SCROLL';
 export const START_MAIN_CONTAINER_SCROLL = 'START_MAIN_CONTAINER_SCROLL';
+export const CHANGE_TAB_TITLE = 'CHANGE_TAB_TITLE'
 
 export let stopMainContainerScroll = (state) => {
   return {
@@ -13,4 +14,11 @@ export let startMainContainerScroll = (state) => {
     ...state,
     isMainContainerScrollable: true
   }
+}
+
+export let changeTabTitle = (state, title) => {
+	return {
+		...state,
+		title
+	}
 }

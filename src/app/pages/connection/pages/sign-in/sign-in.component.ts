@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, ValidatorFn } from '@angular/forms';
+import { NgRedux, RDXRootState, IUser, FETCH_USER } from '../../../../store'
+import { ApiUserService, IUserResponse } from '../../../../service/api-user.service'
+import { LocalstorageService } from '../../../../service/localstorage.service'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'spm-sign-in',
@@ -11,23 +15,31 @@ export class SignInComponent implements OnInit {
   public formSignIn:FormGroup;
 
   constructor(
-    private _formBuilder:FormBuilder
+    private _formBuilder:FormBuilder,
+    private _apiUserService:ApiUserService,
+    private _redux:NgRedux<RDXRootState>,
+    private _router:Router,
+    private _localStorageService:LocalstorageService
   ) { }
 
   ngOnInit() {
     this.formSignIn = this._formBuilder.group({
-      // username: ['', [Validators.required, Validators.maxLength(31), , Validators.minLength(4)], this._asyncUserNameAlreadyExist ],
-      // email: ['', [Validators.required, Validators.email], this._asyncEmailAlreadyExist ],
-      // password: ['', [Validators.required, Validators.pattern(`(?=.*[A-Za-z])(?=.*\\d).{8,}`), Validators.maxLength(31)]],
       login: ['',[Validators.required, Validators.maxLength(31), Validators.minLength(4)]],
       password: ['',[Validators.required, Validators.pattern(`(?=.*[A-Za-z])(?=.*\\d).{8,}`), Validators.maxLength(31)]]
     })
   }
 
   public onSubmitSignIn(){
-    console.log(this.formSignIn)
+    this._apiUserService.modifyUserData({ login: this.formSignIn.value.login, password: this.formSignIn.value.password })
+    .subscribe((data:IUserResponse) => {
+       this._localStorageService.login(data.token, data.user._id)
+      this._redux.dispatch({ type: FETCH_USER, user: data.user })
+      console.log('user:', data.user)
+      this._router.navigate(['user'])
+    }, (err:any) => {
+      console.log('error:', err)
+    })
   }
-
 }
 
 

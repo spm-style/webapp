@@ -5,13 +5,16 @@
 	</div>
 	<div class="confirmation-content">
 		<p>{{ message }}&nbsp;{{ type }}&nbsp;<strong>{{ name }}</strong></p>
-		<form [formGroup]="formRemove" (ngSubmit)="submitRemove()">
-			<div class="opt-control">
+		<form [formGroup]="formConfirmation" (ngSubmit)="submitConfirmation()">
+			<p>
+				<span>{{ errorMessage }}</span>
+			</p>
+			<div class="opt-control" *ngIf="safety">
 				<input type="text" id="name" formControlName="name">
 				<label for="name">Type the {{ type }} name to confirm</label>
 			</div>
-			<button type="submit">Remove</button>
-			<button (click)="closePopup()">Cancel</button>
+			<button type="submit">{{ action }}</button>
+			<button type="button" (click)="closePopup()">Cancel</button>
 		</form>
 	</div>
 </section>

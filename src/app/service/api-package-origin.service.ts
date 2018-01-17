@@ -55,4 +55,6 @@ export class ApiPackageOriginService {
     .catch(errorHttp)
   }
 
+  // public updateFavorite(action:string, targetPackage:string)
+
 }

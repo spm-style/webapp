@@ -11,12 +11,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ConfirmationComponent implements OnInit {
 	
+  public action:string
 	public title:string
 	public message:string
 	public type:string
 	public name:string
+  public safety:boolean
+  public errorMessage:string
 	private _subPopupService:Subscription
-	public formRemove:FormGroup
+	public formConfirmation:FormGroup
 
   constructor(
   	private _router:Router,
@@ -25,26 +28,30 @@ export class ConfirmationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.action = this._popupService.confirmationAction
   	this.title = this._popupService.confirmationTitle
   	this.message = this._popupService.confirmationMessage
   	this.type = this._popupService.confirmationType
   	this.name = this._popupService.confirmationName
-  	this.formRemove = this._formBuilder.group({
+    this.safety = this._popupService.confirmationSafety
+  	this.formConfirmation = this._formBuilder.group({
       name: ['', [Validators.pattern(this.name)]],
     })
   }
 
-  public submitRemove(){
-  	console.log(this.formRemove)
-  	// this._popupService.confirmationResponse(response)
+  public submitConfirmation(){
+    if (!this.safety || this.formConfirmation.value[name] === this.name) {
+  	  this._popupService.confirmationResponse(true)
+    } else {
+
+    }
   }
 
   public isValid(value:string):boolean {
-  	console.log(value, this.message)
   	return value === this.message
   }
 
   public closePopup():void {
-  	this._router.navigate([{outlets: {popup: null}}])
+  	this._popupService.confirmationResponse(false)
   }
 }

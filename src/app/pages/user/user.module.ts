@@ -11,6 +11,7 @@ import { PreviewComponent } from './pages/preview/preview.component';
 import { PackageDetailComponent } from './pages/package-detail/package-detail.component';
 
 import { RelativeDatePipe } from '../../pipes/relative-date.pipe';
+import { FilterPipe } from '../../pipes/filter.pipe'
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { RelativeDatePipe } from '../../pipes/relative-date.pipe';
   ],
   declarations: [
     RelativeDatePipe,
+    FilterPipe,
     UserComponent,
     SettingsComponent,
     PublicComponent,

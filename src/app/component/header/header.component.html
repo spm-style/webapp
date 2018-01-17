@@ -1,6 +1,6 @@
 <header>
   <div class="header-navigation" [ngClass]="{'open-nav': (navigation | async)?.isMenuOpen}">
-    <a routerLink="/"><img src="./assets/logo-2.png" alt="logo" class="logo"></a>
+    <a routerLink="/"><img src="./assets/logo.svg" alt="logo" class="logo"></a>
     <button type="button" class="menu-button-burger"><img src="./assets/button-burger.png" alt="" (click)="openMenu()"></button>
     <nav (click)="closeMenu()">
       <div class="expanded-control" [ngClass]="bindingClassMenu('root')">
@@ -27,8 +27,20 @@
           <!-- <li><a routerLink="features">Features</a></li> -->
           <li><a routerLink="packages">Packages</a></li>
           <!-- <li><a routerLink="pricing">Pricing</a></li> -->
-          <li><a routerLink="connection/sign-in">Sign-in</a></li>
-          <li><a routerLink="connection/sign-up">Create an account</a></li>
+          <li *ngIf="(user | async)?.login === null"><a routerLink="connection/sign-in">Sign-in</a></li>
+          <li *ngIf="(user | async)?.login === null"><a routerLink="connection/sign-up">Create an account</a></li>
+          <li *ngIf="(user | async)?.login !== null">
+            <a routerLink="user">Profile</a>
+            <button class="expand" (click)="openSubMenu('user')"></button>
+            <div class="expanded-control" (click)="backSubMenu()" [ngClass]="bindingClassMenu('user')">
+              <ul (click)="stopPropagation($event)">
+                <li><a routerLink="user">public profile</a></li>
+                <li><a routerLink="user/settings">settings</a></li>
+                <li><a routerLink="user/packages">packages</a></li>
+                <li class="logout"><a (click)="logout()">log out</a></li>
+              </ul>
+            </div>
+          </li>
         </ul>
       </div>
     </nav>

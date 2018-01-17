@@ -11,7 +11,8 @@ export class RelativeDatePipe implements PipeTransform {
 		return newNum
 	}
 
-  transform(date: Date, args?: any):string {
+  transform(strDate:string, args?: any):string {
+  	let date = new Date(strDate)
   	let result:string = ''
     let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 		let correctDate = new Date(date.getTime() - 60000 * date.getTimezoneOffset())

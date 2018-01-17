@@ -22,13 +22,15 @@ import { HeaderComponent }                                                      
 import { FooterComponent }                                                      from './component/footer/footer.component';
 import { VideoJsComponent }                                                     from './component/video-js/video-js.component';
                                                                                 // Service
-import { ApiContactService }                                                    from './service/api-contact.service';
-import { ApiPackageOriginService }                                              from './service/api-package-origin.service';
-import { ApiUserService }                                                       from './service/api-user.service';
-import { PopupModule }                                                          from './modules/popup/popup.module';
+import { ApiContactService }                                                    from './service/api-contact.service'
+import { ApiPackageOriginService }                                              from './service/api-package-origin.service'
+import { ApiUserService }                                                       from './service/api-user.service'
+import { LocalstorageService }                                                  from './service/localstorage.service'
+import { PopupModule }                                                          from './modules/popup/popup.module'
 import { ScrollDirective } from './directives/scroll.directive'
 import { RouteReuseStrategy } from '@angular/router'
-import { CustomReuseStrategy } from './customReuseStrategy.class'
+import { CustomReuseStrategy } from './customReuseStrategy.class';
+import { Title } from '@angular/platform-browser'
 
 @NgModule({
   declarations: [
@@ -57,7 +59,10 @@ import { CustomReuseStrategy } from './customReuseStrategy.class'
     { provide: RouteReuseStrategy, useClass: CustomReuseStrategy },
     ApiContactService,
     ApiPackageOriginService,
-    ApiUserService
+    ApiUserService,
+    LocalstorageService,
+    Title,
+
   ],
   bootstrap: [AppComponent]
 })

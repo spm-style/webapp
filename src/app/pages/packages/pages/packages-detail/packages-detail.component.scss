@@ -6,14 +6,36 @@
   .content{
     max-width: 992px;
     margin: 0 auto;
-    padding: 0 10px;
+    padding: 0 10px 0 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    h1{
-      font-size: 1.5rem;
-      color: #fff;
-      padding: 30px 0px;
+    .title-content {
+      display: flex;
+      align-items: center;
+
+      button {
+        height: 20px;
+        width: 20px;
+        margin: 0 20px 0 5px;
+        background-image: url(../../../../../assets/star-void.svg);
+        background-repeat: no-repeat;
+        background-color: rgba(#fff, 0);
+        transition: background-color 0.3s ease-in-out;
+
+        &.favorite {
+          background-image: initial;
+          background-color: rgba(#fff, 1);
+          -webkit-mask-image: url(../../../../../assets/star.svg);
+          mask-image: url(../../../../../assets/star.svg);
+        }
+      }
+
+      h1{
+        font-size: 1.2rem;
+        color: #fff;
+        padding: 30px 0px;
+      }
     }
     form{
       .control-select{
@@ -300,23 +322,33 @@
 @media screen and (min-width: $responsive-width-xs) {}
 
 /************************************* SM *************************************/
-@media screen and (min-width: $responsive-width-sm) {}
-
-/************************************* MD *************************************/
-@media screen and (min-width: $responsive-width-md) {
-  .section-variable{
-    .content{
-      .carousel{
-        .carousel-body{
-          .carousel-item{
-            p{
-              width: 50%;
-            }
-          }
+@media screen and (min-width: $responsive-width-sm) {
+  .section-overview {
+    .content {
+      .title-content {
+        h1 {
+          font-size: 1.5rem;
         }
       }
     }
   }
+}
+
+/************************************* MD *************************************/
+@media screen and (min-width: $responsive-width-md) {
+  // .section-variable{
+  //   .content{
+  //     .carousel{
+  //       .carousel-body{
+  //         .carousel-item{
+  //           p{
+  //             width: 50%;
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 }
 
 /************************************* LG *************************************/

@@ -16,7 +16,7 @@ const USER_ROUTES:Routes = [
     { path: 'settings', component: SettingsComponent },
     { path: 'packages', component: PackagesComponent },
     { path: 'packages/:name', component: PackageDetailComponent },
-    { path: ':id', component: PreviewComponent }
+    { path: ':name', component: PreviewComponent }
   ]}
 ]
 

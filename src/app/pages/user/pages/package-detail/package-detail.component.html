@@ -1,13 +1,8 @@
-<!-- <section class="section-overview">
-  <div class="content">
-    <h1><a href="/user/packages">list</a> > {{ current.name }}</h1>
-  </div>
-</section> -->
-
 <section class='user-package-section'>
 	<div class="user-package-section-header">
 		<button>back to List</button>
-		<h2>{{current.name}}</h2>
+		<button>quit the package</button>
+		<h2>{{(current | async)?.name}}</h2>
 	</div>
 	<section class="infos-list">
 		<table>
@@ -19,28 +14,28 @@
 				<th>total downloads</th>
 			</tr>
 			<tr>
-				<td>{{ current.createdAt | relativeDate }}</td>
-				<td>{{ current.lastUpdateAt | relativeDate }}</td>
-				<td>{{ current.lastDownloadAt | relativeDate }}</td>
-				<td>{{ current.stars }}</td>
-				<td>{{ current.downloads }}</td>
+				<td>{{ (current | async)?.createdAt | relativeDate }}</td>
+				<td>{{ (current | async)?.updatedAt | relativeDate }}</td>
+				<td>{{ (current | async)?.lastDownloadAt || (current | async)?.updatedAt | relativeDate }}</td>
+				<td>{{ (current | async)?.stars }}</td>
+				<td>{{ (current | async)?.downloadTotal }}</td>
 			</tr>
 		</table>
 	</section>
 	<section>
-		<label for="toggle-versions-state" [ngClass]="{'carousel-empty': !current.versions.length}">{{ !current.versions.length ? 'No v' : 'V'}}ersion{{current.versions.length > 1 ? 's' : ''}}</label>
-    <input class="input-state" type="checkbox" id="toggle-versions-state" [ngClass]="{'togglable': current.versions.length > 10}">
+		<label for="toggle-versions-state" [ngClass]="{'carousel-empty': !(current | async)?.versions.length}">{{ !(current | async)?.versions.length ? 'No v' : 'V'}}ersion{{(current | async)?.versions.length > 1 ? 's' : ''}}</label>
+    <input class="input-state" type="checkbox" id="toggle-versions-state" [ngClass]="{'togglable': (current | async)?.versions.length > 10}">
     <div class="admin-list">
 	    <ul>
-	    	<li *ngFor="let version of current.versions">
+	    	<li *ngFor="let version of (current | async)?.versions">
 	    		<h3>{{version.name}}</h3>
-	    		<button class="remove"></button>
+	    		<button class="remove" (click)="removeFromPackage('version', version.name, true)"></button>
 	    	</li>
 	    </ul>
 	  </div>
 	</section>
 	<section>
-		<label for="toggle-owners-state" [ngClass]="{'carousel-empty': !current.owners.length, 'togglable': current.owners.length > 10}">{{ !current.owners.length ? 'No o' : 'O'}}wner{{current.owners.length > 1 ? 's' : ''}}</label>
+		<label for="toggle-owners-state" [ngClass]="{'carousel-empty': !(current | async)?.contributors.length, 'togglable': (current | async)?.contributors.length > 10}">{{ !(current | async)?.contributors.length ? 'No o' : 'O'}}wner{{(current | async)?.contributors.length > 1 ? 's' : ''}}</label>
     <input class="input-state" type="checkbox" id="toggle-owners-state">
     <div class="admin-list">
     	<form [formGroup]="formOwner" (ngSubmit)="onSubmitOwner()" [ngClass]="classResponseRequest">
@@ -53,11 +48,11 @@
     		</div>
     	</form>
 	    <ul>
-	    	<li *ngFor="let owner of current.owners">
+	    	<li *ngFor="let owner of (current | async)?.contributors">
 	    		<img src="/assets/profile.svg" alt="{{owner}}">
 	    		<!-- <img src="https://cdn.spm-style.com/user/{{owner}}" alt="{{owner}}"> -->
-	    		<h3>{{owner}}</h3>
-	    		<button class="remove"></button>
+	    		<h3>{{owner.login}}</h3>
+	    		<button class="remove" (click)="removeFromPackage('contributor', owner.login, true)" *ngIf="owner.login !== (user | async)?.login"></button>
 	    	</li>
 	    </ul>
     </div>

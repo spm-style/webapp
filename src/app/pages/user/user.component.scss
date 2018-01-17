@@ -65,6 +65,25 @@
 		        	background-color: $color-quaternary;
 		        }
 
+		        &.logout {
+		        	// background-color: #D34E4D;
+		        	background-color: #fff;
+		        	border: 1px solid #D34E4D;
+		        	margin-top: 30px;
+
+		        	&:hover {
+		        		background-color: #D34E4D;
+
+		        		a {
+		        			color: #fff;
+		        		}
+		        	}
+
+		        	a {
+		        		color: #D34E4D;
+		        	}
+		        }
+
 						a {
 							width: 100%;
 			        padding: 10px 20px;

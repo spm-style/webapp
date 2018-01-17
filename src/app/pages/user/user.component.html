@@ -1,6 +1,6 @@
 <section class="section-overview">
   <div class="content">
-    <h1>Mon espace</h1>
+    <h1>My workshop</h1>
   </div>
 </section>
 <section class="section-user">
@@ -10,6 +10,8 @@
 				<li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/user/">Public profile</a></li>
 				<li routerLinkActive="active"><a routerLink="/user/settings">Settings</a></li>
 				<li routerLinkActive="active"><a routerLink="/user/packages">My Packages</a></li>
+				<li routerLinkActive="active"><a routerLink="/user/preview">Preview</a></li>
+				<li class="logout"><a (click)="logout()">Log out</a></li>
 			</ul>
 		</nav>
 		<router-outlet></router-outlet>

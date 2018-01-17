@@ -1,0 +1,154 @@
+@import "../../../../../../spm_modules/style-guide.scss";
+
+:host {
+	width: 100%;
+}
+
+.section-preview {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	.profile-picture {
+		width: 100%;
+		padding: 25px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+
+		img {
+			height: 160px;
+			width: 120px;
+			background-color: #fff;
+			margin-bottom: 20px;
+		}
+	}
+
+	.user-details {
+		width: 100%;
+
+		li {
+			margin-left: 5px;
+			margin-bottom: 15px;
+			padding: 0 10px;
+
+      h2 {
+      	color: $color-primary;
+
+      }
+      p{
+        font-size: 1.2rem;
+      }
+
+      .packages {
+      	display: flex;
+      	flex-wrap: wrap;
+      	margin-top: 10px;
+	    	padding: 5px;
+	      width: calc(100% - 10px);
+				max-width: 510px;
+	      align-items: center;
+				box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+				li {
+					width: 100%;
+					padding: 5px 10px;
+					margin-bottom: initial;
+					display: flex;
+					flex-wrap: wrap;
+					align-items: center;
+					justify-content: space-between;
+					position: relative;
+
+					+ li {
+						margin-top: 15px;
+					}
+
+					a {
+						width: 100%;
+						padding: 5px 10px;
+						background-color: $color-primary;
+						color: #fff;
+						height: 100%;
+					}
+
+					.package-analytics {
+						width: 100%;
+						display: flex;
+						align-items: center;
+						justify-content: space-between;
+
+						.analytics-control {
+							margin: 5px 10px;
+							display: flex;
+							align-items: center;
+
+							.img {
+								height: 20px;
+								width: 20px;
+								margin: 0 5px;
+								background-color: $color-primary;
+
+								&.stars {
+									-webkit-mask-image: url(../../../../../assets/star.svg);
+			  					mask-image: url(../../../../../assets/star.svg);
+								}
+
+								&.contributors {
+									-webkit-mask-image: url(../../../../../assets/contributors.svg);
+			  					mask-image: url(../../../../../assets/contributors.svg);
+								}
+
+								&.downloads {
+									-webkit-mask-image: url(../../../../../assets/download.svg);
+			  					mask-image: url(../../../../../assets/download.svg);
+								}
+							}
+
+							span {
+								margin-right: 10px;
+								color: $color-primary;
+								font-weight: bold;
+							}
+						}
+					}
+				}
+      }
+    }
+	}
+}
+
+@media screen and (min-width: $responsive-width-md) {
+	.section-preview {
+		.user-details {
+			li {
+				.packages {
+					li {
+						a {
+							padding: 5px 0;
+							background-color: #fff;
+							color: #000;
+							width: 50%;
+						}
+						.package-analytics {
+							width: 50%;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (min-width: $responsive-width-xl) {
+	.section-preview {
+		flex-direction: row;
+		width: 772px;
+
+		.profile-picture {
+			width: 40%;
+		}
+	}
+}

@@ -2,15 +2,13 @@
 	<form class="packages-search" [formGroup]="formUserPackages">
 		<input type="text" placeholder="Filter packages..." formControlName="name">
 	</form>
-	<button (click)="test()">test de merde</button>
-	<a class="user-package" *ngFor="let userPackage of userPackages" [routerLink]="userPackage.name">
-	<!-- [routerLink]="userPackage.name" (click)="selectPackage(userPackage)" -->
+	<a class="user-package" *ngFor="let userPackage of (user | async)?.packages | filter:searchPattern:'name'" [routerLink]="userPackage.name" (click)="selectPackage(userPackage)">
 		<div class="package-header">
 			<h2>{{ userPackage.name }}</h2>
 			<div class="package-overview-analytics">
 				<div class="analytics-control">
 					<div class="img contributors"></div>
-					<span>{{ userPackage.numContributors }}</span>
+					<span>{{ userPackage.contributors.length }}</span>
 				</div>
 				<div class="analytics-control">
 					<div class="img stars"></div>
@@ -18,21 +16,21 @@
 				</div>
 				<div class="analytics-control">
 					<div class="img downloads"></div>
-					<span>{{ userPackage.downloads }}</span>
+					<span>{{ userPackage.downloadTotal }}</span>
 				</div>
 			</div>
 		</div>
 		<div class="activity-control">
 			<h3>last update</h3>
-			<p class="last-update">{{ userPackage.lastUpdate }}</p>
+			<p class="last-update">{{ userPackage.updatedAt | relativeDate }}</p>
 		</div>
 		<div class="activity-control">
 			<h3>latest version</h3>
-			<p class="latest-version">{{ userPackage.latestVersion }}</p>
+			<p class="latest-version">{{ userPackage.distTags.latest.version }}</p>
 		</div>
 	</a>
-	<div class="pagination-control">
+<!-- 	<div class="pagination-control">
 		<button><a [routerLink]=""></a></button>
 		<button><a [routerLink]=""></a></button>
-	</div>
+	</div> -->
 </section>

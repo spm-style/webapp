@@ -1,13 +1,23 @@
-$color-secondary: #888888;
-$color-quaternary: green;
+@import '../../../../../../spm_modules/style-guide.scss';
+@import '../../../../../../spm_modules/form.scss';
+
+:host {
+	position: absolute;
+	display: flex;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+	align-items: center;
+	justify-content: center;
+	padding: 10px;
+}
 
 .confirmation-section {
-	position: absolute;
 	border-radius: 10px;
+	min-width: 300px;
 	width: 50vw;
 	height: 50vh;
-	top: 25vh;
-	left: 25vw;
 	background-color: #fff;
 	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 	display: flex;
@@ -25,7 +35,7 @@ $color-quaternary: green;
 		h2 {
 			color: $color-secondary;
 			padding: 10px 20px;
-			font-size: 1.7rem;
+			font-size: 1rem;
 		}
 
 		button {
@@ -61,6 +71,23 @@ $color-quaternary: green;
 			flex-wrap: wrap;
 			justify-content: flex-end;
 
+			p {
+				display: none;
+				span {
+
+				}
+			}
+
+			&.ng-touched.ng-invalid {
+				p {
+					display: initial;
+
+					span {
+						color: red
+					}
+				}
+			}
+
 			.opt-control {
 				width: 100%;
 				display: flex;
@@ -84,6 +111,9 @@ $color-quaternary: green;
 			}
 
 			button {
+				cursor: pointer;
+				max-height: 3rem;
+				font-size: 1rem;
 				margin: 15px;
 				padding: 5px 20px;
 				border-radius: 8px;
@@ -99,3 +129,12 @@ $color-quaternary: green;
 	}
 }
 
+@media screen and (min-width: $responsive-width-md) {
+	.confirmation-section {
+		.confirmation-header {
+			h2 {
+				font-size: 1.7rem;
+			}
+		}
+	}
+}

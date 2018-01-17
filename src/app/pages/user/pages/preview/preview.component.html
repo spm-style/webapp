@@ -1,3 +1,83 @@
-<p>
-  preview works!
-</p>
+<section class="section-preview">
+	<div class="profile-picture">
+		<img src="/assets/profile.svg" alt="profile-picture"/>
+	</div>
+	<ul class="user-details">
+		<li>
+			<h2>login</h2>
+			<p>{{ user?.login }}</p>
+		</li>
+		<li>
+			<h2>packages</h2>
+			<ul class="packages">
+				<li *ngFor="let userPackage of user?.packages">
+					<a routerLink="/packages/{{userPackage.name}}">{{ userPackage.name }}</a>
+					<div class="package-analytics">
+						<div class="analytics-control">
+							<div class="img stars"></div>
+							<span>{{ userPackage.stars }}</span>
+						</div>
+						<div class="analytics-control">
+							<div class="img downloads"></div>
+							<span>{{ userPackage.downloadTotal }}</span>
+						</div>
+						<div class="analytics-control">
+							<div class="img contributors"></div>
+							<span>{{ userPackage.contributors.length }}</span>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<h2>joined spm</h2>
+			<p>{{ user?.createdAt | relativeDate }}</p>
+		</li>
+		<li *ngIf="user?.favorites?.length">
+			<h2>favorites</h2>
+			<ul class="packages">
+				<li *ngFor="let userPackage of user.favorites">
+				<a routerLink="/packages/{{userPackage.name}}">{{ userPackage.name }}</a>
+					<div class="package-analytics">
+						<div class="analytics-control">
+							<div class="img stars"></div>
+							<span>{{ userPackage.stars }}</span>
+						</div>
+						<div class="analytics-control">
+							<div class="img downloads"></div>
+							<span>{{ userPackage.downloadTotal }}</span>
+						</div>
+						<div class="analytics-control">
+							<div class="img contributors"></div>
+							<span>{{ userPackage.contributors?.length }}</span>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</li>
+		<li *ngIf="user?.publicName">
+			<h2>name</h2>
+			<p>{{ user.publicName }}</p>
+		</li>
+		<li *ngIf="user?.publicEmail">
+			<h2>email</h2>
+			<p>{{ user.publicEmail }}</p>
+		</li>
+		<li *ngIf="user?.description">
+			<h2>about me</h2>
+			<p>{{ user.description }}</p>
+		</li>
+		<li *ngIf="user?.url">
+			<h2>my site</h2>
+			<p>{{ user.url }}</p>
+		</li>
+		<li *ngIf="user?.company">
+			<h2>where I work</h2>
+			<p>{{ user.company }}</p>
+		</li>
+		<li *ngIf="user?.location">
+			<h2>where I live</h2>
+			<p>{{ user.location }}</p>
+		</li>
+	</ul>
+</section>

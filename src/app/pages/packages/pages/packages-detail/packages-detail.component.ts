@@ -2,15 +2,14 @@ import { Component, OnInit, OnDestroy, ElementRef, ViewChild, Renderer2, Inject 
 import { ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/platform-browser';
 
-import { NgRedux, RDXRootState, IPackageOrigin, select, Observable, FETCH_CURRENT_PACKAGE_ORIGIN, CLEAR_CURRENT_PACKAGE_ORIGIN, IResponsiveness, Ipackage, IClasses, IVariables }                 from '../../../../store';
+import { NgRedux, RDXRootState, RDXUser, IPackageOrigin, select, Observable, FETCH_CURRENT_PACKAGE_ORIGIN, CLEAR_CURRENT_PACKAGE_ORIGIN, ADD_FAVORITE, REMOVE_FAVORITE, IResponsiveness, Ipackage, IClasses, IVariables, IUser }                 from '../../../../store';
 import { Subscription } from 'rxjs/Subscription';
 
 import { ApiPackageOriginService } from '../../../../service/api-package-origin.service';
+import { ApiUserService } from '../../../../service/api-user.service'
 
 import 'rxjs/add/operator/filter'
 import 'rxjs/add/operator/do'
-// import 'rxjs/add/operator/do'
-// import 'rxjs/add/observable/of';
 
 interface ICLassModule {
   name:string,
@@ -30,23 +29,28 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
   @ViewChild('textScale') private _textScale:ElementRef;
 
   @select(['packageOrigin', 'current']) readonly current:Observable<IPackageOrigin>
+  @select(['user']) readonly user:Observable<IUser>
 
-  private _subsrciptionUrlParams:Subscription
-  private _subsrciptionApiGetPackage:Subscription
+  private _subUrlParams:Subscription
+  private _subApiGetPackage:Subscription
+  private _subUser:Subscription
 
   private _currentDivice:IResponsiveness
   private _currentOriantation:string = 'portrait'
   private _overviewUniqueWidth:number
   private _originDomaine:string
+  private _id:string
 
   public classes:ICLassModule[] = []
   public variables:IVariables[] = []
+  public isFavorite:boolean = false
 
   constructor(
     @Inject(DOCUMENT) private _document: any,
     private _route: ActivatedRoute,
     private _redux:NgRedux<RDXRootState>,
     private _apiPackageOrigin:ApiPackageOriginService,
+    private _apiUser:ApiUserService,
     private _renderer:Renderer2
   ) { }
 
@@ -54,26 +58,31 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
     this._originDomaine = this._document.domain
     this._document.domain ='spm-style.com'
 
-    if(!this._redux.getState().packageOrigin.current){
-      this._subsrciptionUrlParams = this._route.params
+    let current = this._redux.getState().packageOrigin.current
+
+    if(!current){
+      this._subUrlParams = this._route.params
       .subscribe(params => {
-        this._subsrciptionApiGetPackage = this._apiPackageOrigin.packageOrigin(params['name'])
+        this._subApiGetPackage = this._apiPackageOrigin.packageOrigin(params['name'])
         .subscribe(
           (response:IPackageOrigin) => {
+            this._id = response._id
             this._redux.dispatch({ type: FETCH_CURRENT_PACKAGE_ORIGIN, current: response })
             this._initDetailModule(response)
           }
         )
       })
     }else{
-      this._initDetailModule(this._redux.getState().packageOrigin.current)
+      this._initDetailModule(current)
+      this._id = current._id
     }
   }
 
   ngOnDestroy() {
     this._document.domain = this._originDomaine
-    if(this._subsrciptionApiGetPackage) { this._subsrciptionApiGetPackage.unsubscribe() }
-    if(this._subsrciptionUrlParams) { this._subsrciptionUrlParams.unsubscribe() }
+    if (this._subApiGetPackage) { this._subApiGetPackage.unsubscribe() }
+    if (this._subUrlParams) { this._subUrlParams.unsubscribe() }
+    if (this._subUser) { this._subUser.unsubscribe() }
     this._redux.dispatch({ type: CLEAR_CURRENT_PACKAGE_ORIGIN })
   }
 
@@ -125,7 +134,7 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
     this._renderer.setStyle(this._iframe.nativeElement, 'transform', `scale(${scale})`)
     this._renderer.setStyle(this._iframe.nativeElement, 'width', `${ oriantation == 'portrait' ? device.w : device.h }px`)
     this._renderer.setStyle(this._iframe.nativeElement, 'height', `${ oriantation == 'portrait' ? device.h : device.w }px`)
-    this._rangeScale.nativeElement.value = scale;
+    this._rangeScale.nativeElement.value = scale
     this._textScale.nativeElement.value = `${scale * 100}%`;
   }
 
@@ -138,5 +147,19 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
       })
       for(let variable of classModule.variables){ this.variables.push(variable) }
     }
+  }
+
+  public toggleFavorite() {
+    let action = this._redux.getState().user.favorites.includes(this._id) ? 'remove' : 'add'
+    this._subUser = this._apiUser.favorites(this._id, action)
+      .subscribe((data:boolean) => {
+        if (data) {
+          if (action === 'remove')
+            this._redux.dispatch({ type: REMOVE_FAVORITE, favorite: this._id })
+          else
+            this._redux.dispatch({ type: ADD_FAVORITE, favorite: this._id })
+        }
+        this._subUser.unsubscribe()
+      })
   }
 }

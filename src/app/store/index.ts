@@ -19,3 +19,6 @@ export * from './navigation/actions'
 export * from './user/state'
 export * from './user/actions'
 export * from './user/interfaces'
+
+export * from './admin/state'
+export * from './admin/actions'
