@@ -1,7 +1,7 @@
 <a (click)="test()" [routerLink]="data.name" >
   <div #containerIframe class="container-iframe">
-    <img #iframe src="https://www.amusetoi.com/wp-content/uploads/2016/05/8-16.jpg" alt="merde" class="iframe">
-    <!-- <img #iframe src="http://cdn.spm-style.com/overview/preview/{{ data.distTags.latest.cdn }}" alt="merde" class="iframe"> -->
+    <!-- <img #iframe src="https://www.amusetoi.com/wp-content/uploads/2016/05/8-16.jpg" alt="merde" class="iframe"> -->
+    <img #iframe src="http://cdn.spm-style.com/overview/preview/{{ data.preview }}" alt="{{data.name}}-preview" class="iframe">
     <div class="container-iframe-over">
       <p>{{ data.distTags.latest.description }}</p>
     </div>
