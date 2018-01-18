@@ -3,7 +3,6 @@ import { ApiUserService } from '../../../../service/api-user.service';
 import { Router, ActivatedRoute } from '@angular/router'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
-import { RelativeDatePipe } from '../../../../pipes/relative-date.pipe'
 import 'rxjs/add/operator/debounceTime';
 import { NgRedux, RDXRootState, RDXUser, select, IUser, Observable, dispatch, CHANGE_CURRENT_PACKAGE, CHANGE_TAB_TITLE } from '../../../../store'
 

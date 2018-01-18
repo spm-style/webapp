@@ -1,28 +1,25 @@
 import { NgModule }                                                             from '@angular/core';
 import { RouterModule, Routes }                                                 from '@angular/router';
                                                                                 // Skell
-import { UserComponent }                                                        from './user.component';
+import { ProfileComponent }                                                        from './profile.component';
                                                                                 // Pages
 import { SettingsComponent }                                                    from './pages/settings/settings.component';
 import { PublicComponent }                                                      from './pages/public/public.component';
 import { PackagesComponent }                                                    from './pages/packages/packages.component';
-import { PreviewComponent }                                                     from './pages/preview/preview.component';
 import { PackageDetailComponent }                                               from './pages/package-detail/package-detail.component';
 
-const USER_ROUTES:Routes = [
-  { path: '', component: UserComponent, children: [
+const PROFILE_ROUTES:Routes = [
+  { path: '', component: ProfileComponent, children: [
     { path: '', component: PublicComponent, pathMatch: 'full' },
-    { path: 'preview', component: PreviewComponent },
     { path: 'settings', component: SettingsComponent },
     { path: 'packages', component: PackagesComponent },
-    { path: 'packages/:name', component: PackageDetailComponent },
-    { path: ':name', component: PreviewComponent }
+    { path: 'packages/:name', component: PackageDetailComponent }
   ]}
 ]
 
 
 @NgModule({
-  imports: [ RouterModule.forChild(USER_ROUTES) ],
+  imports: [ RouterModule.forChild(PROFILE_ROUTES) ],
   exports: [ RouterModule ]
 })
-export class UserRouterModule {}
+export class ProfileRouterModule {}

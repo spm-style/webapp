@@ -1,12 +1,13 @@
-import { NgModule }                                                             from '@angular/core';
-import { RouterModule, Routes }                                                 from '@angular/router';
+import { NgModule }                                                             from '@angular/core'
+import { RouterModule, Routes }                                                 from '@angular/router'
                                                                                 // Pages
-import { HomeComponent }                                                        from './pages/home/home.component';
-import { NotFoundComponent }                                                    from './pages/not-found/not-found.component';
+import { HomeComponent }                                                        from './pages/home/home.component'
+import { NotFoundComponent }                                                    from './pages/not-found/not-found.component'
 import { ReportingAbuseComponent }                                              from './pages/reporting-abuse/reporting-abuse.component';
-import { PricingComponent }                                                     from './pages/pricing/pricing.component';
-import { AboutComponent }                                                       from './pages/about/about.component';
-import { ContactComponent }                                                     from './pages/contact/contact.component';
+import { PricingComponent }                                                     from './pages/pricing/pricing.component'
+import { AboutComponent }                                                       from './pages/about/about.component'
+import { ContactComponent }                                                     from './pages/contact/contact.component'
+import { UserComponent }                                                        from './pages/user/user.component'
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -21,7 +22,8 @@ const routes: Routes = [
   // { path: 'features', loadChildren: 'app/pages/features/features.module#FeaturesModule'},
   { path: 'documentation', loadChildren: 'app/pages/documentation/documentation.module#DocumentationModule'},
   { path: 'connection', loadChildren: 'app/pages/connection/connection.module#ConnectionModule'},
-  { path: 'user', loadChildren: 'app/pages/user/user.module#UserModule'},
+  { path: 'profile', loadChildren: 'app/pages/profile/profile.module#ProfileModule'},
+  { path: 'user/:name', component: UserComponent },
   { path: '**', component: NotFoundComponent },
 ];
 

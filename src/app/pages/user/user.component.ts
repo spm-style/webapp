@@ -1,12 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router'
+import { ActivatedRoute } from '@angular/router'
 import { Subscription } from 'rxjs/Subscription'
-
-import { ApiUserService, IUserResponse } from '../../service/api-user.service'
-import { PopupService } from '../../modules/popup/popup.service'
-import { LocalstorageService } from '../../service/localstorage.service'
-
-import { NgRedux, RDXRootState, LOGOUT_USER } from '../../store'
+import { NgRedux, RDXRootState, CHANGE_TAB_TITLE, IUser, Observable } from '../../store'
+import { ApiUserService } from '../../service/api-user.service'
 
 @Component({
   selector: 'spm-user',
@@ -15,52 +11,35 @@ import { NgRedux, RDXRootState, LOGOUT_USER } from '../../store'
 })
 export class UserComponent implements OnInit, OnDestroy {
 
-	private _subPopup:Subscription
-	private _subLogout:Subscription
+  private _subActivatedRoute:Subscription
+  private _subApiUser:Subscription
+  public user:IUser
 
   constructor(
-  	private _apiUserService:ApiUserService,
-  	private _popupService:PopupService,
-  	private _router: Router,
   	private _redux:NgRedux<RDXRootState>,
-  	private _localStorageService:LocalstorageService
+  	private _apiUserService:ApiUserService,
+  	private _activatedRoute:ActivatedRoute
   ) { }
 
   ngOnInit() {
+  	this._redux.dispatch({ type: CHANGE_TAB_TITLE, title: 'profile preview' })
+
+  	this._subActivatedRoute = this._activatedRoute.params.subscribe((data:any) => {
+  		this._subApiUser = this._apiUserService.getUserByName(data.name).subscribe((user:IUser) => {
+  			this.user = user
+  			console.log('user', this.user)
+  		})
+    })
   }
 
-  ngOnDestroy() {
-  	if (this._subPopup) {
-  		this._subPopup.unsubscribe()
+  ngOnDestroy(){
+  	if (this._subActivatedRoute) {
+  		this._subActivatedRoute.unsubscribe()
   	}
-  	if (this._subLogout) {
-  		this._subLogout.unsubscribe()
+
+  	if (this._subApiUser) {
+  		this._subApiUser.unsubscribe()
   	}
   }
 
-  public logout(){
-  	this._subPopup = this._popupService.confirmation(
-  		'log out',
-      'Login out from spm',
-      'Are you sure you want to log out from spm ?',
-      '',
-     	'',
-      false).subscribe((data) => {
-      	if (data) {
-			  	this._subLogout = this._apiUserService.logout()
-			  	.subscribe((data:any) => {
-			  		this._localStorageService.logout()
-			  		this._subLogout.unsubscribe()
-			  		this._redux.dispatch({ type: LOGOUT_USER })
-			  		this._router.navigate([''])
-			  	}, (error:any) => {
-			  		this._localStorageService.logout()
-			  		this._subLogout.unsubscribe()
-			  		this._redux.dispatch({ type: LOGOUT_USER })
-			  		this._router.navigate([''])
-			  	})
-      	}
-      	this._subPopup.unsubscribe()
-    	})
-  }
 }

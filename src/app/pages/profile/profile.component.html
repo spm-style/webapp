@@ -1,0 +1,19 @@
+<section class="section-overview">
+  <div class="content">
+    <h1>My workshop</h1>
+  </div>
+</section>
+<section class="section-profile">
+	<div class="content">
+		<nav>
+			<ul>
+				<li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/profile/">Public profile</a></li>
+				<li routerLinkActive="active"><a routerLink="/profile/settings">Settings</a></li>
+				<li routerLinkActive="active"><a routerLink="/profile/packages">My Packages</a></li>
+				<li routerLinkActive="active"><a routerLink="/user/{{ (user | async)?.login }}">Preview</a></li>
+				<li class="logout"><a (click)="logout()">Log out</a></li>
+			</ul>
+		</nav>
+		<router-outlet></router-outlet>
+	</div>
+</section>

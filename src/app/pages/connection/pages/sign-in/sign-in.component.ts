@@ -35,7 +35,7 @@ export class SignInComponent implements OnInit {
        this._localStorageService.login(data.token, data.user._id)
       this._redux.dispatch({ type: FETCH_USER, user: data.user })
       console.log('user:', data.user)
-      this._router.navigate(['user'])
+      this._router.navigate(['profile'])
     }, (err:any) => {
       console.log('error:', err)
     })

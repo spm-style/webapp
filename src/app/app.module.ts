@@ -1,26 +1,28 @@
-import { BrowserModule }                                                        from '@angular/platform-browser';
-import { NgModule, PLATFORM_ID, APP_ID, Inject, isDevMode }                     from '@angular/core';
-import { isPlatformBrowser }                                                    from '@angular/common';
+import { BrowserModule }                                                        from '@angular/platform-browser'
+import { NgModule, PLATFORM_ID, APP_ID, Inject, isDevMode }                     from '@angular/core'
+import { isPlatformBrowser }                                                    from '@angular/common'
 import { NgReduxModule, DevToolsExtension }                                     from '@angular-redux/store'
-import { ReactiveFormsModule, FormsModule }                                     from '@angular/forms';
-import { HttpModule }                                                           from '@angular/http';
+import { ReactiveFormsModule, FormsModule }                                     from '@angular/forms'
+import { HttpModule }                                                           from '@angular/http'
                                                                                 // Router
-import { AppRoutingModule }                                                     from './app.routing';
+import { AppRoutingModule }                                                     from './app.routing'
+import { PipesModule }                                                          from './pipes/pipes.module'
                                                                                 // Redux
-import { rootReducer, ROOT_INITIAL_STATE, NgRedux }                             from './store';
+import { rootReducer, ROOT_INITIAL_STATE, NgRedux }                             from './store'
                                                                                 // Skell
-import { AppComponent }                                                         from './app.component';
+import { AppComponent }                                                         from './app.component'
                                                                                 // Pages
-import { HomeComponent }                                                        from './pages/home/home.component';
-import { NotFoundComponent }                                                    from './pages/not-found/not-found.component';
+import { HomeComponent }                                                        from './pages/home/home.component'
+import { NotFoundComponent }                                                    from './pages/not-found/not-found.component'
 import { ReportingAbuseComponent }                                              from './pages/reporting-abuse/reporting-abuse.component';
-import { PricingComponent }                                                     from './pages/pricing/pricing.component';
-import { AboutComponent }                                                       from './pages/about/about.component';
-import { ContactComponent }                                                     from './pages/contact/contact.component';
+import { PricingComponent }                                                     from './pages/pricing/pricing.component'
+import { AboutComponent }                                                       from './pages/about/about.component'
+import { ContactComponent }                                                     from './pages/contact/contact.component'
+import { UserComponent }                                                        from './pages/user/user.component'
                                                                                 // Component
-import { HeaderComponent }                                                      from './component/header/header.component';
-import { FooterComponent }                                                      from './component/footer/footer.component';
-import { VideoJsComponent }                                                     from './component/video-js/video-js.component';
+import { HeaderComponent }                                                      from './component/header/header.component'
+import { FooterComponent }                                                      from './component/footer/footer.component'
+import { VideoJsComponent }                                                     from './component/video-js/video-js.component'
                                                                                 // Service
 import { ApiContactService }                                                    from './service/api-contact.service'
 import { ApiPackageOriginService }                                              from './service/api-package-origin.service'
@@ -44,6 +46,7 @@ import { Title } from '@angular/platform-browser'
     ContactComponent,
     ReportingAbuseComponent,
     VideoJsComponent,
+    UserComponent,
     ScrollDirective
   ],
   imports: [
@@ -53,6 +56,7 @@ import { Title } from '@angular/platform-browser'
     PopupModule,
     FormsModule,
     ReactiveFormsModule,
+    PipesModule,
     HttpModule
   ],
   providers: [

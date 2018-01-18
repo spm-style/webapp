@@ -28,10 +28,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private _backToPath:IBackToPath[] = [
     { url: '/packages/', dist: '/packages' },
     { url: '/documentation/', dist: '/documentation' },
-    { url: '/user/packages/', dist: '/user/packages'}
+    { url: '/profile/packages/', dist: '/profile/packages'}
   ]
 
-  private _navigationSubMenu:string[] = ['documentation', 'user']
+  private _navigationSubMenu:string[] = ['documentation', 'profile']
   private _subPopup:Subscription
   private _subLogout:Subscription
 

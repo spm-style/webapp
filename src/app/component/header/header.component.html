@@ -30,13 +30,13 @@
           <li *ngIf="(user | async)?.login === null"><a routerLink="connection/sign-in">Sign-in</a></li>
           <li *ngIf="(user | async)?.login === null"><a routerLink="connection/sign-up">Create an account</a></li>
           <li *ngIf="(user | async)?.login !== null">
-            <a routerLink="user">Profile</a>
-            <button class="expand" (click)="openSubMenu('user')"></button>
-            <div class="expanded-control" (click)="backSubMenu()" [ngClass]="bindingClassMenu('user')">
+            <a routerLink="profile">Profile</a>
+            <button class="expand" (click)="openSubMenu('profile')"></button>
+            <div class="expanded-control" (click)="backSubMenu()" [ngClass]="bindingClassMenu('profile')">
               <ul (click)="stopPropagation($event)">
-                <li><a routerLink="user">public profile</a></li>
-                <li><a routerLink="user/settings">settings</a></li>
-                <li><a routerLink="user/packages">packages</a></li>
+                <li><a routerLink="profile">public profile</a></li>
+                <li><a routerLink="profile/settings">settings</a></li>
+                <li><a routerLink="profile/packages">packages</a></li>
                 <li class="logout"><a (click)="logout()">log out</a></li>
               </ul>
             </div>
