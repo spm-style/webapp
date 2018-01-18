@@ -15,6 +15,7 @@ import {
 
 
 export const USER_INITIAL_STATE:RDXUser = {
+  _id:null,
   authorPackages: [],
   contributorPackages: [],
   packages: [],
@@ -22,7 +23,14 @@ export const USER_INITIAL_STATE:RDXUser = {
   createdAt: null,
   updatedAt: null,
   email: null,
-  login: null
+  login: null,
+  publicName:null,
+  publicEmail:null,
+  description:null,
+  url:null,
+  company:null,
+  location:null,
+  picture:null
 }
 
 export function userReducer(state:RDXUser = USER_INITIAL_STATE, action):RDXUser{

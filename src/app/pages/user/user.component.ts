@@ -27,7 +27,6 @@ export class UserComponent implements OnInit, OnDestroy {
   	this._subActivatedRoute = this._activatedRoute.params.subscribe((data:any) => {
   		this._subApiUser = this._apiUserService.getUserByName(data.name).subscribe((user:IUser) => {
   			this.user = user
-  			console.log('user', this.user)
   		})
     })
   }

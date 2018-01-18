@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
     })
     //besoin d'un ondestroy pour un subscribe global ?
     if(this._localStorageService.isLogged()){
-      this._apiUser.getUserById(localStorage.getItem(USER_ID), localStorage.getItem(USER_TOKEN_CONNECTION))
+      this._apiUser.getUserById()
       .subscribe((response:IUserResponse) => {
         this._redux.dispatch({ type: FETCH_USER, user: response })
       }, (error:any) => {

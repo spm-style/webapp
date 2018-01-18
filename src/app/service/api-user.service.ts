@@ -9,6 +9,11 @@ export interface IRegisterPayload {
   mailing:boolean
 }
 
+export interface ILoginPayload {
+  login:string,
+  password:string
+}
+
 export interface IUser {
   authorPackages:any[],
   contributorPackages:any[],
@@ -18,7 +23,14 @@ export interface IUser {
   updatedAt:Date,
   email:string,
   _id:string,
-  login:string
+  login:string,
+  publicName:string,
+  publicEmail:string,
+  description:string,
+  url:string,
+  company:string,
+  location:string,
+  picture:string
 }
 
 export interface IUserResponse {
@@ -45,17 +57,34 @@ export class ApiUserService {
     .catch(errorHttp);
   }
 
-  public modifyUserData(payload):Observable<any> {
-  	return this._http.post(`${URL_API}/user`, JSON.stringify(payload), {headers: this._headers, withCredentials: true})
+  public login(payload:ILoginPayload):Observable<IUserResponse> {
+     return this._http.post(`${URL_API}/user`, JSON.stringify(payload), {headers: this._headers, withCredentials: true})
+    .map((res:Response) => res.json())
+    .catch(errorHttp);
+  }
+
+  public updateUserData(payload:any):Observable<IUser> {
+    let headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    headers.append("Authorization", `Bearer ${this._localStorageService.getLoginInfos().token}`)
+  	return this._http.post(`${URL_API}/user/${this._localStorageService.getLoginInfos().id}`, payload, {headers, withCredentials: true})
   	.map((res:Response) => res.json())
   	.catch(errorHttp)
   }
 
-  public getUserById(id:string, token:string):Observable<IUserResponse> {
+  // public updateUserAuth(payload:any):Observable<IUserResponse> {
+  //   let headers = new Headers()
+  //   headers.append('Content-Type', 'application/json')
+  //   return this._http.post(`${URL_API}/user/${this._localStorageService.getLoginInfos().id}/credentials`, payload, {headers, withCredentials: true})
+  //   .map((res:Response) => res.json())
+  //   .catch(errorHttp)
+  // }
+
+  public getUserById():Observable<IUserResponse> {
     let headers = new Headers()
     headers.append('Content-Type', 'application/json')
-    headers.append("Authorization", `Bearer ${token}`)
-    return this._http.get(`${URL_API}/user/${id}`, {headers: headers, withCredentials: true})
+    headers.append("Authorization", `Bearer ${this._localStorageService.getLoginInfos().token}`)
+    return this._http.get(`${URL_API}/user/${this._localStorageService.getLoginInfos().id}`, {headers: headers, withCredentials: true})
     .map((res:Response) => res.json())
     .catch(errorHttp);
   }

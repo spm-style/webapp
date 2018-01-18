@@ -8,6 +8,7 @@ export const REMOVE_FAVORITE = 'REMOVE_FAVORITE'
 export let fetchUser = (state:RDXUser, user:IUser):RDXUser => {
   return {
     ...state,
+    _id: user._id,
     authorPackages: user.authorPackages,
     contributorPackages: user.contributorPackages,
     packages: user.authorPackages.concat(user.contributorPackages),
@@ -15,13 +16,21 @@ export let fetchUser = (state:RDXUser, user:IUser):RDXUser => {
     createdAt: user.createdAt,
     updatedAt: user.updatedAt,
     email: user.email,
-    login: user.login
+    login: user.login,
+    publicName:user.publicName,
+    publicEmail:user.publicEmail,
+    description:user.description,
+    url:user.url,
+    company:user.company,
+    location:user.location,
+    picture:user.picture
   }
 }
 
 export let logoutUser = (state:RDXUser):RDXUser => {
   return {
       ...state,
+      _id: null,
       authorPackages: [],
       contributorPackages: [],
       packages: [],
@@ -29,7 +38,14 @@ export let logoutUser = (state:RDXUser):RDXUser => {
       createdAt: null,
       updatedAt: null,
       email: null,
-      login: null
+      login: null,
+      publicName:null,
+      publicEmail:null,
+      description:null,
+      url:null,
+      company:null,
+      location:null,
+      picture:null
   }
 }
 

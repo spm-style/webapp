@@ -3,15 +3,15 @@
 		<img src="/assets/profile.svg" alt="profile-picture"/>
 <!-- 		<input type="file" class="upload" id="upload">
 		<label for="upload">upload a new image</label> -->
-		<h2>{{ (user | async)?.login }}</h2>
+		<h2>{{ username }}</h2>
 	</div>
 
 	<form [formGroup]="formPublicProfile" (ngSubmit)="onSubmitContact()">
 		<div class="opt-control st-control-text">
       <p>
-        <span *ngIf="formPublicProfile.get('name').hasError('name') && formPublicProfile.get('name').touched">Invalid name</span>
+        <span *ngIf="formPublicProfile.get('publicName').hasError('publicName') && formPublicProfile.get('publicName').touched">Invalid name</span>
       </p>
-			<input type="text" id="name" formControlName="name" required>
+			<input type="text" id="name" formControlName="publicName" required>
 			<label for="name">name</label>
 		</div>
 		<div class="opt-control st-control-text">
@@ -50,8 +50,8 @@
 			<label for="location">location</label>
 		</div>
 		<div class="form-action">
-      <!-- <p [ngClass]="coucou()">{{responseRequest}}</p> -->
       <button type="submit">Apply</button>
+      <p [ngClass]="classResponseRequest">{{responseRequest}}</p>
     </div>
 	</form>	
 </section>
