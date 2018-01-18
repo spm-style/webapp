@@ -54,6 +54,7 @@ export class PublicComponent implements OnInit, OnDestroy {
         payload[key] = this.formPublicProfile.value[key]
       }
     }
+    console.log(payload)
     this._subUser = this._apiUser.updateUserData(payload).subscribe((data:IUser) => {
       this._redux.dispatch({ type: FETCH_USER, user: data })
       this.classResponseRequest = 'success-request'

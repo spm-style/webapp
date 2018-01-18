@@ -56,27 +56,27 @@
 					</li>
 				</ul>
 			</li>
-			<li *ngIf="user?.publicName">
+			<li *ngIf="user?.publicName?.length">
 				<h2>name</h2>
 				<p>{{ user.publicName }}</p>
 			</li>
-			<li *ngIf="user?.publicEmail">
+			<li *ngIf="user?.publicEmail?.length">
 				<h2>email</h2>
 				<p>{{ user.publicEmail }}</p>
 			</li>
-			<li *ngIf="user?.description">
+			<li *ngIf="user?.description?.length">
 				<h2>about me</h2>
 				<p>{{ user.description }}</p>
 			</li>
-			<li *ngIf="user?.url">
+			<li *ngIf="user?.url?.length">
 				<h2>my site</h2>
 				<p>{{ user.url }}</p>
 			</li>
-			<li *ngIf="user?.company">
+			<li *ngIf="user?.company?.length">
 				<h2>where I work</h2>
 				<p>{{ user.company }}</p>
 			</li>
-			<li *ngIf="user?.location">
+			<li *ngIf="user?.location?.length">
 				<h2>where I live</h2>
 				<p>{{ user.location }}</p>
 			</li>
