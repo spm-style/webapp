@@ -29,7 +29,7 @@
 	    <ul>
 	    	<li *ngFor="let version of (current | async)?.versions">
 	    		<h3>{{version.name}}</h3>
-	    		<button class="remove" (click)="removeFromPackage('version', version.name, true)"></button>
+	    		<button *ngIf="(current | async)?.versions.length > 1" class="remove" (click)="removeFromPackage('version', version.name, true)"></button>
 	    	</li>
 	    </ul>
 	  </div>

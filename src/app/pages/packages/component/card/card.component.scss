@@ -1,3 +1,5 @@
+@import '../../../../../../spm_modules/style-guide.scss';
+
 :host{
   box-sizing: border-box;
   width: 320px;
@@ -94,10 +96,30 @@
         width: 30%;
         display: flex;
         align-items: center;
-        img{
-          width: 35px;
-          height: 35px;
+        padding: 5px;
+
+        .item {
+          width: 25px;
+          height: 25px;
+          margin-right: 5px;
+          background-color: $color-primary;
+
+          &.item-stars {
+            -webkit-mask-image: url(../../../../../assets/star.svg);
+            mask-image: url(../../../../../assets/star.svg);
+          }
+
+          &.item-downloads {
+            -webkit-mask-image: url(../../../../../assets/download.svg);
+            mask-image: url(../../../../../assets/download.svg);
+          }
+
+          &.item-views {
+            -webkit-mask-image: url(../../../../../assets/view.svg);
+            mask-image: url(../../../../../assets/view.svg);
+          }
         }
+
         p{
           color: #464646;
         }

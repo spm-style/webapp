@@ -1,4 +1,4 @@
-<a (click)="test()" [routerLink]="data.name" >
+<a [routerLink]="data.name" >
   <div #containerIframe class="container-iframe">
     <!-- <img #iframe src="https://www.amusetoi.com/wp-content/uploads/2016/05/8-16.jpg" alt="merde" class="iframe"> -->
     <img #iframe src="http://cdn.spm-style.com/overview/preview/{{ data.preview }}" alt="{{data.name}}-preview" class="iframe">
@@ -11,17 +11,17 @@
     <img *ngFor="let breakpoint of data.distTags.latest.responsiveness" src="assets/ico-{{breakpoint.name}}-3.png" alt="">
   </div>
   <div class="ico-scoring">
-    <div class="item-scoring item-stars">
-      <img src="assets/ico-oriantation-3.png" alt="">
-      <p>20</p>
+    <div class="item-scoring">
+      <div class="item item-stars"></div>
+      <p>{{ data.stars }}</p>
     </div>
-    <div class="item-scoring item-download">
-      <img src="assets/ico-oriantation-3.png" alt="">
-      <p>20</p>
+    <div class="item-scoring">
+      <div class="item item-downloads"></div>
+      <p>{{ data.downloadTotal }}</p>
     </div>
-    <div class="item-scoring item-vue">
-      <img src="assets/ico-oriantation-3.png" alt="">
-      <p>20</p>
+    <div class="item-scoring">
+      <div class="item item-views"></div>
+      <p>{{ data.views }}</p>
     </div>
   </div>
 </a>

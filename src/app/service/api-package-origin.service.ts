@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'
 import { errorHttp,  URL_API, Observable, Http, Headers, Response } from './common'
-import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/do'
+import { LocalstorageService } from './localstorage.service'
 
 let breakpoints = {
   watch: {name: 'watch', w: 272, h: 340, scale: 1 },
@@ -16,7 +17,10 @@ export class ApiPackageOriginService {
 
   private _headers:Headers
 
-  constructor(private _http:Http){
+  constructor(
+    private _http:Http,
+    private _localStorageService:LocalstorageService
+  ){
     this._headers = new Headers()
     this._headers.append('Content-Type', 'application/json')
   }
@@ -44,10 +48,20 @@ export class ApiPackageOriginService {
   }
 
   public updateContributors(action:string, targetPackage:string, login:string):Observable<any> {
-    //ATTENTION//
-    this._headers.append('Authorization', `bearer ${'    blablabla   '}`)
-    //ATTENTION//
-    return this._http.post(`${URL_API}/package-origin/${targetPackage}/contributors/${action}`, {headers: this._headers, withCredentials: true, body: {login}})
+    let headers = new Headers()
+    headers.append('Authorization', `Bearer ${this._localStorageService.getLoginInfos().token}`)
+    return this._http.post(`${URL_API}/package-origin/${targetPackage}/contributors/${action}`, { login }, { headers, withCredentials: true  })
+    .map((res:Response) => res.json())
+    .do((res:any) => {
+      return res
+    })
+    .catch(errorHttp)
+  }
+
+  public removeVersion(targetPackage:string, version:string):Observable<any> {
+    let headers = new Headers()
+    headers.append('Authorization', `Bearer ${this._localStorageService.getLoginInfos().token}`)
+    return this._http.delete(`${URL_API}/module/${targetPackage}?version=${version}`, {headers, withCredentials: true })
     .map((res:Response) => res.json())
     .do((res:any) => {
       return res

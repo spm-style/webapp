@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, ValidatorFn } from '@angular/forms';
 import { Observable } from 'rxjs/Observable'
 import { Subscription } from 'rxjs/Subscription'
-
+import { Router } from '@angular/router'
 import { ApiUserService, IUserResponse } from '../../../../service/api-user.service'
 import { LocalstorageService } from '../../../../service/localstorage.service'
 import { RDXRootState, NgRedux, FETCH_USER } from '../../../../store'
@@ -18,21 +18,24 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
   private _isSubmit:boolean = false
 
-  public formSignUp:FormGroup;
+  public formSignUp:FormGroup
+  public responseRequest:string
+  public classResponseRequest:string
 
   constructor(
     private _formBuilder:FormBuilder,
     private _apiUser:ApiUserService,
     private _redux:NgRedux<RDXRootState>,
-    private _localStorageService:LocalstorageService
+    private _localStorageService:LocalstorageService,
+    private _router:Router
   ){}
 
   ngOnInit() {
     this.formSignUp = this._formBuilder.group({
-      username: ['trousduc', [Validators.required, Validators.maxLength(31), Validators.minLength(4)], this._asyncUserNameAlreadyExist ],
-      email: ['trouduc@email.com', [Validators.required, Validators.email], this._asyncEmailAlreadyExist ],
-      password: ['Pocker21', [Validators.required, Validators.pattern(`(?=.*[A-Za-z])(?=.*\\d).{8,}`), Validators.maxLength(31)]],
-      passwordRepeat: ['Pocker21', [Validators.required]],
+      username: ['', [Validators.required, Validators.maxLength(31), Validators.minLength(4)], this._asyncUserNameAlreadyExist ],
+      email: ['', [Validators.required, Validators.email], this._asyncEmailAlreadyExist ],
+      password: ['', [Validators.required, Validators.pattern(`(?=.*[A-Za-z])(?=.*\\d).{8,}`), Validators.maxLength(31)]],
+      passwordRepeat: ['', [Validators.required]],
       mailing: [true, []],
       terms: [false, [Validators.required]]
     },{
@@ -96,14 +99,15 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
   public onSubmitSignUp(){
     this._isSubmit = true;
-    console.log(this.formSignUp)
     let params = this.formSignUp.value;
     this._apiUser.register({ login: params.username, email: params.email, password: params.password, mailing: params.mailing })
     .subscribe((response:IUserResponse) => {
       this._localStorageService.login(response.token, response.user._id)
       this._redux.dispatch({ type: FETCH_USER, user: response.user })
+      this._router.navigate(['profile'])
     }, (error:any) => {
-      console.log(error)
+      this.responseRequest = error
+      this.classResponseRequest = 'error-request'
     })
   }
 }

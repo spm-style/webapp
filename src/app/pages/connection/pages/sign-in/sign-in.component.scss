@@ -60,6 +60,13 @@
         width: 120px;
       }
     }
+    p {
+      height: 16px;
+
+      &.error-request {
+        color: red;
+      }
+    }
   }
 }
 

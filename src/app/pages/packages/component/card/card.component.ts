@@ -38,12 +38,6 @@ export class CardComponent implements OnInit {
     this._renderer.setStyle(this._iframe.nativeElement, 'height', `${this.data.distTags.latest.responsiveness[0].h}px`)
   }
 
-  public test(){
-    // this.userUpdated.emit(this.user);
-    // this._redux.dispatch({ type: FETCH_CURRENT_PACKAGE_ORIGIN, current: this.data })
-    // this._redux.dispatch({ type: CURRENT_IN_LIST, currentInList: this._elem})
-  }
-
   public urlIframe(uuid: string){
     return this._sanitizer.bypassSecurityTrustResourceUrl(`http://cdn.spm-style.com/overview/${uuid}`);
   }

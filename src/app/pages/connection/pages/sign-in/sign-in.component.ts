@@ -12,7 +12,11 @@ import { Router } from '@angular/router'
 })
 export class SignInComponent implements OnInit {
 
-  public formSignIn:FormGroup;
+  public formSignIn:FormGroup
+  public responseRequest:string
+  public classResponseRequest:string
+
+  private _isSubmit:boolean = false
 
   constructor(
     private _formBuilder:FormBuilder,
@@ -30,15 +34,24 @@ export class SignInComponent implements OnInit {
   }
 
   public onSubmitSignIn(){
-    this._apiUserService.login({ login: this.formSignIn.value.login, password: this.formSignIn.value.password })
-    .subscribe((data:IUserResponse) => {
-       this._localStorageService.login(data.token, data.user._id)
-      this._redux.dispatch({ type: FETCH_USER, user: data.user })
-      console.log('user:', data.user)
-      this._router.navigate(['profile'])
-    }, (err:any) => {
-      console.log('error:', err)
-    })
+    this._isSubmit = true
+    if (this.formSignIn.valid) {
+      this._apiUserService.login({ login: this.formSignIn.value.login, password: this.formSignIn.value.password })
+      .subscribe((data:IUserResponse) => {
+         this._localStorageService.login(data.token, data.user._id)
+        this._redux.dispatch({ type: FETCH_USER, user: data.user })
+        this._router.navigate(['profile'])
+      }, (err:any) => {
+        this.responseRequest = err
+        this.classResponseRequest = 'error-request'
+      })
+    }
+  }
+
+  public errorFormControlByName(controlName:string, errorName:string):boolean {
+    return this._isSubmit
+    ? this.formSignIn.get(controlName).hasError(errorName)
+    : this.formSignIn.get(controlName).hasError(errorName) && this.formSignIn.get(controlName).dirty
   }
 }
 
@@ -118,11 +131,7 @@ export class SignInComponent implements OnInit {
 //     return promise;
 //   }
 //
-//   public errorFormControlByName(controlName:string, errorName:string):boolean {
-//     return this._isSubmit
-//     ? this.formSignUp.get(controlName).hasError(errorName)
-//     : this.formSignUp.get(controlName).hasError(errorName) && this.formSignUp.get(controlName).dirty
-//   }
+
 //
 //   public errorFormByName(errorName:string):boolean {
 //     return this._isSubmit

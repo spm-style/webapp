@@ -40,10 +40,8 @@ export class ConfirmationComponent implements OnInit {
   }
 
   public submitConfirmation(){
-    if (!this.safety || this.formConfirmation.value[name] === this.name) {
+    if (!this.safety || this.formConfirmation.value.name === this.name) {
   	  this._popupService.confirmationResponse(true)
-    } else {
-
     }
   }
 

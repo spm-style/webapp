@@ -10,11 +10,7 @@
     <form>
       <div class="control-select">
         <select name="version">
-          <option value="1.1.1">1.1.1</option>
-          <option value="1.1.1">1.1.1</option>
-          <option value="1.1.1">1.1.1</option>
-          <option value="1.1.1">1.1.1</option>
-          <option value="1.1.1">1.1.1</option>
+          <option *ngFor="let version of (current | async)?.versions" value="{{version.name}}" [selected]="version.name">{{ version.name }}</option>
         </select>
       </div>
     </form>
@@ -42,13 +38,13 @@
   </div>
 </section>
 
-<section class="section-action">
+<!-- <section class="section-action">
   <div class="content">
     <div class="button-responsive">
       <button *ngFor="let breakpoint of (current | async)?.distTags.latest.responsiveness" class="button-breakpoint" (click)="changeDevice(breakpoint)"><img src="assets/ico-{{breakpoint.name}}-3.png" alt=""></button>
     </div>
   </div>
-</section>
+</section> -->
 
 <section class="section-classes">
   <div class="content">
