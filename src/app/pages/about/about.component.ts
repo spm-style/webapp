@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgRedux, CHANGE_TAB_TITLE, RDXRootState} from '../../store'
 
 @Component({
   templateUrl: './about.component.html',
@@ -6,9 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _redux:NgRedux<RDXRootState>) { }
 
   ngOnInit() {
+  	this._redux.dispatch({type: CHANGE_TAB_TITLE, title: 'about' })
   }
 
 }

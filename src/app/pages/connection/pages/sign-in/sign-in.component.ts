@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, ValidatorFn } from '@angular/forms';
-import { NgRedux, RDXRootState, IUser, FETCH_USER } from '../../../../store'
+import { NgRedux, RDXRootState, IUser, FETCH_USER, CHANGE_TAB_TITLE } from '../../../../store'
 import { ApiUserService, IUserResponse } from '../../../../service/api-user.service'
 import { LocalstorageService } from '../../../../service/localstorage.service'
 import { Router } from '@angular/router'
@@ -27,6 +27,7 @@ export class SignInComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this._redux.dispatch({type: CHANGE_TAB_TITLE, title: 'sign in' })
     this.formSignIn = this._formBuilder.group({
       login: ['',[Validators.required, Validators.maxLength(31), Validators.minLength(4)]],
       password: ['',[Validators.required, Validators.pattern(`(?=.*[A-Za-z])(?=.*\\d).{8,}`), Validators.maxLength(31)]]

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ElementRef, ViewChild, Renderer2, Inject 
 import { ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/platform-browser';
 
-import { NgRedux, RDXRootState, RDXUser, IPackageOrigin, select, Observable, FETCH_CURRENT_PACKAGE_ORIGIN, CLEAR_CURRENT_PACKAGE_ORIGIN, ADD_FAVORITE, REMOVE_FAVORITE, IResponsiveness, Ipackage, IClasses, IVariables, IUser }                 from '../../../../store';
+import { NgRedux, RDXRootState, RDXUser, IPackageOrigin, select, Observable, FETCH_CURRENT_PACKAGE_ORIGIN, CLEAR_CURRENT_PACKAGE_ORIGIN, ADD_FAVORITE, REMOVE_FAVORITE, IResponsiveness, Ipackage, IClasses, IVariables, IUser, CHANGE_TAB_TITLE }                 from '../../../../store';
 import { Subscription } from 'rxjs/Subscription';
 
 import { ApiPackageOriginService } from '../../../../service/api-package-origin.service';
@@ -59,6 +59,7 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
     this._document.domain ='spm-style.com'
 
     let current = this._redux.getState().packageOrigin.current
+    this._redux.dispatch({type: CHANGE_TAB_TITLE, title: current.name })
 
     if(!current){
       this._subUrlParams = this._route.params

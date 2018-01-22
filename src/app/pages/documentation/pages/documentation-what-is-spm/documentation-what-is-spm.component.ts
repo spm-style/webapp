@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NgRedux, RDXRootState, CHANGE_CURRENT_DOC } from '../../../../store';
+import { NgRedux, RDXRootState, CHANGE_CURRENT_DOC, CHANGE_TAB_TITLE } from '../../../../store';
 
 @Component({
   templateUrl: './documentation-what-is-spm.component.html',
@@ -9,6 +9,7 @@ export class DocumentationWhatIsSpmComponent implements OnInit, OnDestroy{
   constructor(private _redux:NgRedux<RDXRootState>) { }
 
   ngOnInit() {
+    this._redux.dispatch({type: CHANGE_TAB_TITLE, title: 'what is spm' })
     this._redux.dispatch({
       type: CHANGE_CURRENT_DOC,
       currentDoc: 'What is spm ?',
