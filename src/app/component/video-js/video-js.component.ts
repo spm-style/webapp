@@ -1,6 +1,7 @@
-import { Component, Input, AfterViewInit }                                      from '@angular/core';
+import { Component, Input, AfterViewInit, ViewChild, ElementRef }                                      from '@angular/core';
 
-import videojs                                                                  from 'video.js'
+// import videojs from 'videojs'                                                                from 'video.js'
+import videojs from 'video.js'
 
 @Component({
   selector: 'spm-video-js',
@@ -9,31 +10,29 @@ import videojs                                                                  
 })
 export class VideoJsComponent implements AfterViewInit {
 
- private _player: any;
+  private _player: any;
 
- @Input() public idx: string;
- @Input() public url: string;
- @Input() public poster: string;
+  @Input() public url: string;
+  @Input() public poster: string;
 
- constructor() {}
+  @ViewChild('video') private _video:ElementRef
 
- ngAfterViewInit() {
-   
-    if (document) {
-     this._player = videojs(document.getElementById(`video_${this.idx}`), {}, function() {
+  constructor() {}
 
-       let aspectRatio = 264/640;
-       let myPlayer = this;
-       let id = myPlayer.id();
-
-       function resizeVideoJS(){
-           var width = document.getElementById(id).parentElement.offsetWidth;
-           myPlayer.width(width);
-           myPlayer.height( width * aspectRatio );
-       }
-       resizeVideoJS();
-       window.onresize = resizeVideoJS;
-      });
-    }
+  ngAfterViewInit() {
+    // console.log('test', this._video, videojs)
+    // this._player = videojs(this._video.nativeElement, {}, function() {
+    //   // console.log('video ---->', this._video)
+    //   let aspectRatio = 264/640
+    //   let myPlayer = this
+    //   let id = myPlayer.id()
+    //   function resizeVideoJS(){
+    //     let width = this._video.nativeElement.parentElement.offsetWidth
+    //     myPlayer.width(width)
+    //     myPlayer.height( width * aspectRatio )
+    //   }
+    //   resizeVideoJS()
+    //   window.onresize = resizeVideoJS
+    // })
   }
 }
