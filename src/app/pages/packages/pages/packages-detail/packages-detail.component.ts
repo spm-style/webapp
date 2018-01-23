@@ -59,7 +59,7 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
     this._document.domain ='spm-style.com'
 
     let current = this._redux.getState().packageOrigin.current
-    this._redux.dispatch({type: CHANGE_TAB_TITLE, title: current.name })
+
 
     if(!current){
       this._subUrlParams = this._route.params
@@ -69,11 +69,13 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
           (response:IPackageOrigin) => {
             this._id = response._id
             this._redux.dispatch({ type: FETCH_CURRENT_PACKAGE_ORIGIN, current: response })
+            this._redux.dispatch({type: CHANGE_TAB_TITLE, title: response.name })
             this._initDetailModule(response)
           }
         )
       })
     }else{
+      this._redux.dispatch({type: CHANGE_TAB_TITLE, title: current.name })
       this._initDetailModule(current)
       this._id = current._id
     }
