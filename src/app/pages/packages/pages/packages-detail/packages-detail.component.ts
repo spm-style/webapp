@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy, ElementRef, ViewChild, Renderer2, Inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { DOCUMENT } from '@angular/platform-browser';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit, OnDestroy, ElementRef, ViewChild, Renderer2, Inject } from '@angular/core'
+import { ActivatedRoute } from '@angular/router'
+import { DOCUMENT } from '@angular/platform-browser'
+import { FormBuilder, FormGroup } from '@angular/forms'
 import { 
   NgRedux,
   RDXRootState,
@@ -21,9 +21,9 @@ import {
   IClasses,
   RDXUser,
   CHANGE_TAB_TITLE
-} from '../../../../store';
+} from '../../../../store'
 import { Subscription } from 'rxjs/Subscription';
-import { ApiPackageOriginService } from '../../../../service/api-package-origin.service';
+import { ApiPackageOriginService } from '../../../../service/api-package-origin.service'
 import { ApiUserService } from '../../../../service/api-user.service'
 import { ApiPackageService } from '../../../../service/api-package.service'
 import 'rxjs/add/operator/filter'

@@ -1,15 +1,15 @@
 import {
   Component, OnInit, ChangeDetectionStrategy,
   OnDestroy, ViewChild, AfterViewInit, ElementRef,
-  Renderer2, HostListener, Inject }                                                     from '@angular/core';
-import { Subscription }                                                         from 'rxjs/Subscription';
+  Renderer2, HostListener, Inject }                                                     from '@angular/core'
+import { Subscription }                                                         from 'rxjs/Subscription'
 import { Router, NavigationEnd, Event } from '@angular/router';
 import { DOCUMENT } from '@angular/platform-browser';
                                                                                 // Service
-import { ApiPackageOriginService }                                              from './../../../../service/api-package-origin.service';
+import { ApiPackageOriginService }                                              from './../../../../service/api-package-origin.service'
                                                                                 // Redux
 import {
-  NgRedux, RDXRootState, FETCH_PACKAGE_ORIGIN, select, Observable, IPackageOrigin, RDXPackageOrigin, CHANGE_TAB_TITLE } from '../../../../store';
+  NgRedux, RDXRootState, FETCH_PACKAGE_ORIGIN, select, Observable, IPackageOrigin, RDXPackageOrigin, CHANGE_TAB_TITLE } from '../../../../store'
                                                                                 // Api spm
 import { PinterestGrid }                                                        from '../../class/pinterest-grid'
 
@@ -156,7 +156,9 @@ export class PackagesOverviewComponent implements OnInit, OnDestroy, AfterViewIn
         // console.log(this._lastPositionScroll)
         if (event.urlAfterRedirects == '/packages') {
           // console.log(this._lastPositionScroll)
-          this._document.body.scrollTo(0, this._lastPositionScroll) || this._document.documentElement.scrollTo(0, this._lastPositionScroll)
+          this._document.body
+          ? this._document.body.scrollTo(0, this._lastPositionScroll)
+          : this._document.documentElement.scrollTo(0, this._lastPositionScroll)
         }
         else {
           // console.log('out')

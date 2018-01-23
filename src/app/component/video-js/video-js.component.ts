@@ -19,20 +19,21 @@ export class VideoJsComponent implements AfterViewInit {
 
  ngAfterViewInit() {
    
+    if (document) {
+     this._player = videojs(document.getElementById(`video_${this.idx}`), {}, function() {
 
-   this._player = videojs(document.getElementById(`video_${this.idx}`), {}, function() {
+       let aspectRatio = 264/640;
+       let myPlayer = this;
+       let id = myPlayer.id();
 
-     let aspectRatio = 264/640;
-     let myPlayer = this;
-     let id = myPlayer.id();
-
-     function resizeVideoJS(){
-       var width = document.getElementById(id).parentElement.offsetWidth;
-       myPlayer.width(width);
-       myPlayer.height( width * aspectRatio );
-     }
-     resizeVideoJS();
-     window.onresize = resizeVideoJS;
-   });
+       function resizeVideoJS(){
+           var width = document.getElementById(id).parentElement.offsetWidth;
+           myPlayer.width(width);
+           myPlayer.height( width * aspectRatio );
+       }
+       resizeVideoJS();
+       window.onresize = resizeVideoJS;
+      });
+    }
   }
 }

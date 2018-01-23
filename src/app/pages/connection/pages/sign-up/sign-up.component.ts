@@ -51,7 +51,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    this._subValueChangePassword.unsubscribe()
+    if (this._subValueChangePassword) { this._subValueChangePassword.unsubscribe() }
   }
 
   // private _passwordMatch(PasswordName: string, passwordRepeatName: string): ValidatorFn {

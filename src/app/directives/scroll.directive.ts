@@ -30,13 +30,15 @@ export class ScrollDirective implements OnInit, OnDestroy {
   		this._renderer.setStyle(this._elementRef.nativeElement, 'top', app.isMainContainerScrollable ? '' : -this._scroll.top + 'px')
   		this._renderer.setStyle(this._elementRef.nativeElement, 'position', app.isMainContainerScrollable ? '' : 'fixed')
   		if (app.isMainContainerScrollable) {
-		  	this._document.body.scrollTo(0, this._currentScrollBeforePopup) || this._document.documentElement.scrollTo(0, this._currentScrollBeforePopup)
+		  	this._document.body
+        ? this._document.body.scrollTo(0, this._currentScrollBeforePopup)
+        : this._document.documentElement.scrollTo(0, this._currentScrollBeforePopup)
   		}
   	})
   }
 
   ngOnDestroy(){
-  	this._subApp.unsubscribe()
+    if (this._subApp) { this._subApp.unsubscribe() }
   }
 
   @HostListener('window:scroll', ['$event']) stopscroll($event){

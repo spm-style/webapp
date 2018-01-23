@@ -53,7 +53,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this._router.events.subscribe((event) => {
       if(event instanceof NavigationStart){
-        if (!event.url.includes('#')) { this._document.body.scrollTo(0, 0) || this._document.documentElement.scrollTo(0, 0) }
+        if (!event.url.includes('#')) {
+          this._document.body.scrollTo
+          ? this._document.body.scrollTo(0, 0)
+          : this._document.documentElement.scrollTo(0, 0) }
         this._redux.dispatch({ type: CLOSE_MENU })
         this._renderer.removeClass(this._backto.nativeElement, 'back-to-active')
       } else if (event instanceof NavigationEnd) {        

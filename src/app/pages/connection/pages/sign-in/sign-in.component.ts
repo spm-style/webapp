@@ -39,7 +39,7 @@ export class SignInComponent implements OnInit {
     if (this.formSignIn.valid) {
       this._apiUserService.login({ login: this.formSignIn.value.login, password: this.formSignIn.value.password })
       .subscribe((data:IUserResponse) => {
-         this._localStorageService.login(data.token, data.user._id)
+        this._localStorageService.login(data.token, data.user._id)
         this._redux.dispatch({ type: FETCH_USER, user: data.user })
         this._router.navigate(['profile'])
       }, (err:any) => {

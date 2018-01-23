@@ -72,13 +72,13 @@ export class ApiUserService {
   	.catch(errorHttp)
   }
 
-  // public updateUserAuth(payload:any):Observable<IUserResponse> {
-  //   let headers = new Headers()
-  //   headers.append('Content-Type', 'application/json')
-  //   return this._http.post(`${URL_API}/user/${this._localStorageService.getLoginInfos().id}/credentials`, payload, {headers, withCredentials: true})
-  //   .map((res:Response) => res.json())
-  //   .catch(errorHttp)
-  // }
+  public updateUserCredentials(payload:any):Observable<IUserResponse> {
+    let headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    return this._http.post(`${URL_API}/user/credentials`, payload, {headers, withCredentials: true}) // /user/{id}/credentials'
+    .map((res:Response) => res.json())
+    .catch(errorHttp)
+  }
 
   public getUserById():Observable<IUserResponse> {
     let headers = new Headers()
