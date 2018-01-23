@@ -1,10 +1,9 @@
-import { Observable } from 'rxjs/Rx';
-import { Headers } from '@angular/http';
+import { Observable } from 'rxjs/Rx'
 
 export let errorHttp = (error: any):Observable<any> => {
-  return Observable.throw(error.json().message);
+  return Observable.throw(error.json().message)
 }
 
-export const URL_API = 'http://api.spm-style.com'
-export { Observable } from 'rxjs/Observable';
-export { Http, Headers, Response } from '@angular/http';
+export { Observable } from 'rxjs/Observable'
+export { Http, Headers, Response } from '@angular/http'
+export const URL_API = 'https://api.spm-style.com'
