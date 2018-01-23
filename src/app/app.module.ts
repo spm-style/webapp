@@ -34,7 +34,7 @@ import { LocalstorageService }                                                  
 import { PopupModule }                                                          from './modules/popup/popup.module'
                                                                                 // Directives
 import { ScrollDirective }                                                      from './directives/scroll.directive'
-                                                                                // Classes                                          
+                                                                                // Classes
 import { CustomReuseStrategy }                                                  from './customReuseStrategy.class';
 
 
