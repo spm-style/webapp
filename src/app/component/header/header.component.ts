@@ -1,4 +1,5 @@
-import { Component, OnInit, ElementRef, ViewChild, Renderer2, Input, Inject, OnDestroy } from '@angular/core'
+import { Component, OnInit, ElementRef, ViewChild, Renderer2, Input, Inject, OnDestroy, PLATFORM_ID } from '@angular/core'
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { Router, NavigationStart, NavigationEnd, Event } from '@angular/router'
 import { NgRedux, RDXRootState, RDXUser, CHANGE_MENU_NAVIGATION, BACK_MENU_NAVIGATION, CLOSE_MENU, OPEN_MENU, UPDATE_MENU_NAVIGATION, LOGOUT_USER, select, Observable, RDXNavigationState, dispatch } from '../../store';
 import { DOCUMENT } from '@angular/platform-browser'
@@ -47,19 +48,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private _popupService:PopupService,
     private _apiUserService:ApiUserService,
     private _localStorageService:LocalstorageService,
-    @Inject(DOCUMENT) private _document: any
+    @Inject(DOCUMENT) private _document: any,
+    @Inject(PLATFORM_ID) private platformId: any
   ){}
 
   ngOnInit() {
     this._router.events.subscribe((event) => {
       if(event instanceof NavigationStart){
         if (!event.url.includes('#')) {
-          this._document.body.scrollTo
-          ? this._document.body.scrollTo(0, 0)
-          : this._document.documentElement.scrollTo(0, 0) }
+          if (isPlatformBrowser(this.platformId)) {
+            this._document.body.scrollTo
+            ? this._document.body.scrollTo(0, 0)
+            : this._document.documentElement.scrollTo(0, 0) }
+          }
         this._redux.dispatch({ type: CLOSE_MENU })
         this._renderer.removeClass(this._backto.nativeElement, 'back-to-active')
-      } else if (event instanceof NavigationEnd) {        
+      } else if (event instanceof NavigationEnd) {
         for(let path of this._backToPath){
           if(event.urlAfterRedirects.startsWith(path.url)){
             this.backToCurrent = path.dist
