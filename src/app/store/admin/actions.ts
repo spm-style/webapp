@@ -11,30 +11,31 @@ export let changeCurrentPackage = (state, currentPackage) => {
 }
 
 export let addCurrentPackageContributor = (state, user) => {
-	state.currentPackage.contributors.push(user)
 	return {
-		...state
+		...state,
+		currentPackage: {
+			...state.currentPackage,
+			contributors: [...state.currentPackage.contributors, user]
+		}
 	}
 }
 
 export let removeCurrentPackageContributor = (state, login) => {
-	for (let index = 0; index < state.currentPackage.contributors.length; index++) {
-		if (state.currentPackage.contributors[index].login === login) {
-			state.currentPackage.contributors.splice(index, 1)
-		}
-	}
 	return {
-		...state
+		...state,
+		currentPackage: {
+			...state.currentPackage,
+			contributors: state.currentPackage.contributors.filter(data => data.login !== login)
+		}
 	}
 }
 
 export let removeCurrentPackageVersion = (state, version) => {
-	for (let index = 0; index < state.currentPackage.versions.length; index++) {
-		if (state.currentPackage.versions[index].name == version) {
-			state.currentPackage.versions.splice(index, 1)
-		}
-	}
 	return {
-		...state
+		...state,
+		currentPackage: {
+			...state.currentPackage,
+			versions: state.currentPackage.versions.filter(data => data.name !== version)
+		}
 	}
 }

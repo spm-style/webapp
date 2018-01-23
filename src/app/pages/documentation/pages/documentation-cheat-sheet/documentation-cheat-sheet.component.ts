@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NgRedux, RDXRootState, CHANGE_CURRENT_DOC } from '../../../../store';
+import { NgRedux, RDXRootState, CHANGE_CURRENT_DOC, CHANGE_TAB_TITLE } from '../../../../store';
 
 @Component({
   templateUrl: './documentation-cheat-sheet.component.html',
@@ -10,6 +10,7 @@ export class DocumentationCheatSheetComponent implements OnInit, OnDestroy {
   constructor(private _redux:NgRedux<RDXRootState>) { }
 
   ngOnInit() {
+    this._redux.dispatch({type: CHANGE_TAB_TITLE, title: 'cheat sheet' })
     this._redux.dispatch({
       type: CHANGE_CURRENT_DOC,
       currentDoc: 'Cheat sheet',

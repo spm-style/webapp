@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NgRedux, RDXRootState, CHANGE_CURRENT_DOC } from '../../../../store';
+import { NgRedux, RDXRootState, CHANGE_CURRENT_DOC, CHANGE_TAB_TITLE } from '../../../../store';
 
 @Component({
   templateUrl: './documentation-getting-start.component.html',
@@ -9,6 +9,7 @@ export class DocumentationGettingStartComponent implements OnInit, OnDestroy {
 
   constructor(private _redux:NgRedux<RDXRootState>) { }
   ngOnInit() {
+    this._redux.dispatch({type: CHANGE_TAB_TITLE, title: 'getting started' })
     this._redux.dispatch({
       type: CHANGE_CURRENT_DOC,
       currentDoc: 'Getting started',

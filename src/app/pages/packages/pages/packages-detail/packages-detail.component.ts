@@ -19,7 +19,8 @@ import {
   IVersions,
   CHANGE_VERSION_CURRENT_PACKAGE,
   IClasses,
-  RDXUser
+  RDXUser,
+  CHANGE_TAB_TITLE
 } from '../../../../store';
 import { Subscription } from 'rxjs/Subscription';
 import { ApiPackageOriginService } from '../../../../service/api-package-origin.service';
@@ -82,6 +83,7 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
 
     let current:IPackageCurrent = this._redux.getState().packageOrigin.current
 
+
     if(!current){
       this._subUrlParams = this._route.params
       .subscribe(params => {
@@ -91,6 +93,7 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
             this._id = response._id
             this._redux.dispatch({ type: FETCH_CURRENT_PACKAGE_ORIGIN, packageOrigin: response })
             this._initDetailModule(response.distTags.latest.cdn, response.distTags.latest.responsiveness, response.distTags.latest.classes)
+            this._redux.dispatch({type: CHANGE_TAB_TITLE, title: response.name })
             this._updateViewsCount(response.name)
           },
           (error:any) => { console.log('error') }
@@ -99,6 +102,7 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
     }else{
       this._id = current._id
       this._initDetailModule(current.cdn, current.responsiveness, current.classes)
+      this._redux.dispatch({type: CHANGE_TAB_TITLE, title: current.name })
       this._updateViewsCount(current.name)
     }
 

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
+import { NgRedux, RDXRootState, CHANGE_TAB_TITLE } from '../../../../store'
 
 @Component({
   templateUrl: './policies-conduct.component.html',
@@ -6,9 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PoliciesConductComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _redux:NgRedux<RDXRootState>) { }
 
   ngOnInit() {
+  	this._redux.dispatch({ type: CHANGE_TAB_TITLE, title: 'code of conduct' })
   }
 
 }

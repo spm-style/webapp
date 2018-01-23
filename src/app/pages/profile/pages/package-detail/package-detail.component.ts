@@ -52,7 +52,6 @@ export class PackageDetailComponent implements OnInit {
     })
 
     this._subActivatedRoute = this._activatedRoute.params.subscribe((data:any) => {
-      console.log()
       this.name = data.name
       if (!this._redux.getState().admin.currentPackage) {
         this._subUser = this._redux.select('user').subscribe((user:RDXUser) => {
@@ -125,7 +124,6 @@ export class PackageDetailComponent implements OnInit {
               this._redux.dispatch({ type: REMOVE_CURRENT_PACKAGE_VERSION, version: value })
             },
             (error:any) => {
-              console.log(error)
               this._subPackage.unsubscribe()
             }
           )

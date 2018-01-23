@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs/Subscription'
 import { Router } from '@angular/router'
 import { ApiUserService, IUserResponse } from '../../../../service/api-user.service'
 import { LocalstorageService } from '../../../../service/localstorage.service'
-import { RDXRootState, NgRedux, FETCH_USER } from '../../../../store'
+import { RDXRootState, NgRedux, FETCH_USER, CHANGE_TAB_TITLE } from '../../../../store'
 
 @Component({
   selector: 'spm-sign-up',
@@ -31,6 +31,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
   ){}
 
   ngOnInit() {
+    this._redux.dispatch({type: CHANGE_TAB_TITLE, title: 'sign up' })
     this.formSignUp = this._formBuilder.group({
       username: ['', [Validators.required, Validators.maxLength(31), Validators.minLength(4)], this._asyncUserNameAlreadyExist ],
       email: ['', [Validators.required, Validators.email], this._asyncEmailAlreadyExist ],

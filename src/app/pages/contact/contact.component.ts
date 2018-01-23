@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiContactService } from '../../service/api-contact.service';
+import { NgRedux, CHANGE_TAB_TITLE, RDXRootState } from '../../store'
 
 @Component({
   templateUrl: './contact.component.html',
@@ -14,10 +15,12 @@ export class ContactComponent implements OnInit {
 
   constructor(
     private _formBuilder:FormBuilder,
-    private _apiContact:ApiContactService
+    private _apiContact:ApiContactService,
+    private _redux:NgRedux<RDXRootState>
   ){}
 
   ngOnInit() {
+    this._redux.dispatch({type: CHANGE_TAB_TITLE, title: 'contact' })
     this.formContact = this._formBuilder.group({
       email: ['', [Validators.email, Validators.required]],
       question: ['project', [Validators.required]],
@@ -26,8 +29,6 @@ export class ContactComponent implements OnInit {
   }
 
   public onSubmitContact(){
-    // console.log(this.formContact)
-    // console.log(this._apiContact)
     this._apiContact.sendContact(this.formContact.value)
     .subscribe(
       (data:any) => {
