@@ -74,6 +74,7 @@ export class ApiUserService {
 
   public updateUserCredentials(payload:any):Observable<IUserResponse> {
     let headers = new Headers()
+    console.log('payload', payload)
     headers.append('Content-Type', 'application/json')
     return this._http.post(`${URL_API}/user/credentials`, payload, {headers, withCredentials: true}) // /user/{id}/credentials'
     .map((res:Response) => res.json())

@@ -10,20 +10,22 @@
 		</div>
 		<div class="opt-control st-control-text required">
 	    <p>
-	      <span *ngIf="formSettings.get('newPassword').hasError('newPassword') && formSettings.get('newPassword').touched">Invalid password</span>
+	      <span *ngIf="errorFormControlByName('newPassword', 'required')">Password required</span>
+        <span *ngIf="errorFormControlByName('newPassword', 'pattern')">Password pattern invalid</span>
 	    </p>
 			<input type="password" id="newPassword" formControlName="newPassword" required>
 			<label for="newPassword">New password</label>
 		</div>
 		<div class="opt-control st-control-text required">
 	    <p>
-	      <span *ngIf="formSettings.get('newPasswordRepeat').hasError('newPasswordRepeat') && formSettings.get('newPasswordRepeat').touched">Invalid password</span>
+	    	<span *ngIf="errorFormControlByName('newPasswordRepeat', 'required')">Password repeat required</span>
+        <span *ngIf="errorFormControlByName('newPasswordRepeat', 'passwordMatch')">Password doesn't match</span>
 	    </p>
 			<input type="password" id="newPasswordRepeat" formControlName="newPasswordRepeat" required>
 			<label for="newPasswordRepeat">Confirm new password</label>
 		</div>
 		<div class="form-action">
-	    <!-- <p [ngClass]="">{{responseRequest}}</p> -->
+	    <p [ngClass]="classResponseRequest">{{responseRequest}}</p>
 	    <button type="submit">Apply</button>
 	  </div>
 	</form>

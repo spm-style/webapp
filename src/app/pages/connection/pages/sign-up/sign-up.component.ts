@@ -99,7 +99,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
   }
 
   public onSubmitSignUp(){
-    this._isSubmit = true;
+    this._isSubmit = true
     let params = this.formSignUp.value;
     this._apiUser.register({ login: params.username, email: params.email, password: params.password, mailing: params.mailing })
     .subscribe((response:IUserResponse) => {
