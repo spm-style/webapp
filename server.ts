@@ -25,31 +25,36 @@ Express.set('views', join(DIST_FOLDER, 'browser'));
 Express.get('*.*', express.static(join(DIST_FOLDER, 'browser')));
 
 // Server public route
-for(let route of SERVER_PUBLIC_ROUTES){
-  Express.get(route, (req, res) => {
-    // res.cookie("mycookie", "1234567890", { secure:false, maxAge:120000, httpOnly: true });
-    res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req });
-  });
-}
+// for(let route of SERVER_PUBLIC_ROUTES){
+//   Express.get(route, (req, res) => {
+//     // res.cookie("mycookie", "1234567890", { secure:false, maxAge:120000, httpOnly: true });
+//     res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req });
+//   });
+// }
 
-// Server user route
-for(let route of SERVER_USER_ROUTES){
-  Express.get(route, (req, res) => {
-    // check cookie if scope user
-    res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req });
-  });
-}
+// // Server user route
+// for(let route of SERVER_USER_ROUTES){
+//   Express.get(route, (req, res) => {
+//     // check cookie if scope user
+//     res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req });
+//   });
+// }
 
-// Server admin route
-for(let route of SERVER_ADMIN_ROUTES){
-  Express.get(route, (req, res) => {
-    // check cookie if scope admin
-    res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req });
-  });
-}
+// // Server admin route
+// for(let route of SERVER_ADMIN_ROUTES){
+//   Express.get(route, (req, res) => {
+//     // check cookie if scope admin
+//     res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req });
+//   });
+// }
 
 // Server default route
-Express.get('*', (req, res) => { res.redirect('/not-found') });
+// Express.get('*', (req, res) => { res.redirect('/not-found') });
+
+Express.get('*', (req, res) => {
+  // res.cookie("mycookie", "1234567890", { secure:false, maxAge:120000, httpOnly: true });
+  res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req });
+});
 
 Express.listen(PORT, () => { console.log(`Node server listening on http://localhost:${PORT}`) });
 
