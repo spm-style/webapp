@@ -1,18 +1,13 @@
 import {
   STOP_MAIN_CONTAINER_SCROLL,
-  START_MAIN_CONTAINER_SCROLL,
-  CHANGE_TAB_TITLE,
   stopMainContainerScroll,
+  START_MAIN_CONTAINER_SCROLL,
   startMainContainerScroll,
+  CHANGE_TAB_TITLE,
   changeTabTitle
 } from './actions';
 
-
-export interface RDXAppState {
-  testApp: string,
-  isMainContainerScrollable:boolean,
-  title:string
-}
+import { RDXAppState } from './interfaces'
 
 export const APP_INITIAL_STATE:RDXAppState = {
   testApp: 'app-testing',

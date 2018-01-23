@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgRedux, RDXRootState, RDXUser, IUser, CHANGE_TAB_TITLE, FETCH_USER } from '../../../../store'
-import { ApiUserService } from '../../../../service/api-user.service'
+import { NgRedux, RDXRootState, RDXUser, CHANGE_TAB_TITLE, FETCH_USER } from '../../../../store'
+import { ApiUserService, IUser } from '../../../../service/api-user.service'
 import { Subscription } from 'rxjs/Subscription'
 
 @Component({

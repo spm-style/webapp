@@ -3,29 +3,20 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { ApiPackageOriginService } from '../../../../service/api-package-origin.service'
 import { PopupService } from '../../../../modules/popup/popup.service'
 import { Subscription } from 'rxjs/Subscription'
-import { NgRedux, RDXRootState, select, Observable, dispatch, CHANGE_CURRENT_PACKAGE, CHANGE_TAB_TITLE, ADD_CURRENT_PACKAGE_CONTRIBUTOR, REMOVE_CURRENT_PACKAGE_CONTRIBUTOR, REMOVE_CURRENT_PACKAGE_VERSION } from '../../../../store'
+import { 
+  NgRedux,
+  RDXRootState,
+  select,
+  Observable,
+  CHANGE_CURRENT_PACKAGE,
+  CHANGE_TAB_TITLE,
+  ADD_CURRENT_PACKAGE_CONTRIBUTOR,
+  REMOVE_CURRENT_PACKAGE_CONTRIBUTOR,
+  REMOVE_CURRENT_PACKAGE_VERSION,
+  RDXUser,
+  IAdminPackage
+} from '../../../../store'
 import { ActivatedRoute } from '@angular/router'
-
-interface IVersion {
-	name:string,
-	createdAt:Date,
-	latest:boolean
-}
-
-interface IUserPackage {
-	name:string,
-	createdAt:Date,
-	lastUpdateAt:Date,
-	lastDownloadAt:Date,
-	owners: string[],
-	versions: IVersion[],
-	stars:number,
-	downloads:number
-}
-
-interface IUser {
-	currentPackage: IUserPackage
-}
 
 @Component({
   selector: 'spm-package-detail',
@@ -43,8 +34,8 @@ export class PackageDetailComponent implements OnInit {
   private _subPackage:Subscription
   public name:string
 
-	@select(['admin', 'currentPackage']) current:IUserPackage
-  @select(['user']) readonly user:IUser
+	@select(['admin', 'currentPackage']) readonly current:Observable<IAdminPackage>
+  @select(['user']) readonly user:Observable<RDXUser>
 
   constructor(private _formBuilder:FormBuilder,
   	private _apiPackageOrigin:ApiPackageOriginService,
@@ -64,7 +55,7 @@ export class PackageDetailComponent implements OnInit {
       console.log()
       this.name = data.name
       if (!this._redux.getState().admin.currentPackage) {
-        this._subUser = this._redux.select('user').subscribe((user:any) => {
+        this._subUser = this._redux.select('user').subscribe((user:RDXUser) => {
           for(let item of user.packages) {
             if (item.name === data.name) {
               this._redux.dispatch({ type: CHANGE_CURRENT_PACKAGE, package: item })
@@ -77,18 +68,10 @@ export class PackageDetailComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    if (this._subPopup) {
-  	  this._subPopup.unsubscribe()
-    }
-    if (this._subActivatedRoute) {
-      this._subActivatedRoute.unsubscribe()
-    }
-    if (this._subUser) {
-      this._subUser.unsubscribe()
-    }
-    if (this._subPackage) {
-      this._subPackage.unsubscribe()
-    }
+    if (this._subPopup) { this._subPopup.unsubscribe() }
+    if (this._subActivatedRoute) { this._subActivatedRoute.unsubscribe() }
+    if (this._subUser) { this._subUser.unsubscribe() }
+    if (this._subPackage) { this._subPackage.unsubscribe() }
   }
 
   public onSubmitOwner(){

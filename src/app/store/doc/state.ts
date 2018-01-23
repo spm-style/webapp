@@ -3,15 +3,7 @@ import {
   changeCurrentDoc
 } from './actions';
 
-
-export interface RDXDocState {
-  currentDoc: string,
-  currentFragment: string
-  nextDoc: string,
-  previousDoc: string,
-  nextDocUrl: string,
-  previousDocUrl: string
-}
+import { RDXDocState } from './interfaces'
 
 export const DOC_INITIAL_STATE:RDXDocState = {
   currentDoc: '',

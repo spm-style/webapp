@@ -1,4 +1,6 @@
-import { IUser, RDXUser, } from './interfaces';
+import { IUser } from '../../service/api-user.service'
+
+import { RDXUser, } from './interfaces';
 
 export const FETCH_USER = 'FETCH_USER'
 export const LOGOUT_USER = 'LOGOUT_USER'
@@ -49,16 +51,16 @@ export let logoutUser = (state:RDXUser):RDXUser => {
   }
 }
 
-export let addFavorite = (state:RDXUser, favorite:string) => {
-  if (!state.favorites.includes(favorite)) { state.favorites.push(favorite) }
+export let addFavorite = (state:RDXUser, favorite:string):RDXUser => {
   return {
-    ...state
+    ...state,
+    favorites: [...state.favorites, favorite]
   }
 }
 
-export let removeFavorite = (state:RDXUser, favorite:string) => {
-  if (state.favorites.includes(favorite)) { state.favorites.splice(state.favorites.indexOf(favorite), 1) }
+export let removeFavorite = (state:RDXUser, favorite:string):RDXUser => {
   return {
-    ...state
+    ...state,
+    favorites: state.favorites.filter((item) => item != favorite)
   }
 }

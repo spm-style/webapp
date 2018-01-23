@@ -1,5 +1,3 @@
-export { IUser } from '../../service/api-user.service'
-
 export interface RDXUser {
   _id:string,
   authorPackages:any[],

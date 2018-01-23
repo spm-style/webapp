@@ -6,7 +6,7 @@ import { Subscription }                                                         
 import { Router, NavigationEnd, Event } from '@angular/router';
 import { DOCUMENT } from '@angular/platform-browser';
                                                                                 // Service
-import { ApiPackageOriginService }                                              from '../../../../service/api-package-origin.service';
+import { ApiPackageOriginService }                                              from './../../../../service/api-package-origin.service';
                                                                                 // Redux
 import {
   NgRedux, RDXRootState, FETCH_PACKAGE_ORIGIN,
@@ -196,11 +196,7 @@ export class PackagesOverviewComponent implements OnInit, OnDestroy, AfterViewIn
     // }, 200)
   }
 
-  public updatePositionLastCardClicked(){
-    // console.log('test')
-    // console.log(this.contentList)
-    // this._testDeMerde = 2000
-    // console.log(this._lastPositionScroll)
-    // this._testBis.unsubscribe()
+  public setCurrentPackage(){
+
   }
 }

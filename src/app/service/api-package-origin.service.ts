@@ -52,9 +52,6 @@ export class ApiPackageOriginService {
     headers.append('Authorization', `Bearer ${this._localStorageService.getLoginInfos().token}`)
     return this._http.post(`${URL_API}/package-origin/${targetPackage}/contributors/${action}`, { login }, { headers, withCredentials: true  })
     .map((res:Response) => res.json())
-    .do((res:any) => {
-      return res
-    })
     .catch(errorHttp)
   }
 
@@ -63,12 +60,16 @@ export class ApiPackageOriginService {
     headers.append('Authorization', `Bearer ${this._localStorageService.getLoginInfos().token}`)
     return this._http.delete(`${URL_API}/module/${targetPackage}?version=${version}`, {headers, withCredentials: true })
     .map((res:Response) => res.json())
-    .do((res:any) => {
-      return res
-    })
     .catch(errorHttp)
   }
 
-  // public updateFavorite(action:string, targetPackage:string)
+  public incrementView(packageOriginName:string):Observable<any> {
+    console.log('service', packageOriginName)
+    let headers = new Headers()
+    headers.append('Authorization', `Bearer ${this._localStorageService.getLoginInfos().token}`)
+    return this._http.post(`${URL_API}/package-origin/${packageOriginName}/views/increment`, { }, {headers, withCredentials: true })
+    .map((res:Response) => res.json())
+    .catch(errorHttp)
+  }
 
 }

@@ -4,6 +4,6 @@
   </div>
 </section>
 <section #contentList class="section-list">
-  <spm-card *ngFor="let card of (list | async)" [data]="card" (click)="updatePositionLastCardClicked()"></spm-card>
+  <spm-card *ngFor="let card of (list | async)" [data]="card"></spm-card>
 </section>
 <div #test class="test"></div>

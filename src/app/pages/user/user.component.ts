@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { Subscription } from 'rxjs/Subscription'
-import { NgRedux, RDXRootState, CHANGE_TAB_TITLE, IUser, Observable } from '../../store'
-import { ApiUserService } from '../../service/api-user.service'
+import { NgRedux, RDXRootState, CHANGE_TAB_TITLE, Observable } from '../../store'
+import { ApiUserService, IUser } from '../../service/api-user.service'
 
 @Component({
   selector: 'spm-user',

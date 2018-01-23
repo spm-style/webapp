@@ -11,11 +11,7 @@ import {
   updateMenuNavigation
 } from './actions';
 
-export interface RDXNavigationState {
-  isMenuOpen:boolean,
-  currentActiveMenu:string,
-  currentMenuBelow:string
-}
+import { RDXNavigationState } from './interfaces'
 
 export const NAVIGATION_INITIAL_STATE:RDXNavigationState = {
   isMenuOpen: false,

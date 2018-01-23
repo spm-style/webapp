@@ -18,6 +18,7 @@ export class VideoJsComponent implements AfterViewInit {
  constructor() {}
 
  ngAfterViewInit() {
+   
 
    this._player = videojs(document.getElementById(`video_${this.idx}`), {}, function() {
 

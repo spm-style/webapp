@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, ValidatorFn } from '@angular/forms';
-import { NgRedux, RDXRootState, IUser, FETCH_USER } from '../../../../store'
-import { ApiUserService, IUserResponse } from '../../../../service/api-user.service'
+import { NgRedux, RDXRootState, FETCH_USER } from '../../../../store'
+import { ApiUserService, IUserResponse, IUser } from '../../../../service/api-user.service'
 import { LocalstorageService } from '../../../../service/localstorage.service'
 import { Router } from '@angular/router'
 

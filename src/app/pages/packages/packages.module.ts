@@ -1,6 +1,7 @@
 import { NgModule }                                                             from '@angular/core';
 import { CommonModule }                                                         from '@angular/common';
 import { HttpModule }                                                           from '@angular/http';
+import { ReactiveFormsModule, FormsModule }                                     from '@angular/forms';
                                                                                 // Router
 import { PackagesRouterModule }                                                 from './packages.router';
                                                                                 // Skell
@@ -20,7 +21,9 @@ import { CardComponent }                                                        
   imports: [
     CommonModule,
     PackagesRouterModule,
-    HttpModule
+    HttpModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   declarations: [
     PackagesComponent,

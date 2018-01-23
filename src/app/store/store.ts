@@ -1,14 +1,23 @@
 import { combineReducers } from 'redux';
 
-import { appReducer, APP_INITIAL_STATE, RDXAppState } from './app/state';
-import { docReducer, DOC_INITIAL_STATE, RDXDocState } from './doc/state';
-import { navigationReducer, NAVIGATION_INITIAL_STATE, RDXNavigationState } from './navigation/state'
-import { packageOriginReducer, PACKAGE_ORIGIN_INITIAL_STATE } from './packageOrigin/state'
-import { userReducer, USER_INITIAL_STATE } from './user/state'
-import { adminReducer, ADMIN_INITIAL_STATE, RDXAdminState } from './admin/state'
+import { appReducer, APP_INITIAL_STATE } from './app/state';
+import { RDXAppState } from './app'
 
-import { RDXPackageOrigin } from './packageOrigin/interfaces'
-import { RDXUser } from './user/interfaces'
+import { adminReducer, ADMIN_INITIAL_STATE } from './admin/state'
+import { RDXAdminState } from './admin'
+
+import { docReducer, DOC_INITIAL_STATE } from './doc/state';
+import { RDXDocState } from './doc'
+
+import { navigationReducer, NAVIGATION_INITIAL_STATE, } from './navigation/state'
+import { RDXNavigationState } from './navigation'
+
+import { userReducer, USER_INITIAL_STATE } from './user/state'
+import { RDXUser } from './user'
+
+import { packageOriginReducer, PACKAGE_ORIGIN_INITIAL_STATE } from './packageOrigin/state'
+import { RDXPackageOrigin } from './packageOrigin'
+
 
 export interface RDXRootState {
   admin: RDXAdminState,

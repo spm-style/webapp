@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ElementRef, Renderer2, ViewChild, ChangeDetec
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router'
 
-import { IPackageOrigin, CURRENT_IN_LIST, NgRedux, RDXRootState, FETCH_CURRENT_PACKAGE_ORIGIN } from '../../../../store';
+import { dispatch, IPackageOrigin, FETCH_CURRENT_PACKAGE_ORIGIN } from '../../../../store';
 
 @Component({
   selector: 'spm-card',
@@ -13,19 +13,19 @@ import { IPackageOrigin, CURRENT_IN_LIST, NgRedux, RDXRootState, FETCH_CURRENT_P
 export class CardComponent implements OnInit {
 
   @Input('data') readonly data:IPackageOrigin
-  // @Output() setPositionCard = new EventEmitter();
 
   @ViewChild('iframe') private _iframe:ElementRef
   @ViewChild('containerIframe') private _containerIframe:ElementRef
+
   @HostListener('click', ['$event']) onResize(event) { this._router.navigate(['packages', this.data.name]) }
 
+  @dispatch() public setCurrentPackage():any { return { type: FETCH_CURRENT_PACKAGE_ORIGIN, packageOrigin: this.data } }
 
   constructor(
     private _sanitizer: DomSanitizer,
     private _elem:ElementRef,
     private _renderer:Renderer2,
-    private _router:Router,
-    private _redux:NgRedux<RDXRootState>
+    private _router:Router
   ){}
 
   ngOnInit() {
@@ -38,7 +38,5 @@ export class CardComponent implements OnInit {
     this._renderer.setStyle(this._iframe.nativeElement, 'height', `${this.data.distTags.latest.responsiveness[0].h}px`)
   }
 
-  public urlIframe(uuid: string){
-    return this._sanitizer.bypassSecurityTrustResourceUrl(`http://cdn.spm-style.com/overview/${uuid}`);
-  }
+  public urlIframe(uuid: string){ return this._sanitizer.bypassSecurityTrustResourceUrl(`http://cdn.spm-style.com/overview/${uuid}`) }
 }

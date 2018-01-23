@@ -9,26 +9,7 @@ import {
   removeCurrentPackageVersion
 } from './actions';
 
-export interface Version {
-  name:string,
-  createdAt:Date,
-  latest:boolean
-}
-
-export interface AdminPackage {
-  name:string,
-  createdAt:Date,
-  lastUpdateAt:Date,
-  lastDownloadAt:Date,
-  contributors:string[],
-  versions:Version[],
-  stars:number,
-  downloads:number
-}
-
-export interface RDXAdminState {
-  currentPackage:AdminPackage
-}
+import { RDXAdminState } from './interfaces'
 
 export const ADMIN_INITIAL_STATE:RDXAdminState = {
   currentPackage:null

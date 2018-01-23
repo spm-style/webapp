@@ -1,18 +1,15 @@
 import {
   FETCH_USER,
-  LOGOUT_USER,
-  ADD_FAVORITE,
-  REMOVE_FAVORITE,
   fetchUser,
+  LOGOUT_USER,
   logoutUser,
+  ADD_FAVORITE,
   addFavorite,
+  REMOVE_FAVORITE,
   removeFavorite
 } from './actions';
 
-import {
-  RDXUser
-} from './interfaces'
-
+import { RDXUser } from './interfaces'
 
 export const USER_INITIAL_STATE:RDXUser = {
   _id:null,

@@ -1,14 +1,15 @@
-import { BrowserModule }                                                        from '@angular/platform-browser'
+import { BrowserModule, Title }                                                 from '@angular/platform-browser'
 import { NgModule, PLATFORM_ID, APP_ID, Inject, isDevMode }                     from '@angular/core'
 import { isPlatformBrowser }                                                    from '@angular/common'
-import { NgReduxModule, DevToolsExtension }                                     from '@angular-redux/store'
+import { NgReduxModule, DevToolsExtension, NgRedux }                            from '@angular-redux/store'
 import { ReactiveFormsModule, FormsModule }                                     from '@angular/forms'
 import { HttpModule }                                                           from '@angular/http'
+import { RouteReuseStrategy }                                                   from '@angular/router'
                                                                                 // Router
 import { AppRoutingModule }                                                     from './app.routing'
 import { PipesModule }                                                          from './pipes/pipes.module'
                                                                                 // Redux
-import { rootReducer, ROOT_INITIAL_STATE, NgRedux }                             from './store'
+import { rootReducer, ROOT_INITIAL_STATE }                                      from './store/store'
                                                                                 // Skell
 import { AppComponent }                                                         from './app.component'
                                                                                 // Pages
@@ -26,13 +27,16 @@ import { VideoJsComponent }                                                     
                                                                                 // Service
 import { ApiContactService }                                                    from './service/api-contact.service'
 import { ApiPackageOriginService }                                              from './service/api-package-origin.service'
+import { ApiPackageService }                                                    from './service/api-package.service'
 import { ApiUserService }                                                       from './service/api-user.service'
 import { LocalstorageService }                                                  from './service/localstorage.service'
+                                                                                // Modules
 import { PopupModule }                                                          from './modules/popup/popup.module'
-import { ScrollDirective } from './directives/scroll.directive'
-import { RouteReuseStrategy } from '@angular/router'
-import { CustomReuseStrategy } from './customReuseStrategy.class';
-import { Title } from '@angular/platform-browser'
+                                                                                // Directives
+import { ScrollDirective }                                                      from './directives/scroll.directive'
+                                                                                // Classes                                          
+import { CustomReuseStrategy }                                                  from './customReuseStrategy.class';
+
 
 @NgModule({
   declarations: [
@@ -64,6 +68,7 @@ import { Title } from '@angular/platform-browser'
     ApiContactService,
     ApiPackageOriginService,
     ApiUserService,
+    ApiPackageService,
     LocalstorageService,
     Title,
 

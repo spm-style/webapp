@@ -2,11 +2,11 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router'
 import { Subscription } from 'rxjs/Subscription'
 
-import { ApiUserService, IUserResponse } from '../../service/api-user.service'
+import { ApiUserService, IUserResponse, IUser } from '../../service/api-user.service'
 import { PopupService } from '../../modules/popup/popup.service'
 import { LocalstorageService } from '../../service/localstorage.service'
 
-import { NgRedux, RDXRootState, LOGOUT_USER, select, IUser } from '../../store'
+import { NgRedux, RDXRootState, LOGOUT_USER, select } from '../../store'
 
 @Component({
   selector: 'spm-profile',

@@ -9,9 +9,11 @@
     </div>
     <form>
       <div class="control-select">
-        <select name="version">
-          <option *ngFor="let version of (current | async)?.versions" value="{{version.name}}" [selected]="version.name">{{ version.name }}</option>
-        </select>
+        <form [formGroup]="formVersion">
+          <select name="version" formControlName="version">
+            <option *ngFor="let version of (current | async)?.versions" value="{{version.name}}" [selected]="version.name == (current | async)?.version">{{ version.name }}</option>
+          </select>
+        </form>
       </div>
     </form>
   </div>
@@ -30,7 +32,9 @@
 <section class="section-responsive">
   <div class="content">
     <div class="button-responsive">
-      <button *ngFor="let breakpoint of (current | async)?.distTags.latest.responsiveness" class="button-breakpoint" (click)="changeDevice(breakpoint)"><img src="assets/ico-{{breakpoint.name}}-3.png" alt=""></button>
+      <button *ngFor="let breakpoint of (current | async)?.responsiveness" class="button-breakpoint" (click)="changeDevice(breakpoint)"><img src="assets/ico-{{breakpoint.name}}-3.png" alt=""></button>
+      <!-- <button *ngFor="let breakpoint of (current | async)?.responsiveness" class="button-breakpoint" (click)="changeDevice(breakpoint)"><img src="https://iconscout.com/ms-icon-310x310.png" alt=""></button> -->
+      
       <button type="button" name="button" (click)="changeOriantation()" class="button-oriantation"><img src="assets/ico-oriantation-3.png" alt=""></button>
       <input class="range-scale" type="range" #rangeScale min="0.01" max="1" step="0.01" (change)="changeScaleIframe(rangeScale.value)">
       <input class="text-scale" type="text" #textScale (change)="changeScaleIframe(textScale.value)">
@@ -99,9 +103,9 @@
       <div class="carousel-body">
         <div class="carousel-item">
           <p><span>Download</span>{{ (current | async)?.downloadTotal }}</p>
-          <p><span>Type</span>{{ (current | async)?.distTags.latest.type }}</p>
-          <p><span>Style</span>{{ (current | async)?.distTags.latest.style }}</p>
-          <p><span>Category</span>{{ (current | async)?.distTags.latest.category }}</p>
+          <p><span>Type</span>{{ (current | async)?.type }}</p>
+          <p><span>Style</span>{{ (current | async)?.style }}</p>
+          <p><span>Category</span>{{ (current | async)?.category }}</p>
         </div>
       </div>
     </div>
