@@ -65,7 +65,10 @@
           <img src="./assets/arrow-tab.png" alt="">
         </div>
         <div class="tab-bar-content">
-          <spm-video-js [idx]="'idx'" [url]="'./assets/video.mp4'" [poster]="'./assets/commingSoon.jpg'"></spm-video-js>
+          <video class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" style="width: 100%">
+            <source [src]="'./assets/video.mp4'" type="video/mp4" />
+          </video>
+          <!-- <spm-video-js [url]="'./assets/video.mp4'" [poster]="'./assets/commingSoon.jpg'"></spm-video-js> -->
         </div>
         <div class="tab-bar-menu-action">
           <button type="button" class="active-tab">Install</button>

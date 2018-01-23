@@ -1,7 +1,8 @@
 import {
   Component, OnInit, ChangeDetectionStrategy,
   OnDestroy, ViewChild, AfterViewInit, ElementRef,
-  Renderer2, HostListener, Inject }                                                     from '@angular/core'
+  Renderer2, HostListener, Inject, PLATFORM_ID }                                from '@angular/core'
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { Subscription }                                                         from 'rxjs/Subscription'
 import { Router, NavigationEnd, Event } from '@angular/router';
 import { DOCUMENT } from '@angular/platform-browser';
@@ -54,7 +55,8 @@ export class PackagesOverviewComponent implements OnInit, OnDestroy, AfterViewIn
     private _renderer:Renderer2,
     private _router:Router,
     private _elem:ElementRef,
-    @Inject(DOCUMENT) private _document: any
+    @Inject(DOCUMENT) private _document: any,
+    @Inject(PLATFORM_ID) private platformId: any
   ) { }
 
   ngOnInit(){
@@ -156,9 +158,11 @@ export class PackagesOverviewComponent implements OnInit, OnDestroy, AfterViewIn
         // console.log(this._lastPositionScroll)
         if (event.urlAfterRedirects == '/packages') {
           // console.log(this._lastPositionScroll)
-          this._document.body
-          ? this._document.body.scrollTo(0, this._lastPositionScroll)
-          : this._document.documentElement.scrollTo(0, this._lastPositionScroll)
+          if (isPlatformBrowser(this.platformId)) {
+            this._document.body
+            ? this._document.body.scrollTo(0, this._lastPositionScroll)
+            : this._document.documentElement.scrollTo(0, this._lastPositionScroll)
+          }
         }
         else {
           // console.log('out')

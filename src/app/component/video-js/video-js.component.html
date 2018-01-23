@@ -2,8 +2,8 @@
   <source src="./assets/video.mp4" type="video/mp4">
 </video> -->
 
-<video *ngIf="url"
-       id="video_{{idx}}"
+<video #video
+       *ngIf="url"
        [poster]="poster"
        class="video-js vjs-default-skin vjs-big-play-centered vjs-16-9"
        controls
