@@ -18,6 +18,9 @@ import { RDXUser } from './user'
 import { packageOriginReducer, PACKAGE_ORIGIN_INITIAL_STATE } from './packageOrigin/state'
 import { RDXPackageOrigin } from './packageOrigin'
 
+import { seoReducer, SEO_INITIAL_STATE} from './seo/state'
+import { RDXSeoState } from './seo'
+
 
 export interface RDXRootState {
   admin: RDXAdminState,
@@ -25,7 +28,8 @@ export interface RDXRootState {
   doc: RDXDocState,
   navigation: RDXNavigationState,
   packageOrigin: RDXPackageOrigin,
-  user: RDXUser
+  user: RDXUser,
+  seo: RDXSeoState
 }
 
 export const ROOT_INITIAL_STATE:RDXRootState = {
@@ -34,7 +38,8 @@ export const ROOT_INITIAL_STATE:RDXRootState = {
   doc: DOC_INITIAL_STATE,
   navigation: NAVIGATION_INITIAL_STATE,
   packageOrigin: PACKAGE_ORIGIN_INITIAL_STATE,
-  user: USER_INITIAL_STATE
+  user: USER_INITIAL_STATE,
+  seo: SEO_INITIAL_STATE
 }
 
 export const rootReducer = combineReducers({
@@ -43,5 +48,6 @@ export const rootReducer = combineReducers({
   doc: docReducer,
   navigation: navigationReducer,
   packageOrigin: packageOriginReducer,
-  user: userReducer
+  user: userReducer,
+  seo: seoReducer
 })

@@ -57,6 +57,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
       if(event instanceof NavigationStart){
         if (!event.url.includes('#')) {
           if (isPlatformBrowser(this.platformId)) {
+            this._renderer.setAttribute(this._document.querySelector('link[rel=canonical]'), 'href', 'http://www.spm-style.com')
+
             this._document.body.scrollTo
             ? this._document.body.scrollTo(0, 0)
             : this._document.documentElement.scrollTo(0, 0)

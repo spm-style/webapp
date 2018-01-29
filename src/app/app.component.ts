@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NgRedux, RDXRootState, FETCH_USER, LOGOUT_USER, CHANGE_TAB_TITLE } from './store'
+import { NgRedux, RDXRootState, FETCH_USER, LOGOUT_USER, CHANGE_TAB_TITLE, RDXSeoState } from './store'
 import { ApiUserService, IUserResponse } from './service/api-user.service'
 import { LocalstorageService, USER_ID, USER_TOKEN_CONNECTION } from './service/localstorage.service'
-import { Title } from '@angular/platform-browser'
+import { Title, Meta } from '@angular/platform-browser'
 
 @Component({
   selector: 'spm-root',
@@ -15,13 +15,16 @@ export class AppComponent implements OnInit {
     private _apiUser:ApiUserService,
     private _redux:NgRedux<RDXRootState>,
     private _localStorageService:LocalstorageService,
-    private _titleService:Title
+    private _titleService:Title,
+    private _metaService:Meta
   ){}
 
   ngOnInit(){
-    this._redux.select(['app', 'title'])
-    .subscribe((data:string) => {
-      this._titleService.setTitle(data)
+    this._redux.select(['seo'])
+    .subscribe((data:RDXSeoState) => {
+      this._titleService.setTitle(data.title)
+      this._metaService.updateTag({name: 'description', content: data.description })
+      this._metaService.updateTag({name: 'keywords', content: data.keywords })
     })
     //besoin d'un ondestroy pour un subscribe global ?
     if(this._localStorageService.isLogged()){

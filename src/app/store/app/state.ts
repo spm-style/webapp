@@ -14,7 +14,6 @@ import { RDXAppState } from './interfaces'
 export const APP_INITIAL_STATE:RDXAppState = {
   testApp: 'app-testing',
   isMainContainerScrollable: true,
-  title: 'home',
   backToCurrent: null
 }
 
