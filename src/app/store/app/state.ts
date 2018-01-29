@@ -4,7 +4,9 @@ import {
   START_MAIN_CONTAINER_SCROLL,
   startMainContainerScroll,
   CHANGE_TAB_TITLE,
-  changeTabTitle
+  changeTabTitle,
+  CHANGE_BACK_TO_CURRENT,
+  changeBackToCurrent
 } from './actions';
 
 import { RDXAppState } from './interfaces'
@@ -12,7 +14,8 @@ import { RDXAppState } from './interfaces'
 export const APP_INITIAL_STATE:RDXAppState = {
   testApp: 'app-testing',
   isMainContainerScrollable: true,
-  title: 'home'
+  title: 'home',
+  backToCurrent: null
 }
 
 export function appReducer(state:RDXAppState = APP_INITIAL_STATE, action):RDXAppState{
@@ -20,6 +23,7 @@ export function appReducer(state:RDXAppState = APP_INITIAL_STATE, action):RDXApp
     case STOP_MAIN_CONTAINER_SCROLL: return stopMainContainerScroll(state)
     case START_MAIN_CONTAINER_SCROLL: return startMainContainerScroll(state)
     case CHANGE_TAB_TITLE: return changeTabTitle(state, action.title)
+    case CHANGE_BACK_TO_CURRENT: return changeBackToCurrent(state, action.backToCurrent)
     default:
       return state;
   }

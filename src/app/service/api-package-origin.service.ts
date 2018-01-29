@@ -64,7 +64,6 @@ export class ApiPackageOriginService {
   }
 
   public incrementView(packageOriginName:string):Observable<any> {
-    console.log('service', packageOriginName)
     let headers = new Headers()
     headers.append('Authorization', `Bearer ${this._localStorageService.getLoginInfos().token}`)
     return this._http.post(`${URL_API}/package-origin/${packageOriginName}/views/increment`, { }, {headers, withCredentials: true })

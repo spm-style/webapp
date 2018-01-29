@@ -85,10 +85,12 @@ export class AppModule {
     private _ngRedux:NgRedux<any>,
     private _devTools:DevToolsExtension
   ){
-    !isPlatformBrowser(platformId) ? console.log(`Running on the server with appId=${appId}`) : console.log(`Running in the browser with appId=${appId}`);
-
-    let enhancers = isDevMode() ? [_devTools.enhancer()] : [];
-    _ngRedux.configureStore(rootReducer, ROOT_INITIAL_STATE, [], enhancers);
+    let enhancers = []
+    if (isPlatformBrowser(platformId)) {
+      console.log(`Running in the browser with appId=${appId}`)
+      enhancers = isDevMode() ? [_devTools.enhancer()] : []
+    } else { console.log(`Running on the server with appId=${appId}`) }
+    _ngRedux.configureStore(rootReducer, ROOT_INITIAL_STATE, [], enhancers)
   }
 
 }

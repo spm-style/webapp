@@ -1,7 +1,7 @@
 import {
   Component, OnInit, ChangeDetectionStrategy,
-  OnDestroy, ViewChild, AfterViewInit, ElementRef,
-  Renderer2, HostListener, Inject, PLATFORM_ID }                                from '@angular/core'
+  OnDestroy, ViewChild, ElementRef,
+  Renderer2, HostListener, Inject, PLATFORM_ID, AfterViewChecked }                                from '@angular/core'
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { Subscription }                                                         from 'rxjs/Subscription'
 import { Router, NavigationEnd, Event } from '@angular/router';
@@ -19,7 +19,7 @@ import { PinterestGrid }                                                        
   styleUrls: ['./packages-overview.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PackagesOverviewComponent implements OnInit, OnDestroy, AfterViewInit {
+export class PackagesOverviewComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   @ViewChild('contentList') contentList:ElementRef;
 
@@ -48,6 +48,8 @@ export class PackagesOverviewComponent implements OnInit, OnDestroy, AfterViewIn
   private _testBis4
   private _testBis5
 
+  private _isInitCard:boolean = false
+  private _isFetchedCard:boolean = false
 
   constructor(
     private _apiPackageOrigin:ApiPackageOriginService,
@@ -64,39 +66,42 @@ export class PackagesOverviewComponent implements OnInit, OnDestroy, AfterViewIn
     if(this._redux.getState().packageOrigin.list.length == 0){
       this._subscriptionApi = this._apiPackageOrigin.listPackageOrigin()
       .subscribe(
-        (data:any) => { this._redux.dispatch({type: FETCH_PACKAGE_ORIGIN, list:data.packages}) },
+        (data:any) => {
+          this._redux.dispatch({type: FETCH_PACKAGE_ORIGIN, list:data.packages})
+          this._isFetchedCard = true
+//
+        },
         (error:any) => { console.log(error) }
       )
     }
 
-    setTimeout(() => {
-      this._pinterestGrid = new PinterestGrid({
-        delay: 300,
-        gutter: 20,
-        container: this.contentList,
-        cards: this.contentList.nativeElement.children,
-        loaded: false,
-        shorterFirst: true
-      }, this._renderer)
+    // setTimeout(() => {
+      // this._pinterestGrid = new PinterestGrid({
+      //   delay: 300,
+      //   gutter: 20,
+      //   container: this.contentList,
+      //   cards: this.contentList.nativeElement.children,
+      //   loaded: false,
+      //   shorterFirst: true
+      // }, this._renderer)
 
-      if(this.contentList.nativeElement.children.length > 0){ this._pinterestGrid.init() }
-    }, 300)
+      // if(this.contentList.nativeElement.children.length > 0){ this._pinterestGrid.init() }
+    // }, 300)
 
     // this._testBis2 = merde2.subscribe((wheel) => {
       // console.log(wheel)
 
     // })
-    this._testBis2 = Observable.fromEvent(window, 'scroll')
-
-    this._testBis = this._testBis2.subscribe((scroll) => {
-      this._testBis3 = scroll.srcElement.documentElement.scrollTop
-    })
-
-    this._testBis4 = Observable.fromEvent(this._elem.nativeElement, 'wheel')
-    .subscribe((wheel) => {
-      this._lastPositionScroll = this._testBis3 || 0
-    })
-
+    if (isPlatformBrowser(this.platformId)) {
+      this._testBis2 = Observable.fromEvent(window, 'scroll')
+      this._testBis = this._testBis2.subscribe((scroll) => {
+        this._testBis3 = scroll.srcElement.documentElement.scrollTop
+      })
+      this._testBis4 = Observable.fromEvent(this._elem.nativeElement, 'wheel')
+      .subscribe((wheel) => {
+        this._lastPositionScroll = this._testBis3 || 0
+      })
+    }
 
     // this._packageOrigin.subscribe((packageOrigin:RDXPackageOrigin) => {
     //   if(!packageOrigin.current){
@@ -175,31 +180,25 @@ export class PackagesOverviewComponent implements OnInit, OnDestroy, AfterViewIn
         // console.log(event, event.urlAfterRedirects == '/packages')
       }
     })
-
-
-
-
-    // console.log(this._testDeMerde)
   }
 
   ngOnDestroy() {
     if(this._subscriptionApi){ this._subscriptionApi.unsubscribe() }
   }
 
-  ngAfterViewInit(){
-    // console.log('test ngAfterViewInit')
-    // setTimeout(() => {
-    //   this._pinterestGrid = new PinterestGrid({
-    //     delay: 300,
-    //     gutter: 20,
-    //     container: this.contentList,
-    //     cards: this.contentList.nativeElement.children,
-    //     loaded: false,
-    //     shorterFirst: true
-    //   }, this._renderer)
-    //
-    //   if(this.contentList.nativeElement.children.length > 0){ this._pinterestGrid.init() }
-    // }, 200)
+  ngAfterViewChecked(){
+    if (!this._isInitCard && this._isFetchedCard && isPlatformBrowser(this.platformId)) {
+      this._isInitCard = true
+      this._pinterestGrid = new PinterestGrid({
+        delay: 300,
+        gutter: 20,
+        container: this.contentList,
+        cards: this.contentList.nativeElement.children,
+        loaded: false,
+        shorterFirst: true
+      }, this._renderer)
+      if(this.contentList.nativeElement.children.length > 0){ this._pinterestGrid.init() }
+    }
   }
 
   public setCurrentPackage(){

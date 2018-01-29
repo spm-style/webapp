@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild, Renderer2, Input, Inject, OnDestroy, PLATFORM_ID } from '@angular/core'
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { Router, NavigationStart, NavigationEnd, Event } from '@angular/router'
-import { NgRedux, RDXRootState, RDXUser, CHANGE_MENU_NAVIGATION, BACK_MENU_NAVIGATION, CLOSE_MENU, OPEN_MENU, UPDATE_MENU_NAVIGATION, LOGOUT_USER, select, Observable, RDXNavigationState, dispatch } from '../../store';
+import { NgRedux, RDXRootState, RDXUser, CHANGE_MENU_NAVIGATION, BACK_MENU_NAVIGATION, CLOSE_MENU, OPEN_MENU, UPDATE_MENU_NAVIGATION, LOGOUT_USER, CHANGE_BACK_TO_CURRENT, select, Observable, RDXNavigationState, dispatch } from '../../store';
 import { DOCUMENT } from '@angular/platform-browser'
 import { Location } from '@angular/common'
 import { PopupService } from '../../modules/popup/popup.service'
@@ -23,6 +23,7 @@ interface IBackToPath {
 export class HeaderComponent implements OnInit, OnDestroy {
   @select(['navigation']) readonly navigation: Observable<RDXNavigationState>
   @select(['user']) readonly user:Observable<RDXUser>
+  @select(['app', 'backToCurrent']) public backToCurrent:Observable<string>
 
   @ViewChild('buttonBackTo') private _backto:ElementRef
 
@@ -36,7 +37,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private _subPopup:Subscription
   private _subLogout:Subscription
 
-  public backToCurrent:string
   public isLogged:boolean
 
   constructor(
@@ -59,15 +59,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
           if (isPlatformBrowser(this.platformId)) {
             this._document.body.scrollTo
             ? this._document.body.scrollTo(0, 0)
-            : this._document.documentElement.scrollTo(0, 0) }
+            : this._document.documentElement.scrollTo(0, 0)
+            this._redux.dispatch({ type: CLOSE_MENU })
+            this._renderer.removeClass(this._backto.nativeElement, 'back-to-active')
           }
-        this._redux.dispatch({ type: CLOSE_MENU })
-        this._renderer.removeClass(this._backto.nativeElement, 'back-to-active')
+        }
       } else if (event instanceof NavigationEnd) {
         for(let path of this._backToPath){
           if(event.urlAfterRedirects.startsWith(path.url)){
-            this.backToCurrent = path.dist
-            this._renderer.addClass(this._backto.nativeElement, 'back-to-active')
+            if (isPlatformBrowser(this.platformId)) {
+              this._redux.dispatch({ type: CHANGE_BACK_TO_CURRENT, backToCurrent: path.dist })
+              this._renderer.addClass(this._backto.nativeElement, 'back-to-active')
+            }
           }
         }
         let splitUrl = event.urlAfterRedirects.split('/')

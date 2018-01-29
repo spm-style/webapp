@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ElementRef, Renderer2, ViewChild, ChangeDetectionStrategy, HostListener } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router'
+import { environment } from '../../../../../environments/environment'
 
 import { dispatch, IPackageOrigin, FETCH_CURRENT_PACKAGE_ORIGIN } from '../../../../store';
 
@@ -11,6 +12,8 @@ import { dispatch, IPackageOrigin, FETCH_CURRENT_PACKAGE_ORIGIN } from '../../..
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CardComponent implements OnInit {
+
+  public CDN_URL:string = environment.cdnUrl
 
   @Input('data') readonly data:IPackageOrigin
 

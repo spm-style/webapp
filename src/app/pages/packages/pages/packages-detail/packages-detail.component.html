@@ -1,11 +1,8 @@
-<!-- <pre>{{ current | async | json }}</pre> -->
-
 <section class="section-overview">
   <div class="content">
     <div class="title-content">
       <button class="img stars" (click)="toggleFavorite()" [ngClass]="{'favorite': (user | async)?.favorites.includes((current | async)?._id) }"></button>
       <h1>{{ (current | async)?.name }}</h1>
-      <!-- <h1>{{ _currentPackage?.name }}</h1> -->
     </div>
     <form>
       <div class="control-select">
@@ -32,23 +29,13 @@
 <section class="section-responsive">
   <div class="content">
     <div class="button-responsive">
-      <button *ngFor="let breakpoint of (current | async)?.responsiveness" class="button-breakpoint" (click)="changeDevice(breakpoint)"><img src="assets/ico-{{breakpoint.name}}-3.png" alt=""></button>
-      <!-- <button *ngFor="let breakpoint of (current | async)?.responsiveness" class="button-breakpoint" (click)="changeDevice(breakpoint)"><img src="https://iconscout.com/ms-icon-310x310.png" alt=""></button> -->
-      
+      <button *ngFor="let breakpoint of (current | async)?.responsiveness" class="button-breakpoint" (click)="changeDevice(breakpoint)"><img src="assets/ico-{{breakpoint.name}}-3.png" alt=""></button>      
       <button type="button" name="button" (click)="changeOriantation()" class="button-oriantation"><img src="assets/ico-oriantation-3.png" alt=""></button>
       <input class="range-scale" type="range" #rangeScale min="0.01" max="1" step="0.01" (change)="changeScaleIframe(rangeScale.value)">
       <input class="text-scale" type="text" #textScale (change)="changeScaleIframe(textScale.value)">
     </div>
   </div>
 </section>
-
-<!-- <section class="section-action">
-  <div class="content">
-    <div class="button-responsive">
-      <button *ngFor="let breakpoint of (current | async)?.distTags.latest.responsiveness" class="button-breakpoint" (click)="changeDevice(breakpoint)"><img src="assets/ico-{{breakpoint.name}}-3.png" alt=""></button>
-    </div>
-  </div>
-</section> -->
 
 <section class="section-classes">
   <div class="content">
@@ -111,5 +98,3 @@
     </div>
   </div>
 </section>
-
-<!-- <pre>{{ current | async | json }}</pre> -->

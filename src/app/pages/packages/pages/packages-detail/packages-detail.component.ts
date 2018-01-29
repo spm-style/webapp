@@ -1,7 +1,9 @@
-import { Component, OnInit, OnDestroy, ElementRef, ViewChild, Renderer2, Inject } from '@angular/core'
+import { Component, OnInit, OnDestroy, ElementRef, ViewChild, Renderer2, Inject, PLATFORM_ID } from '@angular/core'
+import { isPlatformBrowser } from '@angular/common'
 import { ActivatedRoute } from '@angular/router'
 import { DOCUMENT } from '@angular/platform-browser'
 import { FormBuilder, FormGroup } from '@angular/forms'
+import { environment } from '../../../../../environments/environment'
 import { 
   NgRedux,
   RDXRootState,
@@ -67,7 +69,8 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
   public formVersion:FormGroup
 
   constructor(
-    @Inject(DOCUMENT) private _document: any,
+    @Inject(DOCUMENT) private _document:any,
+    @Inject(PLATFORM_ID) private _platformId:any,
     private _route: ActivatedRoute,
     private _redux:NgRedux<RDXRootState>,
     private _apiPackageOrigin:ApiPackageOriginService,
@@ -78,12 +81,11 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
   ){}
 
   ngOnInit() {
-    this._originDomaine = this._document.domain
-    this._document.domain ='spm-style.com'
-
+    if (isPlatformBrowser(this._platformId)) {
+      this._originDomaine = this._document.domain
+      this._document.domain ='spm-style.com'
+    }
     let current:IPackageCurrent = this._redux.getState().packageOrigin.current
-
-
     if(!current){
       this._subUrlParams = this._route.params
       .subscribe(params => {
@@ -129,7 +131,8 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this._document.domain = this._originDomaine
+    if (isPlatformBrowser(this._platformId)) { this._document.domain = this._originDomaine }
+    // this._document.domain = this._originDomaine
     if (this._subApiGetPackage) { this._subApiGetPackage.unsubscribe() }
     if (this._subUrlParams) { this._subUrlParams.unsubscribe() }
     if (this._subUser) { this._subUser.unsubscribe() }
@@ -138,7 +141,7 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
   }
 
     private _initDetailModule(cdn:string, responsiveness:IResponsiveness[], classes:IClasses[]):void {
-    this._iframe.nativeElement.src = `https://cdn.spm-style.com/overview/dom/${cdn}`
+    this._iframe.nativeElement.src = `${environment.cdnUrl}/overview/dom/${cdn}`
     this._overviewUniqueWidth = this._overviewUnique.nativeElement.clientWidth - 20
     this._currentOriantation = 'portrait'
     this.changeDevice(responsiveness[0])
@@ -167,8 +170,8 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
 
   private _updateViewsCount(packageOriginName:string):void{
     this._apiPackageOrigin.incrementView(packageOriginName).subscribe(
-      (res:any) => { console.log(res) },
-      (err:any) => { console.log(err) }
+      (res:any) => {  },
+      (err:any) => {  }
     )
   }
 

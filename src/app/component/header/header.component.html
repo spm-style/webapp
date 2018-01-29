@@ -48,7 +48,7 @@
   </div>
   <div class="header-search">
     <div #buttonBackTo class="content">
-      <a [routerLink]="backToCurrent" class="back-to">
+      <a [routerLink]="(backToCurrent | async)" class="back-to">
         <img src="assets/back.png" alt="">
       </a>
       <input type="text" placeholder="Find packages">

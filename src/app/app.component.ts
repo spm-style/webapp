@@ -19,7 +19,6 @@ export class AppComponent implements OnInit {
   ){}
 
   ngOnInit(){
-
     this._redux.select(['app', 'title'])
     .subscribe((data:string) => {
       this._titleService.setTitle(data)

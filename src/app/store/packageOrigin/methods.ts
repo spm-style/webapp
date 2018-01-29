@@ -4,6 +4,7 @@ import { IPackageCurrent, IPackageOrigin } from './interfaces'
 export let createPackageCurrent = function(packageOrigin:IPackageOrigin):IPackageCurrent {
 	return {
     _id: packageOrigin._id,
+    name: packageOrigin.name,
     contributors: packageOrigin.contributors,
     downloadTotal: packageOrigin.downloadTotal,
     license: packageOrigin.license,
@@ -22,7 +23,6 @@ export let createPackageCurrent = function(packageOrigin:IPackageOrigin):IPackag
     entry: packageOrigin.distTags.latest.entry,
     keywords: packageOrigin.distTags.latest.keywords,
     main: packageOrigin.distTags.latest.main,
-    name: packageOrigin.distTags.latest.name,
     readme: packageOrigin.distTags.latest.readme,
     responsiveness: packageOrigin.distTags.latest.responsiveness,
     style: packageOrigin.distTags.latest.style,
