@@ -44,13 +44,13 @@ export class ContactComponent implements OnInit {
   private showErrorRequest(status:string):void {
     if(status == 'success'){
       this.classResponseRequest = 'success-request';
-      this.responseRequest = 'success to send email';
+      this.responseRequest = 'email has been sent successfully';
     }else if(status == 'error'){
       this.classResponseRequest = 'error-request';
-      this.responseRequest = 'error to send email';
+      this.responseRequest = 'error while sending email';
     }else{
       this.classResponseRequest = 'error-request';
-      this.responseRequest = 'error to send email';
+      this.responseRequest = 'error while sending email';
     }
     setTimeout(() => {
       this.responseRequest = '';
