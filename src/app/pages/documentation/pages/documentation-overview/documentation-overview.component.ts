@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { NgRedux, RDXRootState, CHANGE_CURRENT_DOC, CHANGE_TAB_TITLE } from '../../../../store';
+import { Component, OnInit } from '@angular/core'
+import { NgRedux, RDXRootState, CHANGE_CURRENT_DOC, CHANGE_TAB_TITLE } from '../../../../store'
 
 @Component({
   templateUrl: './documentation-overview.component.html',

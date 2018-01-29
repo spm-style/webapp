@@ -1,5 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NgRedux, RDXRootState, CHANGE_CURRENT_DOC, CHANGE_TAB_TITLE } from '../../../../store';
+import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core'
+import { NgRedux, RDXRootState, CHANGE_CURRENT_DOC, CHANGE_TAB_TITLE } from '../../../../store'
+import { isPlatformBrowser } from '@angular/common'
 
 @Component({
   selector: 'spm-documentation-generate',
@@ -8,7 +9,9 @@ import { NgRedux, RDXRootState, CHANGE_CURRENT_DOC, CHANGE_TAB_TITLE } from '../
 })
 export class DocumentationGenerateComponent implements OnInit, OnDestroy {
 
-  constructor(private _redux:NgRedux<RDXRootState>){}
+  constructor(private _redux:NgRedux<RDXRootState>,
+    @Inject(PLATFORM_ID) private platformId: any
+  ){}
 
   ngOnInit() {
     this._redux.dispatch({type: CHANGE_TAB_TITLE, title: 'generate' })
@@ -20,11 +23,11 @@ export class DocumentationGenerateComponent implements OnInit, OnDestroy {
       nextDocUrl: 'use',
       previousDocUrl: 'install'
     })
-    window.location.hash = 'title'
+    if (isPlatformBrowser(this.platformId)) { window.location.hash = 'title' }
   }
 
   ngOnDestroy(){
-    window.location.hash = ''
+    if (isPlatformBrowser(this.platformId)) { window.location.hash = ''}
   }
 
 }
