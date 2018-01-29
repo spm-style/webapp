@@ -18,7 +18,6 @@ export class LocalstorageService implements OnInit {
   }
 
   ngOnInit(){
-    console.log('onInit', this._localStorage)
   }
 
   public logout(){

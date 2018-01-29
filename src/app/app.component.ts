@@ -20,12 +20,16 @@ export class AppComponent implements OnInit {
   ){}
 
   ngOnInit(){
-    this._redux.select(['seo'])
-    .subscribe((data:RDXSeoState) => {
-      this._titleService.setTitle(data.title)
-      this._metaService.updateTag({name: 'description', content: data.description })
-      this._metaService.updateTag({name: 'keywords', content: data.keywords })
+    this._redux.select(['app', 'title'])
+    .subscribe((data:string) => {
+      this._titleService.setTitle(data)
     })
+    // this._redux.select(['seo'])
+    // .subscribe((data:RDXSeoState) => {
+    //   this._titleService.setTitle(data.title)
+    //   this._metaService.updateTag({name: 'description', content: data.description })
+    //   this._metaService.updateTag({name: 'keywords', content: data.keywords })
+    // })
     //besoin d'un ondestroy pour un subscribe global ?
     if(this._localStorageService.isLogged()){
       this._apiUser.getUserById()
