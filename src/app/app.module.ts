@@ -15,7 +15,7 @@ import { AppComponent }                                                         
                                                                                 // Pages
 import { HomeComponent }                                                        from './pages/home/home.component'
 import { NotFoundComponent }                                                    from './pages/not-found/not-found.component'
-import { ReportingAbuseComponent }                                              from './pages/reporting-abuse/reporting-abuse.component';
+import { ReportingAbuseComponent }                                              from './pages/reporting-abuse/reporting-abuse.component'
 import { PricingComponent }                                                     from './pages/pricing/pricing.component'
 import { AboutComponent }                                                       from './pages/about/about.component'
 import { ContactComponent }                                                     from './pages/contact/contact.component'
@@ -45,11 +45,11 @@ import { CustomReuseStrategy }                                                  
     NotFoundComponent,
     HeaderComponent,
     FooterComponent,
+    VideoJsComponent,
     PricingComponent,
     AboutComponent,
     ContactComponent,
     ReportingAbuseComponent,
-    VideoJsComponent,
     UserComponent,
     ScrollDirective
   ],
@@ -70,8 +70,7 @@ import { CustomReuseStrategy }                                                  
     ApiUserService,
     ApiPackageService,
     LocalstorageService,
-    Title,
-
+    Title
   ],
   bootstrap: [AppComponent]
 })

@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/debounceTime';
-import { NgRedux, RDXRootState, RDXUser, select, Observable, dispatch, CHANGE_CURRENT_PACKAGE, CHANGE_TAB_TITLE } from '../../../../store'
+import { NgRedux, RDXRootState, RDXUser, select, Observable, dispatch, CHANGE_CURRENT_PACKAGE, FETCH_SEO_DATA } from '../../../../store'
 
 interface ICLassUserPackage {
 	name:string,
@@ -40,7 +40,14 @@ export class PackagesComponent implements OnInit {
 
   ngOnInit() {
 
-    this._redux.dispatch({ type: CHANGE_TAB_TITLE, title: 'my packages' })
+    this._redux.dispatch({ type: FETCH_SEO_DATA, pageName: 'profilePackages',
+      opts: {
+        title: `my packages - spm, build up your design`,
+        keywords: 'packages, user, list, design, style, spm',
+        description: 'my packages for spm, style package manager and registry',
+        canonical: `{environment.wwwUrl}/profile/public`
+      }
+    })
 
     this._activatedRoute.queryParams.subscribe((data:any) => {
       this.page = data.page || 1

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core'
-import { NgRedux, RDXRootState, CHANGE_CURRENT_DOC, CHANGE_TAB_TITLE } from '../../../../store'
+import { NgRedux, RDXRootState, CHANGE_CURRENT_DOC, FETCH_SEO_DATA } from '../../../../store'
 import { isPlatformBrowser } from '@angular/common'
 
 @Component({
@@ -13,7 +13,7 @@ export class DocumentationGettingStartComponent implements OnInit, OnDestroy {
     @Inject(PLATFORM_ID) private platformId: any
   ) { }
   ngOnInit() {
-    this._redux.dispatch({type: CHANGE_TAB_TITLE, title: 'getting started' })
+    this._redux.dispatch({type: FETCH_SEO_DATA, pageName: 'docGettingStarted' })
     this._redux.dispatch({
       type: CHANGE_CURRENT_DOC,
       currentDoc: 'Getting started',

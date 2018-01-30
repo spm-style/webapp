@@ -10,7 +10,7 @@ import { DOCUMENT } from '@angular/platform-browser';
 import { ApiPackageOriginService }                                              from './../../../../service/api-package-origin.service'
                                                                                 // Redux
 import {
-  NgRedux, RDXRootState, FETCH_PACKAGE_ORIGIN, select, Observable, IPackageOrigin, RDXPackageOrigin, CHANGE_TAB_TITLE } from '../../../../store'
+  NgRedux, RDXRootState, FETCH_PACKAGE_ORIGIN, select, Observable, IPackageOrigin, RDXPackageOrigin, FETCH_SEO_DATA } from '../../../../store'
                                                                                 // Api spm
 import { PinterestGrid }                                                        from '../../class/pinterest-grid'
 
@@ -62,7 +62,7 @@ export class PackagesOverviewComponent implements OnInit, OnDestroy, AfterViewCh
   ) { }
 
   ngOnInit(){
-    this._redux.dispatch({type: CHANGE_TAB_TITLE, title: 'packages' })
+    this._redux.dispatch({ type: FETCH_SEO_DATA, pageName: 'packagesOverview' })
     if(this._redux.getState().packageOrigin.list.length == 0){
       this._subscriptionApi = this._apiPackageOrigin.listPackageOrigin()
       .subscribe(

@@ -3,8 +3,6 @@ import {
   stopMainContainerScroll,
   START_MAIN_CONTAINER_SCROLL,
   startMainContainerScroll,
-  CHANGE_TAB_TITLE,
-  changeTabTitle,
   CHANGE_BACK_TO_CURRENT,
   changeBackToCurrent
 } from './actions';
@@ -21,7 +19,6 @@ export function appReducer(state:RDXAppState = APP_INITIAL_STATE, action):RDXApp
   switch(action.type){
     case STOP_MAIN_CONTAINER_SCROLL: return stopMainContainerScroll(state)
     case START_MAIN_CONTAINER_SCROLL: return startMainContainerScroll(state)
-    case CHANGE_TAB_TITLE: return changeTabTitle(state, action.title)
     case CHANGE_BACK_TO_CURRENT: return changeBackToCurrent(state, action.backToCurrent)
     default:
       return state;

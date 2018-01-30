@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiContactService } from '../../service/api-contact.service';
-import { NgRedux, CHANGE_TAB_TITLE, RDXRootState } from '../../store'
+import { NgRedux, FETCH_SEO_DATA, RDXRootState } from '../../store'
 
 @Component({
   templateUrl: './contact.component.html',
@@ -20,7 +20,7 @@ export class ContactComponent implements OnInit {
   ){}
 
   ngOnInit() {
-    this._redux.dispatch({type: CHANGE_TAB_TITLE, title: 'contact' })
+    this._redux.dispatch({ type: FETCH_SEO_DATA, pageName: 'contact' })
     this.formContact = this._formBuilder.group({
       email: ['', [Validators.email, Validators.required]],
       question: ['project', [Validators.required]],

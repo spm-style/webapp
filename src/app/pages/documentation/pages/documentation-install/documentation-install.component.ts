@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core'
-import { NgRedux, RDXRootState, CHANGE_CURRENT_DOC, CHANGE_TAB_TITLE } from '../../../../store'
+import { NgRedux, RDXRootState, CHANGE_CURRENT_DOC, FETCH_SEO_DATA } from '../../../../store'
 import { isPlatformBrowser } from '@angular/common'
 
 @Component({
@@ -14,7 +14,7 @@ export class DocumentationInstallComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this._redux.dispatch({type: CHANGE_TAB_TITLE, title: 'install' })
+    this._redux.dispatch({ type: FETCH_SEO_DATA, pageName: 'docInstall' })
     this._redux.dispatch({
       type: CHANGE_CURRENT_DOC,
       currentDoc: 'Install fancy packages',

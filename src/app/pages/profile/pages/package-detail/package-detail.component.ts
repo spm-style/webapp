@@ -9,7 +9,7 @@ import {
   select,
   Observable,
   CHANGE_CURRENT_PACKAGE,
-  CHANGE_TAB_TITLE,
+  FETCH_SEO_DATA,
   ADD_CURRENT_PACKAGE_CONTRIBUTOR,
   REMOVE_CURRENT_PACKAGE_CONTRIBUTOR,
   REMOVE_CURRENT_PACKAGE_VERSION,
@@ -58,12 +58,20 @@ export class PackageDetailComponent implements OnInit {
           for(let item of user.packages) {
             if (item.name === data.name) {
               this._redux.dispatch({ type: CHANGE_CURRENT_PACKAGE, package: item })
+              
             }
           }
         })
       }
+      this._redux.dispatch({ type: FETCH_SEO_DATA, pageName: 'profilePublic',
+        opts: {
+          title: `${this.name} package admin - spm, build up your design`,
+          keywords: `${this.name}, admin, user, public, design, style, spm`,
+          description: `${this.name} package admin for spm, style package manager and registry`,
+          canonical: `{environment.wwwUrl}/profile/public`
+        }
+      })
     })
-    this._redux.dispatch({type: CHANGE_TAB_TITLE, title: this.name + ' - admin' })
   }
 
   ngOnDestroy() {

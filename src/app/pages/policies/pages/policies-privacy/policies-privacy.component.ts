@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { NgRedux, RDXRootState, CHANGE_TAB_TITLE } from '../../../../store'
+import { NgRedux, RDXRootState, FETCH_SEO_DATA } from '../../../../store'
 
 @Component({
   templateUrl: './policies-privacy.component.html',
@@ -10,7 +10,7 @@ export class PoliciesPrivacyComponent implements OnInit {
   constructor(private _redux:NgRedux<RDXRootState>) { }
 
   ngOnInit() {
-  	this._redux.dispatch({ type: CHANGE_TAB_TITLE, title: 'privacy' })
+  	this._redux.dispatch({ type: FETCH_SEO_DATA, pageName: 'policiesPrivacy' })
   }
 
 }

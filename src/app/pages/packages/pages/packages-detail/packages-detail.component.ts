@@ -22,7 +22,7 @@ import {
   CHANGE_VERSION_CURRENT_PACKAGE,
   IClasses,
   RDXUser,
-  CHANGE_TAB_TITLE
+  FETCH_SEO_DATA
 } from '../../../../store'
 import { Subscription } from 'rxjs/Subscription';
 import { ApiPackageOriginService } from '../../../../service/api-package-origin.service'
@@ -95,7 +95,14 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
             this._id = response._id
             this._redux.dispatch({ type: FETCH_CURRENT_PACKAGE_ORIGIN, packageOrigin: response })
             this._initDetailModule(response.distTags.latest.cdn, response.distTags.latest.responsiveness, response.distTags.latest.classes)
-            this._redux.dispatch({type: CHANGE_TAB_TITLE, title: response.name })
+            this._redux.dispatch({type: FETCH_SEO_DATA, pageName: 'packageDetail',
+              opts: {
+                title: `${response.name} - spm, build up your design`,
+                keywords: `${response.distTags.latest.category}, ${response.distTags.latest.keywords.join(', ')}, package, detail, ${response.distTags.latest.responsiveness.join(', ')}, responsive, sandbox, test, design, prototype, spm`,
+                description: `${response.distTags.latest.category} ${response.name} detail for spm, style package manager and registry`,
+                canonical: `${environment.wwwUrl}/packages/${response.name}`
+              }
+            })
             this._updateViewsCount(response.name)
           },
           (error:any) => { console.log('error') }
@@ -104,7 +111,14 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
     }else{
       this._id = current._id
       this._initDetailModule(current.cdn, current.responsiveness, current.classes)
-      this._redux.dispatch({type: CHANGE_TAB_TITLE, title: current.name })
+      this._redux.dispatch({type: FETCH_SEO_DATA, pageName: 'packageDetail',
+        opts: {
+          title: `${current.name} - spm, build up your design`,
+          keywords: `${current.category}, ${current.keywords.join(', ')}, package, detail, ${current.responsiveness.join(', ')}, responsive, sandbox, test, design, prototype, spm`,
+          description: `${current.category} ${current.name} detail for spm, style package manager and registry`,
+          canonical: `${environment.wwwUrl}/packages/${current.name}`
+        }
+      })
       this._updateViewsCount(current.name)
     }
 
@@ -114,6 +128,12 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
       let res:IPackageCurrent = this._versionDownload.filter((packageCurrent:IPackageCurrent) => packageCurrent.version == newVersion)[0]
       if(res){ 
         this._redux.dispatch({ type: CHANGE_VERSION_CURRENT_PACKAGE, packageNewVersion: res })
+        this._redux.dispatch({ type: FETCH_SEO_DATA, pageName: 'packageDetail',
+          opts: {
+            keywords: `${res.category}, ${res.keywords.join(', ')}, package, detail, ${res.responsiveness.join(', ')}, responsive, sandbox, test, design, prototype, spm`,
+            description: `${res.category} ${res.name} detail for spm, style package manager and registry`
+          }
+        })
         this._initDetailModule(res.cdn, res.responsiveness, res.classes)
       }else{
         this._versionDownload.push(this._redux.getState().packageOrigin.current)
@@ -122,6 +142,12 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
             this._apiPackage.changeVersionInCurrentPackage(version.package)
             .subscribe((response:any) => {
               this._redux.dispatch({ type: CHANGE_VERSION_CURRENT_PACKAGE, packageNewVersion: response })
+              this._redux.dispatch({ type: FETCH_SEO_DATA, pageName: 'packageDetail',
+                opts: {
+                  keywords: `${response.category}, ${response.keywords.join(', ')}, package, detail, ${response.responsiveness.join(', ')}, responsive, sandbox, test, design, prototype, spm`,
+                  description: `${response.category} ${response.name} detail for spm, style package manager and registry`
+                }
+              }) //à remplacer avec la correction des types
               this._initDetailModule(response.cdn, response.responsiveness, response.classes)
             })
           } 

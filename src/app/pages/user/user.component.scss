@@ -4,6 +4,22 @@
 	width: 100%;
 }
 
+.section-title {
+	width: 100%;
+  background-color: $color-tertiary;
+
+	.content {
+		max-width: 992px;
+    margin: 0 auto;
+
+    h1{
+      font-size: 2.2rem;
+      color: #fff;
+      padding: 30px 20px;
+    }
+	}
+}
+
 .section-preview {
 	width: 100%;
 

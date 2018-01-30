@@ -1,8 +1,8 @@
-import { enableProdMode }                                                       from '@angular/core';
-import * as express                                                             from 'express';
-import { join }                                                                 from 'path';
-import { ngExpressEngine }                                                      from '@nguniversal/express-engine';
-import { provideModuleMap }                                                     from '@nguniversal/module-map-ngfactory-loader';
+import { enableProdMode }                                                       from '@angular/core'
+import * as express                                                             from 'express'
+import { join, resolve }                                                                 from 'path'
+import { ngExpressEngine }                                                      from '@nguniversal/express-engine'
+import { provideModuleMap }                                                     from '@nguniversal/module-map-ngfactory-loader'
 import 'zone.js/dist/zone-node';
 import 'reflect-metadata';
 
@@ -20,6 +20,16 @@ Express.engine('html', ngExpressEngine({ bootstrap: AppServerModuleNgFactory, pr
 
 Express.set('view engine', 'html');
 Express.set('views', join(DIST_FOLDER, 'browser'));
+
+// sitemap.xml
+Express.get('/sitemap.xml', function (req, res) {
+    res.sendFile(resolve(join(DIST_FOLDER, 'browser', 'sitemap.xml')))
+})
+
+// robots.txt
+Express.get('/robots.txt', function (req, res) {
+    res.sendFile(resolve(join(DIST_FOLDER, 'browser', 'robots.txt')))
+})
 
 // Server static files from /browser
 Express.get('*.*', express.static(join(DIST_FOLDER, 'browser')));
@@ -53,7 +63,7 @@ Express.get('*.*', express.static(join(DIST_FOLDER, 'browser')));
 
 Express.get('*', (req, res) => {
   // res.cookie("mycookie", "1234567890", { secure:false, maxAge:120000, httpOnly: true });
-  res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req });
+  res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req })
 });
 
 Express.listen(PORT, () => { console.log(`Node server listening on http://localhost:${PORT}`) });

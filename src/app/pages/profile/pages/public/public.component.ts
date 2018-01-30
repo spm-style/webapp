@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgRedux, RDXRootState, RDXUser, CHANGE_TAB_TITLE, FETCH_USER } from '../../../../store'
+import { NgRedux, RDXRootState, RDXUser, FETCH_SEO_DATA, FETCH_USER } from '../../../../store'
 import { ApiUserService, IUser } from '../../../../service/api-user.service'
 import { Subscription } from 'rxjs/Subscription'
+import { environment } from '../../../../../environments/environment'
 
 @Component({
   selector: 'spm-public',
@@ -27,10 +28,18 @@ export class PublicComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this._redux.dispatch({ type: CHANGE_TAB_TITLE, title: 'public profile' })
 
     this._user = this._redux.getState().user
     this.username = this._user.login
+
+    this._redux.dispatch({ type: FETCH_SEO_DATA, pageName: 'profilePublic',
+      opts: {
+        title: `${this._user.login} profile - spm, build up your design`,
+        keywords: `${this._user.login}, profile, user, public, design, style, spm`,
+        description: `${this._user.login} public profile for spm, style package manager and registry`,
+        canonical: `{environment.wwwUrl}/profile/public`
+      }
+    })
 
   	this.formPublicProfile = this._formBuilder.group({
       publicName: [this._user.publicName || '', []],

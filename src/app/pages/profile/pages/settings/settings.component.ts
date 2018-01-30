@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, ValidatorFn } from '@angular/forms';
-import { NgRedux, RDXRootState, CHANGE_TAB_TITLE, FETCH_USER, Subscription } from '../../../../store'
+import { NgRedux, RDXRootState, FETCH_SEO_DATA, FETCH_USER, Subscription } from '../../../../store'
 import { ApiUserService, IUserResponse } from '../../../../service/api-user.service'
 import { LocalstorageService } from '../../../../service/localstorage.service'
 
@@ -16,6 +16,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
   public classResponseRequest:string
   private _subUser:Subscription
   private _isSubmit:boolean = false
+  public login:string
 
   constructor(
     private _formBuilder:FormBuilder,
@@ -25,7 +26,16 @@ export class SettingsComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this._redux.dispatch({ type: CHANGE_TAB_TITLE, title: 'settings' })
+    this.login = this._redux.getState().user.login
+
+    this._redux.dispatch({ type: FETCH_SEO_DATA, pageName: 'profileSettings',
+      opts: {
+        title: `${this.login} settings - spm, build up your design`,
+        keywords: `${this.login}, settings, password, profile, user, design, style, spm`,
+        description: `${this.login} settings for spm, style package manager and registry`,
+        canonical: `{environment.wwwUrl}/profile/settings`
+      }
+    })
 
   	this.formSettings = this._formBuilder.group({
       oldPassword: ['', [Validators.required]],
@@ -48,9 +58,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   public onSubmitContact() {
     this._isSubmit = true;
-    let login = this._redux.getState().user.login
     this._subUser = this._apiUser.updateUserCredentials({
-      login,
+      login: this.login,
       password: this.formSettings.value.oldPassword,
       newPassword: this.formSettings.value.newPassword})
     .subscribe((data:IUserResponse) => {

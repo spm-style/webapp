@@ -10,6 +10,7 @@ const PACKAGES_ROUTES:Routes = [
   { path: '', component: PackagesComponent, children: [
     { path: '', component: PackagesOverviewComponent, pathMatch: 'full', data: {key: "list"} },
     { path: ':name', component: PackagesDetailComponent}
+    //specific not found with other packages suggestions
   ]}
 ]
 
