@@ -114,7 +114,6 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
     }else{
       this._id = current._id
       this._initDetailModule(current.cdn, current.responsiveness, current.classes)
-      console.log(current.responsiveness)
       this._redux.dispatch({type: FETCH_SEO_DATA, pageName: 'packageDetail',
         opts: {
           title: `${current.name} - spm, build up your design`,
