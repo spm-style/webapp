@@ -17,6 +17,7 @@ import {
   IAdminPackage
 } from '../../../../store'
 import { ActivatedRoute } from '@angular/router'
+import { environment } from '../../../../../environments/environment'
 
 @Component({
   selector: 'spm-package-detail',
@@ -68,7 +69,10 @@ export class PackageDetailComponent implements OnInit {
           title: `${this.name} package admin - spm, build up your design`,
           keywords: `${this.name}, admin, user, public, design, style, spm`,
           description: `${this.name} package admin for spm, style package manager and registry`,
-          canonical: `{environment.wwwUrl}/profile/public`
+          canonical: `{environment.wwwUrl}/profile/public`,
+          shortTitle: `package detail - spm`,
+          image: `${environment.wwwUrl}/assets/profile.svg`,
+          twitterCard: 'summary'
         }
       })
     })

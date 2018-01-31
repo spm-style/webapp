@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormControl, ValidatorFn } from '@a
 import { NgRedux, RDXRootState, FETCH_SEO_DATA, FETCH_USER, Subscription } from '../../../../store'
 import { ApiUserService, IUserResponse } from '../../../../service/api-user.service'
 import { LocalstorageService } from '../../../../service/localstorage.service'
+import { environment } from '../../../../../environments/environment'
 
 @Component({
   selector: 'spm-settings',
@@ -33,7 +34,10 @@ export class SettingsComponent implements OnInit, OnDestroy {
         title: `${this.login} settings - spm, build up your design`,
         keywords: `${this.login}, settings, password, profile, user, design, style, spm`,
         description: `${this.login} settings for spm, style package manager and registry`,
-        canonical: `{environment.wwwUrl}/profile/settings`
+        canonical: `{environment.wwwUrl}/profile/settings`,
+        shortTitle: `${this.login} - spm`,
+        image: `${environment.wwwUrl}/assets/profile.svg`,
+        twitterCard: 'summary'
       }
     })
 

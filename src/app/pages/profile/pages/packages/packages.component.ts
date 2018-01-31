@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/debounceTime';
 import { NgRedux, RDXRootState, RDXUser, select, Observable, dispatch, CHANGE_CURRENT_PACKAGE, FETCH_SEO_DATA } from '../../../../store'
+import { environment } from '../../../../../environments/environment'
 
 interface ICLassUserPackage {
 	name:string,
@@ -45,7 +46,10 @@ export class PackagesComponent implements OnInit {
         title: `my packages - spm, build up your design`,
         keywords: 'packages, user, list, design, style, spm',
         description: 'my packages for spm, style package manager and registry',
-        canonical: `{environment.wwwUrl}/profile/public`
+        canonical: `{environment.wwwUrl}/profile/public`,
+        shortTitle: `my packages - spm`,
+        image: `${environment.wwwUrl}/assets/profile.svg`,
+        twitterCard: 'summary'
       }
     })
 
