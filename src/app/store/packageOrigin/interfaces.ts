@@ -60,6 +60,7 @@ export interface IPackageCurrent {
   stars: number,
   versions: any,
   views: number,
+  preview:string,
   // in package
   category: string,
   cdn: string,

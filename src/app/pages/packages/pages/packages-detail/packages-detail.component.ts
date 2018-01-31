@@ -98,9 +98,12 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
             this._redux.dispatch({type: FETCH_SEO_DATA, pageName: 'packageDetail',
               opts: {
                 title: `${response.name} - spm, build up your design`,
-                keywords: `${response.distTags.latest.category}, ${response.distTags.latest.keywords.join(', ')}, package, detail, ${response.distTags.latest.responsiveness.join(', ')}, responsive, sandbox, test, design, prototype, spm`,
+                keywords: `${response.distTags.latest.category}, ${response.distTags.latest.keywords.join(', ')}, package, detail, ${response.distTags.latest.responsiveness.map(a => a.name).join(', ')}, responsive, sandbox, test, design, prototype, spm`,
                 description: `${response.distTags.latest.category} ${response.name} detail for spm, style package manager and registry`,
-                canonical: `${environment.wwwUrl}/packages/${response.name}`
+                canonical: `${environment.wwwUrl}/packages/${response.name}`,
+                shortTitle: `${response.name} - spm`,
+                image: `${environment.cdnUrl}/overview/preview/${response.preview}`,
+                twitterCard: 'summary_large_card'
               }
             })
             this._updateViewsCount(response.name)
@@ -111,12 +114,16 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
     }else{
       this._id = current._id
       this._initDetailModule(current.cdn, current.responsiveness, current.classes)
+      console.log(current.responsiveness)
       this._redux.dispatch({type: FETCH_SEO_DATA, pageName: 'packageDetail',
         opts: {
           title: `${current.name} - spm, build up your design`,
-          keywords: `${current.category}, ${current.keywords.join(', ')}, package, detail, ${current.responsiveness.join(', ')}, responsive, sandbox, test, design, prototype, spm`,
+          keywords: `${current.category}, ${current.keywords.join(', ')}, package, detail, ${current.responsiveness.map(a => a.name).join(', ')}, responsive, sandbox, test, design, prototype, spm`,
           description: `${current.category} ${current.name} detail for spm, style package manager and registry`,
-          canonical: `${environment.wwwUrl}/packages/${current.name}`
+          canonical: `${environment.wwwUrl}/packages/${current.name}`,
+          shortTitle: `${current.name} - spm`,
+          image: `${environment.cdnUrl}/overview/preview/${current.preview}`,
+          twitterCard: 'summary_large_card'
         }
       })
       this._updateViewsCount(current.name)

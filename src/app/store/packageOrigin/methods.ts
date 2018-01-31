@@ -13,6 +13,7 @@ export let createPackageCurrent = function(packageOrigin:IPackageOrigin):IPackag
     stars: packageOrigin.stars,
     versions: packageOrigin.versions,
     views: packageOrigin.views,
+    preview: packageOrigin.preview,
     category: packageOrigin.distTags.latest.category,
     cdn: packageOrigin.distTags.latest.cdn,
     classes: packageOrigin.distTags.latest.classes,

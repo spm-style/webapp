@@ -9,6 +9,9 @@ export let fetchSeoData = (state:RDXSeoState, pageName:string, opts:ISeo):RDXSeo
     title: opts.title || config[pageName].title || state.title,
     keywords: opts.keywords || config[pageName].keywords || state.keywords,
     description: opts.description || config[pageName].description || state.description,
-    canonical: opts.canonical || config[pageName].canonical || state.canonical
+    canonical: opts.canonical || config[pageName].canonical || state.canonical,
+    shortTitle: opts.shortTitle || config[pageName].shortTitle || state.shortTitle,
+	  image: opts.image || config[pageName].image || state.image,
+	  twitterCard: opts.twitterCard || config[pageName].twitterCard || state.twitterCard
   }
 }
