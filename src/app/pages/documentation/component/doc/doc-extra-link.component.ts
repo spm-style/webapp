@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'doc-extra-link',
   template: `
-    <a href="link">
+    <a href="{{link}}" target="_blank">
       <ng-content></ng-content>
     </a>
   `,

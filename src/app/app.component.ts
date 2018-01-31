@@ -32,6 +32,7 @@ export class AppComponent implements OnInit {
         this._titleService.setTitle(data.title)
         this._metaService.updateTag({name: 'description', content: data.description })
         this._metaService.updateTag({name: 'keywords', content: data.keywords })
+        // this._metaService.updateTag({name: 'og:title', content: })
         this._renderer.setAttribute(this._canonical, 'href', data.canonical)
       })
     if(this._localStorageService.isLogged()){

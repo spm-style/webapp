@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'doc-intra-link',
   template: `
-    <a [routerLink]="link">
+    <a [routerLink]="'/documentation/'+link">
       <ng-content></ng-content>
     </a>
   `,
