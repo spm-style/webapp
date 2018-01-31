@@ -8,8 +8,10 @@ import { PublicComponent }                                                      
 import { PackagesComponent }                                                    from './pages/packages/packages.component';
 import { PackageDetailComponent }                                               from './pages/package-detail/package-detail.component';
 
+import { AuthProfile } from './classes/auth-profile'
+
 const PROFILE_ROUTES:Routes = [
-  { path: '', component: ProfileComponent, children: [
+  { path: '', component: ProfileComponent, canActivate:[AuthProfile], children: [
     { path: '', component: PublicComponent, pathMatch: 'full' },
     { path: 'settings', component: SettingsComponent },
     { path: 'packages', component: PackagesComponent },

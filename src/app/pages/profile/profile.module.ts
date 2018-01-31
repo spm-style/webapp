@@ -10,6 +10,7 @@ import { PublicComponent } from './pages/public/public.component'
 import { PackagesComponent } from './pages/packages/packages.component'
 import { PackageDetailComponent } from './pages/package-detail/package-detail.component'
 import { FilterPipe } from '../../pipes/filter.pipe'
+import { AuthProfile } from './classes/auth-profile'
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { FilterPipe } from '../../pipes/filter.pipe'
     PublicComponent,
     PackagesComponent,
     PackageDetailComponent
-  ]
+  ],
+  providers: [AuthProfile]
 })
 export class ProfileModule { }
