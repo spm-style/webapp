@@ -18,7 +18,7 @@ export let config = {
 		description: 'spm, style package manager and registry for css and javascript',
 		canonical: `${environment.wwwUrl}`,
 		shortTitle: 'home - spm',
-		image: `${environment.wwwUrl}/assets/logo.svg`,
+		image: `${environment.wwwUrl}/assets/logo-2.png`,
 		twitterCard: 'summary'
 	},
 //DOCUMENTATION
@@ -28,7 +28,7 @@ export let config = {
 		description: 'documentation for spm, style package manager and registry for your front-end projects',
 		canonical: `${environment.wwwUrl}/documentation`,
 		shortTitle: 'documentation - spm',
-		image: `${environment.wwwUrl}/assets/logo.svg`,
+		image: `${environment.wwwUrl}/assets/logo-2.png`,
 		twitterCard: 'summary'
 	},
 	docCheatSheet: {
@@ -37,7 +37,7 @@ export let config = {
 		description: 'cheat sheet for spm, style package manager and registry for your front-end projects',
 		canonical: `${environment.wwwUrl}/documentation/cheat-sheet`,
 		shortTitle: 'cheat sheet - documentation - spm',
-		image: `${environment.wwwUrl}/assets/logo.svg`,
+		image: `${environment.wwwUrl}/assets/logo-2.png`,
 		twitterCard: 'summary'
 	},
 	docCLIRunThrough: {
@@ -46,7 +46,7 @@ export let config = {
 		description: 'CLI run through for spm, style package manager and registry for your front-end projects',
 		canonical: `${environment.wwwUrl}/documentation/cli-run-through`,
 		shortTitle: 'CLI run through - documentation - spm',
-		image: `${environment.wwwUrl}/assets/logo.svg`,
+		image: `${environment.wwwUrl}/assets/logo-2.png`,
 		twitterCard: 'summary'
 	},
 	docGenerate: {
@@ -55,7 +55,7 @@ export let config = {
 		description: 'generate for spm, style package manager and registry for your front-end projects',
 		canonical: `${environment.wwwUrl}/documentation/generate`,
 		shortTitle: 'generate - documentation - spm',
-		image: `${environment.wwwUrl}/assets/logo.svg`,
+		image: `${environment.wwwUrl}/assets/logo-2.png`,
 		twitterCard: 'summary'
 	},
 	docGettingStarted: {
@@ -64,7 +64,7 @@ export let config = {
 		description: 'getting started for spm, style package manager and registry for your front-end projects',
 		canonical: `${environment.wwwUrl}/documentation/getting-started`,
 		shortTitle: 'getting started - documentation - spm',
-		image: `${environment.wwwUrl}/assets/logo.svg`,
+		image: `${environment.wwwUrl}/assets/logo-2.png`,
 		twitterCard: 'summary'
 	},
 	docInit: {
@@ -73,7 +73,7 @@ export let config = {
 		description: 'init for spm, style package manager and registry for your front-end projects',
 		canonical: `${environment.wwwUrl}/documentation/init`,
 		shortTitle: 'init - documentation - spm',
-		image: `${environment.wwwUrl}/assets/logo.svg`,
+		image: `${environment.wwwUrl}/assets/logo-2.png`,
 		twitterCard: 'summary'
 	},
 	docInstall: {
@@ -82,7 +82,7 @@ export let config = {
 		description: 'install for spm, style package manager and registry for your front-end projects',
 		canonical: `${environment.wwwUrl}/documentation/install`,
 		shortTitle: 'install - documentation - spm',
-		image: `${environment.wwwUrl}/assets/logo.svg`,
+		image: `${environment.wwwUrl}/assets/logo-2.png`,
 		twitterCard: 'summary'
 	},
 	docPublish: {
@@ -91,7 +91,7 @@ export let config = {
 		description: 'publish for spm, style package manager and registry for your front-end projects',
 		canonical: `${environment.wwwUrl}/documentation/publish`,
 		shortTitle: 'publish - documentation - spm',
-		image: `${environment.wwwUrl}/assets/logo.svg`,
+		image: `${environment.wwwUrl}/assets/logo-2.png`,
 		twitterCard: 'summary'
 	},
 	docUse: {
@@ -100,7 +100,7 @@ export let config = {
 		description: 'use for spm, style package manager and registry for your front-end projects',
 		canonical: `${environment.wwwUrl}/documentation/use`,
 		shortTitle: 'use - documentation - spm',
-		image: `${environment.wwwUrl}/assets/logo.svg`,
+		image: `${environment.wwwUrl}/assets/logo-2.png`,
 		twitterCard: 'summary'
 	},
 	docWhatIsSpm: {
@@ -109,7 +109,7 @@ export let config = {
 		description: 'what is spm, style package manager and registry for your front-end projects',
 		canonical: `${environment.wwwUrl}/documentation/what-is-spm`,
 		shortTitle: 'what is spm - documentation - spm',
-		image: `${environment.wwwUrl}/assets/logo.svg`,
+		image: `${environment.wwwUrl}/assets/logo-2.png`,
 		twitterCard: 'summary'
 	},
 	docWorkings: {
@@ -118,7 +118,7 @@ export let config = {
 		description: 'how does spm, style package manager and registry for your front-end projects, work',
 		canonical: `${environment.wwwUrl}/documentation/workings`,
 		shortTitle: 'how spm works - documentation - spm',
-		image: `${environment.wwwUrl}/assets/logo.svg`,
+		image: `${environment.wwwUrl}/assets/logo-2.png`,
 		twitterCard: 'summary'
 	},
 //CONNECTION
@@ -128,7 +128,7 @@ export let config = {
 		description: 'sign in for spm, style package manager and registry for your front-end projects',
 		canonical: `${environment.wwwUrl}/connection/sign-in`,
 		shortTitle: 'sign in - spm',
-		image: `${environment.wwwUrl}/assets/logo.svg`,
+		image: `${environment.wwwUrl}/assets/logo-2.png`,
 		twitterCard: 'summary'
 	},
 	signUp: {
@@ -137,7 +137,7 @@ export let config = {
 		description: 'sign up for spm, style package manager and registry for your front-end projects',
 		canonical: `${environment.wwwUrl}/connection/sign-up`,
 		shortTitle: 'sign up - spm',
-		image: `${environment.wwwUrl}/assets/logo.svg`,
+		image: `${environment.wwwUrl}/assets/logo-2.png`,
 		twitterCard: 'summary'
 	},
 //PACKAGES
@@ -147,7 +147,7 @@ export let config = {
 		description: 'packages for spm, style package manager and registry for your front-end projects',
 		canonical: `${environment.wwwUrl}/packages`,
 		shortTitle: 'packages - spm',
-		image: `${environment.wwwUrl}/assets/logo.svg`,
+		image: `${environment.wwwUrl}/assets/logo-2.png`,
 		twitterCard: 'summary'
 	},
 	/*packages detail customized in package-detail*/
@@ -157,7 +157,7 @@ export let config = {
 		description: 'contact for spm, style package manager and registry for your front-end projects',
 		canonical: `${environment.wwwUrl}/contact`,
 		shortTitle: 'contact - spm',
-		image: `${environment.wwwUrl}/assets/logo.svg`,
+		image: `${environment.wwwUrl}/assets/logo-2.png`,
 		twitterCard: 'summary'
 	},
 //POLICIES
@@ -167,7 +167,7 @@ export let config = {
 		description: 'terms for spm, style package manager and registry for your front-end projects',
 		canonical: `${environment.wwwUrl}/policies/terms`,
 		shortTitle: 'terms - policies - spm',
-		image: `${environment.wwwUrl}/assets/logo.svg`,
+		image: `${environment.wwwUrl}/assets/logo-2.png`,
 		twitterCard: 'summary'
 	},
 	policiesPrivacy: {
@@ -176,7 +176,7 @@ export let config = {
 		description: 'privacy policy for spm, style package manager and registry for your front-end projects',
 		canonical: `${environment.wwwUrl}/policies/privacy`,
 		shortTitle: 'privacy - policies - spm',
-		image: `${environment.wwwUrl}/assets/logo.svg`,
+		image: `${environment.wwwUrl}/assets/logo-2.png`,
 		twitterCard: 'summary'
 	},
 	policiesConduct: {
@@ -185,7 +185,7 @@ export let config = {
 		description: 'code of conduct for spm, style package manager and registry for your front-end projects',
 		canonical: `${environment.wwwUrl}/policies/conduct`,
 		shortTitle: 'code of conduct - policies - spm',
-		image: `${environment.wwwUrl}/assets/logo.svg`,
+		image: `${environment.wwwUrl}/assets/logo-2.png`,
 		twitterCard: 'summary'
 	}
 //*USER customized in user
