@@ -79,7 +79,7 @@ export let config = {
 	docWorkings: {
 		title: 'how spm works - documentation - spm, build up your design',
 		keywords: 'how, work, scss, sass, less, use, guide, tutorial, documentation, design, spm',
-		description: 'how does spm, style package manager and registry, work',
+		description: 'how does spm, style package manager and registry for your front-end projects, work',
 		canonical: `${environment.wwwUrl}/documentation/workings`
 	},
 //CONNECTION
