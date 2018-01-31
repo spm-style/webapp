@@ -37,7 +37,7 @@ export class PublicComponent implements OnInit, OnDestroy {
         title: `${this._user.login} profile - spm, build up your design`,
         keywords: `${this._user.login}, profile, user, public, design, style, spm`,
         description: `${this._user.login} public profile for spm, style package manager and registry`,
-        canonical: `{environment.wwwUrl}/profile/public`
+        canonical: `${environment.wwwUrl}/profile/public`
       }
     })
 

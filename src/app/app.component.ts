@@ -26,7 +26,6 @@ export class AppComponent implements OnInit {
   ){}
 
   ngOnInit(){
-    if (isPlatformBrowser(this._platformId)) {
       this._canonical = this._document.querySelector('link[rel=canonical]')
       this._redux.select(['seo'])
       .subscribe((data:RDXSeoState) => {
@@ -35,7 +34,6 @@ export class AppComponent implements OnInit {
         this._metaService.updateTag({name: 'keywords', content: data.keywords })
         this._renderer.setAttribute(this._canonical, 'href', data.canonical)
       })
-    }
     if(this._localStorageService.isLogged()){
       this._apiUser.getUserById()
       .subscribe((response:IUserResponse) => {
