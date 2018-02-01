@@ -29,6 +29,8 @@ import { ApiContactService }                                                    
 import { ApiPackageOriginService }                                              from './service/api-package-origin.service'
 import { ApiPackageService }                                                    from './service/api-package.service'
 import { ApiUserService }                                                       from './service/api-user.service'
+import { ApiStatusService }                                                     from './service/api-status.service'
+import { CdnStatusService }                                                     from './service/cdn-status.service'
 import { LocalstorageService }                                                  from './service/localstorage.service'
                                                                                 // Modules
 import { PopupModule }                                                          from './modules/popup/popup.module'
@@ -69,6 +71,8 @@ import { CustomReuseStrategy }                                                  
     ApiPackageOriginService,
     ApiUserService,
     ApiPackageService,
+    ApiStatusService,
+    CdnStatusService,
     LocalstorageService,
     Title
   ],

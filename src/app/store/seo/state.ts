@@ -12,7 +12,7 @@ export const SEO_INITIAL_STATE:RDXSeoState = {
   description: '',
   canonical: environment.wwwUrl,
   shortTitle: 'spm',
-  image: `${environment.wwwUrl}/assets/logo.svg`,
+  image: `${environment.wwwUrl}/assets/logo-only.png`,
   twitterCard: 'summary'
 }
 

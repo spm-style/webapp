@@ -25,57 +25,9 @@ footer{
           margin-left: 30px;
           margin-bottom: 15px;
           color: #fff;
-          &#soon-twitter{
-            &:hover{
-              cursor: pointer;
-              color: $color-primary;
-              ~ .hover-comming-soon {
-                display: inline-flex;
-                top: 5px;
-              }
-            }
-          }
-          &#soon-facebook{
-            &:hover{
-              cursor: pointer;
-              color: $color-primary;
-              ~ .hover-comming-soon {
-                display: inline-flex;
-                top: -30px;
-              }
-            }
-          }
-          &#soon-job{
-            &:hover{
-              cursor: pointer;
-              color: $color-primary;
-              ~ .hover-comming-soon {
-                display: inline-flex;
-                top: -30px;
-              }
-            }
-          }
-          &#soon-status{
-            &:hover{
-              cursor: pointer;
-              color: $color-primary;
-              ~ .hover-comming-soon {
-                display: inline-flex;
-                top: 40px;
-              }
-            }
-          }
-          &#soon-about{
-            &:hover{
-              cursor: pointer;
-              color: $color-primary;
-              ~ .hover-comming-soon {
-                display: inline-flex;
-                top: 120px;
-              }
-            }
-          }
+
           a{
+            cursor: pointer;
             color: #fff;
             font-size: 1.2rem;
           }

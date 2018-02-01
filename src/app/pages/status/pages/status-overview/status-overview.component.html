@@ -1,3 +1,13 @@
-<p>
-  status-overview works!
-</p>
+<section class="section-status">
+	<div class="content">
+		<ul>
+			<li>
+				<h2>API</h2>
+				<i class="fa fa-{{ statusAPI ? 'check' : 'times'}}"></i>
+			<li>
+				<h2>CDN</h2>
+				<i class="fa fa-{{ statusCDN ? 'check' : 'times'}}"></i>
+			</li>
+		</ul>
+	</div>
+</section>

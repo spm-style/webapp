@@ -34,7 +34,7 @@ export class UserComponent implements OnInit, OnDestroy {
             description: `${user.login} profile page for spm, style package manager and registry`,
             canonical: `${environment.wwwUrl}/user/${user.login}`,
             shortTitle: `${user.login} - spm`,
-            image: `${environment.wwwUrl}/assets/profile.svg`,
+            image: `${environment.wwwUrl}/assets/logo-only.png`,
             twitterCard: 'summary'
           }
         })

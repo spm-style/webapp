@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgRedux, RDXRootState} from '../../store'
+import { NgRedux, RDXRootState, FETCH_SEO_DATA } from '../../store'
 
 @Component({
   templateUrl: './about.component.html',
@@ -10,6 +10,7 @@ export class AboutComponent implements OnInit {
   constructor(private _redux:NgRedux<RDXRootState>) { }
 
   ngOnInit() {
+  	this._redux.dispatch({ type: FETCH_SEO_DATA, pageName: 'about' })
   }
 
 }
