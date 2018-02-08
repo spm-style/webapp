@@ -31,7 +31,7 @@ export class UserComponent implements OnInit, OnDestroy {
           opts: {
             title: `${user.login} - spm, build up your design`,
             keywords: `${user.login}, profile, user, public, design, style, spm`,
-            description: `${user.login} profile page for spm, style package manager and registry`,
+            description: `${user.login} profile page for spm, style project manager and registry for your front-end applications`,
             canonical: `${environment.wwwUrl}/user/${user.login}`,
             shortTitle: `${user.login} - spm`,
             image: `${environment.wwwUrl}/assets/logo-only.png`,

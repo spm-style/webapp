@@ -20,7 +20,7 @@
   <div class="content">
     <div #overviewUnique class="overview-unique">
       <div class="container-iframe-unique">
-        <iframe #iframe width="" height="" class="responsive-frame responsive-frame-unique" allowfullscreen frameborder="0" ></iframe>
+        <iframe #iframe width="" height="" class="responsive-frame responsive-frame-unique" allowfullscreen frameborder="0"></iframe>
       </div>
     </div>
   </div>
@@ -33,6 +33,22 @@
       <button type="button" name="button" (click)="changeOriantation()" class="button-oriantation"><img src="assets/ico-oriantation-3.png" alt=""></button>
       <input class="range-scale" type="range" #rangeScale min="0.01" max="1" step="0.01" (change)="changeScaleIframe(rangeScale.value)">
       <input class="text-scale" type="text" #textScale (change)="changeScaleIframe(textScale.value)">
+    </div>
+  </div>
+</section>
+
+<section class="section-action">
+  <div class="content">
+    <div class="buttons-container">
+      <a href="{{cdnUrl}}/stylesheet/{{(current | async)?.cdn}}?name={{(current | async)?.name}}" download="{{(current | async)?.name}}.css" class="button-action">
+        <p>css</p>
+      </a>
+      <a href="{{cdnUrl}}/overview/dom/{{(current | async)?.cdn}}?name={{(current | async)?.name}}" download="{{(current | async)?.name}}.html" class="button-action">
+        <p>html</p>
+      </a>
+<!--       <a href="/assets/download-tertiary.svg" download class="button-action">
+        <p>javascript</p>
+      </a> -->
     </div>
   </div>
 </section>
@@ -62,6 +78,29 @@
           <p>{{ variable.name }}</p>
           <input #inputVariable type="text" [value]="variable.value">
           <button type="button" (click)="changeVariableValue(variable, inputVariable.value)">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section-dom">
+  <div class="content">
+    <div class="carousel">
+      <label for="toggle-dom-state">
+        Reference DOM
+        <button type="button" id="dom-copy" (click)="copyToClipboard(domCode)">
+          <img src="assets/clipboard.svg" alt="copy to clipboard">
+        </button>
+        <div class="confirmation">DOM copied</div>
+      </label>
+      <input class="input-state" type="checkbox" id="toggle-dom-state" checked>
+      <div class="carousel-body">
+        <div class="code-container" #domCode>
+          <code>
+            <instruction *ngFor="let line of domToInstructions((current | async)?.dom?.value)" [config]="line"></instruction>
+          </code>
         </div>
       </div>
     </div>

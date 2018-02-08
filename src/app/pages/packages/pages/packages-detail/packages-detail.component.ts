@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ElementRef, ViewChild, Renderer2, Inject, PLATFORM_ID } from '@angular/core'
 import { isPlatformBrowser } from '@angular/common'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { DOCUMENT } from '@angular/platform-browser'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { environment } from '../../../../../environments/environment'
@@ -28,8 +28,12 @@ import { Subscription } from 'rxjs/Subscription';
 import { ApiPackageOriginService } from '../../../../service/api-package-origin.service'
 import { ApiUserService } from '../../../../service/api-user.service'
 import { ApiPackageService } from '../../../../service/api-package.service'
+import { LocalstorageService } from '../../../../service/localstorage.service'
 import 'rxjs/add/operator/filter'
 import 'rxjs/add/operator/do'
+import { IInstruction } from '../../component/instruction/instruction.component'
+
+// import { whoIs, startListen } from '/Users/stu-adrien/Documents/start-to-xxx/spm/ceph/stylesheets/test.js'
 
 interface ICLassModule {
   name:string,
@@ -43,10 +47,11 @@ interface ICLassModule {
 })
 export class PackagesDetailComponent implements OnInit, OnDestroy {
 
-  @ViewChild('iframe') private _iframe:ElementRef;
-  @ViewChild('overviewUnique') private _overviewUnique:ElementRef;
-  @ViewChild('rangeScale') private _rangeScale:ElementRef;
-  @ViewChild('textScale') private _textScale:ElementRef;
+  @ViewChild('iframe') private _iframe:ElementRef
+  @ViewChild('overviewUnique') private _overviewUnique:ElementRef
+  @ViewChild('rangeScale') private _rangeScale:ElementRef
+  @ViewChild('textScale') private _textScale:ElementRef
+  @ViewChild('domCode') private _domCode:ElementRef
 
   @select(['packageOrigin', 'current']) readonly current:Observable<IPackageCurrent>
   @select(['user']) readonly user:Observable<RDXUser>
@@ -68,6 +73,11 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
   public isFavorite:boolean = false
   public formVersion:FormGroup
 
+  public domToCopy:string
+  public cdnUrl:string = environment.cdnUrl
+
+public testCode:IInstruction[]
+
   constructor(
     @Inject(DOCUMENT) private _document:any,
     @Inject(PLATFORM_ID) private _platformId:any,
@@ -77,10 +87,24 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
     private _apiUser:ApiUserService,
     private _renderer:Renderer2,
     private _formBuilder:FormBuilder,
-    private _apiPackage:ApiPackageService
+    private _apiPackage:ApiPackageService,
+    private _localStorage:LocalstorageService,
+    private _router:Router
   ){}
 
   ngOnInit() {
+    // this.testCode = this.domToInstructions(this.testDom)
+    // console.log('final', this.testCode)
+    // console.log('in TS', myAlert)
+    // js('1')
+    // js2('2')
+    // myAlert('ng')
+
+    // setTimeout(() => {
+    //   this.domToCopy = this._domCode.nativeElement.innerText  || this._domCode.nativeElement.textContent
+    // }, 500)
+    // startListen()
+    // whoIs('TS')
     if (isPlatformBrowser(this._platformId)) {
       this._originDomaine = this._document.domain
       this._document.domain ='spm-style.com'
@@ -99,7 +123,7 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
               opts: {
                 title: `${response.name} - spm, build up your design`,
                 keywords: `${response.distTags.latest.category}, ${response.distTags.latest.keywords.join(', ')}, package, detail, ${response.distTags.latest.responsiveness.map(a => a.name).join(', ')}, responsive, sandbox, test, design, prototype, spm`,
-                description: `${response.distTags.latest.category} ${response.name} detail for spm, style package manager and registry`,
+                description: `${response.distTags.latest.category} ${response.name} detail for spm, style project manager and registry for your front-end applications`,
                 canonical: `${environment.wwwUrl}/packages/${response.name}`,
                 shortTitle: `${response.name} - spm`,
                 image: `${environment.cdnUrl}/overview/preview/${response.preview}`,
@@ -108,7 +132,7 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
             })
             this._updateViewsCount(response.name)
           },
-          (error:any) => { console.log('error') }
+          (error:any) => { console.log('current package', error) }
         )
       })
     }else{
@@ -118,7 +142,7 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
         opts: {
           title: `${current.name} - spm, build up your design`,
           keywords: `${current.category}, ${current.keywords.join(', ')}, package, detail, ${current.responsiveness.map(a => a.name).join(', ')}, responsive, sandbox, test, design, prototype, spm`,
-          description: `${current.category} ${current.name} detail for spm, style package manager and registry`,
+          description: `${current.category} ${current.name} detail for spm, style project manager and registry for your front-end applications`,
           canonical: `${environment.wwwUrl}/packages/${current.name}`,
           shortTitle: `${current.name} - spm`,
           image: `${environment.cdnUrl}/overview/preview/${current.preview}`,
@@ -137,7 +161,7 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
         this._redux.dispatch({ type: FETCH_SEO_DATA, pageName: 'packageDetail',
           opts: {
             keywords: `${res.category}, ${res.keywords.join(', ')}, package, detail, ${res.responsiveness.join(', ')}, responsive, sandbox, test, design, prototype, spm`,
-            description: `${res.category} ${res.name} detail for spm, style package manager and registry`
+            description: `${res.category} ${res.name} detail for spm, style project manager and registry for your front-end applications`
           }
         })
         this._initDetailModule(res.cdn, res.responsiveness, res.classes)
@@ -151,7 +175,7 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
               this._redux.dispatch({ type: FETCH_SEO_DATA, pageName: 'packageDetail',
                 opts: {
                   keywords: `${response.category}, ${response.keywords.join(', ')}, package, detail, ${response.responsiveness.join(', ')}, responsive, sandbox, test, design, prototype, spm`,
-                  description: `${response.category} ${response.name} detail for spm, style package manager and registry`
+                  description: `${response.category} ${response.name} detail for spm, style project manager and registry for your front-end applications`
                 }
               }) //à remplacer avec la correction des types
               this._initDetailModule(response.cdn, response.responsiveness, response.classes)
@@ -161,6 +185,7 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
       }
     })
   }
+
 
   ngOnDestroy() {
     if (isPlatformBrowser(this._platformId)) { this._document.domain = this._originDomaine }
@@ -241,8 +266,9 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
   }
 
   public toggleFavorite() {
-    let action = this._redux.getState().user.favorites.includes(this._id) ? 'remove' : 'add'
-    this._subUser = this._apiUser.favorites(this._id, action)
+    if (this._localStorage.isLogged()) {
+      let action = this._redux.getState().user.favorites.includes(this._id) ? 'remove' : 'add'
+      this._subUser = this._apiUser.favorites(this._id, action)
       .subscribe((data:boolean) => {
         if (data) {
           if (action === 'remove')
@@ -252,5 +278,131 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
         }
         this._subUser.unsubscribe()
       })
+    } else {
+      this._router.navigate(['connection', 'sign-in'])
+    }
+  }
+
+  private _tagToInstruction(tag, str, content = []):IInstruction {
+    let result:IInstruction = {
+      tag,
+      attributes: {},
+      classes: {},
+      value: null,
+      content
+    }
+    let table = str.split('="')
+    for (let i = 0; i < table.length - 1; i++) {
+      let property = table[i].split(' ')[table[i].split(' ').length - 1]
+      if (property === 'class') {
+        for (let key of table[i + 1].split('"')[0].split(' ')) {
+          if (key.length) {
+            result.classes[key] = true
+          }
+        }
+      } else {
+        let index = table[i + 1].indexOf('"')
+        result.attributes[property] = index === -1 ? false : table[i + 1].substring(0, index)
+      }
+    }
+    for (let i = 0; i < table.length; i++) {
+      let split = table[i].split('"')
+      let subSplit = table[i].split(' ')
+      if (i && i !== table.length - 1) {
+        if (split.length > 1) {
+          subSplit = split[1].split(' ')
+          for (let index = 0; index < subSplit.length - 1; index++) {
+            if (subSplit[index].length) { result.attributes[subSplit[index]] = true }
+          }
+        }
+      } else if (!i && subSplit.length > 2) {
+        for (let subI = 1; subI < subSplit.length - 1; subSplit++)
+        if (subSplit[subI].length) { result.attributes[subSplit[subI]] = true }
+      } else if (i === table.length - 1 && split.length > 1) {
+        subSplit = split[1].split(' ')
+        for (let item of subSplit) {
+          if (item.endsWith('/')) { item = item.slice(0, -1) }
+          if (item.length) { result.attributes[item] = true }
+        }
+      }
+    }
+    return result
+  }
+
+  public domToInstructions(dom:string, index:number = 0):IInstruction[] {
+    //1) remove all comments + attention si des chevrons se trouvent dans la string + case insensitive
+    if (index === 100) { return [] }
+    if (!dom || !dom.length || dom.startsWith('</')) { return [] }
+    if (!dom.startsWith('<')) {
+      let next = dom.indexOf('<')
+      if (next === -1) {
+        if (/^([ \t\n])*$/.test(dom)) { return [] }
+        return [{
+          tag: 'string',
+          attributes: {},
+          classes: {},
+          value: dom,
+          content: []
+        }]
+      } else {
+        if (/^([ \t\n])*$/.test(dom.substring(0, next))) { return this.domToInstructions(dom.substring(next), index) }
+        return [{
+          tag: 'string',
+          attributes: {},
+          classes: {},
+          value: dom.substring(0, next),
+          content: []
+        }].concat(this.domToInstructions(dom.substring(next), index))
+      }
+    }
+    const notClosings = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']
+    let count = 0
+    let closingChevron = dom.indexOf('>')
+    let tag = dom.substring(1, Math.min(closingChevron, dom.indexOf(' ')))
+    let i, j
+    if (notClosings.includes(tag)) {
+      let next = dom.indexOf('>')
+      return [this._tagToInstruction(tag, dom.substring(1, closingChevron))].concat(next === - 1 ? [] : this.domToInstructions(dom.substring(next + 1), index))
+    } else {
+      let startIndex = 1
+      count++
+      while (count !== 0 && startIndex !== -1)
+      {
+        let i1 = dom.indexOf(`<${tag}>`, startIndex)
+        let i2 = dom.indexOf(`<${tag} `, startIndex)
+        if (i1 < i2 && i1 !== -1) { i = i1 } else { i = i2 }
+        j = dom.indexOf(`</${tag}>`, startIndex)
+        if (i < j && i >= 0) {
+          count++
+          startIndex = i + 1
+        } else if (i === -1 || i >= 0 && j >= 0) {
+          count--
+          startIndex = j + 1
+        } else {
+          startIndex = -1
+        }
+      }
+      if (startIndex === -1) { return [] }
+    }
+    let item = this._tagToInstruction(tag, dom.substring(1, closingChevron), this.domToInstructions(dom.substring(closingChevron + 1, j), index + 1))
+    if (j + `</${tag}>`.length === dom.length) {
+      return [item]
+    } else {
+      return [item].concat(this.domToInstructions(dom.substring(j + `</${tag}>`.length), index))
+    }
+  }
+
+  public copyToClipboard(elem){
+    let tmpEl = this._renderer.createElement('textarea')
+    let text = this._renderer.createText(elem.innerText || elem.textContent)
+    this._renderer.appendChild(tmpEl, text)
+    this._renderer.appendChild(document.body, tmpEl)
+    tmpEl.select()
+    document.execCommand("copy");
+    this._renderer.addClass(this._document.querySelector('.confirmation'), 'visible')
+    this._renderer.removeChild(document.body, tmpEl)
+    setTimeout(() => {
+      this._renderer.removeClass(this._document.querySelector('.confirmation'), 'visible')
+    }, 1000)
   }
 }

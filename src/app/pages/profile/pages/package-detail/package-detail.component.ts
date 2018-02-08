@@ -68,7 +68,7 @@ export class PackageDetailComponent implements OnInit {
         opts: {
           title: `${this.name} package admin - spm, build up your design`,
           keywords: `${this.name}, admin, user, public, design, style, spm`,
-          description: `${this.name} package admin for spm, style package manager and registry`,
+          description: `${this.name} package admin for spm, style project manager and registry`,
           canonical: `{environment.wwwUrl}/profile/public`,
           shortTitle: `package detail - spm`,
           image: `${environment.wwwUrl}/assets/profile.svg`,

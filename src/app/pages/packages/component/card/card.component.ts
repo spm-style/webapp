@@ -36,10 +36,5 @@ export class CardComponent implements OnInit {
     let scale = overviewWidth / this.data.distTags.latest.responsiveness[0].w
     this._renderer.setStyle(this._containerIframe.nativeElement, 'width', `${this.data.distTags.latest.responsiveness[0].w * scale}px`)
     this._renderer.setStyle(this._containerIframe.nativeElement, 'height', `${this.data.distTags.latest.responsiveness[0].h * scale}px`)
-    this._renderer.setStyle(this._iframe.nativeElement, 'transform', `scale(${scale})`)
-    this._renderer.setStyle(this._iframe.nativeElement, 'width', `${this.data.distTags.latest.responsiveness[0].w}px`)
-    this._renderer.setStyle(this._iframe.nativeElement, 'height', `${this.data.distTags.latest.responsiveness[0].h}px`)
   }
-
-  public urlIframe(uuid: string){ return this._sanitizer.bypassSecurityTrustResourceUrl(`http://cdn.spm-style.com/overview/${uuid}`) }
 }
