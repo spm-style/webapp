@@ -50,13 +50,13 @@
         <ul>
           <li>Is longer than 7 characters</li>
           <li>Does not match or significantly contain your username, e.g. do not use "username123".</li>
-          <li>Is not a member of this <a>list of common passwords</a></li>
+          <li>Is not a member of this <a rel="nofollow" target="_blank" href="https://github.com/ashleygwilliams/rockyou/blob/master/data/70.txt">list of common passwords</a></li>
         </ul>
       </div>
 
       <div class="st-control-checkbox">
         <input type="checkbox" id="weekly" formControlName="mailing">
-        <label for="weekly">Sign up for the <a>spm Weekly</a></label>
+        <label for="weekly">Sign up for the spm Weekly</label>
       </div>
 
       <div class="st-control-checkbox">
@@ -64,7 +64,7 @@
           <span *ngIf="errorFormControlByName('terms', 'required')">Terms required</span>
         </p>
         <input type="checkbox" id="terms" required formControlName="terms">
-        <label for="terms">I agree to the <a>Terms of Service</a> and the <a>Privacy Policy</a>.</label>
+        <label for="terms">I agree to the <a routerLink="/policies/terms">Terms of Service</a> and the <a routerLink="/policies/privacy">Privacy Policy</a>.</label>
       </div>
 
       <div class="action-connection">
