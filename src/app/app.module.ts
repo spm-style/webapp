@@ -90,7 +90,7 @@ export class AppModule {
   ){
     let enhancers = []
     if (isPlatformBrowser(platformId)) {
-      enhancers = isDevMode() ? [_devTools.enhancer()] : []
+      enhancers = isDevMode() && _devTools.enhancer() ? [_devTools.enhancer()] : []
     } else { console.log(`Running on the server with appId=${appId}`) }
     _ngRedux.configureStore(rootReducer, ROOT_INITIAL_STATE, [], enhancers)
   }
