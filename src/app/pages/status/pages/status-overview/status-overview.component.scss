@@ -1,0 +1,35 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+@import '../../../../../../spm_modules/style-guide.scss';
+
+.section-status {
+
+	.content {
+		max-width: 992px;
+    margin: 0 auto;
+   	display: flex;
+   	align-items: center;
+   	justify-content: center;
+
+   ul {
+    	padding-top: 50px;
+
+	    li {
+	    	width: 100%;
+	    	display: flex;
+	    	align-items: center;
+	    	justify-content: space-between;
+
+	    	h2 {
+	    		margin-right: 40px;
+	    	}
+
+	    	.fa-check {
+	    		color: $color-quaternary;
+	    	}
+	    	.fa-times {
+	    		color: #D34E4D;
+	    	}
+	    }
+    }
+	}
+}

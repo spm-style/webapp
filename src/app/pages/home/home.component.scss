@@ -46,11 +46,13 @@
       color: #fff;
       width: 100%;
       text-align: center;
+      margin: 15px 0;
     }
     .steps {
       ul {
         display: flex;
         flex-direction: column;
+        margin-bottom: 15px;
 
         li {
           margin: 15px 15px 0 15px;

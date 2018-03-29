@@ -86,7 +86,7 @@
       display: flex;
       align-items: center;
       overflow: scroll;
-      .button-breakpoint, .button-oriantation{
+      .button-breakpoint, .button-orientation{
         margin-right: 25px;
         img{
           width: 50px;
@@ -133,23 +133,35 @@
 
 .section-action{
   .content{
+    width: 100%;
     max-width: 992px;
     margin: 0 auto 10px;
-    display: flex;
-    flex-direction: column-reverse;
     padding: 0 15px;
-    .button-responsive{
-      padding: 15px 10px;
+
+    .buttons-container {
+      width: 100%;
       border-bottom: 1px solid coral;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
-      overflow: scroll;
-      .button-breakpoint, .button-oriantation{
-        margin-right: 25px;
-        img{
-          width: 50px;
-          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-          border-radius: 50%;
+
+      .button-action {
+        padding: 15px 10px;
+        display: flex;
+        align-items: center;
+        height: 50px;
+
+        p {
+          color: $color-tertiary;
+          font-weight: bold;
+          font-size: 0.8rem;
+          margin-left: 5px;
+        }
+
+        &:before {
+          content: url(/assets/download-tertiary.svg);
+          height: 100%;
+          width: 20px;
         }
       }
     }
@@ -164,8 +176,12 @@
     padding: 10px;
     color: #fff;
     font-size: 1.2rem;
+    cursor: pointer;
+
     &.carousel-empty{
       background-color: lightgray;
+      cursor: initial;
+
       ~ .carousel-body{
         border: 1px solid lightgray;
       }
@@ -183,11 +199,82 @@
     border: 1px solid coral;
     padding: 0 5px;
     max-height: 0px;
-    overflow: hidden;
+    overflow: scroll;
     transition: max-height 0.4s ease-in-out;
     .carousel-item{
       display: flex;
       align-items: center;
+
+    }
+  }
+}
+
+.section-dom {
+  .content {
+    max-width: 992px;
+    margin: 0 auto;
+    padding: 0 15px;
+
+    .carousel {
+      label {
+        position: relative;
+
+        button {
+          box-shadow: inset 0 0 0 2px #fff;
+          border: 4px solid $color-primary;
+          background-color: $color-primary;
+          position: absolute;
+          height: 100%;
+          right: 0;
+          top: 0;
+          padding: 5px;
+
+          &:hover {
+            background-color: $color-tertiary;
+          }
+
+          img {
+            height: 100%;
+          }
+        }
+
+        .confirmation {
+          opacity: 0;
+          visibility: hidden;
+          background-color: #efefef;
+          border: 2px solid #464646;
+          color: black;
+          padding: 5px 10px;
+          position: absolute;
+          top: 110%;
+          right: 10px;
+          font-size: 1rem;
+          transition: visibility 0s linear 0.5s,opacity 0.5s linear;
+
+          &:before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            right: 10%;
+            width: 0; 
+            height: 0; 
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid #464646;
+          }
+
+          &.visible {
+            visibility: visible;
+            opacity: 1;
+            transition-delay: 0s;
+          }
+        }
+      }
+      .carousel-body {
+        .code-container {
+          padding: 10px;
+        }
+      }
     }
   }
 }
@@ -245,13 +332,33 @@
     padding: 0 15px;
     .carousel{
       .carousel-body{
+        h2 {
+          color: $color-primary;
+          border-bottom: 1px solid $color-primary;
+          padding: 5px;
+        }
+
+        form {
+          button {
+            margin-bottom: 10px;
+            margin-left: 5px;
+          }
+        }
+
+        button{
+          background-color: coral;
+          padding: 6px;
+          color: #fff;
+        }
+
         .carousel-item{
           padding: 10px 5px;
           flex-wrap: wrap;
-          p{
+
+          p {
             display: block;
-            width: 100%;
             margin-bottom: 10px;
+            width: 100%;
           }
           input{
             padding: 5px;
@@ -260,10 +367,8 @@
             color: #464646;
             background: #eee;
           }
-          button{
-            background-color: coral;
-            padding: 6px;
-            color: #fff;
+          label {
+            padding: 3px;
           }
         }
       }
@@ -303,15 +408,57 @@
       .carousel-body{
         .carousel-item{
           display: block;
-          p{
-            color: coral;
-            margin: 5px 0;
-            span{
-              display: inline-block;
-              width: 150px;
-              color: lightgray;
+
+          &.description {
+            h3 {
+              padding: 5px;
+              color: $color-primary;
             }
+
+            p {
+              padding: 5px;
+            }
+
+            border-bottom: 1px solid $color-primary;
           }
+
+          > table {
+            tr {
+              display: table-cell;
+
+              th, td {
+                padding: 5px;
+                display: block;
+              }
+              th {
+                color: #888888;
+                font-size: 1rem;
+                text-align: left;
+                min-width: 30vw;
+
+                &.double {
+                  line-height: 2;
+                  padding: 8px 5px;
+                }
+              }
+              td {
+                display: flex;
+                flex-direction: row;
+
+                .export-var-container {
+                  margin-right: 15px;
+
+                  .export-var-name {
+                    color: $color-primary;
+                    text-align: left;
+                  }
+                  .export-var-type {
+                    color: $color-quaternary;
+                  }
+                }
+              }
+            }
+          } 
         }
       }
     }

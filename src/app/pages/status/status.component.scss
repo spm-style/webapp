@@ -1,0 +1,15 @@
+@import '../../../../spm_modules/style-guide.scss';
+
+.section-title {
+	background-color: $color-tertiary;
+  margin-bottom: 20px;
+  .content{
+    max-width: 992px;
+    margin: 0 auto;
+    h1{
+      font-size: 2.2rem;
+      color: #fff;
+      padding: 30px 20px;
+    }
+  }
+}

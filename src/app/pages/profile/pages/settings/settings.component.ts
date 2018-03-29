@@ -33,7 +33,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
       opts: {
         title: `${this.login} settings - spm, build up your design`,
         keywords: `${this.login}, settings, password, profile, user, design, style, spm`,
-        description: `${this.login} settings for spm, style package manager and registry`,
+        description: `${this.login} settings for spm, style project manager and registry`,
         canonical: `{environment.wwwUrl}/profile/settings`,
         shortTitle: `${this.login} - spm`,
         image: `${environment.wwwUrl}/assets/profile.svg`,

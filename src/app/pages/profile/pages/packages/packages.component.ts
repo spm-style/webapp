@@ -45,7 +45,7 @@ export class PackagesComponent implements OnInit {
       opts: {
         title: `my packages - spm, build up your design`,
         keywords: 'packages, user, list, design, style, spm',
-        description: 'my packages for spm, style package manager and registry',
+        description: 'my packages for spm, style project manager and registry',
         canonical: `{environment.wwwUrl}/profile/public`,
         shortTitle: `my packages - spm`,
         image: `${environment.wwwUrl}/assets/profile.svg`,

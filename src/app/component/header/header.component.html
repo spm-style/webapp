@@ -1,7 +1,7 @@
 <header>
   <div class="header-navigation" [ngClass]="{'open-nav': (navigation | async)?.isMenuOpen}">
     <a routerLink="/"><img src="./assets/logo.svg" alt="logo" class="logo"></a>
-    <button type="button" class="menu-button-burger"><img src="./assets/button-burger.png" alt="" (click)="openMenu()"></button>
+    <button type="button" class="menu-button-burger"><img src="./assets/button-burger.png" alt="menu-mobile" (click)="openMenu()"></button>
     <nav (click)="closeMenu()">
       <div class="expanded-control" [ngClass]="bindingClassMenu('root')">
         <ul (click)="stopPropagation($event)">

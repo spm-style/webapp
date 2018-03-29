@@ -1,8 +1,6 @@
 import { Injectable, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
-
-
 export const USER_TOKEN_CONNECTION = 'hxa398hanx8j9z3n9mz3'
 export const USER_ID = 'kajb39839mz09mxsndz0m'
 

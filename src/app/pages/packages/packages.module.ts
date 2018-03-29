@@ -1,19 +1,19 @@
-import { NgModule }                                                             from '@angular/core';
-import { CommonModule }                                                         from '@angular/common';
-import { HttpModule }                                                           from '@angular/http';
-import { ReactiveFormsModule, FormsModule }                                     from '@angular/forms';
+import { NgModule }                                                             from '@angular/core'
+import { CommonModule }                                                         from '@angular/common'
+import { HttpModule }                                                           from '@angular/http'
+import { ReactiveFormsModule, FormsModule }                                     from '@angular/forms'
                                                                                 // Router
-import { PackagesRouterModule }                                                 from './packages.router';
+import { PackagesRouterModule }                                                 from './packages.router'
                                                                                 // Skell
-import { PackagesComponent }                                                    from './packages.component';
+import { PackagesComponent }                                                    from './packages.component'
                                                                                 // Pages
-import { PackagesDetailComponent }                                              from './pages/packages-detail/packages-detail.component';
-import { PackagesOverviewComponent }                                            from './pages/packages-overview/packages-overview.component';
+import { PackagesDetailComponent }                                              from './pages/packages-detail/packages-detail.component'
+import { PackagesOverviewComponent }                                            from './pages/packages-overview/packages-overview.component'
                                                                                 // Pipe
-import { SafeHtmlPipe }                                                         from './pipe/safe-html.pipe';
+import { SafeHtmlPipe }                                                         from './pipe/safe-html.pipe'
                                                                                 // Component
-import { CardComponent }                                                        from './component/card/card.component';
-
+import { CardComponent }                                                        from './component/card/card.component'
+import { InstructionComponent }                                                 from './component/instruction/instruction.component'
 
 
 
@@ -30,7 +30,8 @@ import { CardComponent }                                                        
     PackagesDetailComponent,
     PackagesOverviewComponent,
     SafeHtmlPipe,
-    CardComponent
+    CardComponent,
+    InstructionComponent
   ],
   providers: [
     

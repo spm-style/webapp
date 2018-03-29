@@ -2,6 +2,7 @@ export {
 	RDXPackageOrigin,
 	IResponsiveness,
 	IVariables,
+	IInstanceVariables,
 	IClasses,
 	IPackage,
 	IPackageOrigin,
