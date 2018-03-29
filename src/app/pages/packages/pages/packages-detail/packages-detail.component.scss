@@ -86,7 +86,7 @@
       display: flex;
       align-items: center;
       overflow: scroll;
-      .button-breakpoint, .button-oriantation{
+      .button-breakpoint, .button-orientation{
         margin-right: 25px;
         img{
           width: 50px;
@@ -176,8 +176,12 @@
     padding: 10px;
     color: #fff;
     font-size: 1.2rem;
+    cursor: pointer;
+
     &.carousel-empty{
       background-color: lightgray;
+      cursor: initial;
+
       ~ .carousel-body{
         border: 1px solid lightgray;
       }
@@ -195,11 +199,12 @@
     border: 1px solid coral;
     padding: 0 5px;
     max-height: 0px;
-    overflow: hidden;
+    overflow: scroll;
     transition: max-height 0.4s ease-in-out;
     .carousel-item{
       display: flex;
       align-items: center;
+
     }
   }
 }
@@ -327,13 +332,33 @@
     padding: 0 15px;
     .carousel{
       .carousel-body{
+        h2 {
+          color: $color-primary;
+          border-bottom: 1px solid $color-primary;
+          padding: 5px;
+        }
+
+        form {
+          button {
+            margin-bottom: 10px;
+            margin-left: 5px;
+          }
+        }
+
+        button{
+          background-color: coral;
+          padding: 6px;
+          color: #fff;
+        }
+
         .carousel-item{
           padding: 10px 5px;
           flex-wrap: wrap;
-          p{
+
+          p {
             display: block;
-            width: 100%;
             margin-bottom: 10px;
+            width: 100%;
           }
           input{
             padding: 5px;
@@ -342,10 +367,8 @@
             color: #464646;
             background: #eee;
           }
-          button{
-            background-color: coral;
-            padding: 6px;
-            color: #fff;
+          label {
+            padding: 3px;
           }
         }
       }
@@ -385,15 +408,57 @@
       .carousel-body{
         .carousel-item{
           display: block;
-          p{
-            color: coral;
-            margin: 5px 0;
-            span{
-              display: inline-block;
-              width: 150px;
-              color: lightgray;
+
+          &.description {
+            h3 {
+              padding: 5px;
+              color: $color-primary;
             }
+
+            p {
+              padding: 5px;
+            }
+
+            border-bottom: 1px solid $color-primary;
           }
+
+          > table {
+            tr {
+              display: table-cell;
+
+              th, td {
+                padding: 5px;
+                display: block;
+              }
+              th {
+                color: #888888;
+                font-size: 1rem;
+                text-align: left;
+                min-width: 30vw;
+
+                &.double {
+                  line-height: 2;
+                  padding: 8px 5px;
+                }
+              }
+              td {
+                display: flex;
+                flex-direction: row;
+
+                .export-var-container {
+                  margin-right: 15px;
+
+                  .export-var-name {
+                    color: $color-primary;
+                    text-align: left;
+                  }
+                  .export-var-type {
+                    color: $color-quaternary;
+                  }
+                }
+              }
+            }
+          } 
         }
       }
     }

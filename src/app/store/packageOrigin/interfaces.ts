@@ -9,6 +9,10 @@ export interface IResponsiveness { name: string, h: number, w: number, scale: nu
 
 export interface IVariables { name: string, value: string }
 
+export interface IInstanceVariables { name: string, value: string, type: string }
+
+export interface IExportVariables { name: string, type: string }
+
 export interface IClasses { name: string, variables: [IVariables] }
 
 export interface IPackage {
@@ -19,9 +23,10 @@ export interface IPackage {
   dependencies: [string],
   description: string,
   dom: { type: string, value: string },
-  entry: string,
+  files: { style: string, script: string},
   keywords: [string],
-  main: string,
+  mainClass: string,
+  js: { instancesVar: [IInstanceVariables], exportsVar: [IExportVariables]},
   name: string,
   readme: string,
   responsiveness: [IResponsiveness],
@@ -69,9 +74,10 @@ export interface IPackageCurrent {
   dependencies: [string],
   description: string,
   dom: { type: string, value: string },
-  entry: string,
+  files: { style: string, script: string},
   keywords: [string],
-  main: string,
+  mainClass: string,
+  js: { instancesVar: [IInstanceVariables], exportsVar: [IExportVariables]},
   name: string,
   readme: string,
   responsiveness: [IResponsiveness],

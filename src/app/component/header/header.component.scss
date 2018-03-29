@@ -280,12 +280,14 @@ header{
             color: red;
 
             ul {
+              overflow: hidden;
               box-shadow: none;
               width: initial;
             }
           }
 
           ul{
+            overflow: hidden;
             background-color: #fff;
             height: 100%;
             display: flex;

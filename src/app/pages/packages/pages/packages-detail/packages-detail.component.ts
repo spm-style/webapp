@@ -18,6 +18,7 @@ import {
   REMOVE_FAVORITE,
   IResponsiveness,
   IVariables,
+  IInstanceVariables,
   IVersions,
   CHANGE_VERSION_CURRENT_PACKAGE,
   IClasses,
@@ -32,8 +33,6 @@ import { LocalstorageService } from '../../../../service/localstorage.service'
 import 'rxjs/add/operator/filter'
 import 'rxjs/add/operator/do'
 import { IInstruction } from '../../component/instruction/instruction.component'
-
-// import { whoIs, startListen } from '/Users/stu-adrien/Documents/start-to-xxx/spm/ceph/stylesheets/test.js'
 
 interface ICLassModule {
   name:string,
@@ -72,6 +71,9 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
   public variables:IVariables[] = []
   public isFavorite:boolean = false
   public formVersion:FormGroup
+  public formJsVariables:FormGroup
+  public jsInput:any[] = []
+  public cssInput:any = {}
 
   public domToCopy:string
   public cdnUrl:string = environment.cdnUrl
@@ -93,18 +95,6 @@ public testCode:IInstruction[]
   ){}
 
   ngOnInit() {
-    // this.testCode = this.domToInstructions(this.testDom)
-    // console.log('final', this.testCode)
-    // console.log('in TS', myAlert)
-    // js('1')
-    // js2('2')
-    // myAlert('ng')
-
-    // setTimeout(() => {
-    //   this.domToCopy = this._domCode.nativeElement.innerText  || this._domCode.nativeElement.textContent
-    // }, 500)
-    // startListen()
-    // whoIs('TS')
     if (isPlatformBrowser(this._platformId)) {
       this._originDomaine = this._document.domain
       this._document.domain ='spm-style.com'
@@ -118,7 +108,7 @@ public testCode:IInstruction[]
           (response:IPackageOrigin) => {
             this._id = response._id
             this._redux.dispatch({ type: FETCH_CURRENT_PACKAGE_ORIGIN, packageOrigin: response })
-            this._initDetailModule(response.distTags.latest.cdn, response.distTags.latest.responsiveness, response.distTags.latest.classes)
+            this._initDetailModule(response.distTags.latest.cdn, response.distTags.latest.responsiveness, response.distTags.latest.classes, response.distTags.latest.js.instancesVar)
             this._redux.dispatch({type: FETCH_SEO_DATA, pageName: 'packageDetail',
               opts: {
                 title: `${response.name} - spm, build up your design`,
@@ -137,7 +127,7 @@ public testCode:IInstruction[]
       })
     }else{
       this._id = current._id
-      this._initDetailModule(current.cdn, current.responsiveness, current.classes)
+      this._initDetailModule(current.cdn, current.responsiveness, current.classes, current.js.instancesVar)
       this._redux.dispatch({type: FETCH_SEO_DATA, pageName: 'packageDetail',
         opts: {
           title: `${current.name} - spm, build up your design`,
@@ -156,7 +146,7 @@ public testCode:IInstruction[]
 
     this._subChangeVersion = this.formVersion.get('version').valueChanges.subscribe((newVersion:string) => {
       let res:IPackageCurrent = this._versionDownload.filter((packageCurrent:IPackageCurrent) => packageCurrent.version == newVersion)[0]
-      if(res){ 
+      if(res){
         this._redux.dispatch({ type: CHANGE_VERSION_CURRENT_PACKAGE, packageNewVersion: res })
         this._redux.dispatch({ type: FETCH_SEO_DATA, pageName: 'packageDetail',
           opts: {
@@ -164,7 +154,7 @@ public testCode:IInstruction[]
             description: `${res.category} ${res.name} detail for spm, style project manager and registry for your front-end applications`
           }
         })
-        this._initDetailModule(res.cdn, res.responsiveness, res.classes)
+        this._initDetailModule(res.cdn, res.responsiveness, res.classes, res.js.instancesVar)
       }else{
         this._versionDownload.push(this._redux.getState().packageOrigin.current)
         for(let version of this._versionDownload[0].versions){
@@ -178,7 +168,7 @@ public testCode:IInstruction[]
                   description: `${response.category} ${response.name} detail for spm, style project manager and registry for your front-end applications`
                 }
               }) //à remplacer avec la correction des types
-              this._initDetailModule(response.cdn, response.responsiveness, response.classes)
+              this._initDetailModule(response.cdn, response.responsiveness, response.classes, response.js.instancesVar)
             })
           } 
         }
@@ -197,7 +187,7 @@ public testCode:IInstruction[]
     this._redux.dispatch({ type: CLEAR_CURRENT_PACKAGE })
   }
 
-    private _initDetailModule(cdn:string, responsiveness:IResponsiveness[], classes:IClasses[]):void {
+    private _initDetailModule(cdn:string, responsiveness:IResponsiveness[], classes:IClasses[], instancesVar:IInstanceVariables[]):void {
     this._iframe.nativeElement.src = `${environment.cdnUrl}/overview/dom/${cdn}`
     this._overviewUniqueWidth = this._overviewUnique.nativeElement.clientWidth - 20
     this._currentOriantation = 'portrait'
@@ -211,6 +201,21 @@ public testCode:IInstruction[]
         elements: []
       })
       for(let variable of classModule.variables){ this.variables.push(variable) }
+    }
+    let tmpFormGroup = {}
+    for (let instanceVar of instancesVar) {
+      tmpFormGroup[`jsVariable-${instanceVar.name}`] = [instanceVar.value, []]
+    }
+    this.formJsVariables = this._formBuilder.group(tmpFormGroup)
+    if (!this.jsInput.length) {
+      for (let instanceVar of instancesVar) { this.jsInput.push(instanceVar.value) }
+      this._iframe.nativeElement.onload = () => {
+        let iframeDocument = this._iframe.nativeElement.contentDocument
+        for (let cssVar in this.cssInput) {
+          this._iframe.nativeElement.contentWindow.document.documentElement.style.setProperty(`--${cssVar}`, this.cssInput[cssVar])
+        }
+        new iframeDocument.spm_start(...this.jsInput, { document: iframeDocument })
+      }
     }
   }
 
@@ -237,7 +242,7 @@ public testCode:IInstruction[]
     this._setDeviceProperty(device, this._currentOriantation)
   }
 
-  public changeOriantation():void {
+  public changeOrientation():void {
     this._currentOriantation = this._currentOriantation == 'portrait' ? 'paysage' : 'portrait'
     this._setDeviceProperty(this._currentDivice, this._currentOriantation)
   }
@@ -260,9 +265,18 @@ public testCode:IInstruction[]
   public isClassActive(classModule:ICLassModule):boolean{ return classModule.isUse }
 
 
-  public changeVariableValue(variable:IVariables, newValue:string):void {
+  public changeVariableValueCss(variable:IVariables, newValue:string):void {
     this._iframe.nativeElement.contentWindow.document.documentElement.style.setProperty(`--${variable.name}`, newValue)
     variable.value = newValue
+    this.cssInput[variable.name] = newValue
+  }
+
+  public updateJsVariables(current:IPackageCurrent):void {
+    this.jsInput = []
+    for (let instanceVar of current.js.instancesVar) {
+      this.jsInput.push(this.formJsVariables.value[`jsVariable-${instanceVar.name}`])
+    }
+    this._iframe.nativeElement.src = this._iframe.nativeElement.src
   }
 
   public toggleFavorite() {
@@ -358,7 +372,9 @@ public testCode:IInstruction[]
     const notClosings = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']
     let count = 0
     let closingChevron = dom.indexOf('>')
-    let tag = dom.substring(1, Math.min(closingChevron, dom.indexOf(' ')))
+    let table = [closingChevron, dom.indexOf(' ')].filter(x => x >= 0)
+    if (!table.length) { return [] }
+    let tag = dom.substring(1, Math.min(...table))
     let i, j
     if (notClosings.includes(tag)) {
       let next = dom.indexOf('>')

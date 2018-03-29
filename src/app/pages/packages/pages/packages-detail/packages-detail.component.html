@@ -29,8 +29,8 @@
 <section class="section-responsive">
   <div class="content">
     <div class="button-responsive">
-      <button *ngFor="let breakpoint of (current | async)?.responsiveness" class="button-breakpoint" (click)="changeDevice(breakpoint)"><img src="assets/ico-{{breakpoint.name}}-3.png" alt=""></button>      
-      <button type="button" name="button" (click)="changeOriantation()" class="button-oriantation"><img src="assets/ico-oriantation-3.png" alt=""></button>
+      <button *ngFor="let breakpoint of (current | async)?.responsiveness" class="button-breakpoint" (click)="changeDevice(breakpoint)"><img src="assets/ico-{{breakpoint.name || breakpoint}}-3.png" alt=""></button>      
+      <button type="button" name="button" (click)="changeOrientation()" class="button-orientation"><img src="assets/ico-orientation-3.png" alt=""></button>
       <input class="range-scale" type="range" #rangeScale min="0.01" max="1" step="0.01" (change)="changeScaleIframe(rangeScale.value)">
       <input class="text-scale" type="text" #textScale (change)="changeScaleIframe(textScale.value)">
     </div>
@@ -43,12 +43,12 @@
       <a href="{{cdnUrl}}/stylesheet/{{(current | async)?.cdn}}?name={{(current | async)?.name}}" download="{{(current | async)?.name}}.css" class="button-action">
         <p>css</p>
       </a>
-      <a href="{{cdnUrl}}/overview/dom/{{(current | async)?.cdn}}?name={{(current | async)?.name}}" download="{{(current | async)?.name}}.html" class="button-action">
+      <a href="{{cdnUrl}}/overview/dom/{{(current | async)?.cdn}}/download?name={{(current | async)?.name}}" download="{{(current | async)?.name}}.html" class="button-action">
         <p>html</p>
       </a>
-<!--       <a href="/assets/download-tertiary.svg" download class="button-action">
-        <p>javascript</p>
-      </a> -->
+      <a href="{{cdnUrl}}/script/{{(current | async)?.cdn}}?name={{(current | async)?.name}}" download="{{(current | async)?.name}}.js" class="button-action">
+        <p>js</p>
+      </a>
     </div>
   </div>
 </section>
@@ -56,7 +56,7 @@
 <section class="section-classes">
   <div class="content">
     <div class="carousel">
-      <label for="toggle-class-state" [ngClass]="{'carousel-empty': classes.length == 0}">{{ classes.length == 0 ? 'No c' : 'C'}}lasses</label>
+      <label for="toggle-class-state" [ngClass]="{'carousel-empty': classes.length == 0}">{{ classes.length == 0 ? 'No c' : 'C'}}lass{{ classes.length > 1 ? 'es' : ''}}</label>
       <input class="input-state" type="checkbox" id="toggle-class-state">
       <div class="carousel-body">
         <div class="carousel-item" *ngFor="let class of classes">
@@ -71,14 +71,23 @@
 <section class="section-variable">
   <div class="content">
     <div class="carousel">
-      <label for="toggle-variable-state" [ngClass]="{'carousel-empty': variables.length == 0}">{{ variables.length == 0 ? 'No v' : 'V'}}ariables</label>
+      <label for="toggle-variable-state" [ngClass]="{'carousel-empty': variables.length + (current | async)?.js.instancesVar.length == 0}">{{ variables.length + (current | async)?.js.instancesVar.length == 0 ? 'No v' : 'V'}}ariable{{ (current | async)?.js.instancesVar.length + variables.length > 1 ? 's' : ''}}</label>
       <input class="input-state" type="checkbox" id="toggle-variable-state">
       <div class="carousel-body">
+        <h2 *ngIf="variables.length">Css</h2>
         <div class="carousel-item" *ngFor="let variable of variables">
           <p>{{ variable.name }}</p>
           <input #inputVariable type="text" [value]="variable.value">
-          <button type="button" (click)="changeVariableValue(variable, inputVariable.value)">OK</button>
+          <button type="button" (click)="changeVariableValueCss(variable, inputVariable.value)">OK</button>
         </div>
+        <h2 *ngIf="(current | async)?.js.instancesVar.length">Javascript</h2>
+        <form *ngIf="(current | async)?.js.instancesVar.length && (current | async); let current2" [formGroup]="formJsVariables" (ngSubmit)="updateJsVariables(current2)">
+          <div class="carousel-item" *ngFor="let instanceVar of (current | async)?.js.instancesVar">
+            <p class="var-name">{{ instanceVar.name }} ({{ instanceVar.type }})</p>
+            <input type="text" id="{{ instanceVar.name }}" formControlName="jsVariable-{{ instanceVar.name }}" required>
+          </div>
+          <button type="submit">Apply</button>
+        </form>
       </div>
     </div>
   </div>
@@ -125,13 +134,46 @@
   <div class="content">
     <div class="carousel">
       <label for="toggle-info-state">Infos</label>
-      <input class="input-state" type="checkbox" id="toggle-info-state">
+      <input class="input-state" type="checkbox" id="toggle-info-state" checked>
       <div class="carousel-body">
+        <div class="carousel-item description">
+          <h3>description</h3>
+          <p>{{ (current | async)?.description }}</p>
+        </div>
         <div class="carousel-item">
-          <p><span>Download</span>{{ (current | async)?.downloadTotal }}</p>
-          <p><span>Type</span>{{ (current | async)?.type }}</p>
-          <p><span>Style</span>{{ (current | async)?.style }}</p>
-          <p><span>Category</span>{{ (current | async)?.category }}</p>
+          <table *ngIf="(current | async)?.js.exportsVar && (current | async)?.js.exportsVar.length">
+            <tr>
+              <th>exported from js</th>
+            </tr>
+            <tr>
+              <td>
+                <div class="export-var-container">
+                  <div class="export-var-name" *ngFor="let exportVar of (current | async)?.js.exportsVar">
+                    {{exportVar.name}}
+                  </div>
+                </div>
+                <div class="export-var-container" >
+                  <div class="export-var-type"*ngFor="let exportVar of (current | async)?.js.exportsVar">
+                    {{exportVar.type}}
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <table>
+            <tr>
+              <th>downloads</th>
+              <th>type</th>
+              <th>style</th>
+              <th>category</th>
+            </tr>
+            <tr>
+              <td>{{ (current | async)?.downloadTotal }}</td>
+              <td>{{ (current | async)?.type }}</td>
+              <td>{{ (current | async)?.style }}</td>
+              <td>{{ (current | async)?.category }}</td>
+            </tr>
+          </table>
         </div>
       </div>
     </div>

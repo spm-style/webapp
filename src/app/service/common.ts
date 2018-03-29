@@ -2,7 +2,7 @@ import { Observable } from 'rxjs/Rx'
 import { environment } from '../../environments/environment'
 
 export let errorHttp = (error: any):Observable<any> => {
-  return Observable.throw(error.json().message)
+  return Observable.throw(error.message)
 }
 
 export { Observable } from 'rxjs/Observable'

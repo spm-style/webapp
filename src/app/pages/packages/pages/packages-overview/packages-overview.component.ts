@@ -23,16 +23,7 @@ export class PackagesOverviewComponent implements OnInit, OnDestroy, AfterViewCh
 
   @ViewChild('contentList') contentList:ElementRef;
 
-  // @ViewChild('test') test:ElementRef;
-
   @HostListener('window:resize', ['$event']) onResize(event) { this._pinterestGrid.init() }
-  // @HostListener('window:scroll', ['$event']) onScroll(event) {
-  //   // this._lastPositionScroll = event.srcElement.documentElement.scrollTop
-  //   console.log('test2', event.srcElement.documentElement.scrollTop)
-  //   console.log(event)
-  //   // event = event || window.event
-  //   // let number = this.window.pageYOffset || this.document.documentElement.scrollTop || this.document.body.scrollTop || 0
-  // }
 
   @select(['packageOrigin', 'list']) readonly list:Observable<IPackageOrigin>
   @select(['packageOrigin']) private _packageOrigin:Observable<RDXPackageOrigin>
@@ -69,29 +60,11 @@ export class PackagesOverviewComponent implements OnInit, OnDestroy, AfterViewCh
         (data:any) => {
           this._redux.dispatch({type: FETCH_PACKAGE_ORIGIN, list:data.packages})
           this._isFetchedCard = true
-//
         },
         (error:any) => { console.log(error) }
       )
     }
 
-    // setTimeout(() => {
-      // this._pinterestGrid = new PinterestGrid({
-      //   delay: 300,
-      //   gutter: 20,
-      //   container: this.contentList,
-      //   cards: this.contentList.nativeElement.children,
-      //   loaded: false,
-      //   shorterFirst: true
-      // }, this._renderer)
-
-      // if(this.contentList.nativeElement.children.length > 0){ this._pinterestGrid.init() }
-    // }, 300)
-
-    // this._testBis2 = merde2.subscribe((wheel) => {
-      // console.log(wheel)
-
-    // })
     if (isPlatformBrowser(this.platformId)) {
       this._testBis2 = Observable.fromEvent(window, 'scroll')
       this._testBis = this._testBis2.subscribe((scroll) => {
@@ -103,81 +76,15 @@ export class PackagesOverviewComponent implements OnInit, OnDestroy, AfterViewCh
       })
     }
 
-    // this._packageOrigin.subscribe((packageOrigin:RDXPackageOrigin) => {
-    //   if(!packageOrigin.current){
-    //     console.log(this._lastPositionScroll)
-    //     this._lastPositionScroll = this._testBis3 || 0
-    //     // this._testBis = this._testBis2.subscribe((scroll) => console.log(scroll))
-    //     // this._testBis = Observable.fromEvent(window, 'scroll').subscribe((scroll) => console.log(scroll))
-    //     console.log('in list')
-    //   }else{
-    //     // this._testBis.unsubscribe()
-    //     console.log('out list')
-    //   }
-    // })
-
-
-//     export interface ScrollRegisterConfig {
-//   container: ContainerRef;
-//   throttleType: string;
-//   throttleDuration: number;
-//   filterBefore: Function;
-//   mergeMap: Function;
-//   scrollHandler: Function;
-// }
-//
-// @Injectable()
-// export class ScrollRegister {
-//   attachEvent (options: ScrollRegisterConfig): Subscription {
-//     const scroller$: Subscription = Observable.fromEvent(options.container, 'scroll')
-//       [options.throttleType](() => Observable.timer(options.throttleDuration))
-//       .filter(options.filterBefore)
-//       .mergeMap((ev: any) => Observable.of(options.mergeMap(ev)))
-//       .subscribe(options.scrollHandler);
-//     return scroller$;
-//   }
-// }
-
-
-
-    // let merde = Observable.fromEvent(window, 'scroll')
-    // let merde2 = Observable.fromEvent(this._elem.nativeElement, 'wheel')
-    // // .do((scroll) => console.log('merde'))
-    // // .subscribe((scroll) => console.log(scroll))
-    //
-
-
-
-
-
-    // this._renderer.listen(this._elem.nativeElement, "wheel", (event) => {
-    //   // console.log(event)
-    //   // console.log('test1', event.pageY, event.layerY, event.pageY - event.layerY)
-    //   this._testBis = merde.subscribe((scroll) => console.log(scroll))
-    // })
-
-    // console.log('merde1', this._router)
     this._router.events.subscribe((event:Event) => {
-      // console.log('merde2', event)
       if (event instanceof NavigationEnd) {
-        // console.log(this._lastPositionScroll)
         if (event.urlAfterRedirects == '/packages') {
-          // console.log(this._lastPositionScroll)
           if (isPlatformBrowser(this.platformId)) {
             this._document.body
             ? this._document.body.scrollTo(0, this._lastPositionScroll)
             : this._document.documentElement.scrollTo(0, this._lastPositionScroll)
           }
         }
-        else {
-          // console.log('out')
-          // this._testBis.unsubscribe()
-          // this._testBis2.unsubscribe()
-        }
-        // console.log('merde3')
-        // console.log(event)
-        // console.log(this._testDeMerde)
-        // console.log(event, event.urlAfterRedirects == '/packages')
       }
     })
   }
