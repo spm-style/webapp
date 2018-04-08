@@ -1,28 +1,28 @@
 <section class="section-doc">
   <div class="content">
 
-    <doc-description>After installing a package, you may want to customize it and generate a new package from it. For this purpose, you can use the <doc-highlight>spm generate</doc-highlight> or short <doc-highlight>spm g</doc-highlight> CLI command.</doc-description>
+    <doc-description>After installing a package, you may want to customize it and generate a new package from it. For this purpose, you can use the <doc-highlight>spm module generate</doc-highlight> or short <doc-highlight>spm m g</doc-highlight> CLI command.</doc-description>
 
     <doc><!--
-   --><doc-terminal-instruction content="spm g apollo_onOff myNewPackage"></doc-terminal-instruction><!--
+   --><doc-terminal-instruction content="spm m g apollo_onOff myNewPackage"></doc-terminal-instruction><!--
  --></doc>
 
     <doc-description>Here, we are specifying the creation of a new instance of apollo_onOff package that we call myNewPackage. spm opens a prompt to ask for the value of all customizable variables :</doc-description>
 
     <doc><!--
-   --><doc-terminal-instruction content="spm g apollo_onOff myNewPackage"></doc-terminal-instruction><!--
+   --><doc-terminal-instruction content="spm m g apollo_onOff myNewPackage"></doc-terminal-instruction><!--
    --><doc-terminal-instruction type="inquirer-dim" content="value of adrien_onOff-offColor" [arg]="['(red)']" ></doc-terminal-instruction><!--
  --></doc>
 
     <doc-description>The default value of the variable is precised between parenthesis, so pressing the enter key will select the default value.</doc-description>
 
     <doc><!--
-   --><doc-terminal-instruction content="spm g apollo_onOff myNewPackage"></doc-terminal-instruction><!--
+   --><doc-terminal-instruction content="spm m g apollo_onOff myNewPackage"></doc-terminal-instruction><!--
    --><doc-terminal-instruction type="inquirer" content="value of adrien_onOff-offColor" [arg]="['red']" ></doc-terminal-instruction><!--
    --><doc-terminal-instruction type="inquirer-dim" content="value of adrien_onOff-offColor" [arg]="['(red)', 'green']" ></doc-terminal-instruction><!--
  --></doc>
 
-    <doc-description>Once all the values have been defined, the customized instance of your package is created inside the <span class="highlight">dist</span> folder located inside your package.</doc-description>
+    <doc-description>Once all the values have been defined, the customized instance of your package is created inside the <span class="highlight">spm_instances</span> folder located inside your package, updating the script and the stylesheet instances files.</doc-description>
     <doc-description>The classes are automatically renamed with a different prefix so you can use several instances of a package withint the same project. For instance, here:</doc-description>
 
     <doc-info-list type="important"><!--
@@ -36,7 +36,7 @@
     <doc-description>If you would like to customize the names of each class, you can use the option <doc-highlight>--rename</doc-highlight> or <doc-highlight>-r</doc-highlight>.</doc-description>
 
     <doc><!--
-   --><doc-terminal-instruction content="spm g apollo_onOff myNewPackage"></doc-terminal-instruction><!--
+   --><doc-terminal-instruction content="spm m g apollo_onOff myNewPackage"></doc-terminal-instruction><!--
    --><doc-terminal-instruction type="inquirer" content="value of apollo_onOff-offColor" [arg]="['red']"></doc-terminal-instruction><!--
    --><doc-terminal-instruction type="inquirer" content="value of apollo_onOff-onColor" [arg]="['blue']"></doc-terminal-instruction><!--
    --><doc-terminal-instruction type="inquirer" content="value of apollo_onOff-radius" [arg]="['10px']"></doc-terminal-instruction><!--
@@ -49,22 +49,10 @@
     <doc-description>One package cannot have two different customizations with the same name. For this reason, when trying to generating a customized package with an existing name, the CLI will exit with an error message. However, you can force this action with option <doc-highlight>--force</doc-highlight> or <doc-highlight>-f</doc-highlight>.</doc-description>
 
     <doc><!--
-   --><doc-terminal-instruction content="spm g apollo_onOff myNewPackage -f"></doc-terminal-instruction><!--
+   --><doc-terminal-instruction content="spm m g apollo_onOff myNewPackage -f"></doc-terminal-instruction><!--
  --></doc>
 
     <doc-info type="warning">This action will replace the previous customized package, so its content will be lost. Use this option very carefully !</doc-info>
 
-    <h2>Adding the import in a targeted file</h2>
-
-    <doc-description>Since you probably want to use what you've generated, you can do it with the option <doc-highlight>--use</doc-highlight> or <doc-highlight>-u</doc-highlight>.</doc-description>
-
-    <doc><!--
-   --><doc-terminal-instruction content="spm g apollo_onOff myNewPackage -u ./styles/forms.scss"></doc-terminal-instruction><!--
- --></doc>
-
-    <doc-info type="important">Note that you can use relative or absolute path as arguments.</doc-info>
-    <doc-info type="important">If you don't add any argument after `-u`, the import will automatically be added in your entry style file. If you don't have any, spm will generate a complete overview of your stylesheets starting at your project's level as a selectable checkbox list.</doc-info>
-    <doc-description>Moreover, if you want to import your newly generated file inside several stylesheets, you can list them between quotes, separating them with <doc-highlight>,</doc-highlight> and/or <doc-highlight> </doc-highlight>.</doc-description>
-    <doc-description>On the top of that, spm embeds a command dedicated to importing spm packages, detailed in the following section.</doc-description>
   </div>
 </section>

@@ -1,37 +1,39 @@
 <section class="section-doc">
   <div class="content">
 
-  	<doc-info type="warning">Before publishing a package, you must have a spm profile.</doc-info>
-	  	<doc-description>Once your code is ready, you can publish your package using the <doc-highlight>spm publish</doc-highlight> or short <doc-highlight>spm p</doc-highlight> CLI command.</doc-description>
+  	<doc-info type="warning">Before publishing a module, you must have a spm profile.</doc-info>
+	  	<doc-description>Once your code is ready, you can publish your module using the <doc-highlight>spm publish</doc-highlight> or short <doc-highlight>spm p</doc-highlight> CLI command.</doc-description>
 	  <doc><!--
-   --><doc-terminal-instruction content="spm p myAwesomePackage"></doc-terminal-instruction><!--
+   --><doc-terminal-instruction content="spm m p myAwesomeModule"></doc-terminal-instruction><!--
  --></doc>
-		 <doc-info-list type="important" title="In order to publish your package, spm requires mandatory information to be present in your `package-spm.json` file:">
+		 <doc-info-list type="important" title="In order to publish your module, spm requires mandatory information to be present in your `module-spm.json` file:">
 			<doc-info-list-item>style</doc-info-list-item>
-			<doc-info-list-item>type</doc-info-list-item>
 			<doc-info-list-item>version</doc-info-list-item>
 			<doc-info-list-item>description</doc-info-list-item>
 			<doc-info-list-item>author</doc-info-list-item>
-			<doc-info-list-item>entry</doc-info-list-item>
-			<doc-info-list-item>scripts</doc-info-list-item>
+			<doc-info-list-item>jsStandard</doc-info-list-item>
+			<doc-info-list-item>files</doc-info-list-item>
 			<doc-info-list-item>license</doc-info-list-item>
 			<doc-info-list-item>repository</doc-info-list-item>
 			<doc-info-list-item>readme</doc-info-list-item>
 			<doc-info-list-item>keywords</doc-info-list-item>
-			<doc-info-list-item>main</doc-info-list-item>
+			<doc-info-list-item>mainClass</doc-info-list-item>
 			<doc-info-list-item>category</doc-info-list-item>
-			<doc-info-list-item>classes</doc-info-list-item>
 			<doc-info-list-item>responsiveness</doc-info-list-item>
 	  </doc-info-list>
-	  <doc-description>Moreover, you need to have a <doc-highlight>ref-dom.html</doc-highlight> template file located at the root of your publication if you don't use one of spm templates.</doc-description>
-	  <doc-info-list type="warning" title="There are several checks done on CLI side, more checks are done by spm registry to ensure the quality of the package. Among them:">
+	  <doc-description>If you have no html index file or if the file is empty, spm will browse the folders recursively to analyze where the main class is used and will suggest reference DOMs based on what we found.</doc-description>
+	  <doc-info-list type="warning" title="There are several checks done on CLI side, more checks are done by spm registry to ensure the quality of the module. Among them:">
 	  	<doc-info-list-item>We check your publication's style does not affect any external element. For this reason, all your style selectors should be driven by your main class and/or your project's class</doc-info-list-item>
+	  	<doc-info-list-item>No file out of your current folder will be sent to our registry, therefore we check you don't import anything from local sources out of your module folder.</doc-info-list-item>
+	  	<doc-info-list-item>Instance variables always start with <doc-highlight>$_</doc-highlight>. Any variable starting with this prefix will be considered as instance variable. Make sure your javascript instances variables are always declared and instantiated at once. Make sure your stylsheet instances variables are declared and instantiated in the variables-spm.scss file.</doc-info-list-item>
+	  	<doc-info-list-item>Your module's script will be processed into a javascript class. Any variable starting with <doc-highlight>$$_</doc-highlight> will be considered as an export variable, and will be a property of any instance of the class. Keep in mind that this code will be executed in strict mode.</doc-info-list-item>
 	  </doc-info-list>
 		<doc-description>Wether the publication suceeds or not, a report will be displayed in your terminal.</doc-description>
-		<doc-info type="important">To ensure each package's unicity and the compatibility between all packages, spm renames all publications based on this model : *author*_*name*. The classes and variables will be renamed the same way.</doc-info>
+		<doc-info type="important">To ensure each module's unicity and the compatibility between all modules, spm renames all publications based on this model : *author*_*name*. The classes and variables will be renamed the same way.</doc-info>
 		<doc-info-list type="success" title="Once your publication is validated, it will be accessible on spm website and accessible by:">
 			<doc-info-list-item>anyone if it is a public publication</doc-info-list-item>
 			<doc-info-list-item>specific collaborators you've chosen if it is a private publication</doc-info-list-item>
 		</doc-info-list>
+		<doc-info type="important">Since spm processes your code to make it accessible to our great community, we keep the source files you sent us. Use CLI command <doc-highlight>spm module clone &#60;moduleName></doc-highlight> to download them back.</doc-info>
 	</div>
 </section>

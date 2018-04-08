@@ -1,81 +1,163 @@
 <section class="section-doc">
   <div class="content">
 
-    <doc-description>Initializing your project adds a <doc-highlight>package-spm.json</doc-highlight> file at the level where you enter the command <doc-highlight>spm init</doc-highlight> CLI command. It opens a prompter asking for the project's main parameters :</doc-description>
+    <doc-description>Initializing your module adds a <doc-highlight>module-spm.json</doc-highlight> file at the level where you enter the command <doc-highlight>spm module create</doc-highlight> CLI command. It opens a prompter asking for the module's main parameters :</doc-description>
 
     <doc><!--
-    --><doc-terminal-instruction content="spm init"></doc-terminal-instruction><!--
-    --><doc-terminal-instruction type="inquirer" content="module name:" [arg]="['myProject']"></doc-terminal-instruction><!--
+    --><doc-terminal-instruction content="spm module create myModule"></doc-terminal-instruction><!--
     --><doc-terminal-instruction type="inquirer" content="version:" [arg]="['1.0.0']"></doc-terminal-instruction><!--
-    --><doc-terminal-instruction type="inquirer" content="default style:" [arg]="['scss']"></doc-terminal-instruction><!--
-    --><doc-terminal-instruction type="inquirer" content="main class in your module:" [arg]="['myProject']"></doc-terminal-instruction><!--
-    --><doc-terminal-instruction type="inquirer" content="other classes in your module:" [arg]="['']"></doc-terminal-instruction><!--
-    --><doc-terminal-instruction type="inquirer" content="entry point:" [arg]="['index.scss']"></doc-terminal-instruction><!--
-    --><doc-terminal-instruction type="inquirer" content="scss variables:" [arg]="['']"></doc-terminal-instruction><!--
-    --><doc-terminal-instruction type="inquirer" content="author:" [arg]="['pizzaiolo']"></doc-terminal-instruction><!--
-    --><doc-terminal-instruction type="inquirer" content="repository:" [arg]="['']"></doc-terminal-instruction><!--
-    --><doc-terminal-instruction type="inquirer" content="readme:" [arg]="['README.md']"></doc-terminal-instruction><!--
-    --><doc-terminal-instruction type="inquirer" content="contributors" [arg]="['']"></doc-terminal-instruction><!--
-    --><doc-terminal-instruction type="inquirer" content="license:" [arg]="['IST']"></doc-terminal-instruction><!--
-    --><doc-terminal-instruction type="inquirer" content="keywords:" [arg]="['']"></doc-terminal-instruction><!--
+    --><doc-terminal-instruction type="inquirer" content="style:" [arg]="['scss']"></doc-terminal-instruction><!--
+    --><doc-terminal-instruction type="inquirer" content="main class:" [arg]="['myModule']"></doc-terminal-instruction><!--
     --><doc-terminal-instruction type="inquirer" content="description:" [arg]="['']"></doc-terminal-instruction><!--
-    --><doc-terminal-instruction type="console-log" content="About to write to /Users/username/Desktop/myProject/package-spm.json"></doc-terminal-instruction><!--
+    --><doc-terminal-instruction type="inquirer" content="chose your js standard: legacy only recommended for native script" [arg]="['legacy']"></doc-terminal-instruction><!--
+    --><doc-terminal-instruction type="inquirer" content="repository:" [arg]="['']"></doc-terminal-instruction><!--
+    --><doc-terminal-instruction type="inquirer" content="license:" [arg]="['MIT']"></doc-terminal-instruction><!--
+    --><doc-terminal-instruction type="inquirer" content="module's main stylesheet:" [arg]="['myModule.css']"></doc-terminal-instruction><!--
+    --><doc-terminal-instruction type="inquirer" content="module's main script:" [arg]="['myModule.js']"></doc-terminal-instruction><!--
+    --><doc-terminal-instruction type="console-log" content="About to write to /Users/username/Desktop/myModule/module-spm.json"></doc-terminal-instruction><!--
     --><doc-terminal-instruction type="console-log" content="&#123;"></doc-terminal-instruction><!--
-    --><doc-terminal-instruction type="console-log" content="&emsp;&quot;name&quot;: &quot;myProject&quot;,"></doc-terminal-instruction><!--
+    --><doc-terminal-instruction type="console-log" content="&emsp;&quot;name&quot;: &quot;myModule&quot;,"></doc-terminal-instruction><!--
     --><doc-terminal-instruction type="console-log" content="&emsp;&quot;version&quot;: &quot;1.0.0&quot;,"></doc-terminal-instruction><!--
+    --><doc-terminal-instruction type="console-log" content="&emsp;&quot;author&quot;: &quot;username&quot;,"></doc-terminal-instruction><!--
     --><doc-terminal-instruction type="console-log" content="&emsp;&quot;style&quot;: &quot;scss&quot;,"></doc-terminal-instruction><!--
-    --><doc-terminal-instruction type="console-log" content="&emsp;&quot;main&quot;: &quot;myProject&quot;,"></doc-terminal-instruction><!--
-    --><doc-terminal-instruction type="console-log" content="&emsp;&quot;scripts&quot;: &quot;{"></doc-terminal-instruction><!--
-    --><doc-terminal-instruction type="console-log" content="&emsp;&emsp;&quot;test&quot;: &quot;echo &#92;&quot;Error = no test specified&#92;&quot; && exit 1&quot;"></doc-terminal-instruction><!--
-    --><doc-terminal-instruction type="console-log" content="&emsp;},"></doc-terminal-instruction><!--
-    --><doc-terminal-instruction type="console-log" content="&emsp;&quot;author&quot;: &quot;anonymous&quot;,"></doc-terminal-instruction><!--
-    --><doc-terminal-instruction type="console-log" content="&emsp;&quot;license&quot;: &quot;IST&quot;,"></doc-terminal-instruction><!--
-    --><doc-terminal-instruction type="console-log" content="&emsp;&quot;keywords&quot;: &quot;[]&quot;,"></doc-terminal-instruction><!--
-    --><doc-terminal-instruction type="console-log" content="&emsp;&quot;description&quot;: &quot;&quot;,"></doc-terminal-instruction><!--
     --><doc-terminal-instruction type="console-log" content="&emsp;&quot;type&quot;: &quot;native&quot;,"></doc-terminal-instruction><!--
-    --><doc-terminal-instruction type="console-log" content="&emsp;&quot;classes&quot;: &quot;[]&quot;,"></doc-terminal-instruction><!--
-    --><doc-terminal-instruction type="console-log" content="&emsp;&quot;entry&quot;: &quot;index.scss&quot;,"></doc-terminal-instruction><!--
-    --><doc-terminal-instruction type="console-log" content="&emsp;&quot;variables&quot;: &quot;[]&quot;,"></doc-terminal-instruction><!--
+    --><doc-terminal-instruction type="console-log" content="&emsp;&quot;mainClass&quot;: &quot;myModule&quot;,"></doc-terminal-instruction><!--
+    --><doc-terminal-instruction type="console-log" content="&emsp;&quot;description&quot;: &quot;&quot;,"></doc-terminal-instruction><!--
+    --><doc-terminal-instruction type="console-log" content="&emsp;&quot;jsStandard&quot;: &quot;legacy&quot;,"></doc-terminal-instruction><!--
+    --><doc-terminal-instruction type="console-log" content="&emsp;&quot;category&quot;: &quot;&quot;,"></doc-terminal-instruction><!--
+    --><doc-terminal-instruction type="console-log" content="&emsp;&quot;responsive&quot;: [],"></doc-terminal-instruction><!--
+    --><doc-terminal-instruction type="console-log" content="&emsp;&quot;keywords&quot;: [],"></doc-terminal-instruction><!--
+    --><doc-terminal-instruction type="console-log" content="&emsp;&quot;dependencies&quot;: &#123;}"></doc-terminal-instruction><!--
+    --><doc-terminal-instruction type="console-log" content="&emsp;&quot;files&quot;: &#123;"></doc-terminal-instruction><!--
+    --><doc-terminal-instruction type="console-log" content="&emsp;&emsp;&quot;index&quot;: &quot;myModule.html&quot;,"></doc-terminal-instruction><!--
+    --><doc-terminal-instruction type="console-log" content="&emsp;&emsp;&quot;script&quot;: &quot;myModule.js&quot;,"></doc-terminal-instruction><!--
+    --><doc-terminal-instruction type="console-log" content="&emsp;&emsp;&quot;style&quot;: &quot;myModule.scss&quot;"></doc-terminal-instruction><!--
+    --><doc-terminal-instruction type="console-log" content="&emsp;},"></doc-terminal-instruction><!--
+    --><doc-terminal-instruction type="console-log" content="&emsp;&quot;classes&quot;: [],"></doc-terminal-instruction><!--
+    --><doc-terminal-instruction type="console-log" content="&emsp;&quot;readme&quot;: &quot;&quot;,"></doc-terminal-instruction><!--
     --><doc-terminal-instruction type="console-log" content="&emsp;&quot;repository&quot;: &quot;&quot;,"></doc-terminal-instruction><!--
-    --><doc-terminal-instruction type="console-log" content="&emsp;&quot;readme&quot;: &quot;README.md&quot;,"></doc-terminal-instruction><!--
-    --><doc-terminal-instruction type="console-log" content="&emsp;&quot;contributors&quot;: &quot;[]&quot;,"></doc-terminal-instruction><!--
+    --><doc-terminal-instruction type="console-log" content="&emsp;&quot;license&quot;: &quot;MIT&quot;,"></doc-terminal-instruction><!--
+    --><doc-terminal-instruction type="console-log" content="&emsp;&quot;contributors&quot;: []"></doc-terminal-instruction><!--
     --><doc-terminal-instruction type="console-log" content="}"></doc-terminal-instruction><!--
     --><doc-terminal-instruction type="inquirer-dim" content="Is this ok ?" [arg]="['(Y/n)']"></doc-terminal-instruction><!--
 --></doc>
 
-  <doc-info-list type="important" title="There are two main reasons to run this command before using any other spm feature:" tail="Therefore, we strongly encourage you to run this command everytime you start a project.">
-    <doc-info-list-item>Most of the features described above require an entry file to run more smoothly.</doc-info-list-item>
-    <doc-info-list-item>You cannot publish a project which has not been initialized. Which means you cannot use spm to share, demonstrate or version your code.</doc-info-list-item>
+  <doc-info-list type="important" title="By default, the following files will be created ">
+    <doc-info-list-item>folder <doc-highlight>myModule</doc-highlight></doc-info-list-item>
+    <doc-info-list-item>file <doc-highlight>myModule/variables-spm.scss</doc-highlight>for the scss instance variables, prefixed by <doc-highlight>$_</doc-highlight></doc-info-list-item>
+    <doc-info-list-item>file <doc-highlight>myModule/myModule.js</doc-highlight> for the module script, embedding js instance variables prefixed by <doc-highlight>$_</doc-highlight> and implementing export variables, prefixed by <doc-highlight>$$_</doc-highlight></doc-info-list-item>
+    <doc-info-list-item>file <doc-highlight>myModule/myModule.html</doc-highlight> for the reference DOM</doc-info-list-item>
+    <doc-info-list-item>file <doc-highlight>myModule/module-spm.json</doc-highlight> for the module json configuration file</doc-info-list-item>
+    <doc-info-list-item>file <doc-highlight>myModule/myModule.scss</doc-highlight> for the main stylesheet, which can import other stylesheets</doc-info-list-item>
   </doc-info-list>
 
-    <doc-description>After installing a package, you may want to customize it and generate a new package from it. For this purpose, you can use the <doc-highlight>spm generate</doc-highlight> or short <doc-highlight>spm g</doc-highlight> CLI command.</doc-description>
-
-    <doc><!--
-   --><doc-terminal-instruction content="spm g apollo_onOff myNewPackage"></doc-terminal-instruction><!--
- --></doc>
-
-    <doc-description>Here, we are specifying the creation of a new instance of apollo_onOff package that we call myNewPackage. spm opens a prompt to ask for the value of all customizable variables :</doc-description>
-
-    <doc><!--
-   --><doc-terminal-instruction content="spm g apollo_onOff myNewPackage"></doc-terminal-instruction><!--
-   --><doc-terminal-instruction type="inquirer-dim" content="value of adrien_onOff-offColor" [arg]="['(red)']" ></doc-terminal-instruction><!--
- --></doc>
-
-    <doc-description>The default value of the variable is precised between parenthesis, so pressing the enter key will select the default value.</doc-description>
-
-    <doc><!--
-   --><doc-terminal-instruction content="spm g apollo_onOff myNewPackage"></doc-terminal-instruction><!--
-   --><doc-terminal-instruction type="inquirer" content="value of adrien_onOff-offColor" [arg]="['red']" ></doc-terminal-instruction><!--
-   --><doc-terminal-instruction type="inquirer-dim" content="value of adrien_onOff-offColor" [arg]="['(red)', 'green']" ></doc-terminal-instruction><!--
- --></doc>
-
-    <doc-description>Once all the values have been defined, the customized instance of your package is created inside the <span class="highlight">dist</span> folder located inside your package.</doc-description>
-    <doc-description>The classes are automatically renamed with a different prefix so you can use several instances of a package withint the same project. For instance, here:</doc-description>
-
-    <doc-info-list type="important"><!--
-   --><doc-info-list-item><doc-highlight>apollo_onOff</doc-highlight> class is renamed in <doc-highlight>myNewPackage</doc-highlight></doc-info-list-item><!--
-   --><doc-info-list-item><doc-highlight>apollo_onOff-radius</doc-highlight> class is renamed in <doc-highlight>myNewPackage-radius</doc-highlight></doc-info-list-item><!--
-   --><doc-info-list-item><doc-highlight>apollo_onOff-pointer</doc-highlight> class is renamed in <doc-highlight>myNewPackage-pointer</doc-highlight></doc-info-list-item><!--
- --></doc-info-list>
+  <doc-description>The following options are available for module creation:
+    <table class="command-lexicon">
+      <tr>
+        <th>option</th>
+        <th>description</th>
+      </tr>
+      <tr>
+        <td>--version &#60;version></td>
+        <td>the module's version</td>
+      </tr>
+      <tr>
+        <td>--style &#60;style></td>
+        <td>chose between scss and css (default) stylesheet language</td>
+      </tr>
+      <tr>
+        <td>--main-class &#60;mainClass></td>
+        <td>the main class, wrapping all the module behaviour in reference DOM and stylesheet</td>
+      </tr>
+      <tr>
+        <td>--description &#60;description></td>
+        <td>your module's description</td>
+      </tr>
+      <tr>
+        <td>--js-standard &#60;standard></td>
+        <td>legacy (ES5) or modular(ES6): legacy is defined by default since modular is not supported by all browsers yet</td>
+      </tr>
+      <tr>
+        <td>--category &#60;category></td>
+        <td>your module's category (e.g. carousel, input, ...)</td>
+      </tr>
+      <tr>
+        <td>--responsive &#60;devices></td>
+        <td>the devices your module is compatible with</td>
+      </tr>
+      <tr>
+        <td>--keywords &#60;keywords></td>
+        <td>a couple of words used for referencing purposes</td>
+      </tr>
+      <tr>
+        <td>--readme &#60;readmeFile></td>
+        <td>the readme filename</td>
+      </tr>
+      <tr>
+        <td>--repository &#60;repository></td>
+        <td>the git repository where the module is hosted</td>
+      </tr>
+      <tr>
+        <td>--license &#60;license></td>
+        <td>intellectual property</td>
+      </tr>
+      <tr>
+        <td>--classes &#60;classes></td>
+        <td>all the DOM classes your project implements</td>
+      </tr>
+      <tr>
+        <td>--html-name &#60;htmlName></td>
+        <td>the html entry file's name</td>
+      </tr>
+      <tr>
+        <td>--ss-name &#60;ssName></td>
+        <td>the (s)css entry file's name</td>
+      </tr>
+      <tr>
+        <td>--js-name &#60;jsName></td>
+        <td>the js entry file's name</td>
+      </tr>
+      <tr>
+        <td>--no-html-file</td>
+        <td>to prevent the html file creation</td>
+      </tr>
+      <tr>
+        <td>--no-ss-file</td>
+        <td>to prevent the (s)css file creation</td>
+      </tr>
+      <tr>
+        <td>--no-js-file</td>
+        <td>to prevent the js file creation</td>
+      </tr>
+      <tr>
+        <td>--no-file</td>
+        <td>no file is created</td>
+      </tr>
+      <tr>
+        <td>--flat</td>
+        <td>the module is created in the current folder, and no folder will be created</td>
+      </tr>
+      <tr>
+        <td>--default</td>
+        <td>no prompter opened, default information used</td>
+      </tr>
+      <tr>
+        <td>--force</td>
+        <td>forces the creation of files or folders if they already exist</td>
+      </tr>
+      <tr>
+        <td>--debug</td>
+        <td>displays the debug logs</td>
+      </tr>
+      <tr>
+        <td>-h, --help</td>
+        <td>information about spm module creation feature in the CLI</td>
+      </tr>
+    </table>
+  </doc-description>
+  <doc-info-list type="important" title="There are two main reasons to run this command before using any other spm feature:" tail="Therefore, we strongly encourage you to run this command everytime you start a module.">
+    <doc-info-list-item>Most of the features described above require an entry file to run more smoothly.</doc-info-list-item>
+    <doc-info-list-item>You cannot publish a module which has not been initialized. Which means you cannot use spm to share, demonstrate or version your code.</doc-info-list-item>
+  </doc-info-list>
   </div>
 </section>

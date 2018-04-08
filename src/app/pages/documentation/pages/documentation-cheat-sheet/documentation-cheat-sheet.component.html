@@ -6,164 +6,145 @@
       <p>register, login and logout</p>
       <div class="command-block-list">
         <div class="command-block-item">
-          <h4 class="command-name">$ spm user</h4>
-          <p class="command-description">Opens a prompter to register or login with spm</p>
+          <h4 class="command-name">$ spm user register </h4>
+          <p class="command-description">Opens a prompter to register with spm</p>
+        </div>
+        <div class="command-block-item">
+          <h4 class="command-name">$ spm user login</h4>
+          <p class="command-description">connects you to spm CLI</p>
+        </div>
+        <div class="command-block-item">
+          <h4 class="command-name">$ spm user detail</h4>
+          <p class="command-description">displays current information on the logged user</p>
         </div>
         <div class="command-block-item">
           <h4 class="command-name">$ spm user logout</h4>
-          <p class="command-description">disconnects you from spm CLI</p>
-        </div>
-        <div class="command-block-item">
-          <h4 class="command-name">$ spm user info</h4>
-          <p class="command-description">displays current information on the logged user</p>
+          <p class="command-description">disconnects your user from spm</p>
         </div>
       </div>
     </div>
 
     <div class="command-block command-block-tooling">
-      <h2>Launch a project</h2>
-      <p>initializes core information on your project to enable powerful spm features</p>
+      <h2>Start a module</h2>
+      <p>initializes core information on your module to enable powerful spm features</p>
       <div class="command-block-list">
         <div class="command-block-item">
-          <h4 class="command-name">$ spm init</h4>
-          <p class="command-description">Opens a prompter where you can fill your project's basic information</p>
+          <h4 class="command-name">$ spm module create</h4>
+          <p class="command-description">Opens a prompter where you can fill your module's basic information</p>
         </div>
       </div>
     </div>
 
     <div class="command-block command-block-tooling">
-      <h2>Install wonderful packages</h2>
-      <p>Once you've found a packge you like, add it to your project</p>
+      <h2>Install wonderful modules</h2>
+      <p>Once you've found a module you like, add it to your code</p>
       <div class="command-block-list">
         <div class="command-block-item">
-          <h4 class="command-name">$ spm i</h4>
-          <p class="command-description">Alias for spm install</p>
+          <h4 class="command-name">$ spm m i</h4>
+          <p class="command-description">Alias for spm module install</p>
         </div>
         <div class="command-block-item">
-          <h4 class="command-name">$ spm install</h4>
-          <p class="command-description">to install all spm dependencies saved in your project</p>
+          <h4 class="command-name">$ spm module install</h4>
+          <p class="command-description">to install all spm dependencies saved in your code (refer to module-spm.json)</p>
         </div>
         <div class="command-block-item">
-          <h4 class="command-name">$ spm install package1 package2</h4>
-          <p class="command-description">to install the latest versions of package1 and package2</p>
+          <h4 class="command-name">$ spm module install module1 module2</h4>
+          <p class="command-description">to install the latest versions of module1 and module2</p>
         </div>
         <div class="command-block-item">
-          <h4 class="command-name">$ spm install packageA@2.0.8</h4>
-          <p class="command-description">to install the version 2.0.8 of packageA</p>
+          <h4 class="command-name">$ spm module install moduleA@2.0.8</h4>
+          <p class="command-description">to install moduleA's version 2.0.8</p>
         </div>
         <div class="command-block-item">
-          <h4 class="command-name">$ spm install packageA --save</h4>
-          <p class="command-description">to install packageA and save it as a dependency of your project</p>
+          <h4 class="command-name">$ spm module install moduleA --save</h4>
+          <p class="command-description">to install moduleA and save it as a dependency of your code</p>
         </div>
       </div>
     </div>
 
     <div class="command-block command-block-tooling">
       <h2>Customize your style</h2>
-      <p>You can modify specific parameters of package you've installed</p>
+      <p>You can modify specific parameters of modules you've installed</p>
       <div class="command-block-list">
         <div class="command-block-item">
-          <h4 class="command-name">$ spm g</h4>
-          <p class="command-description">Alias for spm generate</p>
+          <h4 class="command-name">$ spm m g</h4>
+          <p class="command-description">Alias for spm module generate</p>
         </div>
         <div class="command-block-item">
-          <h4 class="command-name">$ spm generate packageA customName</h4>
-          <p class="command-description">opens a prompter which will help you customize packageA's properties and generates a customized instance called customName</p>
+          <h4 class="command-name">$ spm module generate customName --module-name moduleA</h4>
+          <p class="command-description">opens a prompter which will help you customize moduleA's properties and generates a customized instance called customName</p>
         </div>
         <div class="command-block-item">
-          <h4 class="command-name">$ spm generate packageA customName --rename</h4>
+          <h4 class="command-name">$ spm module generate customName --module-name moduleA --classes-rename</h4>
           <p class="command-description">to select all classes' names when you generate a custom instance</p>
         </div>
         <div class="command-block-item">
-          <h4 class="command-name">$ spm generate packageA customName --use</h4>
-          <p class="command-description">to generate a custom instance and use it in your main stylesheet</p>
-        </div>
-        <div class="command-block-item">
-          <h4 class="command-name">$ spm generate packageA customName --save</h4>
-          <p class="command-description">to generate a custom instance and save it as a dependency of your project</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="command-block command-block-tooling">
-      <h2>Use your style in your project's stylesheets</h2>
-      <p>To use a style, your stylesheet must import it. Don't waste time figuring out the relative path.</p>
-      <div class="command-block-list">
-        <div class="command-block-item">
-          <h4 class="command-name">$ spm u</h4>
-          <p class="command-description">Alias for spm use</p>
-        </div>
-        <div class="command-block-item">
-          <h4 class="command-name">$ spm use customName</h4>
-          <p class="command-description">imports the style from the instance customName</p>
-        </div>
-        <div class="command-block-item">
-          <h4 class="command-name">$ spm use customName --save</h4>
-          <p class="command-description">import an instance's style in your project and save it as one of your project's dependencies</p>
+          <h4 class="command-name">$ spm module generate customName --module-name moduleA --assign myInstance</h4>
+          <p class="command-description">to generate a custom instance and store the javascript instance object in a myInstance variable</p>
         </div>
       </div>
     </div>
 
     <div class="command-block command-block-tooling">
       <h2>Inspect your project</h2>
-      <p>Some projects can import many graphical component : display their tree list.</p>
+      <p>Some codes can import many graphical component : display their tree list.</p>
       <div class="command-block-list">
         <div class="command-block-item">
-          <h4 class="command-name">$ spm ls</h4>
+          <h4 class="command-name">$ spm module list</h4>
           <p class="command-description">displays the tree list of all dependencies used and their saved instances</p>
         </div>
       </div>
     </div>
 
     <div class="command-block command-block-tooling">
-      <h2>Updates your project version</h2>
-      <p>To track your project, maintain it and manage teams, versionnng is powerful. This increments your version.</p>
+      <h2>Updates your module version</h2>
+      <p>To track your module, maintain it and manage teams, versionnng is powerful. This increments your version.</p>
       <div class="command-block-list">
         <div class="command-block-item">
-          <h4 class="command-name">$ spm v</h4>
-          <p class="command-description">Alias for spm version</p>
+          <h4 class="command-name">$ spm m v</h4>
+          <p class="command-description">Alias for spm module version</p>
         </div>
         <div class="command-block-item">
-          <h4 class="command-name">$ spm version minor</h4>
-          <p class="command-description">a version is a 3 digit object : MAJOR.MINOR.PATCH. Use one of those (case insensitive) to udpate your project's version</p>
+          <h4 class="command-name">$ spm module version minor</h4>
+          <p class="command-description">a version is a 3 digit object : MAJOR.MINOR.PATCH. Use one of those (case insensitive) to udpate your module's version</p>
         </div>
       </div>
     </div>
 
     <div class="command-block command-block-tooling">
-      <h2>Publish your project</h2>
-      <p>This adds your project to our registry, allow you to share it and access is from anywhere.</p>
+      <h2>Publish your module</h2>
+      <p>This adds your module to our registry, allow you to share it and access is from anywhere.</p>
       <div class="command-block-list">
         <div class="command-block-item">
-          <h4 class="command-name">$ spm p</h4>
-          <p class="command-description">Alias for spm publish</p>
+          <h4 class="command-name">$ spm m p</h4>
+          <p class="command-description">Alias for spm module publish</p>
         </div>
         <div class="command-block-item">
-          <h4 class="command-name">$ spm publish</h4>
-          <p class="command-description">to publish your project</p>
+          <h4 class="command-name">$ spm module publish</h4>
+          <p class="command-description">to publish your module</p>
         </div>
         <div class="command-block-item">
-          <h4 class="command-name">$ spm publish myPackage@2.0.0</h4>
-          <p class="command-description">to publish your project as the version 2.0.0</p>
+          <h4 class="command-name">$ spm publish myModule@2.0.0</h4>
+          <p class="command-description">to publish your module as the version 2.0.0</p>
         </div>
       </div>
     </div>
 
     <div class="command-block command-block-tooling">
-      <h2>Manage project's contributors</h2>
-      <p>to add, remove contributors from project you're already contributing to, and display the list of contributors</p>
+      <h2>Manage module's contributors</h2>
+      <p>to add, remove contributors from a module you're already contributing to, and display the list of contributors</p>
       <div class="command-block-list">
         <div class="command-block-item">
-          <h4 class="command-name">$ spm owner add user packageName</h4>
-          <p class="command-description">to add a user (email or login) as a package's contributor</p>
+          <h4 class="command-name">$ spm module admin --owner-add axolotl</h4>
+          <p class="command-description">to add a user whose email or login is axolotl as a module's contributor</p>
         </div>
         <div class="command-block-item">
-          <h4 class="command-name">$ spm owner rm user packageName</h4>
-          <p class="command-description">to remove a user (email or login) from the contributors of a package</p>
+          <h4 class="command-name">$ spm module admin --owner-remove axolotl</h4>
+          <p class="command-description">to remove a user (email or login) from the contributors of a module</p>
         </div>
         <div class="command-block-item">
-          <h4 class="command-name">$ spm owner ls packageName</h4>
-          <p class="command-description">To display logins and emails of contributors to a package</p>
+          <h4 class="command-name">$ spm module admin --owner-list</h4>
+          <p class="command-description">To display logins and emails of contributors to a module</p>
         </div>
       </div>
     </div>

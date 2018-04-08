@@ -3,20 +3,23 @@
 		<doc-description>Once you've installed our CLI, you're set to go !</doc-description>
 		<doc-description>We use the classical following pattern for our commands :
 			<doc><!--
-		 --><doc-terminal-instruction content="spm <command> [arguments] [options]"></doc-terminal-instruction><!--
+		 --><doc-terminal-instruction content="spm <model> <action> [options...]"></doc-terminal-instruction><!--
 	 --></doc>
 		</doc-description>
 		<doc-description>For instance :
 			<doc><!--
-				 --><doc-terminal-instruction content="spm install apollo_input adrien_onOff --save -l"></doc-terminal-instruction><!--
+				 --><doc-terminal-instruction content="spm user register"></doc-terminal-instruction><!--
+			 --></doc>
+			 <doc><!--
+				 --><doc-terminal-instruction content="spm module install apollo_input adrien_onOff --save"></doc-terminal-instruction><!--
 			 --></doc>
 		</doc-description>
 		<doc-description>Note options can generally be used as double dash + full name or simple dash with alias</doc-description>
-		<doc-description>At any moment, you can get help about spm or its command by typing either spm with no argument or spm with a command and the <doc-highlight>--help</doc-highlight> or <doc-highlight>-h</doc-highlight> option.
+		<doc-description>At any moment, you can get help about spm or its command by typing <doc-highlight>spm</doc-highlight>, <doc-highlight>spm &#60;model&#62;</doc-highlight> or <doc-highlight>spm &#60;model&#62; &#60;action&#62;</doc-highlight> with no argument, <doc-highlight>--help</doc-highlight> or <doc-highlight>-h</doc-highlight> option.
 			<doc><!--
  		 --><doc-terminal-instruction content="spm"></doc-terminal-instruction><!--
  		 --><doc-tab></doc-tab><!--
- 		 --><doc-terminal-instruction type="console-log" content="Usage: index [options] [command]"></doc-terminal-instruction><!--
+ 		 --><doc-terminal-instruction type="console-log" content="Usage: spm [options] [command]"></doc-terminal-instruction><!--
  		 --><doc-tab></doc-tab><!--
  		 --><doc-terminal-instruction type="console-log" content="Options:"></doc-terminal-instruction><!--
  		 --><doc-terminal-instruction type="console-log" content="&nbsp;&nbsp;&nbsp;&nbsp;-V, --version  output the version number"></doc-terminal-instruction><!--
@@ -25,76 +28,135 @@
 		 --><doc-terminal-instruction type="console-log" content="Commands:"></doc-terminal-instruction><!--
 		 --><doc-tab></doc-tab><!--
 		 --><table>
-		 			<tr><td><doc-terminal-instruction type="console-log" content="init [options]"></doc-terminal-instruction></td><td><doc-terminal-instruction type="console-log" content="initializes the project with package.json"></doc-terminal-instruction></td></tr>
-		 			<tr><td><doc-terminal-instruction type="console-log" content="publish|p [options] [pkg]"></doc-terminal-instruction></td><td><doc-terminal-instruction type="console-log" content="to publish your package in the spm registry"></doc-terminal-instruction></td></tr>
-		 			<tr><td><doc-terminal-instruction type="console-log" content="install|i [options] [names...]"></doc-terminal-instruction></td><td><doc-terminal-instruction type="console-log" content="installs the module or one of its components/templates/elements"></doc-terminal-instruction></td></tr>
-		 			<tr><td><doc-terminal-instruction type="console-log" content="ls [options]"></doc-terminal-instruction></td><td><doc-terminal-instruction type="console-log" content="to display a dependency tree of your project"></doc-terminal-instruction></td></tr>
-		 			<tr><td><doc-terminal-instruction type="console-log" content="generate|g [options] [name] [nickname]"></doc-terminal-instruction></td><td><doc-terminal-instruction type="console-log" content="to generate a customized instance of a spm module"></doc-terminal-instruction></td></tr>
-		 			<tr><td><doc-terminal-instruction type="console-log" content="owner <action...>"></doc-terminal-instruction></td><td><doc-terminal-instruction type="console-log" content="manage contributors on your packages"></doc-terminal-instruction></td></tr>
-		 			<tr><td><doc-terminal-instruction type="console-log" content="unpublish <pkg>"></doc-terminal-instruction></td><td><doc-terminal-instruction type="console-log" content="to remove a package you\'re contributing to"></doc-terminal-instruction></td></tr>
-		 			<tr><td><doc-terminal-instruction type="console-log" content="use|u [options] [instances...]"></doc-terminal-instruction></td><td><doc-terminal-instruction type="console-log" content="to use a style instance you have already generated"></doc-terminal-instruction></td></tr>
-		 			<tr><td><doc-terminal-instruction type="console-log" content="user"></doc-terminal-instruction></td><td><doc-terminal-instruction type="console-log" content="used to register"></doc-terminal-instruction></td></tr>
-		 			<tr><td><doc-terminal-instruction type="console-log" content="version|v [options] <updateType>"></doc-terminal-instruction></td><td><doc-terminal-instruction type="console-log" content="to update your project's version"></doc-terminal-instruction></td></tr>
+		 			<tr><td><doc-terminal-instruction type="console-log" content="user|u"></doc-terminal-instruction></td><td><doc-terminal-instruction type="console-log" content="for actions about users"></doc-terminal-instruction></td></tr>
+		 			<tr><td><doc-terminal-instruction type="console-log" content="version|v"></doc-terminal-instruction></td><td><doc-terminal-instruction type="console-log" content="to display current version"></doc-terminal-instruction></td></tr>
+		 			<tr><td><doc-terminal-instruction type="console-log" content="project|p"></doc-terminal-instruction></td><td><doc-terminal-instruction type="console-log" content="for actions about projects"></doc-terminal-instruction></td></tr>
+		 			<tr><td><doc-terminal-instruction type="console-log" content="module|m"></doc-terminal-instruction></td><td><doc-terminal-instruction type="console-log" content="for actions about modules"></doc-terminal-instruction></td></tr>
+		 			<tr><td><doc-terminal-instruction type="console-log" content="styleguide|s"></doc-terminal-instruction></td><td><doc-terminal-instruction type="console-log" content="for actions about styleguides"></doc-terminal-instruction></td></tr>
 		 		</table><!--
 	 --></doc>
 	 		<doc><!--
-		 --><doc-terminal-instruction content="spm publish -h"></doc-terminal-instruction><!--
+		 --><doc-terminal-instruction content="spm user -h"></doc-terminal-instruction><!--
 		 --><doc-tab></doc-tab><!--
-		 --><doc-terminal-instruction type="console-log" content="Usage: publish|p [options] [pkg]"></doc-terminal-instruction><!--
-		 --><doc-terminal-instruction type="console-log" content="&nbsp;&nbsp;&nbsp;&nbsp;to publish your package in the spm registry"></doc-terminal-instruction><!--
+		 --><doc-terminal-instruction type="console-log" content="Usage: spm user [options] [command]"></doc-terminal-instruction><!--
 		 --><doc-tab></doc-tab><!--
 		 --><doc-terminal-instruction type="console-log" content="Options:"></doc-terminal-instruction><!--
+ 		 --><doc-terminal-instruction type="console-log" content="&nbsp;&nbsp;&nbsp;&nbsp;-h, --help  output usage information"></doc-terminal-instruction><!--
+		 --><doc-tab></doc-tab><!--
+		 --><doc-terminal-instruction type="console-log" content="Commands:"></doc-terminal-instruction><!--
+		 --><doc-tab></doc-tab><!--
 		 --><table>
-		 		<tr><td><doc-terminal-instruction type="console-log" content="-a, --access <access>"></doc-terminal-instruction></td><td><doc-terminal-instruction type="console-log" content="to specify the authorization level to your module (default: public)"></doc-terminal-instruction></td></tr>
-		 		<tr><td><doc-terminal-instruction type="console-log" content="--debug"></doc-terminal-instruction></td><td><doc-terminal-instruction type="console-log" content="to display debug logs"></doc-terminal-instruction></td></tr>
-		 		<tr><td><doc-terminal-instruction type="console-log" content="-h, --help"></doc-terminal-instruction></td><td><doc-terminal-instruction type="console-log" content="output usage information"></doc-terminal-instruction></td></tr>
+					<tr><td><doc-terminal-instruction type="console-log" content="detail|d"></doc-terminal-instruction></td><td><doc-terminal-instruction type="console-log" content="to get information about current logged user"></doc-terminal-instruction></td></tr>
+			 			<tr><td><doc-terminal-instruction type="console-log" content="login|l"></doc-terminal-instruction></td><td><doc-terminal-instruction type="console-log" content="to authentify yourself"></doc-terminal-instruction></td></tr>
+			 			<tr><td><doc-terminal-instruction type="console-log" content="logout"></doc-terminal-instruction></td><td><doc-terminal-instruction type="console-log" content="to disconnect from spm"></doc-terminal-instruction></td></tr>
+			 			<tr><td><doc-terminal-instruction type="console-log" content="register"></doc-terminal-instruction></td><td><doc-terminal-instruction type="console-log" content="to create a new spm user account"></doc-terminal-instruction></td></tr>
 		 </table><!--
 	 --></doc>
+	 <doc><!--
+		 --><doc-terminal-instruction content="spm user login --help"></doc-terminal-instruction><!--
+		 --><doc-tab></doc-tab><!--
+		 --><doc-terminal-instruction type="console-log" content="Usage: spm user login [options]"></doc-terminal-instruction><!--
+		 --><doc-tab></doc-tab><!--
+		 --><doc-terminal-instruction type="console-log" content="to authentify yourself"></doc-terminal-instruction><!--
+		 --><doc-tab></doc-tab><!--
+		 --><doc-terminal-instruction type="console-log" content="Options:"></doc-terminal-instruction><!--
+		 --><doc-tab></doc-tab><!--
+ 		 --><doc-terminal-instruction type="console-log" content="&nbsp;&nbsp;&nbsp;&nbsp;-f, --force&nbsp;&nbsp;to login even if there is already another session up"></doc-terminal-instruction><!--
+ 		 --><doc-terminal-instruction type="console-log" content="&nbsp;&nbsp;&nbsp;&nbsp;-h, --help&nbsp;&nbsp;&nbsp;output usage information"></doc-terminal-instruction><!--
+	 --></doc>
 		</doc-description>
-		<doc-description>The CLI offers the following commands at the moment :
+		<doc-description>The CLI offers the following models at the moment:
+			<table class="command-lexicon">
+				<tr>
+					<th>model</th>
+					<th>description</th>
+				</tr>
+				<tr>
+					<td>user</td>
+					<td>used to register, login, display current user information (excepted password) and logout</td>
+				</tr>
+				<tr>
+					<td>module</td>
+					<td>used to interact with spm core features</td>
+				</tr>
+				<tr>
+					<td>version</td>
+					<td>used to display current spm CLI version</td>
+				</tr>
+			</table>
+		</doc-description>
+		<doc-description>The following models are currently being implemented:
 			<table class="command-lexicon">
 				<tr>
 					<th>command</th>
 					<th>description</th>
 				</tr>
 				<tr>
-					<td>user</td>
-					<td>used to register, login or display current user information (excepted password)</td>
+					<td>project</td>
+					<td>used to interact with projects, large ensemble of codes used to deliver a front-end application, bringing powerful enterprise-focused features</td>
 				</tr>
 				<tr>
-					<td>init</td>
-					<td>creates a package-spm.json tracking file to optimize one project's portability, versionning and unlock powerful spm features</td>
-				</tr>
-				<tr>
-					<td>install</td>
-					<td>downloads a graphical package of your choice in your project</td>
-				</tr>
-				<tr>
-					<td>generate</td>
-					<td>customizes a package to create your own style</td>
-				</tr>
-				<tr>
-					<td>use</td>
-					<td>imports for you a style in your project</td>
-				</tr>
-				<tr>
-					<td>ls</td>
-					<td>displays all dependencies of your project</td>
-				</tr>
-				<tr>
-					<td>version</td>
-					<td>to update your project's spm version before publication</td>
-				</tr>
-				<tr>
-					<td>publish</td>
-					<td>makes your project available for download to a community of your choice</td>
-				</tr>
-				<tr>
-					<td>owner</td>
-					<td>to grant contribution rights on a package you're contributing to</td>
+					<td>styleguide</td>
+					<td>used to share and enable a common graphical chart and best practices</td>
 				</tr>
 			</table>
 		</doc-description>
-		<doc-description>All commands above (except the user and the owner one) are described in next sections.</doc-description>
+		<doc-description>The next sections will focus around spm modules, with the following commands:
+			<table class="command-lexicon">
+				<tr>
+					<th>command</th>
+					<th>description</th>
+				</tr>
+				<tr>
+					<td>admin</td>
+					<td>to modify permissions</td>
+				</tr>
+				<tr>
+					<td>clone</td>
+					<td>to download source files used to make a publication</td>
+				</tr>
+				<tr>
+					<td>create</td>
+					<td>to tag a folder as a spm module and generate spm files</td>
+				</tr>
+				<tr>
+					<td>detail</td>
+					<td>to display spm-related information</td>
+				</tr>
+				<tr>
+					<td>edit</td>
+					<td>to modify spm-related information</td>
+				</tr>
+				<tr>
+					<td>generate</td>
+					<td>to create a new instance with customized parameters</td>
+				</tr>
+				<tr>
+					<td>install</td>
+					<td>to use a module inside your code</td>
+				</tr>
+				<tr>
+					<td>list</td>
+					<td>to list spm modules used in your code</td>
+				</tr>
+				<tr>
+					<td>publish</td>
+					<td>to send a module to spm registry</td>
+				</tr>
+				<tr>
+					<td>search</td>
+					<td>to display spm modules matching specific criteria</td>
+				</tr>
+				<tr>
+					<td>unpublish</td>
+					<td>to remove a module from spm registry</td>
+				</tr>
+				<tr>
+					<td>version</td>
+					<td>to update your module's version</td>
+				</tr>
+			</table>
+		</doc-description>
+		<doc-description>All previous module commands are described in next sections.</doc-description>
   </div>
 </section>

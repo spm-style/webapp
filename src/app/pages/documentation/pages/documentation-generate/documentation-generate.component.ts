@@ -18,9 +18,9 @@ export class DocumentationGenerateComponent implements OnInit, OnDestroy {
     this._redux.dispatch({
       type: CHANGE_CURRENT_DOC,
       currentDoc: 'Generating a customized package',
-      nextDoc: 'Import packages in your stylesheets',
+      nextDoc: 'Publish your creation',
       previousDoc: 'Install fancy packages',
-      nextDocUrl: 'use',
+      nextDocUrl: 'publish',
       previousDocUrl: 'install'
     })
     if (isPlatformBrowser(this.platformId)) { window.location.hash = 'title' }

@@ -18,9 +18,9 @@ export class DocumentationPublishComponent implements OnInit, OnDestroy{
       type: CHANGE_CURRENT_DOC,
       currentDoc: 'Publish your creation',
       nextDoc: 'Cheat sheet',
-      previousDoc: 'Import packages in your stylesheets',
+      previousDoc: 'Generating a customized package',
       nextDocUrl: 'cheat-sheet',
-      previousDocUrl: 'use'
+      previousDocUrl: 'install'
     })
     if (isPlatformBrowser(this.platformId)) { window.location.hash = 'title' }
   }
