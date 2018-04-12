@@ -22,6 +22,7 @@ import { ContactComponent }                                                     
 import { UserComponent }                                                        from './pages/user/user.component'
 import { AccountVerificationComponent }                                         from './pages/account-verification/account-verification.component';
 import { PasswordResetComponent }                                               from './pages/password-reset/password-reset.component';
+import { PasswordForgetComponent }                                              from './pages/password-forget/password-forget.component';
                                                                                 // Component
 import { HeaderComponent }                                                      from './component/header/header.component'
 import { FooterComponent }                                                      from './component/footer/footer.component'
@@ -57,7 +58,8 @@ import { CustomReuseStrategy }                                                  
     UserComponent,
     ScrollDirective,
     AccountVerificationComponent,
-    PasswordResetComponent
+    PasswordResetComponent,
+    PasswordForgetComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'spm-web-app' }),

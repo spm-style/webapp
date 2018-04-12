@@ -10,6 +10,7 @@ import { ContactComponent }                                                     
 import { UserComponent }                                                        from './pages/user/user.component'
 import { AccountVerificationComponent }                                         from './pages/account-verification/account-verification.component';
 import { PasswordResetComponent }                                               from './pages/password-reset/password-reset.component';
+import { PasswordForgetComponent }                                              from './pages/password-forget/password-forget.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'profile', loadChildren: 'app/pages/profile/profile.module#ProfileModule'},
   { path: 'user/:name', component: UserComponent },
   { path: 'account-verification', component: AccountVerificationComponent },
+  { path: 'password-forget', component: PasswordForgetComponent },
   { path: 'password-reset', component: PasswordResetComponent },
   { path: '**', component: NotFoundComponent },
 ];

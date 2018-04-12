@@ -115,4 +115,30 @@ export class ApiUserService {
     .map((res:Response) => res.json().statusCode === 200)
     .catch(errorHttp)
   }
+
+  /* new API calls */
+
+  public verifyAccount(token:string):Observable<IUserResponse> {
+    return this._http.post(`${URL_API}/user/account-validation?token=${token}`, {headers: this._headers, withCredentials: true})
+    .map((res:Response) => res.json())
+    .catch(errorHttp);
+  }
+
+  public requestForgetPassword(email:string):Observable<boolean> {
+    return this._http.get(`${URL_API}/user/password-forget?email=${email}`, { headers: this._headers, withCredentials: true})
+    .map((res:Response) => res.json())
+    .catch(errorHttp);
+  }
+
+  public checkPasswordResetAuth(token:string):Observable<boolean> {
+    return this._http.get(`${URL_API}/user/password-reset?token=${token}`, {headers: this._headers, withCredentials: true})
+    .map((res:Response) => res.json())
+    .catch(errorHttp);
+  }
+
+  public ForgetPasswordReset(newPassword:string):Observable<IUserResponse> {
+    return this._http.post(`${URL_API}/user/password-reset`, { new: newPassword }, {headers: this._headers, withCredentials: true})
+    .map((res:Response) => res.json())
+    .catch(errorHttp);
+  }
 }

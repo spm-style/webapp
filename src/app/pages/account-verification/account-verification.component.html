@@ -1,3 +1,14 @@
-<p>
-  account-verification works!
-</p>
+<section class="account-verification">
+	<div class="content" *ngIf="authorizedStep">
+		<p>your account has been activated. Happy Design !</p>
+		<button class="link">
+			<a routerLink="/packages">Start browsing</a>
+		</button>
+	</div>
+	<div class="content" *ngIf="!authorizedStep">
+		<p>Owww.. the activation link is no longer valid</p>
+		<button class="link">
+			<a routerLink="/profile/public">Activate my account</a>
+		</button>
+	</div>
+</section>
