@@ -8,6 +8,8 @@ import { PricingComponent }                                                     
 import { AboutComponent }                                                       from './pages/about/about.component'
 import { ContactComponent }                                                     from './pages/contact/contact.component'
 import { UserComponent }                                                        from './pages/user/user.component'
+import { AccountVerificationComponent }                                         from './pages/account-verification/account-verification.component';
+import { PasswordResetComponent }                                               from './pages/password-reset/password-reset.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -23,6 +25,8 @@ const routes: Routes = [
   { path: 'connection', loadChildren: 'app/pages/connection/connection.module#ConnectionModule'},
   { path: 'profile', loadChildren: 'app/pages/profile/profile.module#ProfileModule'},
   { path: 'user/:name', component: UserComponent },
+  { path: 'account-verification', component: AccountVerificationComponent },
+  { path: 'password-reset', component: PasswordResetComponent },
   { path: '**', component: NotFoundComponent },
 ];
 

@@ -20,6 +20,8 @@ import { PricingComponent }                                                     
 import { AboutComponent }                                                       from './pages/about/about.component'
 import { ContactComponent }                                                     from './pages/contact/contact.component'
 import { UserComponent }                                                        from './pages/user/user.component'
+import { AccountVerificationComponent }                                         from './pages/account-verification/account-verification.component';
+import { PasswordResetComponent }                                               from './pages/password-reset/password-reset.component';
                                                                                 // Component
 import { HeaderComponent }                                                      from './component/header/header.component'
 import { FooterComponent }                                                      from './component/footer/footer.component'
@@ -53,7 +55,9 @@ import { CustomReuseStrategy }                                                  
     ContactComponent,
     ReportingAbuseComponent,
     UserComponent,
-    ScrollDirective
+    ScrollDirective,
+    AccountVerificationComponent,
+    PasswordResetComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'spm-web-app' }),
