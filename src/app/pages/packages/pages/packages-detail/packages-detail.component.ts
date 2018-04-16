@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { DOCUMENT } from '@angular/platform-browser'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { environment } from '../../../../../environments/environment'
-import { 
+import {
   NgRedux,
   RDXRootState,
   IPackage,
@@ -170,7 +170,7 @@ public testCode:IInstruction[]
               }) //à remplacer avec la correction des types
               this._initDetailModule(response.cdn, response.responsiveness, response.classes, response.js.instancesVar)
             })
-          } 
+          }
         }
       }
     })

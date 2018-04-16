@@ -42,6 +42,7 @@ import { ScrollDirective }                                                      
                                                                                 // Classes
 import { CustomReuseStrategy }                                                  from './customReuseStrategy.class';
 
+import { environment } from '../environments/environment'
 
 @NgModule({
   declarations: [
@@ -94,6 +95,8 @@ export class AppModule {
     private _ngRedux:NgRedux<any>,
     private _devTools:DevToolsExtension
   ){
+    console.log(environment, "hjbsjkbjnd")
+    
     let enhancers = []
     if (isPlatformBrowser(platformId)) {
       enhancers = isDevMode() && _devTools.enhancer() ? [_devTools.enhancer()] : []

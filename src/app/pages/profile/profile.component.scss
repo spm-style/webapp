@@ -14,23 +14,64 @@
   }
 }
 
+.section-validation-email {
+  .content {
+		display: flex;
+		max-width: 992px;
+    margin: 0 auto;
+    justify-content: center;
+    position: relative;
+    div{
+      margin: 0 10px 10px;
+      width: 100%;
+      background-color: orange;
+      color: white;
+      border-radius: 14px;
+      padding: 10px;
+      font-size: 1.1rem;
+      p{
+        button{
+          color: #464646;
+          font-size: 1rem;
+          padding-left: 15px;
+        }
+        span{
+          font-style: italic;
+          font-size: 0.9rem;
+          padding-left: 5px;
+          color: #464646;
+        }
+      }
+    }
+	}
+}
+
 .section-profile {
 	width: 100vw;
-	
 	.content {
 		display: flex;
 		max-width: 992px;
     margin: 0 auto;
     justify-content: center;
     position: relative;
-
 		nav {
 			display: none;
-
-
 		}
 	}
 }
+
+
+/************************************* SM *************************************/
+@media screen and (min-width: $responsive-width-lg) {
+  .section-validation-email {
+    .content {
+      div{
+        margin: 0 0 10px;
+      }
+  	}
+  }
+}
+
 
 @media screen and (min-width: $responsive-width-xl) {
 	.section-profile {
@@ -97,4 +138,4 @@
 	}
 }
 
-//    
+//

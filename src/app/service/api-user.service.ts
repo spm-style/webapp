@@ -30,7 +30,8 @@ export interface IUser {
   url:string,
   company:string,
   location:string,
-  picture:string
+  picture:string,
+  validationEmail:boolean
 }
 
 export interface IUserResponse {
@@ -57,7 +58,30 @@ export class ApiUserService {
     .catch(errorHttp);
   }
 
+  public registerInfoAlredyExist(name:string, email:string):Observable<{exist:boolean}> {
+    return this._http.get(`${URL_API}/user/register-info/exist?${name}=${email}`, {headers: this._headers, withCredentials: true})
+    .map((res:Response) => res.json())
+    .catch(errorHttp);
+  }
+
+  public resendEmailValidation():Observable<{status:string}> {
+    let headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    headers.append("Authorization", `Bearer ${this._localStorageService.getLoginInfos().token}`)
+    return this._http.get(`${URL_API}/user/email-validation/new`, {headers: headers, withCredentials: true})
+    .map((res:Response) => res.json())
+    .catch(errorHttp);
+  }
+
+  public validationEmail(token:string):Observable<any> {
+    return this._http.get(`${URL_API}/user/email-validation?token=${token}`, {headers: this._headers, withCredentials: true})
+    .do(console.log)
+    .map((res:Response) => res.json())
+    .catch(errorHttp);
+  }
+
   public login(payload:ILoginPayload):Observable<IUserResponse> {
+    console.log(payload)
      return this._http.post(`${URL_API}/user`, JSON.stringify(payload), {headers: this._headers, withCredentials: true})
     .map((res:Response) => res.json())
     .catch(errorHttp);
@@ -117,12 +141,6 @@ export class ApiUserService {
   }
 
   /* new API calls */
-
-  public verifyAccount(token:string):Observable<IUserResponse> {
-    return this._http.post(`${URL_API}/user/account-validation?token=${token}`, {headers: this._headers, withCredentials: true})
-    .map((res:Response) => res.json())
-    .catch(errorHttp);
-  }
 
   public requestForgetPassword(email:string):Observable<boolean> {
     return this._http.get(`${URL_API}/user/password-forget?email=${email}`, { headers: this._headers, withCredentials: true})

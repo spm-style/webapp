@@ -27,7 +27,8 @@ export const USER_INITIAL_STATE:RDXUser = {
   url:null,
   company:null,
   location:null,
-  picture:null
+  picture:null,
+  validationEmail: null
 }
 
 export function userReducer(state:RDXUser = USER_INITIAL_STATE, action):RDXUser{

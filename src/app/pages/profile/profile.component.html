@@ -3,6 +3,13 @@
     <h1>My workshop</h1>
   </div>
 </section>
+<section class="section-validation-email">
+  <div class="content">
+    <div *ngIf="!(user | async)?.validationEmail">
+      <p>Confirm your email address by clicking on the mail send, if you want new mail <button (click)="resendEmailValidation()">click here</button><span *ngIf="emailValidationResend">(message envoyer)</span></p>
+    </div>
+  </div>
+</section>
 <section class="section-profile">
 	<div class="content">
 		<nav>

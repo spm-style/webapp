@@ -1,14 +1,21 @@
 <section class="account-verification">
-	<div class="content" *ngIf="authorizedStep">
+	<div class="content" *ngIf='statusValidationEmail == "success-valid"'>
 		<p>your account has been activated. Happy Design !</p>
 		<button class="link">
 			<a routerLink="/packages">Start browsing</a>
 		</button>
 	</div>
-	<div class="content" *ngIf="!authorizedStep">
+	<div class="content" *ngIf='statusValidationEmail == "error-validation"'>
 		<p>Owww.. the activation link is no longer valid</p>
+		<p>Connect to your account and ask to send you a new email</p>
 		<button class="link">
-			<a routerLink="/profile/public">Activate my account</a>
+			<a routerLink="/connection/sign-in">Login</a>
+		</button>
+	</div>
+	<div class="content" *ngIf='statusValidationEmail == "already-valid"'>
+		<p>the activation link has already use</p>
+		<button class="link">
+			<a routerLink="/connection/sign-in">Connect to your account</a>
 		</button>
 	</div>
 </section>

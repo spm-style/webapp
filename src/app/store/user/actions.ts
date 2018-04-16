@@ -25,7 +25,8 @@ export let fetchUser = (state:RDXUser, user:IUser):RDXUser => {
     url:user.url,
     company:user.company,
     location:user.location,
-    picture:user.picture
+    picture:user.picture,
+    validationEmail:user.validationEmail
   }
 }
 

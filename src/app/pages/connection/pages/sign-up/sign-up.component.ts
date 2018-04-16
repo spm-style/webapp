@@ -33,8 +33,8 @@ export class SignUpComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this._redux.dispatch({ type: FETCH_SEO_DATA, pageName: 'signUp' })
     this.formSignUp = this._formBuilder.group({
-      username: ['', [Validators.required, Validators.maxLength(31), Validators.minLength(4)], this._asyncUserNameAlreadyExist ],
-      email: ['', [Validators.required, Validators.email], this._asyncEmailAlreadyExist ],
+      username: ['', [Validators.required, Validators.maxLength(31), Validators.minLength(4)], this._asyncUserNameAlreadyExist.bind(this) ],
+      email: ['', [Validators.required, Validators.email], this._asyncEmailAlreadyExist.bind(this) ],
       password: ['', [Validators.required, Validators.pattern(`(?=.*[A-Za-z])(?=.*\\d).{8,}`), Validators.maxLength(31)]],
       passwordRepeat: ['', [Validators.required]],
       mailing: [true, []],
@@ -42,7 +42,6 @@ export class SignUpComponent implements OnInit, OnDestroy {
     },{
       // validator: this._passwordMatch('password', 'passwordRepeat')
     })
-
     this.formSignUp.get('passwordRepeat').setValidators(this._isPasswordMatch(<FormControl>this.formSignUp.get('password'), <FormControl>this.formSignUp.get('passwordRepeat')))
     this._subValueChangePassword = this.formSignUp.get('password').valueChanges.subscribe((value:any) => {
       this.formSignUp.get('passwordRepeat').setValue('')
@@ -73,16 +72,24 @@ export class SignUpComponent implements OnInit, OnDestroy {
   }
 
   private _asyncUserNameAlreadyExist(control: FormControl): Promise<any> | Observable<any> {
-    const promise = new Promise<any>((resolve, reject) => {
-      setTimeout( () => { control.value === 'herve' ? resolve({ 'alreadyExist': true}) : resolve(null) } ,1500)
-    });
+    let self = this
+    const promise = new Promise<any>(function(resolve, reject){
+      self._apiUser.registerInfoAlredyExist("login", control.value)
+      .subscribe((response:{exist:boolean}) => {
+        response.exist ? resolve({ 'alreadyExist': true}) : resolve(null)
+      })
+    })
     return promise;
   }
 
   private _asyncEmailAlreadyExist(control: FormControl): Promise<any> | Observable<any> {
-    const promise = new Promise<any>((resolve, reject) => {
-      setTimeout( () => { control.value === 'boblee21@live.fr' ? resolve({ 'alreadyExist': true}) : resolve(null) } ,1500)
-    });
+    let self = this
+    const promise = new Promise<any>(function(resolve, reject){
+      self._apiUser.registerInfoAlredyExist("email", control.value)
+      .subscribe((response:{exist:boolean}) => {
+        response.exist ? resolve({ 'alreadyExist': true}) : resolve(null)
+      })
+    })
     return promise;
   }
 

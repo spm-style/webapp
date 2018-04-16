@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router'
 export class AccountVerificationComponent implements OnInit, OnDestroy {
 
 	public accountVerificationToken:String
-  public authorizedStep:Boolean
+  public statusValidationEmail:string
   private _subUser:Subscription
 
   constructor(
@@ -25,14 +25,19 @@ export class AccountVerificationComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
   	this._activatedRoute.queryParams.subscribe((data:any) => {
-  		this._subUser = this._apiUser.verifyAccount(data.token).subscribe(
-        (user:IUserResponse) => {
-          this.authorizedStep = true
-          this._redux.dispatch({ type: FETCH_USER, user })
-          this._localStorageService.login(data.token, data.user._id)
-        }, (error:any) => {
-          this.authorizedStep = false
-        })
+  		this._subUser = this._apiUser.validationEmail(data.token)
+      .subscribe((response:any) => {
+        if(response.status == "success-valid"){
+          this.statusValidationEmail = "success-valid"
+          this._redux.dispatch({ type: FETCH_USER, user: response.user })
+          this._localStorageService.login(response.tokenAccess, response.user._id)
+        }else if(response.status == "already-valid"){
+          this.statusValidationEmail = "already-valid"
+        }
+      }, (error:any) => {
+        this.statusValidationEmail = "error-validation"
+        console.log("error AccountVerificationComponent => ngOnInit", error)
+      })
     })
   }
 

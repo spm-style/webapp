@@ -14,5 +14,6 @@ export interface RDXUser {
   url:string,
   company:string,
   location:string,
-  picture:string
+  picture:string,
+  validationEmail:boolean
 }

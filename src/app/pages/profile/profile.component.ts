@@ -6,7 +6,7 @@ import { ApiUserService, IUserResponse, IUser } from '../../service/api-user.ser
 import { PopupService } from '../../modules/popup/popup.service'
 import { LocalstorageService } from '../../service/localstorage.service'
 
-import { NgRedux, RDXRootState, LOGOUT_USER, select } from '../../store'
+import { NgRedux, RDXRootState, LOGOUT_USER, select, Observable } from '../../store'
 
 @Component({
   selector: 'spm-profile',
@@ -15,10 +15,12 @@ import { NgRedux, RDXRootState, LOGOUT_USER, select } from '../../store'
 })
 export class ProfileComponent implements OnInit, OnDestroy {
 
+  @select(['user']) readonly user:Observable<IUser>
+
 	private _subPopup:Subscription
 	private _subLogout:Subscription
 
-  @select(['user']) readonly user:IUser
+  public emailValidationResend:boolean = false
 
   constructor(
   	private _apiUserService:ApiUserService,
@@ -64,5 +66,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
       	}
       	this._subPopup.unsubscribe()
     	})
+  }
+
+  public resendEmailValidation(){
+    this._apiUserService.resendEmailValidation()
+    .subscribe((response:{status:string}) => {
+      if(response.status == "success") this.emailValidationResend = true
+      setTimeout(() => { this.emailValidationResend = false }, 3000)
+    }, (error:any) => {
+      console.log("error on ProfileComponent => resendEmailValidation", error)
+    })
   }
 }
