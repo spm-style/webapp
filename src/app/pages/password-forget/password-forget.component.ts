@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, ValidatorFn } from '@angular/forms';
 import { ApiUserService } from '../../service/api-user.service'
 import { Subscription } from 'rxjs/Subscription'
@@ -8,14 +8,14 @@ import { Subscription } from 'rxjs/Subscription'
   templateUrl: './password-forget.component.html',
   styleUrls: ['./password-forget.component.scss']
 })
-export class PasswordForgetComponent implements OnInit, OnDestroy {
+export class PasswordForgetComponent implements OnInit {
+
+  @ViewChild("buttonSubmit") private _buttonSubmit:ElementRef
 
   public formForgetPassword:FormGroup
-  public responseRequest:string
-  public classResponseRequest:string
+  public statusEmail:{msg:string, className:string} = { msg:"", className:null }
 
   private _isSubmit:boolean = false
-  private _subUser:Subscription
 
   constructor(
   	private _formBuilder:FormBuilder,
@@ -24,24 +24,41 @@ export class PasswordForgetComponent implements OnInit, OnDestroy {
 
   ngOnInit(){
   	this.formForgetPassword = this._formBuilder.group({
-      email: ['', [Validators.email]]
+      email: ['', [Validators.email, Validators.required]]
     })
-  }
-
-  ngOnDestroy(){
-  	if (this._subUser) { this._subUser.unsubscribe() }
   }
 
   public onSubmitContact() {
-    this._isSubmit = true;
-    this._subUser = this._apiUser.requestForgetPassword(this.formForgetPassword.value.email)
-    .subscribe((data:any) => {
-      this.responseRequest = 'an email is going to be sent to your email, it may arrive in your spam mailbox. Make sure you check it !'
-      this.classResponseRequest = 'success-request'
-    }, (err:any) => {
-      this.responseRequest = err
-      this.classResponseRequest = 'error-request'
-    })
+    this._isSubmit = true
+    if(this.formForgetPassword.valid){
+      this._apiUser.passwordResetToken(this.formForgetPassword.value.email)
+      .subscribe((response:any) => {
+        if(response.status == "success") {
+          this.statusEmail = {
+            msg: `An email is going to be sent to ${this.formForgetPassword.value.email}, it may arrive in your spam mailbox. Make sure you check it !`,
+            className: "success"
+          }
+          this._isSubmit = false
+          this._buttonSubmit.nativeElement.focus()
+          this.formForgetPassword.reset()
+        }else if(response.status == "email-invalid"){
+          this.statusEmail = {
+            msg: `email: ${this.formForgetPassword.value.email} is invalid.`,
+            className: "invalid"
+          }
+        }else if(response.status == "user-inactive"){
+          this.statusEmail = {
+            msg: `user with email ${this.formForgetPassword.value.email} is ${response.userState}.`,
+            className: "user-inactive"
+          }
+          this._isSubmit = false
+          this._buttonSubmit.nativeElement.focus()
+          this.formForgetPassword.reset()
+        }
+      },(error:any) => {
+        console.log(error)
+      })
+    }
   }
 
   public errorFormControlByName(controlName:string, errorName:string):boolean {

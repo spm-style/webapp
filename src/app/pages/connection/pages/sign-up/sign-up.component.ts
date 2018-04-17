@@ -67,7 +67,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
   private _isPasswordMatch(password:FormControl, match:FormControl):ValidatorFn {
     return (control: FormControl): { [key: string]: boolean } => {
-      return match.value.length > 0 && password.value !== match.value ? { passwordMatch: true } : null
+      return match.value && password.value &&match.value.length > 0 && password.value !== match.value ? { passwordMatch: true } : null
     }
   }
 

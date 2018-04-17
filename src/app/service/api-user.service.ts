@@ -87,6 +87,21 @@ export class ApiUserService {
     .catch(errorHttp);
   }
 
+  public passwordResetToken(email:string):Observable<any> {
+    return this._http.get(`${URL_API}/user/password-reset-token?email=${email}`, { headers: this._headers, withCredentials: true})
+    .map((res:Response) => res.json())
+    .catch(errorHttp);
+  }
+
+  public passwordReset(newPassword:string, token:string):Observable<any> {
+    let headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    headers.append("Authorization", `Bearer ${token}`)
+    return this._http.post(`${URL_API}/user/password-reset`, { password: newPassword }, {headers: headers, withCredentials: true})
+    .map((res:Response) => res.json())
+    .catch(errorHttp);
+  }
+
   public updateUserData(payload:any):Observable<IUser> {
     let headers = new Headers()
     headers.append('Content-Type', 'application/json')
@@ -138,25 +153,5 @@ export class ApiUserService {
     return this._http.post(`${URL_API}/user/favorites/${action}`, { id }, { headers: headers, withCredentials: true})
     .map((res:Response) => res.json().statusCode === 200)
     .catch(errorHttp)
-  }
-
-  /* new API calls */
-
-  public requestForgetPassword(email:string):Observable<boolean> {
-    return this._http.get(`${URL_API}/user/password-forget?email=${email}`, { headers: this._headers, withCredentials: true})
-    .map((res:Response) => res.json())
-    .catch(errorHttp);
-  }
-
-  public checkPasswordResetAuth(token:string):Observable<boolean> {
-    return this._http.get(`${URL_API}/user/password-reset?token=${token}`, {headers: this._headers, withCredentials: true})
-    .map((res:Response) => res.json())
-    .catch(errorHttp);
-  }
-
-  public ForgetPasswordReset(newPassword:string):Observable<IUserResponse> {
-    return this._http.post(`${URL_API}/user/password-reset`, { new: newPassword }, {headers: this._headers, withCredentials: true})
-    .map((res:Response) => res.json())
-    .catch(errorHttp);
   }
 }

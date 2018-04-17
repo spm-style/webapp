@@ -1,16 +1,16 @@
-import { NgModule }                                                             from '@angular/core'
-import { RouterModule, Routes }                                                 from '@angular/router'
-                                                                                // Pages
-import { HomeComponent }                                                        from './pages/home/home.component'
-import { NotFoundComponent }                                                    from './pages/not-found/not-found.component'
-import { ReportingAbuseComponent }                                              from './pages/reporting-abuse/reporting-abuse.component';
-import { PricingComponent }                                                     from './pages/pricing/pricing.component'
-import { AboutComponent }                                                       from './pages/about/about.component'
-import { ContactComponent }                                                     from './pages/contact/contact.component'
-import { UserComponent }                                                        from './pages/user/user.component'
-import { AccountVerificationComponent }                                         from './pages/account-verification/account-verification.component';
-import { PasswordResetComponent }                                               from './pages/password-reset/password-reset.component';
-import { PasswordForgetComponent }                                              from './pages/password-forget/password-forget.component';
+import { NgModule } from '@angular/core'
+import { RouterModule, Routes } from '@angular/router'
+// Pages
+import { HomeComponent } from './pages/home/home.component'
+import { NotFoundComponent } from './pages/not-found/not-found.component'
+import { ReportingAbuseComponent } from './pages/reporting-abuse/reporting-abuse.component';
+import { PricingComponent } from './pages/pricing/pricing.component'
+import { AboutComponent } from './pages/about/about.component'
+import { ContactComponent } from './pages/contact/contact.component'
+import { UserComponent } from './pages/user/user.component'
+import { AccountVerificationComponent } from './pages/account-verification/account-verification.component';
+import { PasswordResetComponent } from './pages/password-reset/password-reset.component';
+import { PasswordForgetComponent } from './pages/password-forget/password-forget.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
