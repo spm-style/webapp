@@ -12,7 +12,7 @@
     "config": "ts-node ./script/set-env.ts",
     "predev": "npm run config -- --environment=dev",
     "dev": "ng serve --disable-host-check --port=$APP_PORT --host=$APP_HOST --environment=dev",
-    "build:universal": "npm run build:client-and-server-bundles && npm run webpack:server",
+    "build:universal": "npm run config -- --environment=prod && npm run build:client-and-server-bundles && npm run webpack:server",
     "serve:universal": "node dist/server.js",
     "build:client-and-server-bundles": "ng build --prod && ng build --prod --app 1 --output-hashing=false",
     "webpack:server": "webpack --config webpack.server.config.js --progress --colors"
