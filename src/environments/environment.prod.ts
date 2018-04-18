@@ -1,7 +1,7 @@
-// export const environment = {
-//   production: true,
-//   id:null,
-//   cdnUrl: 'https://cdn.spm-style.com',
-//   apiUrl: 'https://api.spm-style.com',
-//   wwwUrl: 'https://www.spm-style.com'
-// }
+
+export const environment = {
+  production: true,
+  cdnUrl: "https://cdn.spm-style-dev.com",
+  apiUrl: "https://api.spm-style-dev.com",
+  wwwUrl: "https://www.spm-style-dev.com",
+};

@@ -1,8 +1,7 @@
-//
-// export const environment = {
-//   production: false,
-//   cdnUrl: 'http://cdn.spm-style.com',
-//   apiUrl: 'http://api.spm-style.com',
-//   wwwUrl: 'http://www.spm-style.com',
-//   hostname: "72e893ac302d"
-// };
+
+export const environment = {
+  production: false,
+  cdnUrl: "https://cdn.spm-style-dev.com",
+  apiUrl: "https://api.spm-style-dev.com",
+  wwwUrl: "https://www.spm-style-dev.com",
+};

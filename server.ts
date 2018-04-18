@@ -12,7 +12,7 @@ const { AppServerModuleNgFactory, LAZY_MODULE_MAP }                             
 enableProdMode();
 
 const Express = express();
-const PORT = process.argv[2];
+const PORT = process.env.APP_PORT;
 const DIST_FOLDER = join(process.cwd(), 'dist');
 
 
