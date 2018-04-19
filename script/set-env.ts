@@ -10,7 +10,7 @@ import { argv } from 'yargs';
 // `ts-node set-env.ts --environment=dev`
 // we get it from yargs's argv object
 // const environment = argv.environment;
-console.log("yalla", argv.environment)
+console.log("yalla", argv.environment, process.env)
 const isProd = argv.environment === 'prod';
 
 const targetPath = `./src/environments/environment.${isProd ? "prod.ts" : "ts"}`;
