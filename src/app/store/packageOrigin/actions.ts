@@ -10,7 +10,7 @@ export const CHANGE_VERSION_CURRENT_PACKAGE = 'CHANGE_VERSION_CURRENT_PACKAGE'
 export let fetchPackageOrigin = (state:RDXPackageOrigin, list:IPackageOrigin[]):RDXPackageOrigin => {
   return {
     ...state,
-    list: state.list.concat(list),
+    list, // remove state.list.concat(list) => on ne concatène plus
     currentPage: 1,
     isFinish: true
   }

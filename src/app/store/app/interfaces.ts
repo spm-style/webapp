@@ -1,5 +1,6 @@
 export interface RDXAppState {
   testApp: string,
   isMainContainerScrollable:boolean,
-  backToCurrent:string
+  backToCurrent:string,
+  searchPattern:string
 }

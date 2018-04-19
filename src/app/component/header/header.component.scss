@@ -197,15 +197,20 @@ header{
         }
       }
 
-      input{
-        margin: 0 10px;
-        background-color: #fff;
+      form {
         width: 100%;
-        border-radius: 8px;
+        margin: 0 10px;
         height: 70%;
-        padding-left: 20px;
-        color: $color-secondary;
-        font-size: 1.8rem;
+        
+        input{
+          height: 100%;
+          background-color: #fff;
+          width: 100%;
+          padding-left: 20px;
+          border-radius: 8px;
+          color: $color-secondary;
+          font-size: 1.8rem;
+        }
       }
     }
   }

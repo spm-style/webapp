@@ -73,7 +73,6 @@ export class PinterestGrid {
       this._renderer.setStyle(this._cards[i], this._transform, `translate3d(${posX}px, ${posY}px, 0)`)
       itemsPosY[itemIndex] += this._cards[i].getBoundingClientRect().height + this._gutter
       this._renderer.setStyle(this._container.nativeElement, 'height', `${itemsPosY.slice(0).sort(function(a, b) { return a - b }).pop() + this._gutter}px`)
-
       let isLoaded = this._cards[i].classList.contains('loaded')
       if(!isLoaded){ setTimeout(this._displayCard(i) , this._delay * i ) }
     }

@@ -25,8 +25,8 @@ export class ApiPackageOriginService {
     this._headers.append('Content-Type', 'application/json')
   }
 
-  public listPackageOrigin():Observable<any> {
-    return this._http.get(`${URL_API}/package-origin`, {headers: this._headers, withCredentials: true})
+  public listPackageOrigin(pattern:string):Observable<any> {
+    return this._http.get(`${URL_API}/package-origin${pattern ? '?search=' + pattern : ''}`, {headers: this._headers, withCredentials: true})
     .map((res:Response) => res.json())
     .do((res:any) => {
       for(let packageOrigin of res.packages){

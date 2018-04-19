@@ -4,5 +4,5 @@ export const environment = {
   cdnUrl: 'http://cdn.spm-style.com',
   apiUrl: 'http://api.spm-style.com',
   wwwUrl: 'http://www.spm-style.com',
-  hostname: "72e893ac302d"
+  hostname: "e01b8de5f907"
 };

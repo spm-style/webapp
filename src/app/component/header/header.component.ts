@@ -1,7 +1,8 @@
 import { Component, OnInit, ElementRef, ViewChild, Renderer2, Input, Inject, OnDestroy, PLATFORM_ID } from '@angular/core'
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { Router, NavigationStart, NavigationEnd, Event } from '@angular/router'
-import { NgRedux, RDXRootState, RDXUser, CHANGE_MENU_NAVIGATION, BACK_MENU_NAVIGATION, CLOSE_MENU, OPEN_MENU, UPDATE_MENU_NAVIGATION, LOGOUT_USER, CHANGE_BACK_TO_CURRENT, select, Observable, RDXNavigationState, dispatch } from '../../store';
+import { NgRedux, RDXRootState, RDXUser, CHANGE_MENU_NAVIGATION, BACK_MENU_NAVIGATION, CHANGE_SEARCH_PATTERN, CLOSE_MENU, OPEN_MENU, UPDATE_MENU_NAVIGATION, LOGOUT_USER, CHANGE_BACK_TO_CURRENT, select, Observable, RDXNavigationState, dispatch } from '../../store';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DOCUMENT } from '@angular/platform-browser'
 import { Location } from '@angular/common'
 import { PopupService } from '../../modules/popup/popup.service'
@@ -24,6 +25,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @select(['navigation']) readonly navigation: Observable<RDXNavigationState>
   @select(['user']) readonly user:Observable<RDXUser>
   @select(['app', 'backToCurrent']) public backToCurrent:Observable<string>
+  @select(['app', 'searchPattern']) private _searchPattern:Observable<string>
 
   @ViewChild('buttonBackTo') private _backto:ElementRef
 
@@ -36,7 +38,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private _navigationSubMenu:string[] = ['documentation', 'profile']
   private _subPopup:Subscription
   private _subLogout:Subscription
+  private _subPackageSearch:Subscription
+  private _subSearchBar:Subscription
 
+  public formSearchModules:FormGroup
+  public searchPattern:string = ''
+  public previousPage:string
   public isLogged:boolean
 
   constructor(
@@ -48,11 +55,41 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private _popupService:PopupService,
     private _apiUserService:ApiUserService,
     private _localStorageService:LocalstorageService,
+    private _formBuilder:FormBuilder,
     @Inject(DOCUMENT) private _document: any,
     @Inject(PLATFORM_ID) private platformId: any
   ){}
 
   ngOnInit() {
+
+    this.formSearchModules = this._formBuilder.group({
+      search: ['', []]
+    })
+
+    this._subSearchBar = this._router.events.filter(e => e instanceof NavigationEnd).subscribe(() => {
+      if (this._router.url.startsWith('/packages?search=')) {
+        this.formSearchModules.setValue({ search: this._router.url.substring('/packages?search='.length) })
+      } else if (this.formSearchModules.value.search != '') {
+        this.searchPattern = ''
+        this.formSearchModules.setValue({ search: '' })
+      }
+    })
+
+    this._subPackageSearch = this.formSearchModules.get('search').valueChanges
+    .debounceTime(300)
+    .subscribe((pattern:string) => {
+      this._redux.dispatch({ type: CHANGE_SEARCH_PATTERN, searchPattern: pattern })
+      if (pattern != '') {
+        if (this.searchPattern == '') { this.previousPage = this._router.url.startsWith('/packages') ? '/packages' : this._router.url }     
+        this._router.navigate(['packages'],  { queryParams: { search: pattern } })
+      } else if (this.searchPattern != '' && this.previousPage) {
+        this._router.navigate([this.previousPage])
+      } else if (!this.previousPage) {
+        this._router.navigate(['packages'])
+      }
+      this.searchPattern = pattern
+    })
+
     this._router.events.subscribe((event) => {
       if(event instanceof NavigationStart){
         if (!event.url.includes('#')) {
@@ -89,12 +126,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    if (this._subPopup) {
-      this._subPopup.unsubscribe()
-    }
-    if (this._subLogout) {
-      this._subLogout.unsubscribe()
-    }
+    if (this._subPopup) { this._subPopup.unsubscribe() }
+    if (this._subLogout) { this._subLogout.unsubscribe() }
+    if (this._subPackageSearch) { this._subPackageSearch.unsubscribe() }
+    if (this._subSearchBar) { this._subSearchBar.unsubscribe() }
   }
 
   @dispatch() public openSubMenu(nameSubMenu:string):any { return { type: CHANGE_MENU_NAVIGATION, currentActiveMenu: nameSubMenu } }

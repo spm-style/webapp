@@ -51,7 +51,9 @@
       <a [routerLink]="(backToCurrent | async)" class="back-to">
         <img src="assets/back.png" alt="">
       </a>
-      <input type="text" placeholder="Find packages">
+      <form [formGroup]="formSearchModules">
+        <input type="text" formControlName="search" placeholder="module search">
+      </form> 
     </div>
   </div>
 </header>
