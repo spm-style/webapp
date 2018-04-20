@@ -97,7 +97,7 @@ public testCode:IInstruction[]
   ngOnInit() {
     if (isPlatformBrowser(this._platformId)) {
       this._originDomaine = this._document.domain
-      this._document.domain ='spm-style.com'
+      this._document.domain = environment.domaine
     }
     let current:IPackageCurrent = this._redux.getState().packageOrigin.current
     if(!current){

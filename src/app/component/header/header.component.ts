@@ -10,6 +10,8 @@ import { ApiUserService } from '../../service/api-user.service'
 import { LocalstorageService } from '../../service/localstorage.service'
 import { Subscription } from 'rxjs/Subscription'
 
+import { environment } from '../../../environments/environment'
+
 interface IBackToPath {
   url:string,
   dist:string
@@ -80,7 +82,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     .subscribe((pattern:string) => {
       this._redux.dispatch({ type: CHANGE_SEARCH_PATTERN, searchPattern: pattern })
       if (pattern != '') {
-        if (this.searchPattern == '') { this.previousPage = this._router.url.startsWith('/packages') ? '/packages' : this._router.url }     
+        if (this.searchPattern == '') { this.previousPage = this._router.url.startsWith('/packages') ? '/packages' : this._router.url }
         this._router.navigate(['packages'],  { queryParams: { search: pattern } })
       } else if (this.searchPattern != '' && this.previousPage) {
         this._router.navigate([this.previousPage])
@@ -94,7 +96,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       if(event instanceof NavigationStart){
         if (!event.url.includes('#')) {
           if (isPlatformBrowser(this.platformId)) {
-            this._renderer.setAttribute(this._document.querySelector('link[rel=canonical]'), 'href', 'http://www.spm-style.com')
+            this._renderer.setAttribute(this._document.querySelector('link[rel=canonical]'), 'href', environment.wwwUrl)
 
             this._document.body.scrollTo
             ? this._document.body.scrollTo(0, 0)

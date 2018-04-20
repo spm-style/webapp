@@ -29,6 +29,7 @@ export const environment = {
   cdnUrl: "${process.env.CDN_SSL == 'true' ? 'https' : 'http'}://${process.env.CDN_URL}",
   apiUrl: "${process.env.API_SSL == 'true' ? 'https' : 'http'}://${process.env.API_URL}",
   wwwUrl: "${process.env.WEBAPP_SSL == 'true' ? 'https' : 'http'}://${process.env.WEBAPP_URL}",
+  domaine: "${process.env.DOMAINE}"
 };
 `
 
