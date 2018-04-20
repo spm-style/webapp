@@ -42,8 +42,6 @@ import { ScrollDirective } from './directives/scroll.directive'
 // Classes
 import { CustomReuseStrategy } from './customReuseStrategy.class'
 
-import { environment } from '../environments/environment'
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,9 +93,6 @@ export class AppModule {
     private _ngRedux:NgRedux<any>,
     private _devTools:DevToolsExtension
   ){
-
-    console.log("mega yalla", environment)
-    
     let enhancers = []
     if (isPlatformBrowser(platformId)) {
       enhancers = isDevMode() && _devTools.enhancer() ? [_devTools.enhancer()] : []
