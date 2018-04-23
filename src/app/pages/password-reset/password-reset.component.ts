@@ -59,11 +59,9 @@ export class PasswordResetComponent implements OnInit {
           className: "invalid"
         }
       }else{
-        console.log(this.formSettings)
         this._isSubmit = true
         this._apiUser.passwordReset(this.formSettings.value.newPassword, this._token)
         .subscribe((response:any) => {
-          console.log(response)
           if(response.status == "success") {
             this._localStorageService.login(response.token, response.user._id)
             this._redux.dispatch({ type: FETCH_USER, user: response.user })
@@ -84,7 +82,6 @@ export class PasswordResetComponent implements OnInit {
             this.formSettings.reset()
           }
         },(error:any) => {
-        console.log(error, error.message)
         if(error.statusCode == 401 || error.statusCode == 400){
           this.statusResetPassword = {
             msg: "The link to reset the password is expired",

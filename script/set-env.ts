@@ -10,7 +10,7 @@ import { argv } from 'yargs';
 // `ts-node set-env.ts --environment=dev`
 // we get it from yargs's argv object
 // const environment = argv.environment;
-console.log("yalla", argv.environment)
+console.log("yalla", argv.environment, process.env)
 const isProd = argv.environment === 'prod';
 
 const targetPath = `./src/environments/environment.${isProd ? "prod.ts" : "ts"}`;
@@ -29,6 +29,7 @@ export const environment = {
   cdnUrl: "${process.env.CDN_SSL == 'true' ? 'https' : 'http'}://${process.env.CDN_URL}",
   apiUrl: "${process.env.API_SSL == 'true' ? 'https' : 'http'}://${process.env.API_URL}",
   wwwUrl: "${process.env.WEBAPP_SSL == 'true' ? 'https' : 'http'}://${process.env.WEBAPP_URL}",
+  domaine: "${process.env.DOMAINE}"
 };
 `
 

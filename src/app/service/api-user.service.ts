@@ -75,13 +75,11 @@ export class ApiUserService {
 
   public validationEmail(token:string):Observable<any> {
     return this._http.get(`${URL_API}/user/email-validation?token=${token}`, {headers: this._headers, withCredentials: true})
-    .do(console.log)
     .map((res:Response) => res.json())
     .catch(errorHttp);
   }
 
   public login(payload:ILoginPayload):Observable<IUserResponse> {
-    console.log(payload)
      return this._http.post(`${URL_API}/user`, JSON.stringify(payload), {headers: this._headers, withCredentials: true})
     .map((res:Response) => res.json())
     .catch(errorHttp);

@@ -50,7 +50,6 @@
 	    <ul>
 	    	<li *ngFor="let owner of (current | async)?.contributors">
 	    		<img src="/assets/profile.svg" alt="{{owner}}">
-	    		<!-- <img src="https://cdn.spm-style.com/user/{{owner}}" alt="{{owner}}"> -->
 	    		<h3>{{owner.login}}</h3>
 	    		<button class="remove" (click)="removeFromPackage('contributor', owner.login, true)" *ngIf="owner.login !== (user | async)?.login"></button>
 	    	</li>

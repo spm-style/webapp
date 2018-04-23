@@ -40,7 +40,7 @@ import { PopupModule } from './modules/popup/popup.module'
 // Directives
 import { ScrollDirective } from './directives/scroll.directive'
 // Classes
-import { CustomReuseStrategy } from './customReuseStrategy.class';
+import { CustomReuseStrategy } from './customReuseStrategy.class'
 
 @NgModule({
   declarations: [
