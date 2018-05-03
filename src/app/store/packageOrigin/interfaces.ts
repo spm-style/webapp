@@ -13,12 +13,13 @@ export interface IInstanceVariables { name: string, value: string, type: string 
 
 export interface IExportVariables { name: string, type: string }
 
-export interface IClasses { name: string, variables: [IVariables] }
+export interface IClasses { name: string, variables: [IVariables], js: boolean }
 
 export interface IPackage {
   category: string,
   cdn: string,
   classes: [IClasses],
+  sandbox: { defaultClasses: string[] },
   createdAt: string,
   dependencies: [string],
   description: string,
@@ -70,6 +71,7 @@ export interface IPackageCurrent {
   category: string,
   cdn: string,
   classes: [IClasses],
+  sandbox: { defaultClasses: string[] },
   createdAt: string,
   dependencies: [string],
   description: string,

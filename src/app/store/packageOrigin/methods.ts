@@ -17,6 +17,7 @@ export let createPackageCurrent = function(packageOrigin:IPackageOrigin):IPackag
     category: packageOrigin.distTags.latest.category,
     cdn: packageOrigin.distTags.latest.cdn,
     classes: packageOrigin.distTags.latest.classes,
+    sandbox: packageOrigin.distTags.latest.sandbox,
     createdAt: packageOrigin.distTags.latest.createdAt,
     dependencies: packageOrigin.distTags.latest.dependencies,
     description: packageOrigin.distTags.latest.description,

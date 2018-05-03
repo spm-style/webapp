@@ -108,7 +108,7 @@ public testCode:IInstruction[]
           (response:IPackageOrigin) => {
             this._id = response._id
             this._redux.dispatch({ type: FETCH_CURRENT_PACKAGE_ORIGIN, packageOrigin: response })
-            this._initDetailModule(response.distTags.latest.cdn, response.distTags.latest.responsiveness, response.distTags.latest.classes, response.distTags.latest.js.instancesVar)
+            this._initDetailModule(response.name, response.distTags.latest.sandbox.defaultClasses, response.distTags.latest.cdn, response.distTags.latest.responsiveness, response.distTags.latest.classes, response.distTags.latest.js.instancesVar)
             this._redux.dispatch({type: FETCH_SEO_DATA, pageName: 'packageDetail',
               opts: {
                 title: `${response.name} - spm, build up your design`,
@@ -127,7 +127,7 @@ public testCode:IInstruction[]
       })
     }else{
       this._id = current._id
-      this._initDetailModule(current.cdn, current.responsiveness, current.classes, current.js.instancesVar)
+      this._initDetailModule(current.name, current.sandbox.defaultClasses, current.cdn, current.responsiveness, current.classes, current.js.instancesVar)
       this._redux.dispatch({type: FETCH_SEO_DATA, pageName: 'packageDetail',
         opts: {
           title: `${current.name} - spm, build up your design`,
@@ -154,7 +154,7 @@ public testCode:IInstruction[]
             description: `${res.category} ${res.name} detail for spm, style project manager and registry for your front-end applications`
           }
         })
-        this._initDetailModule(res.cdn, res.responsiveness, res.classes, res.js.instancesVar)
+        this._initDetailModule(res.name, res.sandbox.defaultClasses, res.cdn, res.responsiveness, res.classes, res.js.instancesVar)
       }else{
         this._versionDownload.push(this._redux.getState().packageOrigin.current)
         for(let version of this._versionDownload[0].versions){
@@ -168,7 +168,7 @@ public testCode:IInstruction[]
                   description: `${response.category} ${response.name} detail for spm, style project manager and registry for your front-end applications`
                 }
               }) //à remplacer avec la correction des types
-              this._initDetailModule(response.cdn, response.responsiveness, response.classes, response.js.instancesVar)
+              this._initDetailModule(response.name, response.sandbox.defaultClasses, response.cdn, response.responsiveness, response.classes, response.js.instancesVar)
             })
           }
         }
@@ -187,12 +187,13 @@ public testCode:IInstruction[]
     this._redux.dispatch({ type: CLEAR_CURRENT_PACKAGE })
   }
 
-    private _initDetailModule(cdn:string, responsiveness:IResponsiveness[], classes:IClasses[], instancesVar:IInstanceVariables[]):void {
+    private _initDetailModule(mainClass:string, defaultClasses: string[], cdn:string, responsiveness:IResponsiveness[], classes:IClasses[], instancesVar:IInstanceVariables[]):void {
     this._iframe.nativeElement.src = `${environment.cdnUrl}/overview/dom/${cdn}`
     this._overviewUniqueWidth = this._overviewUnique.nativeElement.clientWidth - 20
     this._currentOriantation = 'portrait'
     this.changeDevice(responsiveness[0])
     this.classes = []
+    let jsClasses = []
     this.variables = []
     for(let classModule of classes){
       this.classes.push({
@@ -201,6 +202,7 @@ public testCode:IInstruction[]
         elements: []
       })
       for(let variable of classModule.variables){ this.variables.push(variable) }
+      if (classModule.js) { jsClasses.push(classModule.name) }
     }
     let tmpFormGroup = {}
     for (let instanceVar of instancesVar) {
@@ -214,7 +216,13 @@ public testCode:IInstruction[]
         for (let cssVar in this.cssInput) {
           this._iframe.nativeElement.contentWindow.document.documentElement.style.setProperty(`--${cssVar}`, this.cssInput[cssVar])
         }
-        new iframeDocument.spm_start(...this.jsInput, { document: iframeDocument })
+        for (let classModule of this.classes)
+        {
+          if (classModule.name != mainClass && !defaultClasses.includes(classModule.name)) {
+            this.toggleClass(classModule)
+          }
+        }
+        new iframeDocument.spm_start(...this.jsInput, ...jsClasses, { document: iframeDocument })
       }
     }
   }

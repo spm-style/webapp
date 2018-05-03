@@ -38,6 +38,7 @@ export let changeVersionCurrentPackage = (state: RDXPackageOrigin, packageNewVer
       category: packageNewVersion.category,
       cdn: packageNewVersion.cdn,
       classes: packageNewVersion.classes,
+      sandbox: packageNewVersion.sandbox,
       createdAt: packageNewVersion.createdAt,
       dependencies: packageNewVersion.dependencies,
       description: packageNewVersion.description,

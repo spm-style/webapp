@@ -6,7 +6,7 @@
 <section class="section-validation-email">
   <div class="content">
     <div *ngIf="!(user | async)?.validationEmail">
-      <p>Confirm your email address by clicking on the mail send, if you want new mail <button (click)="resendEmailValidation()">click here</button><span *ngIf="emailValidationResend">(message envoyer)</span></p>
+      <p>Confirm your account by clicking on the link sent to your email address, <button (click)="resendEmailValidation()">send me a new link</button><span *ngIf="emailValidationResend">message has been sent</span></p>
     </div>
   </div>
 </section>

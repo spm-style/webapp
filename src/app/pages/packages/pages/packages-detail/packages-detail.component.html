@@ -60,7 +60,7 @@
       <input class="input-state" type="checkbox" id="toggle-class-state">
       <div class="carousel-body">
         <div class="carousel-item" *ngFor="let class of classes">
-          <input type="checkbox" class="switch-class" checked (click)="toggleClass(class)"/>
+          <input type="checkbox" class="switch-class" [checked]="class.isUse" (click)="toggleClass(class)"/>
           <p>{{ class.name }}</p>
         </div>
       </div>
