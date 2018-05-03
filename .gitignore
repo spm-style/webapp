@@ -1,5 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+/ts-node*
+/src/environnements/*
+
 # compiled output
 /dist
 /tmp
