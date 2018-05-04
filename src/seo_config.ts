@@ -140,17 +140,17 @@ export let config = {
 		image: `${environment.wwwUrl}/assets/logo-only.png`,
 		twitterCard: 'summary'
 	},
-//PACKAGES
-	packagesOverview: {
-		title: 'packages - spm, build up your design',
-		keywords: 'packages, list, overview, pinterest, instagram, codepen, design, style, spm',
-		description: 'packages for spm, style project manager and registry for your front-end applications',
-		canonical: `${environment.wwwUrl}/packages`,
-		shortTitle: 'packages - spm',
+//MODULES
+	modulesOverview: {
+		title: 'modules - spm, build up your design',
+		keywords: 'modules, list, overview, pinterest, instagram, codepen, design, style, spm',
+		description: 'modules for spm, style project manager and registry for your front-end applications',
+		canonical: `${environment.wwwUrl}/modules`,
+		shortTitle: 'modules - spm',
 		image: `${environment.wwwUrl}/assets/logo-only.png`,
 		twitterCard: 'summary'
 	},
-	/*packages detail customized in package-detail*/
+	/*modules detail customized in package-detail*/
 	contact: {
 		title: 'contact - spm, build up your design',
 		keywords: 'contact, question, help, support, design, style, spm',

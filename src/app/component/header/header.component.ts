@@ -32,9 +32,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @ViewChild('buttonBackTo') private _backto:ElementRef
 
   private _backToPath:IBackToPath[] = [
-    { url: '/packages/', dist: '/packages' },
+    { url: '/modules/', dist: '/modules' },
     { url: '/documentation/', dist: '/documentation' },
-    { url: '/profile/packages/', dist: '/profile/packages'}
+    { url: '/profile/modules/', dist: '/profile/modules'}
   ]
 
   private _navigationSubMenu:string[] = ['documentation', 'profile']
@@ -69,8 +69,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     })
 
     this._subSearchBar = this._router.events.filter(e => e instanceof NavigationEnd).subscribe(() => {
-      if (this._router.url.startsWith('/packages?search=')) {
-        this.formSearchModules.setValue({ search: this._router.url.substring('/packages?search='.length) })
+      if (this._router.url.startsWith('/modules?search=')) {
+        this.formSearchModules.setValue({ search: this._router.url.substring('/modules?search='.length) })
       } else if (this.formSearchModules.value.search != '') {
         this.searchPattern = ''
         this.formSearchModules.setValue({ search: '' })
@@ -82,12 +82,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     .subscribe((pattern:string) => {
       this._redux.dispatch({ type: CHANGE_SEARCH_PATTERN, searchPattern: pattern })
       if (pattern != '') {
-        if (this.searchPattern == '') { this.previousPage = this._router.url.startsWith('/packages') ? '/packages' : this._router.url }
-        this._router.navigate(['packages'],  { queryParams: { search: pattern } })
+        if (this.searchPattern == '') { this.previousPage = this._router.url.startsWith('/modules') ? '/modules' : this._router.url }
+        this._router.navigate(['modules'],  { queryParams: { search: pattern } })
       } else if (this.searchPattern != '' && this.previousPage) {
         this._router.navigate([this.previousPage])
       } else if (!this.previousPage) {
-        this._router.navigate(['packages'])
+        this._router.navigate(['modules'])
       }
       this.searchPattern = pattern
     })

@@ -86,7 +86,7 @@ export class PackagesOverviewComponent implements OnInit, OnDestroy {
 
     this._router.events.subscribe((event:Event) => {
       if (event instanceof NavigationEnd) {
-        if (event.urlAfterRedirects == '/packages') {
+        if (event.urlAfterRedirects == '/modules') {
           if (isPlatformBrowser(this.platformId)) {
             this._document.body
             ? this._document.body.scrollTo(0, this._lastPositionScroll)

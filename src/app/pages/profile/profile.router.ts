@@ -14,8 +14,8 @@ const PROFILE_ROUTES:Routes = [
   { path: '', component: ProfileComponent, canActivate:[AuthProfile], children: [
     { path: '', component: PublicComponent, pathMatch: 'full' },
     { path: 'settings', component: SettingsComponent },
-    { path: 'packages', component: PackagesComponent },
-    { path: 'packages/:name', component: PackageDetailComponent }
+    { path: 'modules', component: PackagesComponent },
+    { path: 'modules/:name', component: PackageDetailComponent }
   ]}
 ]
 

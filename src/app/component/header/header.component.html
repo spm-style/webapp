@@ -16,16 +16,16 @@
                 <li><a routerLink="documentation/workings">How spm works</a></li>
                 <li><a routerLink="documentation/cli-run-through">CLI run-through</a></li>
                 <li><a routerLink="documentation/init">Initialize your project</a></li>
-                <li><a routerLink="documentation/install">Install fancy packages</a></li>
-                <li><a routerLink="documentation/generate">Generate customized packages</a></li>
-                <li><a routerLink="documentation/use">Import packages in your stylesheets</a></li>
+                <li><a routerLink="documentation/install">Install fancy modules</a></li>
+                <li><a routerLink="documentation/generate">Generate customized modules</a></li>
+                <li><a routerLink="documentation/use">Import modules in your stylesheets</a></li>
                 <li><a routerLink="documentation/publish">Publish your creation</a></li>
                 <li><a routerLink="documentation/cheat-sheet">Cheat sheet</a></li>
               </ul>
             </div>
           </li>
           <!-- <li><a routerLink="features">Features</a></li> -->
-          <li><a routerLink="packages">Packages</a></li>
+          <li><a routerLink="modules">Modules</a></li>
           <!-- <li><a routerLink="pricing">Pricing</a></li> -->
           <li *ngIf="(user | async)?.login === null"><a routerLink="connection/sign-in">Sign-in</a></li>
           <li *ngIf="(user | async)?.login === null"><a routerLink="connection/sign-up">Create an account</a></li>
@@ -36,7 +36,7 @@
               <ul (click)="stopPropagation($event)">
                 <li><a routerLink="profile">public profile</a></li>
                 <li><a routerLink="profile/settings">settings</a></li>
-                <li><a routerLink="profile/packages">packages</a></li>
+                <li><a routerLink="profile/modules">modules</a></li>
                 <li class="logout"><a (click)="logout()">log out</a></li>
               </ul>
             </div>

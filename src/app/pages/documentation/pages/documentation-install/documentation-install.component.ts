@@ -17,8 +17,8 @@ export class DocumentationInstallComponent implements OnInit, OnDestroy {
     this._redux.dispatch({ type: FETCH_SEO_DATA, pageName: 'docInstall' })
     this._redux.dispatch({
       type: CHANGE_CURRENT_DOC,
-      currentDoc: 'Install fancy packages',
-      nextDoc: 'Generate a customized packages',
+      currentDoc: 'Install fancy modules',
+      nextDoc: 'Generate a customized modules',
       previousDoc: 'Initialize your project',
       nextDocUrl: 'generate',
       previousDocUrl: 'init'

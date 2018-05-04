@@ -17,7 +17,7 @@ export class DocumentationInitComponent implements OnInit, OnDestroy {
     this._redux.dispatch({
       type: CHANGE_CURRENT_DOC,
       currentDoc: 'Initialize your project',
-      nextDoc: 'Install fancy packages',
+      nextDoc: 'Install fancy modules',
       previousDoc: 'CLI run-through',
       nextDocUrl: 'install',
       previousDocUrl: 'cli-run-through'

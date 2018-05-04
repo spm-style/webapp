@@ -14,9 +14,9 @@ export class DocumentationGraphicalInterfaceRunThroughComponent implements OnIni
   ngOnInit() {
     this._redux.dispatch({
       type: CHANGE_CURRENT_DOC,
-      currentDoc: 'Generating a customized package',
-      nextDoc: 'Install fancy packages',
-      previousDoc: 'Import packages in your stylesheets',
+      currentDoc: 'Generating a customized module',
+      nextDoc: 'Install fancy modules',
+      previousDoc: 'Import modules in your stylesheets',
       nextDocUrl: 'install',
       previousDocUrl: 'use'
     })

@@ -293,9 +293,6 @@
             appearance: none;
             -moz-appearance: none;
             -webkit-appearance: none;
-            border-radius: 0;
-            -moz-border-radius: 0;
-            -webkit-border-radius: 0;
             outline: none;
             margin-right: 20px;
             border: 2px solid white;
@@ -306,6 +303,8 @@
             box-shadow: inset 1px 0 0 1px white, inset -12px 0 0 1px white;
             transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
             border-radius: 30px;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
             cursor: pointer;
             &:checked {
               background-color: green;

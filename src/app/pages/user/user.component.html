@@ -11,10 +11,10 @@
 		</div>
 		<ul class="user-details">
 			<li>
-				<h2>packages</h2>
+				<h2>modules</h2>
 				<ul class="packages">
 					<li *ngFor="let userPackage of user?.packages">
-						<a routerLink="/packages/{{userPackage.name}}">{{ userPackage.name }}</a>
+						<a routerLink="/modules/{{userPackage.name}}">{{ userPackage.name }}</a>
 						<div class="package-analytics">
 							<div class="analytics-control">
 								<div class="img stars"></div>
@@ -40,7 +40,7 @@
 				<h2>favorites</h2>
 				<ul class="packages">
 					<li *ngFor="let userPackage of user.favorites">
-					<a routerLink="/packages/{{userPackage.name}}">{{ userPackage.name }}</a>
+					<a routerLink="/modules/{{userPackage.name}}">{{ userPackage.name }}</a>
 						<div class="package-analytics">
 							<div class="analytics-control">
 								<div class="img stars"></div>

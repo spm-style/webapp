@@ -20,7 +20,7 @@ export class CardComponent implements OnInit {
   @ViewChild('iframe') private _iframe:ElementRef
   @ViewChild('containerIframe') private _containerIframe:ElementRef
 
-  @HostListener('click', ['$event']) onResize(event) { this._router.navigate(['packages', this.data.name]) }
+  @HostListener('click', ['$event']) onResize(event) { this._router.navigate(['modules', this.data.name]) }
 
   @dispatch() public setCurrentPackage():any { return { type: FETCH_CURRENT_PACKAGE_ORIGIN, packageOrigin: this.data } }
 

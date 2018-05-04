@@ -17,9 +17,9 @@ export class DocumentationGenerateComponent implements OnInit, OnDestroy {
     this._redux.dispatch({type: FETCH_SEO_DATA, pageName: 'docGenerate' })
     this._redux.dispatch({
       type: CHANGE_CURRENT_DOC,
-      currentDoc: 'Generating a customized package',
+      currentDoc: 'Generating a customized module',
       nextDoc: 'Publish your creation',
-      previousDoc: 'Install fancy packages',
+      previousDoc: 'Install fancy modules',
       nextDocUrl: 'publish',
       previousDocUrl: 'install'
     })

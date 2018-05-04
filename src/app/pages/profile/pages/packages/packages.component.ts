@@ -43,11 +43,11 @@ export class PackagesComponent implements OnInit {
 
     this._redux.dispatch({ type: FETCH_SEO_DATA, pageName: 'profilePackages',
       opts: {
-        title: `my packages - spm, build up your design`,
-        keywords: 'packages, user, list, design, style, spm',
-        description: 'my packages for spm, style project manager and registry',
+        title: `my modules - spm, build up your design`,
+        keywords: 'modules, user, list, design, style, spm',
+        description: 'my modules for spm, style project manager and registry',
         canonical: `{environment.wwwUrl}/profile/public`,
-        shortTitle: `my packages - spm`,
+        shortTitle: `my modules - spm`,
         image: `${environment.wwwUrl}/assets/profile.svg`,
         twitterCard: 'summary'
       }
@@ -66,7 +66,7 @@ export class PackagesComponent implements OnInit {
     .debounceTime(300)
     .subscribe((pattern:string) => {
       this.searchPattern = pattern
-      this._router.navigate(['user', 'packages'], { queryParams: {page: this.page, search: this.searchPattern}})
+      this._router.navigate(['user', 'modules'], { queryParams: {page: this.page, search: this.searchPattern}})
     })
   }
 

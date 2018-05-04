@@ -17,9 +17,9 @@ export class DocumentationUseComponent implements OnInit, OnDestroy {
     this._redux.dispatch({ type: FETCH_SEO_DATA, pageName: 'docUse' })
     this._redux.dispatch({
       type: CHANGE_CURRENT_DOC,
-      currentDoc: 'Import packages in your stylesheets',
+      currentDoc: 'Import modules in your stylesheets',
       nextDoc: 'Publish your creation',
-      previousDoc: 'Generate a customized packages',
+      previousDoc: 'Generate a customized module',
       nextDocUrl: 'publish',
       previousDocUrl: 'generate'
     })

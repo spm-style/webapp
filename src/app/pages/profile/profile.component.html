@@ -16,7 +16,7 @@
 			<ul>
 				<li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/profile/">Public profile</a></li>
 				<li routerLinkActive="active"><a routerLink="/profile/settings">Settings</a></li>
-				<li routerLinkActive="active"><a routerLink="/profile/packages">My Packages</a></li>
+				<li routerLinkActive="active"><a routerLink="/profile/modules">My Modules</a></li>
 				<li routerLinkActive="active"><a routerLink="/user/{{ (user | async)?.login }}">Preview</a></li>
 				<li class="logout"><a (click)="logout()">Log out</a></li>
 			</ul>

@@ -1,7 +1,7 @@
 <section class="section-doc">
   <div class="content">
 
-	  <doc-description>Now you're able to install and customize spm packages, you may want to use the generated content in your project. For this purpose, you can use the <doc-highlight>spm use</doc-highlight> or short <doc-highlight>spm u</doc-highlight> CLI command.</doc-description>
+	  <doc-description>Now you're able to install and customize spm modules, you may want to use the generated content in your project. For this purpose, you can use the <doc-highlight>spm use</doc-highlight> or short <doc-highlight>spm u</doc-highlight> CLI command.</doc-description>
 	  <doc><!--
    --><doc-terminal-instruction content="spm u apollo_onOff"></doc-terminal-instruction><!--
    --><doc-tab></doc-tab><!--
@@ -22,12 +22,12 @@
  --></doc>
 		<doc-info type="warning">Note that if you have multiple arguments after path you should always place them between quotes (single or double) and separated by <doc-highlight>,</doc-highlight> or <doc-highlight> </doc-highlight>.</doc-info>
 
-	  <doc-description>This command identifies a package by its name. Since spm allows to customize a package and rename it, it is possible to have multiple packages containing the same instance name. spm will then open a prompt to make you chose the correct one, by displaying the original package name.</doc-description>
+	  <doc-description>This command identifies a module by its name. Since spm allows to customize a module and rename it, it is possible to have multiple modules containing the same instance name. spm will then open a prompt to make you chose the correct one, by displaying the original module name.</doc-description>
 	  <doc><!--
    --><doc-terminal-instruction content="spm u myNewPackage"></doc-terminal-instruction><!--
  --></doc>
-	  <h2>specify the originating package</h2>
-	  <doc-description>You can as well use the option <doc-highlight>--module</doc-highlight> or <doc-highlight>-m</doc-highlight> if you already know in which module you want to import the package from.</doc-description>
+	  <h2>specify the originating module</h2>
+	  <doc-description>You can as well use the option <doc-highlight>--module</doc-highlight> or <doc-highlight>-m</doc-highlight> if you already know in which module you want to import the module from.</doc-description>
 	  <doc><!--
    --><doc-terminal-instruction content="spm u myNewPackage -m apollo_onOff"></doc-terminal-instruction><!--
  --></doc>

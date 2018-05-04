@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   // { path: 'reporting-abuse', component: ReportingAbuseComponent },
   { path: 'status', loadChildren: 'app/pages/status/status.module#StatusModule'},
-  { path: 'packages', loadChildren: 'app/pages/packages/packages.module#PackagesModule'},
+  { path: 'modules', loadChildren: 'app/pages/packages/packages.module#PackagesModule'},
   { path: 'policies', loadChildren: 'app/pages/policies/policies.module#PoliciesModule'},
   // { path: 'features', loadChildren: 'app/pages/features/features.module#FeaturesModule'},
   { path: 'documentation', loadChildren: 'app/pages/documentation/documentation.module#DocumentationModule'},

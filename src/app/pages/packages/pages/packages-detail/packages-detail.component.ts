@@ -112,9 +112,9 @@ public testCode:IInstruction[]
             this._redux.dispatch({type: FETCH_SEO_DATA, pageName: 'packageDetail',
               opts: {
                 title: `${response.name} - spm, build up your design`,
-                keywords: `${response.distTags.latest.category}, ${response.distTags.latest.keywords.join(', ')}, package, detail, ${response.distTags.latest.responsiveness.map(a => a.name).join(', ')}, responsive, sandbox, test, design, prototype, spm`,
+                keywords: `${response.distTags.latest.category}, ${response.distTags.latest.keywords.join(', ')}, module, detail, ${response.distTags.latest.responsiveness.map(a => a.name).join(', ')}, responsive, sandbox, test, design, prototype, spm`,
                 description: `${response.distTags.latest.category} ${response.name} detail for spm, style project manager and registry for your front-end applications`,
-                canonical: `${environment.wwwUrl}/packages/${response.name}`,
+                canonical: `${environment.wwwUrl}/modules/${response.name}`,
                 shortTitle: `${response.name} - spm`,
                 image: `${environment.cdnUrl}/overview/preview/${response.preview}`,
                 twitterCard: 'summary_large_card'
@@ -122,7 +122,7 @@ public testCode:IInstruction[]
             })
             this._updateViewsCount(response.name)
           },
-          (error:any) => { console.log('current package', error) }
+          (error:any) => { console.log('current module', error) }
         )
       })
     }else{
@@ -131,9 +131,9 @@ public testCode:IInstruction[]
       this._redux.dispatch({type: FETCH_SEO_DATA, pageName: 'packageDetail',
         opts: {
           title: `${current.name} - spm, build up your design`,
-          keywords: `${current.category}, ${current.keywords.join(', ')}, package, detail, ${current.responsiveness.map(a => a.name).join(', ')}, responsive, sandbox, test, design, prototype, spm`,
+          keywords: `${current.category}, ${current.keywords.join(', ')}, module, detail, ${current.responsiveness.map(a => a.name).join(', ')}, responsive, sandbox, test, design, prototype, spm`,
           description: `${current.category} ${current.name} detail for spm, style project manager and registry for your front-end applications`,
-          canonical: `${environment.wwwUrl}/packages/${current.name}`,
+          canonical: `${environment.wwwUrl}/modules/${current.name}`,
           shortTitle: `${current.name} - spm`,
           image: `${environment.cdnUrl}/overview/preview/${current.preview}`,
           twitterCard: 'summary_large_card'
@@ -150,7 +150,7 @@ public testCode:IInstruction[]
         this._redux.dispatch({ type: CHANGE_VERSION_CURRENT_PACKAGE, packageNewVersion: res })
         this._redux.dispatch({ type: FETCH_SEO_DATA, pageName: 'packageDetail',
           opts: {
-            keywords: `${res.category}, ${res.keywords.join(', ')}, package, detail, ${res.responsiveness.join(', ')}, responsive, sandbox, test, design, prototype, spm`,
+            keywords: `${res.category}, ${res.keywords.join(', ')}, module, detail, ${res.responsiveness.join(', ')}, responsive, sandbox, test, design, prototype, spm`,
             description: `${res.category} ${res.name} detail for spm, style project manager and registry for your front-end applications`
           }
         })
@@ -164,7 +164,7 @@ public testCode:IInstruction[]
               this._redux.dispatch({ type: CHANGE_VERSION_CURRENT_PACKAGE, packageNewVersion: response })
               this._redux.dispatch({ type: FETCH_SEO_DATA, pageName: 'packageDetail',
                 opts: {
-                  keywords: `${response.category}, ${response.keywords.join(', ')}, package, detail, ${response.responsiveness.join(', ')}, responsive, sandbox, test, design, prototype, spm`,
+                  keywords: `${response.category}, ${response.keywords.join(', ')}, module, detail, ${response.responsiveness.join(', ')}, responsive, sandbox, test, design, prototype, spm`,
                   description: `${response.category} ${response.name} detail for spm, style project manager and registry for your front-end applications`
                 }
               }) //à remplacer avec la correction des types
