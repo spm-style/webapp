@@ -84,7 +84,11 @@
         <form *ngIf="(current | async)?.js.instancesVar.length && (current | async); let current2" [formGroup]="formJsVariables" (ngSubmit)="updateJsVariables(current2)">
           <div class="carousel-item" *ngFor="let instanceVar of (current | async)?.js.instancesVar">
             <p class="var-name">{{ instanceVar.name }} ({{ instanceVar.type }})</p>
-            <input type="text" id="{{ instanceVar.name }}" formControlName="jsVariable-{{ instanceVar.name }}" required>
+            <input type="{{ instanceVar.type === 'number' ? 'number' : 'text' }}" id="{{ instanceVar.name }}" formControlName="jsVariable-{{ instanceVar.name }}" *ngIf="instanceVar.type !== 'boolean'">
+            <input formControlName="jsVariable-{{ instanceVar.name }}" id="{{ instanceVar.name }}-1" type="radio" value="true" *ngIf="instanceVar.type === 'boolean'">
+            <label for="{{ instanceVar.name }}-1" *ngIf="instanceVar.type === 'boolean'">true</label>
+            <input formControlName="jsVariable-{{ instanceVar.name }}" id="{{ instanceVar.name }}-2" type="radio" value="false" *ngIf="instanceVar.type === 'boolean'">
+            <label for="{{ instanceVar.name }}-2" *ngIf="instanceVar.type === 'boolean'">false</label>
           </div>
           <button type="submit">Apply</button>
         </form>

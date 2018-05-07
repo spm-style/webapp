@@ -66,6 +66,7 @@ export class PackagesDetailComponent implements OnInit, OnDestroy {
   private _originDomaine:string
   private _id:string
   private _versionDownload:IPackageCurrent[] = []
+  private _isFirstDisplay:boolean = true
 
   public classes:ICLassModule[] = []
   public variables:IVariables[] = []
@@ -145,6 +146,7 @@ public testCode:IInstruction[]
     this.formVersion = this._formBuilder.group({ version:['', []] })
 
     this._subChangeVersion = this.formVersion.get('version').valueChanges.subscribe((newVersion:string) => {
+      this._isFirstDisplay = true
       let res:IPackageCurrent = this._versionDownload.filter((packageCurrent:IPackageCurrent) => packageCurrent.version == newVersion)[0]
       if(res){
         this._redux.dispatch({ type: CHANGE_VERSION_CURRENT_PACKAGE, packageNewVersion: res })
@@ -179,7 +181,6 @@ public testCode:IInstruction[]
 
   ngOnDestroy() {
     if (isPlatformBrowser(this._platformId)) { this._document.domain = this._originDomaine }
-    // this._document.domain = this._originDomaine
     if (this._subApiGetPackage) { this._subApiGetPackage.unsubscribe() }
     if (this._subUrlParams) { this._subUrlParams.unsubscribe() }
     if (this._subUser) { this._subUser.unsubscribe() }
@@ -216,13 +217,23 @@ public testCode:IInstruction[]
         for (let cssVar in this.cssInput) {
           this._iframe.nativeElement.contentWindow.document.documentElement.style.setProperty(`--${cssVar}`, this.cssInput[cssVar])
         }
-        for (let classModule of this.classes)
-        {
-          if (classModule.name != mainClass && !defaultClasses.includes(classModule.name)) {
-            this.toggleClass(classModule)
+        if (this._isFirstDisplay) {
+          for (let classModule of this.classes)
+          {
+            classModule.elements = []
+            if (classModule.name != mainClass && !defaultClasses.includes(classModule.name)) {
+              this.toggleClass(classModule)
+            }
+          }
+        } else {
+          for (let classModule of this.classes)
+          {
+            classModule.elements = []
+            this.toggleClass(classModule, false)
           }
         }
         new iframeDocument.spm_start(...this.jsInput, ...jsClasses, { document: iframeDocument })
+        this._isFirstDisplay = false
       }
     }
   }
@@ -262,12 +273,18 @@ public testCode:IInstruction[]
     this._setDeviceProperty(this._currentDivice, this._currentOriantation, tmpScale)
   }
 
-  public toggleClass(classModule:ICLassModule):void {
+  public toggleClass(classModule:ICLassModule, modify:boolean = true):void {
     if(classModule.elements.length == 0){ classModule.elements = this._iframe.nativeElement.contentWindow.document.querySelectorAll(`.${classModule.name}`) }
-    for(let element of classModule.elements){
-      classModule.isUse ? this._renderer.removeClass(element, classModule.name) : this._renderer.addClass(element, classModule.name)
+    if (modify) {
+      for(let element of classModule.elements){
+        classModule.isUse ? this._renderer.removeClass(element, classModule.name) : this._renderer.addClass(element, classModule.name)
+      }
+      classModule.isUse = !classModule.isUse
+    } else {
+      for(let element of classModule.elements){
+        !classModule.isUse ? this._renderer.removeClass(element, classModule.name) : this._renderer.addClass(element, classModule.name)
+      }
     }
-    classModule.isUse = !classModule.isUse
   }
 
   public isClassActive(classModule:ICLassModule):boolean{ return classModule.isUse }
