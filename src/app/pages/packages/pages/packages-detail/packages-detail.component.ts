@@ -214,6 +214,7 @@ public testCode:IInstruction[]
       for (let instanceVar of instancesVar) { this.jsInput.push(instanceVar.value) }
       this._iframe.nativeElement.onload = () => {
         let iframeDocument = this._iframe.nativeElement.contentDocument
+        let iframeWindow = this._iframe.nativeElement.contentWindow
         for (let cssVar in this.cssInput) {
           this._iframe.nativeElement.contentWindow.document.documentElement.style.setProperty(`--${cssVar}`, this.cssInput[cssVar])
         }
@@ -233,6 +234,7 @@ public testCode:IInstruction[]
           }
         }
         new iframeDocument.spm_start(...this.jsInput, ...jsClasses, { document: iframeDocument })
+        iframeWindow.dispatchEvent(new Event('load'))
         this._isFirstDisplay = false
       }
     }
