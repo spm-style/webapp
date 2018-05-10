@@ -4,7 +4,7 @@ import {
   Renderer2, HostListener, Inject, PLATFORM_ID, AfterViewChecked }                                from '@angular/core'
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { Subscription }                                                         from 'rxjs/Subscription'
-import { Router, NavigationEnd, Event, ActivatedRoute } from '@angular/router';
+import { Router, NavigationEnd, NavigationStart, Event, ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/platform-browser';
                                                                                 // Service
 import { ApiPackageOriginService }                                              from './../../../../service/api-package-origin.service'
@@ -32,6 +32,7 @@ export class PackagesOverviewComponent implements OnInit, OnDestroy {
   private _subscriptionApi:Subscription
   private _subSearchPattern:Subscription
   private _subActivatedRoute:Subscription
+  private _subNavigation:Subscription
   private _pinterestGrid:PinterestGrid
   private _lastPositionScroll:number = 0
 
@@ -59,21 +60,25 @@ export class PackagesOverviewComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(){
-    
-    this._subSearchPattern = this._searchPattern.subscribe((data: string) => {
-      this._subscriptionApi = this._apiPackageOrigin.listPackageOrigin(data)
-      .subscribe(
-        (data:any) => {
-          this._redux.dispatch({type: FETCH_PACKAGE_ORIGIN, list:data.packages})
-          this._isFetchedCard = true
-        },
-        (error:any) => { console.log(error) }
-      )
-    })
 
     this._redux.dispatch({ type: FETCH_SEO_DATA, pageName: 'packagesOverview' })
 
     if (isPlatformBrowser(this.platformId)) {
+      this._subNavigation = this._router.events.subscribe(e => {
+        if (e instanceof NavigationStart) {
+          this._subSearchPattern = this._searchPattern.subscribe((data: string) => {
+            this._subscriptionApi = this._apiPackageOrigin.listPackageOrigin(data)
+            .subscribe(
+              (data:any) => {
+                this._redux.dispatch({type: FETCH_PACKAGE_ORIGIN, list:data.packages})
+                this._isFetchedCard = true
+              },
+              (error:any) => { console.log(error) }
+            )
+          })
+        }
+      })  
+
       this._testBis2 = Observable.fromEvent(window, 'scroll')
       this._testBis = this._testBis2.subscribe((scroll) => {
         this._testBis3 = scroll.srcElement.documentElement.scrollTop
@@ -101,6 +106,7 @@ export class PackagesOverviewComponent implements OnInit, OnDestroy {
     if (this._subscriptionApi) { this._subscriptionApi.unsubscribe() }
     if (this._subSearchPattern) { this._subSearchPattern.unsubscribe() }
     if (this._subActivatedRoute) { this._subActivatedRoute.unsubscribe() }
+    if (this._subNavigation) { this._subNavigation.unsubscribe() }
   }
 
   ngAfterViewChecked(){

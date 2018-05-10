@@ -6,7 +6,7 @@ import { ApiUserService, IUserResponse, IUser } from '../../service/api-user.ser
 import { PopupService } from '../../modules/popup/popup.service'
 import { LocalstorageService } from '../../service/localstorage.service'
 
-import { NgRedux, RDXRootState, LOGOUT_USER, select, Observable } from '../../store'
+import { NgRedux, RDXRootState, LOGOUT_USER, select, Observable, FETCH_PACKAGE_ORIGIN } from '../../store'
 
 @Component({
   selector: 'spm-profile',
@@ -56,11 +56,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
 			  		this._localStorageService.logout()
 			  		this._subLogout.unsubscribe()
 			  		this._redux.dispatch({ type: LOGOUT_USER })
+            this._redux.dispatch({ type: FETCH_PACKAGE_ORIGIN, list: [] })
 			  		this._router.navigate([''])
 			  	}, (error:any) => {
 			  		this._localStorageService.logout()
 			  		this._subLogout.unsubscribe()
 			  		this._redux.dispatch({ type: LOGOUT_USER })
+            this._redux.dispatch({ type: FETCH_PACKAGE_ORIGIN, list: [] })
 			  		this._router.navigate([''])
 			  	})
       	}
