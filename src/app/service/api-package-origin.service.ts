@@ -26,19 +26,23 @@ export class ApiPackageOriginService {
   }
 
   public listPackageOrigin(pattern:string):Observable<any> {
-    return this._http.get(`${URL_API}/package-origin${pattern ? '?search=' + pattern : ''}`, {headers: this._headers, withCredentials: true})
+    let headers = new Headers()
+    headers.append('Authorization', `Bearer ${this._localStorageService.getLoginInfos().token}`)
+    return this._http.get(`${URL_API}/package-origin${pattern ? '?search=' + pattern : ''}`, {headers, withCredentials: true})
     .map((res:Response) => res.json())
     .do((res:any) => {
       for(let packageOrigin of res.packages){
         packageOrigin.distTags.latest.responsiveness = packageOrigin.distTags.latest.responsiveness.map((name:string) => breakpoints[name])
       }
-      return res
+      return { packages: res }
     })
     .catch(errorHttp);
   }
 
   public packageOrigin(name:string):Observable<any> {
-    return this._http.get(`${URL_API}/package-origin/name/${name}`, {headers: this._headers, withCredentials: true})
+    let headers = new Headers()
+    headers.append('Authorization', `Bearer ${this._localStorageService.getLoginInfos().token}`)
+    return this._http.get(`${URL_API}/package-origin/name/${name}`, {headers, withCredentials: true})
     .map((res:Response) => res.json())
     .do((res:any) => {
       res.distTags.latest.responsiveness = res.distTags.latest.responsiveness.map((name:string) => breakpoints[name])

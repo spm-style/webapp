@@ -16,9 +16,10 @@ export class ApiPackageService {
   }
 
   public changeVersionInCurrentPackage(packageId:string):Observable<any> {
-    this._headers = new Headers()
-    this._headers.append('Content-Type', 'application/json')
-    return this._http.get(`${URL_API}/package/id/${packageId}`, {headers: this._headers, withCredentials: true})
+    let headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    headers.append('Authorization', `Bearer ${this._localStorageService.getLoginInfos().token}`)
+    return this._http.get(`${URL_API}/package/id/${packageId}`, {headers, withCredentials: true})
     .map((res:Response) => res.json())
     .catch(errorHttp);
   }
