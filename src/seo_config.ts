@@ -40,6 +40,15 @@ export let config = {
 		image: `${environment.wwwUrl}/assets/logo-only.png`,
 		twitterCard: 'summary'
 	},
+	docTutorial: {
+		title: 'tutorial - documentation - spm, build up your design',
+		keywords: 'tutorial, first step, begin, documentation, guide, design, spm',
+		description: 'tutorial for spm, style project manager and registry for your front-end applications',
+		canonical: `${environment.wwwUrl}/documentation/tutorial`,
+		shortTitle: 'tutorial - documentation - spm',
+		image: `${environment.wwwUrl}/assets/logo-only.png`,
+		twitterCard: 'summary'
+	},
 	docCLIRunThrough: {
 		title: 'CLI run through - documentation - spm, build up your design',
 		keywords: 'cli, run through, documentation, guide, design, spm',

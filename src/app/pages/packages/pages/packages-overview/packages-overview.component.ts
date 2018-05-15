@@ -61,11 +61,22 @@ export class PackagesOverviewComponent implements OnInit, OnDestroy {
 
   ngOnInit(){
 
-    this._redux.dispatch({ type: FETCH_SEO_DATA, pageName: 'packagesOverview' })
+    this._redux.dispatch({ type: FETCH_SEO_DATA, pageName: 'modulesOverview' })
+
+    this._subSearchPattern = this._searchPattern.subscribe((data: string) => {
+      this._subscriptionApi = this._apiPackageOrigin.listPackageOrigin(data)
+      .subscribe(
+        (data:any) => {
+          this._redux.dispatch({type: FETCH_PACKAGE_ORIGIN, list:data.packages})
+          this._isFetchedCard = true
+        },
+        (error:any) => { console.log(error) }
+      )
+    })
 
     if (isPlatformBrowser(this.platformId)) {
       this._subNavigation = this._router.events.subscribe(e => {
-        if (e instanceof NavigationStart) {
+        if ((e instanceof NavigationStart) && e.url === "/modules") {
           this._subSearchPattern = this._searchPattern.subscribe((data: string) => {
             this._subscriptionApi = this._apiPackageOrigin.listPackageOrigin(data)
             .subscribe(

@@ -22,11 +22,9 @@ export class DocumentationPublishComponent implements OnInit, OnDestroy{
       nextDocUrl: 'cheat-sheet',
       previousDocUrl: 'install'
     })
-    if (isPlatformBrowser(this.platformId)) { window.location.hash = 'title' }
   }
 
   ngOnDestroy(){
-    if (isPlatformBrowser(this.platformId)) { window.location.hash = '' }
   }
 
 }

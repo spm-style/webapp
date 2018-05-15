@@ -21,11 +21,9 @@ export class DocumentationWhatIsSpmComponent implements OnInit, OnDestroy{
       nextDocUrl: 'getting-started',
       previousDocUrl: ''
     })
-    if (isPlatformBrowser(this.platformId)) { window.location.hash = 'title' }
   }
 
   ngOnDestroy(){
-    if (isPlatformBrowser(this.platformId)) { window.location.hash = '' }
   }
 
 }

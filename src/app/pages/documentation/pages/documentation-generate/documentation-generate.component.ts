@@ -23,11 +23,9 @@ export class DocumentationGenerateComponent implements OnInit, OnDestroy {
       nextDocUrl: 'publish',
       previousDocUrl: 'install'
     })
-    if (isPlatformBrowser(this.platformId)) { window.location.hash = 'title' }
   }
 
   ngOnDestroy(){
-    if (isPlatformBrowser(this.platformId)) { window.location.hash = ''}
   }
 
 }

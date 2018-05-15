@@ -19,15 +19,13 @@ export class DocumentationWorkingsComponent implements OnInit, OnDestroy {
       type: CHANGE_CURRENT_DOC,
       currentDoc: 'How spm works',
       nextDoc: 'CLI run-through',
-      previousDoc: 'Getting started',
+      previousDoc: 'Tutorial',
       nextDocUrl: 'cli-run-through',
-      previousDocUrl: 'getting-started'
+      previousDocUrl: 'tutorial'
     })
-    if (isPlatformBrowser(this.platformId)) { window.location.hash = 'title' }
   }
 
   ngOnDestroy(){
-    if (isPlatformBrowser(this.platformId)) { window.location.hash = '' }
   }
 
 }

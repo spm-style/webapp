@@ -435,17 +435,17 @@ public testCode:IInstruction[]
     }
   }
 
-  public copyToClipboard(elem){
+  public copyToClipboard(elem, selector){
     let tmpEl = this._renderer.createElement('textarea')
     let text = this._renderer.createText(elem.innerText || elem.textContent)
     this._renderer.appendChild(tmpEl, text)
     this._renderer.appendChild(document.body, tmpEl)
     tmpEl.select()
     document.execCommand("copy");
-    this._renderer.addClass(this._document.querySelector('.confirmation'), 'visible')
+    this._renderer.addClass(this._document.querySelector(selector + ' .confirmation'), 'visible')
     this._renderer.removeChild(document.body, tmpEl)
     setTimeout(() => {
-      this._renderer.removeClass(this._document.querySelector('.confirmation'), 'visible')
+      this._renderer.removeClass(this._document.querySelector(selector + ' .confirmation'), 'visible')
     }, 1000)
   }
 }

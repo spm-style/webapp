@@ -17,6 +17,7 @@ import { DocumentationInstallComponent }                                        
 import { DocumentationGenerateComponent }                                       from './pages/documentation-generate/documentation-generate.component';
 import { DocumentationUseComponent }                                            from './pages/documentation-use/documentation-use.component';
 import { DocumentationPublishComponent }                                        from './pages/documentation-publish/documentation-publish.component';
+import { DocumentationTutorialComponent }                                       from './pages/documentation-tutorial/documentation-tutorial.component';
                                                                                 // Component
 import { DocHighlightComponent }                                                from './component/doc/doc-highlight.component';
 import { DocDescriptionComponent }                                              from './component/doc/doc-description.component';
@@ -71,7 +72,8 @@ import { DocCliMessageComponent }                                               
     DocumentationWhatIsSpmComponent,
     DocumentationCliRunThroughComponent,
     DocumentationGraphicalInterfaceRunThroughComponent,
-    DocCliMessageComponent
+    DocCliMessageComponent,
+    DocumentationTutorialComponent
   ]
 })
 export class DocumentationModule { }

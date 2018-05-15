@@ -25,6 +25,11 @@
   <priority>0.80</priority>
 </url>
 <url>
+  <loc>https://www.spm-style.com/documentation/tutorial</loc>
+  <lastmod>2018-01-30T15:40:44+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
   <loc>https://www.spm-style.com/documentation/workings</loc>
   <lastmod>2018-01-30T15:40:44+00:00</lastmod>
   <priority>0.80</priority>
@@ -46,11 +51,6 @@
 </url>
 <url>
   <loc>https://www.spm-style.com/documentation/generate</loc>
-  <lastmod>2018-01-30T15:40:44+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.spm-style.com/documentation/use</loc>
   <lastmod>2018-01-30T15:40:44+00:00</lastmod>
   <priority>0.80</priority>
 </url>
@@ -99,21 +99,4 @@
   <lastmod>2018-01-30T15:40:44+00:00</lastmod>
   <priority>0.80</priority>
 </url>
-<url>
-  <loc>https://www.spm-style.com/documentation/what-is-spm/cli-run-through</loc>
-  <lastmod>2018-01-30T15:40:44+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.spm-style.com/documentation/what-is-spm/graphical-interface-run-through</loc>
-  <lastmod>2018-01-30T15:40:44+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.spm-style.com/user/adrien</loc>
-  <lastmod>2018-01-30T15:40:44+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-
-
 </urlset>

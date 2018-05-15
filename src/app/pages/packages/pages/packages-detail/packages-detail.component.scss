@@ -451,6 +451,42 @@
                 font-size: 1rem;
                 text-align: left;
                 min-width: 30vw;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                position: relative;
+
+                .confirmation {
+                  opacity: 0;
+                  visibility: hidden;
+                  background-color: #efefef;
+                  border: 2px solid #464646;
+                  color: black;
+                  padding: 5px 10px;
+                  position: absolute;
+                  bottom: 110%;
+                  right: 10px;
+                  font-size: 1rem;
+                  transition: visibility 0s linear 0.5s,opacity 0.5s linear;
+
+                  &:before {
+                    content: '';
+                    position: absolute;
+                    top: 100%;
+                    right: 10%;
+                    width: 0; 
+                    height: 0; 
+                    border-left: 8px solid transparent;
+                    border-right: 8px solid transparent;
+                    border-top: 8px solid #464646;
+                  }
+
+                  &.visible {
+                    visibility: visible;
+                    opacity: 1;
+                    transition-delay: 0s;
+                  }
+                }
 
                 &.double {
                   line-height: 2;

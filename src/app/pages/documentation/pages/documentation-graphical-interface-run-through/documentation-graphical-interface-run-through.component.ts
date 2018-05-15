@@ -20,10 +20,8 @@ export class DocumentationGraphicalInterfaceRunThroughComponent implements OnIni
       nextDocUrl: 'install',
       previousDocUrl: 'use'
     })
-    if (isPlatformBrowser(this.platformId)) { window.location.hash = 'title' }
   }
 
   ngOnDestroy(){
-    if (isPlatformBrowser(this.platformId)) { window.location.hash = '' }
   }
 }

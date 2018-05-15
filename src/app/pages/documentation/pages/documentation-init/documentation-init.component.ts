@@ -22,10 +22,8 @@ export class DocumentationInitComponent implements OnInit, OnDestroy {
       nextDocUrl: 'install',
       previousDocUrl: 'cli-run-through'
     })
-    if (isPlatformBrowser(this.platformId)) { window.location.hash = 'title' }
   }
 
   ngOnDestroy(){
-    if (isPlatformBrowser(this.platformId)) { window.location.hash = '' }
   }
 }

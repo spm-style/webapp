@@ -103,7 +103,7 @@
     <div class="carousel">
       <label for="toggle-dom-state">
         Reference DOM
-        <button type="button" id="dom-copy" (click)="copyToClipboard(domCode)">
+        <button type="button" id="dom-copy" (click)="copyToClipboard(domCode, '.section-dom')">
           <img src="assets/clipboard.svg" alt="copy to clipboard">
         </button>
         <div class="confirmation">DOM copied</div>
@@ -170,12 +170,19 @@
               <th>type</th>
               <th>style</th>
               <th>category</th>
+              <th>install in CLI
+                <button type="button" id="cli-copy" (click)="copyToClipboard(cliCopy, '.section-info')">
+                  <img src="assets/clipboard-dark.svg" alt="copy to clipboard">
+                </button>
+                <div class="confirmation">DOM copied</div>
+              </th>
             </tr>
             <tr>
               <td>{{ (current | async)?.downloadTotal }}</td>
               <td>{{ (current | async)?.type }}</td>
               <td>{{ (current | async)?.style }}</td>
               <td>{{ (current | async)?.category }}</td>
+              <td #cliCopy>spm i {{ (current | async)?.name }}@{{ (current | async)?.version }}</td>
             </tr>
           </table>
         </div>

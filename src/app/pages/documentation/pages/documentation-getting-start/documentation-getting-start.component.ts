@@ -17,16 +17,14 @@ export class DocumentationGettingStartComponent implements OnInit, OnDestroy {
     this._redux.dispatch({
       type: CHANGE_CURRENT_DOC,
       currentDoc: 'Getting started',
-      nextDoc: 'How spm works',
+      nextDoc: 'Tutorial',
       previousDoc: 'What is spm ?',
-      nextDocUrl: 'workings',
+      nextDocUrl: 'tutorial',
       previousDocUrl: 'what-is-spm'
     })
-    if (isPlatformBrowser(this.platformId)) { window.location.hash = 'title' }
   }
 
   ngOnDestroy(){
-    if (isPlatformBrowser(this.platformId)) { window.location.hash = '' }
   }
 
 }

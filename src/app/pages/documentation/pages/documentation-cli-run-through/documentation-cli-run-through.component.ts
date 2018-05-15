@@ -23,10 +23,8 @@ export class DocumentationCliRunThroughComponent implements OnInit, OnDestroy {
       nextDocUrl: 'init',
       previousDocUrl: 'workings'
     })
-    if (isPlatformBrowser(this.platformId)) { window.location.hash = 'title' }
   }
 
   ngOnDestroy(){
-    if (isPlatformBrowser(this.platformId)) { window.location.hash = '' }
   }
 }
