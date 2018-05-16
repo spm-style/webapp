@@ -5,7 +5,7 @@
 		<h2>Browse modules</h2>
 		<doc-description>In this tutorial, we are looking for a design for the main title of our current or future web project. We go on spm-style.com page and browse to the modules section.</doc-description>
 		<img src="assets/modules-nav.png" alt="example modules overview">
-		<doc-description>We can use the search bar with the “title” word to target specific modules used for titles for instance.</doc-description>
+		<doc-description>We can use the search bar with the “spm_demo_input” word to target specific modules used for titles for instance.</doc-description>
 		<img src="assets/modules-title.png" alt="example modules overview">
 		<doc-description>We can click on the module image to have more information about it.</doc-description>
 		<img src="assets/sandbox.png" alt="sandbox overview in spm">
@@ -41,28 +41,28 @@
  --></doc>
 		<doc-description>If we open our main html file in our browser, we'll see something like this :</doc-description>
 		<img src="assets/project-create.png" alt="example of project creation">
-		<h2>Install the module demo_input</h2>
-		<doc-description>We will start the installation example with the demo_input module.</doc-description>
+		<h2>Install the module spm_demo_input</h2>
+		<doc-description>We will start the installation example with the spm_demo_input module.</doc-description>
 		<doc-description>Nothing's easier : we go into our project's folder, and use the following install command:</doc-description>
 		<doc><!--
-	 --><doc-terminal-instruction content="spm module install demo_input"></doc-terminal-instruction><!--
+	 --><doc-terminal-instruction content="spm module install spm_demo_input"></doc-terminal-instruction><!--
  --></doc>
 		<doc-description>We get the following response:</doc-description>
 		<doc><!--
 	   --><doc-cli-message type="warning">default style has been set to css</doc-cli-message><!--
 	   --><doc-cli-message type="success">The following module has been added:</doc-cli-message><!--
-	   --><doc-cli-message type="console-log">demo_input@1.0.1</doc-cli-message><!--
+	   --><doc-cli-message type="console-log">spm_demo_input@1.0.1</doc-cli-message><!--
  --></doc>
  		<doc-description>Now, the <doc-highlight>spm_instances/spm_instances.js</doc-highlight> file and see what it contains:</doc-description>
 		<doc><!--
-	 --><doc-cli-message type="console-log">let demo_input = new Demo_input('name','demo_input')
+	 --><doc-cli-message type="console-log">let spm_demo_input = new Spm_demo_input('name','spm_demo_input')
 </doc-cli-message><!--
  --></doc>
 		<doc><!--
 	 --><doc-terminal-instruction content="cat spm_instances/spm_instances.scss"></doc-terminal-instruction><!--
-	 --><doc-cli-message type="console-log">@import '../spm_modules/demo_input/input.scss';</doc-cli-message><!--
+	 --><doc-cli-message type="console-log">@import '../spm_modules/spm_demo_input/input.scss';</doc-cli-message><!--
 	 --><doc-cli-message type="console-log"></doc-cli-message><!--
-	 --><doc-cli-message type="console-log">@include demo_input(lightgray,7px,700px,'demo_input');</doc-cli-message><!--
+	 --><doc-cli-message type="console-log">@include spm_demo_input(lightgray,7px,700px,'spm_demo_input');</doc-cli-message><!--
  --></doc>
  		<doc-description>The css file has been automatically generated and its name is <doc-highlight>.spm_instances.css</doc-highlight></doc-description>
  		<doc-description>Let’s open our main stylesheet, the file <doc-highlight>style.css</doc-highlight>. It contains the following code:</doc-description>
@@ -83,7 +83,7 @@
 		--><doc-cli-message type="console-log">&emsp;&emsp;&#60;h1>Project myProject successfully created !&#60;/h1></doc-cli-message><!--
 		--><doc-cli-message type="console-log"></doc-cli-message><!--
 		--><doc-cli-message type="console-log">&emsp;&emsp;&#60;script type="text/javascript" src="script.js">&#60;/script></doc-cli-message><!--
-		--><doc-cli-message type="console-log">&emsp;&emsp;&#60;script src="spm_modules/demo_input/input.js">&#60;/script></doc-cli-message><!--
+		--><doc-cli-message type="console-log">&emsp;&emsp;&#60;script src="spm_modules/spm_demo_input/input.js">&#60;/script></doc-cli-message><!--
 		--><doc-cli-message type="console-log">&emsp;&emsp;&#60;script src="spm_instances/spm_instances.js">&#60;/script></doc-cli-message><!--
 		--><doc-cli-message type="console-log">&#60;/body></doc-cli-message><!--
 		--><doc-cli-message type="console-log">&#60;/html></doc-cli-message><!--
@@ -101,14 +101,14 @@
   	 --><doc-cli-message type="console-log">&#60;body></doc-cli-message><!--
   	 --><doc-cli-message type="console-log"></doc-cli-message><!--
   	 --><doc-cli-message type="console-log">&emsp;&emsp;&#60;h1>Project myProject successfully created !&#60;/h1></doc-cli-message><!--
-  	 --><doc-cli-message type="console.log">&emsp;&emsp;&#60;div class="demo_input"></doc-cli-message><!--
+  	 --><doc-cli-message type="console.log">&emsp;&emsp;&#60;div class="spm_demo_input"></doc-cli-message><!--
   	 --><doc-cli-message type="console.log">&emsp;&emsp;&emsp;&emsp;&#60;label>&#60;/label></doc-cli-message><!--
   	 --><doc-cli-message type="console.log">&emsp;&emsp;&emsp;&emsp;&#60;input type="text"></doc-cli-message><!--
   	 --><doc-cli-message type="console.log">&emsp;&emsp;&#60;div></doc-cli-message><!--
   	 --><doc-cli-message type="console-log"></doc-cli-message><!--
   	 --><doc-cli-message type="console-log"></doc-cli-message><!--
   	 --><doc-cli-message type="console-log">&emsp;&emsp;&#60;script type="text/javascript" src="script.js">&#60;/script></doc-cli-message><!--
-  	 --><doc-cli-message type="console-log">&emsp;&emsp;&#60;script src="spm_modules/demo_input/input.js">&#60;/script></doc-cli-message><!--
+  	 --><doc-cli-message type="console-log">&emsp;&emsp;&#60;script src="spm_modules/spm_demo_input/input.js">&#60;/script></doc-cli-message><!--
   	 --><doc-cli-message type="console-log">&emsp;&emsp;&#60;script src="spm_instances/spm_instances.js">&#60;/script></doc-cli-message><!--
   	 --><doc-cli-message type="console-log">&#60;/body></doc-cli-message><!--
   	 --><doc-cli-message type="console-log">&#60;/html></doc-cli-message><!--
@@ -126,8 +126,6 @@
 		<doc-description>It will open a prompter asking for the different parameters’ values:</doc-description>
 		<doc><!--
 	 --><doc-terminal-instruction content="spm module generate customInput"></doc-terminal-instruction><!--
-	 --><doc-terminal-instruction type="inquirer" content="value of css variable fontColor" [arg]="['red']"></doc-terminal-instruction><!--
-	 --><doc-terminal-instruction content="spm module generate customInput"></doc-terminal-instruction><!--
 	 --><doc-terminal-instruction type="inquirer" content="value of css variable color-label" [arg]="['lightblue']"></doc-terminal-instruction><!--
 	 --><doc-terminal-instruction type="inquirer" content="value of css variable radius-input" [arg]="['10px']"></doc-terminal-instruction><!--
 	 --><doc-terminal-instruction type="inquirer" content="value of css variable max-width-demo-input" [arg]="['700px']"></doc-terminal-instruction><!--
@@ -135,12 +133,12 @@
  --></doc>
 		<doc-description>Eventually, the module is generated:</doc-description>
 		<doc><!--
-	 --><doc-cli-message type="success">css instance customInput of module demo_input has been generated</doc-cli-message><!--
+	 --><doc-cli-message type="success">css instance customInput of module spm_demo_input has been generated</doc-cli-message><!--
  --></doc>
 		<doc-description>our <doc-highlight>spm_instances.js</doc-highlight> file has been modified :</doc-description>
 		<doc><!--
-	 --><doc-terminal-instruction type="console-log" content="let demo_input = new Demo_input('name','demo_input')"></doc-terminal-instruction><!--
-	 --><doc-terminal-instruction type="console-log" content="let customInput = new Demo_input(age,'customInput')"></doc-terminal-instruction><!--
+	 --><doc-terminal-instruction type="console-log" content="let spm_demo_input = new Spm_demo_input('name','demo_input')"></doc-terminal-instruction><!--
+	 --><doc-terminal-instruction type="console-log" content="let customInput = new Spm_demo_input(age,'customInput')"></doc-terminal-instruction><!--
  --></doc>
 		<doc-description>and our <doc-highlight>spm_instance.scss</doc-highlight> file has been modified too:</doc-description>
 		<doc><!--
@@ -219,16 +217,14 @@
 	--><doc-terminal-instruction type="console-log" content ="&emsp;&emsp;background-color: red;"></doc-terminal-instruction><!--
 	--><doc-terminal-instruction type="console-log" content ="&emsp;&emsp;width: 30px;"></doc-terminal-instruction><!--
 	--><doc-terminal-instruction type="console-log" content ="&emsp;&emsp;height: 20px;"></doc-terminal-instruction><!--
-	--><doc-terminal-instruction type="console-log" content ="&emsp;&emsp;box-shadow: inset 1px 0 0 1px white,"></doc-terminal-instruction><!--
-	--><doc-terminal-instruction type="console-log" content ="&emsp;&emsp;	inset -12px 0 0 1px white;"></doc-terminal-instruction><!--
+	--><doc-terminal-instruction type="console-log" content ="&emsp;&emsp;box-shadow: inset 1px 0 0 1px white, inset -12px 0 0 1px white;"></doc-terminal-instruction><!--
 	--><doc-terminal-instruction type="console-log" content ="&emsp;&emsp;transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;"></doc-terminal-instruction><!--
 	--><doc-terminal-instruction type="console-log" content ="}"></doc-terminal-instruction><!--
 	--><doc-terminal-instruction type="console-log" content =""></doc-terminal-instruction><!--
 	--><doc-terminal-instruction type="console-log" content =".myModule input:checked {"></doc-terminal-instruction><!--
 	--><doc-terminal-instruction type="console-log" content ="&emsp;&emsp;background-color: blue;"></doc-terminal-instruction><!--
-	--><doc-terminal-instruction type="console-log" content ="&emsp;&emsp;box-shadow: inset 12px 0 0 1px white,"></doc-terminal-instruction><!--
-	--><doc-terminal-instruction type="console-log" content ="&emsp;&emsp;	inset -1px 0 0 1px white;"></doc-terminal-instruction><!--
-	--><doc-terminal-instruction type="console-log" content ="&emsp;&emsp;	border-color: blue;"></doc-terminal-instruction><!--
+	--><doc-terminal-instruction type="console-log" content ="&emsp;&emsp;box-shadow: inset 12px 0 0 1px white, inset -1px 0 0 1px white;"></doc-terminal-instruction><!--
+	--><doc-terminal-instruction type="console-log" content ="&emsp;&emsp;border-color: blue;"></doc-terminal-instruction><!--
 	--><doc-terminal-instruction type="console-log" content ="}"></doc-terminal-instruction><!--
 	--><doc-terminal-instruction type="console-log" content =""></doc-terminal-instruction><!--
 	--><doc-terminal-instruction type="console-log" content =".myModule input.radius {"></doc-terminal-instruction><!--
@@ -262,7 +258,7 @@
 		<doc-description>The following actions are related to how your module looks like when the users arrive on its dedicated page in our sandbox.</doc-description>
 		<doc-description>First of all, we want to declare the classes we use in our module and not in other modules</doc-description>
 		<doc><!--
-	 --><doc-terminal-instruction content="spm module edit --classes ='radius, pointer'"></doc-terminal-instruction><!--
+	 --><doc-terminal-instruction content="spm module edit --classes='radius, pointer'"></doc-terminal-instruction><!--
 	 --><doc-cli-message type="success">module's key classes successfully updated to radius,pointer</doc-cli-message><!--
  --></doc>
 		<doc-description>After that, we want to declare the classes that will be activated by default when we make a screenshot of our module for the list. Here we want pointer to be active, not radius.</doc-description>
@@ -318,7 +314,7 @@
   	 --><doc-cli-message type="console-log">&#60;body></doc-cli-message><!--
   	 --><doc-cli-message type="console-log"></doc-cli-message><!--
   	 --><doc-cli-message type="console-log">&emsp;&emsp;&#60;h1>Project myProject successfully created !&#60;/h1></doc-cli-message><!--
-  	 --><doc-cli-message type="console.log">&emsp;&emsp;&#60;div class="demo_input"></doc-cli-message><!--
+  	 --><doc-cli-message type="console.log">&emsp;&emsp;&#60;div class="spm_demo_input"></doc-cli-message><!--
   	 --><doc-cli-message type="console.log">&emsp;&emsp;&emsp;&emsp;&#60;label>&#60;/label></doc-cli-message><!--
   	 --><doc-cli-message type="console.log">&emsp;&emsp;&emsp;&emsp;&#60;input type="text"></doc-cli-message><!--
   	 --><doc-cli-message type="console.log">&emsp;&emsp;&#60;div></doc-cli-message><!--
@@ -334,7 +330,7 @@
 	 --><doc-cli-message type="console-log">&emsp;&emsp;&#60;/div></doc-cli-message><!--
   	 --><doc-cli-message type="console-log"></doc-cli-message><!--
   	 --><doc-cli-message type="console-log">&emsp;&emsp;&#60;script type="text/javascript" src="script.js">&#60;/script></doc-cli-message><!--
-  	 --><doc-cli-message type="console-log">&emsp;&emsp;&#60;script src="spm_modules/demo_input/input.js">&#60;/script></doc-cli-message><!--
+  	 --><doc-cli-message type="console-log">&emsp;&emsp;&#60;script src="spm_modules/spm_demo_input/demo_input.js">&#60;/script></doc-cli-message><!--
   	 --><doc-cli-message type="console-log">&emsp;&emsp;&#60;script src="spm_instances/spm_instances.js">&#60;/script></doc-cli-message><!--
   	 --><doc-cli-message type="console-log">&#60;/body></doc-cli-message><!--
   	 --><doc-cli-message type="console-log">&#60;/html></doc-cli-message><!--
@@ -344,12 +340,12 @@
 		<doc-description>You can use the generate command to create a new instance of your module with a different javascript variable, hence a different message.</doc-description>
 		<doc-description>Whenever you want to use your module in another project or even in another module, just use: spm install <doc-highlight>yourName</doc-highlight>_myModule</doc-description>
 		<doc><!--
-	 --><doc-terminal-instruction content="spm install adrien_myModule"></doc-terminal-instruction><!--
+	 --><doc-terminal-instruction content="spm module install adrien_myModule"></doc-terminal-instruction><!--
 	 --><doc-cli-message type="warning">default style has been set to css</doc-cli-message><!--
 	 --><doc-cli-message type="success">The following module has been added:</doc-cli-message><!--
 	 --><doc-cli-message type="console-log" content="adrien_myModule@1.0.0"></doc-cli-message><!--
  --></doc>
-		<doc-description>Congratulations ! You are now able to install, customize and publish modules. A great power is at your fingertips now. Don’t hesitate to let us know how you like spm here ! For any issue with our tool, we will be more than happy to solve it for you. Meanwhile, a complete documentation with advanced usage is available at <doc-intra-link link="">spm-style.com/documentation</doc-intra-link>.</doc-description>
+		<doc-description>Congratulations ! You are now able to install, customize and publish modules. A great power is at your fingertips now. Don’t hesitate to let us know how you like spm here ! For any issue with our tool, we will be more than happy to solve it for you. Meanwhile, a complete documentation with advanced usage is available at <doc-intra-link link="">spm-style.com/documentation</doc-intra-link>. For a quick recap of our main commands, make sure you've checked <doc-intra-link link="../cheat-sheet">our cheat-sheet</doc-intra-link>!</doc-description>
   </div>
 </section>
 
