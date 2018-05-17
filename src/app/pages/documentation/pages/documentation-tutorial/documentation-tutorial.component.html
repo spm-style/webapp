@@ -60,7 +60,7 @@
  --></doc>
 		<doc><!--
 	 --><doc-terminal-instruction content="cat spm_instances/spm_instances.scss"></doc-terminal-instruction><!--
-	 --><doc-cli-message type="console-log">@import '../spm_modules/spm_demo_input/input.scss';</doc-cli-message><!--
+	 --><doc-cli-message type="console-log">@import '../spm_modules/spm_demo_input/demo_input.scss';</doc-cli-message><!--
 	 --><doc-cli-message type="console-log"></doc-cli-message><!--
 	 --><doc-cli-message type="console-log">@include spm_demo_input(lightgray,7px,700px,'spm_demo_input');</doc-cli-message><!--
  --></doc>
@@ -83,7 +83,7 @@
 		--><doc-cli-message type="console-log">&emsp;&emsp;&#60;h1>Project myProject successfully created !&#60;/h1></doc-cli-message><!--
 		--><doc-cli-message type="console-log"></doc-cli-message><!--
 		--><doc-cli-message type="console-log">&emsp;&emsp;&#60;script type="text/javascript" src="script.js">&#60;/script></doc-cli-message><!--
-		--><doc-cli-message type="console-log">&emsp;&emsp;&#60;script src="spm_modules/spm_demo_input/input.js">&#60;/script></doc-cli-message><!--
+		--><doc-cli-message type="console-log">&emsp;&emsp;&#60;script src="spm_modules/spm_demo_input/demo_input.js">&#60;/script></doc-cli-message><!--
 		--><doc-cli-message type="console-log">&emsp;&emsp;&#60;script src="spm_instances/spm_instances.js">&#60;/script></doc-cli-message><!--
 		--><doc-cli-message type="console-log">&#60;/body></doc-cli-message><!--
 		--><doc-cli-message type="console-log">&#60;/html></doc-cli-message><!--
@@ -108,7 +108,7 @@
   	 --><doc-cli-message type="console-log"></doc-cli-message><!--
   	 --><doc-cli-message type="console-log"></doc-cli-message><!--
   	 --><doc-cli-message type="console-log">&emsp;&emsp;&#60;script type="text/javascript" src="script.js">&#60;/script></doc-cli-message><!--
-  	 --><doc-cli-message type="console-log">&emsp;&emsp;&#60;script src="spm_modules/spm_demo_input/input.js">&#60;/script></doc-cli-message><!--
+  	 --><doc-cli-message type="console-log">&emsp;&emsp;&#60;script src="spm_modules/spm_demo_input/demo_input.js">&#60;/script></doc-cli-message><!--
   	 --><doc-cli-message type="console-log">&emsp;&emsp;&#60;script src="spm_instances/spm_instances.js">&#60;/script></doc-cli-message><!--
   	 --><doc-cli-message type="console-log">&#60;/body></doc-cli-message><!--
   	 --><doc-cli-message type="console-log">&#60;/html></doc-cli-message><!--
@@ -138,15 +138,15 @@
 		<doc-description>our <doc-highlight>spm_instances.js</doc-highlight> file has been modified :</doc-description>
 		<doc><!--
 	 --><doc-terminal-instruction type="console-log" content="let spm_demo_input = new Spm_demo_input('name','demo_input')"></doc-terminal-instruction><!--
-	 --><doc-terminal-instruction type="console-log" content="let customInput = new Spm_demo_input(age,'customInput')"></doc-terminal-instruction><!--
+	 --><doc-terminal-instruction type="console-log" content="let customInput = new Spm_demo_input('age','customInput')"></doc-terminal-instruction><!--
  --></doc>
 		<doc-description>and our <doc-highlight>spm_instance.scss</doc-highlight> file has been modified too:</doc-description>
 		<doc><!--
-	 --><doc-terminal-instruction type="console-log" content="@import '../spm_modules/demo_input/input.scss';
+	 --><doc-terminal-instruction type="console-log" content="@import '../spm_modules/spm_demo_input/demo_input.scss';
 "></doc-terminal-instruction><!--
 	 --><doc-terminal-instruction type="console-log" content=""></doc-terminal-instruction><!--
-	 --><doc-terminal-instruction type="console-log" content="@include demo_input(lightgray,7px,700px,'demo_input');"></doc-terminal-instruction><!--
-	 --><doc-terminal-instruction type="console-log" content="@include demo_input(lightblue,10px,700px,'customInput');"></doc-terminal-instruction><!--
+	 --><doc-terminal-instruction type="console-log" content="@include spm_demo_input(lightgray,7px,700px,'spm_demo_input');"></doc-terminal-instruction><!--
+	 --><doc-terminal-instruction type="console-log" content="@include spm_demo_input(lightblue,10px,700px,'customInput');"></doc-terminal-instruction><!--
  --></doc>
 		<doc-description>Let's add the html code in our project, using <doc-highlight>customInput</doc-highlight> class instead of demo_input</doc-description>
  		<doc-description>Here is the result when we spmopen our project in our browser once more.</doc-description>
@@ -168,7 +168,7 @@
    --><doc-info-list-item><doc-highlight>main class</doc-highlight> set as <doc-highlight>myModule</doc-highlight></doc-info-list-item><!--
    --><doc-info-list-item><doc-highlight>description</doc-highlight> set as <doc-highlight>this is my first module !</doc-highlight></doc-info-list-item><!--
    --><doc-info-list-item><doc-highlight>chose your js standard</doc-highlight> set as <doc-highlight>legacy</doc-highlight></doc-info-list-item><!--
-   --><doc-info-list-item><doc-highlight>category</doc-highlight> set as <doc-highlight>input</doc-highlight></doc-info-list-item><!--
+   --><doc-info-list-item><doc-highlight>category</doc-highlight> set as <doc-highlight>Wellcome</doc-highlight></doc-info-list-item><!--
    --><doc-info-list-item><doc-highlight>repository</doc-highlight> set as an empty message</doc-info-list-item><!--
    --><doc-info-list-item><doc-highlight>readme</doc-highlight> set as an empty message</doc-info-list-item><!--
    --><doc-info-list-item><doc-highlight>module's main stylesheet</doc-highlight> set as <doc-highlight>myModule.css</doc-highlight></doc-info-list-item><!--
