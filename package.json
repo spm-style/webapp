@@ -15,7 +15,9 @@
     "build:universal": "npm run config -- --environment=prod && npm run build:client-and-server-bundles && npm run webpack:server",
     "serve:universal": "node dist/server.js",
     "build:client-and-server-bundles": "ng build --prod && ng build --prod --app 1 --output-hashing=false",
-    "webpack:server": "webpack --config webpack.server.config.js --progress --colors"
+    "webpack:server": "webpack --config webpack.server.config.js --progress --colors",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "private": true,
   "dependencies": {
@@ -44,7 +46,8 @@
     "video.js": "^6.4.0",
     "web-animations-js": "^2.3.1",
     "yargs": "^11.0.0",
-    "zone.js": "^0.8.4"
+    "zone.js": "^0.8.4",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "@angular/cli": "^1.5.0",
@@ -66,5 +69,6 @@
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
     "typescript": "~2.6.1"
-  }
+  },
+  "snyk": true
 }
