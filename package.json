@@ -41,7 +41,7 @@
     "rxjs": "^5.5.0",
     "tassign": "^1.0.0",
     "ts-loader": "^3.1.1",
-    "video.js": "^6.4.0",
+    "video.js": "^7.14.3",
     "web-animations-js": "^2.3.1",
     "yargs": "^11.0.0",
     "zone.js": "^0.8.4"
